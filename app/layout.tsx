@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-// import { SidebarProvider } from "@/components/ui/sidebar";
-// import { ThemeProvider } from "next-themes";
-// import { TooltipProvider } from "@/components/ui/tooltip";
-// import { AppSidebar } from "@/components/global/App-Sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { ThemeProvider } from "next-themes";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 // import Header from "@/components/global/Header";
-// import { Toaster } from "@/components/ui/sonner";
+// import { AppSidebar } from "@/components/global/App-Sidebar";
 
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],
@@ -30,21 +30,20 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${dmSans.className} antialiased`}>
-                {children}
-                {/* <ThemeProvider storageKey="oryn-theme">
+                <ThemeProvider storageKey="ede-theme">
                     <SidebarProvider defaultOpen={false}>
                         <TooltipProvider>
-                            <AppSidebar />
-                            <div className="w-full flex flex-col min-h-screen">
-                                <Header />
-                                <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center">
+                            {/* <AppSidebar /> */}
+                            <div>
+                                {/* <Header /> */}
+                                <main>
                                     {children}
                                 </main>
                             </div>
                         </TooltipProvider>
                     </SidebarProvider>
                 </ThemeProvider>
-                <Toaster /> */}
+                <Toaster />
             </body>
         </html>
     );
