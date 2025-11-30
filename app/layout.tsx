@@ -5,8 +5,8 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
-// import Header from "@/components/global/Header";
-// import { AppSidebar } from "@/components/global/App-Sidebar";
+import Header from "@/components/global/Header";
+import { AppSidebar } from "@/components/global/App-Sidebar";
 
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],
@@ -33,9 +33,9 @@ export default function RootLayout({
                 <ThemeProvider storageKey="ede-theme">
                     <SidebarProvider defaultOpen={false}>
                         <TooltipProvider>
-                            {/* <AppSidebar /> */}
-                            <div>
-                                {/* <Header /> */}
+                            <AppSidebar />
+                            <div className="w-full flex flex-col min-h-screen">
+                                <Header />
                                 <main>
                                     {children}
                                 </main>
