@@ -64,7 +64,7 @@ export const rawSidebarItems = [
         title: "Productivity",
         items: [
             {
-                title: "Lorem Ipsum Generator",
+                title: "Lorem Ipsum",
                 url: "/tools/lorem-ipsum-generator",
                 icon: Text,
                 description: "Generate placeholder text for your designs and projects.",
@@ -146,7 +146,7 @@ export const rawSidebarItems = [
                 description: "Live preview and syntax highlighting for Markdown content.",
             },
             {
-                title: "JSON Formatter & Validator",
+                title: "JSON Tools",
                 url: "/tools/json-formatter",
                 icon: Braces,
                 description: "Beautify, validate, and debug JSON structures.",
@@ -157,7 +157,7 @@ export const rawSidebarItems = [
         title: "Utilities",
         items: [
             {
-                title: "Base64 Encoder/Decoder",
+                title: "Base64 Tools",
                 url: "/tools/base64-encoder-decoder",
                 icon: Code2,
                 description: "Encode or decode Base64 strings and files.",
@@ -174,7 +174,7 @@ export const rawSidebarItems = [
         title: "Sharing Tools",
         items: [
             {
-                title: "Link in Bio Creator",
+                title: "Link in Bio",
                 url: "/tools/link-in-bio-creator",
                 icon: Network,
                 description: "Create a personalized landing page for your links.",
