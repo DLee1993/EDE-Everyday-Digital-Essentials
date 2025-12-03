@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { PanelLeftIcon, XIcon } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -145,8 +146,6 @@ function SidebarProvider({
 
 function Sidebar({
     side = "left",
-    variant = "sidebar",
-    collapsible = "offcanvas",
     className,
     children,
     ...props
@@ -155,22 +154,7 @@ function Sidebar({
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
 }) {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
-
-    if (collapsible === "none") {
-        return (
-            <div
-                data-slot="sidebar"
-                className={cn(
-                    "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
-                    className
-                )}
-                {...props}
-            >
-                {children}
-            </div>
-        );
-    }
+    const { isMobile, openMobile, setOpenMobile } = useSidebar();
 
     if (isMobile) {
         return (
@@ -179,7 +163,7 @@ function Sidebar({
                     data-sidebar="sidebar"
                     data-slot="sidebar"
                     data-mobile="true"
-                    className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
+                    className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden gap-0!"
                     style={
                         {
                             "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -187,11 +171,18 @@ function Sidebar({
                     }
                     side={side}
                 >
-                    <SheetHeader className="sr-only">
-                        <SheetTitle>Sidebar</SheetTitle>
-                        <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+                    <SheetHeader className="justify-between items-center flex-row! gap-1! p-3!">
+                        <div>
+                            <SheetTitle>EDE</SheetTitle>
+                            <SheetDescription className="text-xs">
+                                Your Everyday Digital Essentials.
+                            </SheetDescription>
+                        </div>
+                        <SheetClose className="cursor-pointer">
+                            <XIcon />
+                        </SheetClose>
                     </SheetHeader>
-                    <div className="flex h-full w-full flex-col">{children}</div>
+                    <div className="flex w-full flex-col overflow-y-auto">{children}</div>
                 </SheetContent>
             </Sheet>
         );
@@ -199,48 +190,14 @@ function Sidebar({
 
     return (
         <div
-            className="group peer text-sidebar-foreground hidden md:block"
-            data-state={state}
-            data-collapsible={state === "collapsed" ? collapsible : ""}
-            data-variant={variant}
-            data-side={side}
             data-slot="sidebar"
+            className={cn(
+                "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
+                className
+            )}
+            {...props}
         >
-            {/* This is what handles the sidebar gap on desktop */}
-            <div
-                data-slot="sidebar-gap"
-                className={cn(
-                    "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
-                    "group-data-[collapsible=offcanvas]:w-0",
-                    "group-data-[side=right]:rotate-180",
-                    variant === "floating" || variant === "inset"
-                        ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
-                        : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
-                )}
-            />
-            <div
-                data-slot="sidebar-container"
-                className={cn(
-                    "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
-                    side === "left"
-                        ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-                        : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-                    // Adjust the padding for floating and inset variants.
-                    variant === "floating" || variant === "inset"
-                        ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-                        : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
-                    className
-                )}
-                {...props}
-            >
-                <div
-                    data-sidebar="sidebar"
-                    data-slot="sidebar-inner"
-                    className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
-                >
-                    {children}
-                </div>
-            </div>
+            {children}
         </div>
     );
 }
@@ -583,8 +540,11 @@ function SidebarMenuSkeleton({
     showIcon?: boolean;
 }) {
     // Random width between 50 to 90%.
-    const width = React.useMemo(() => {
-        return `${Math.floor(Math.random() * 40) + 50}%`;
+    // Generate the random value after mount to avoid calling impure functions during render.
+    const [width, setWidth] = React.useState("70%");
+
+    React.useEffect(() => {
+        setWidth(`${Math.floor(Math.random() * 40) + 50}%`);
     }, []);
 
     return (

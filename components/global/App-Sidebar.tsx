@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { sidebarItems } from "@/components/global/app-sidebar-item-list";
 import ChangeTheme from "@/components/global/ThemeToggle";
-import { Home, FolderGit2, Settings, ChevronRight, XIcon } from "lucide-react";
+import { Home, FolderGit2, Settings } from "lucide-react";
 import {
     Sidebar,
     SidebarContent,
@@ -14,81 +14,22 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarSeparator,
-    useSidebar,
     SidebarGroupLabel,
 } from "@/components/ui/sidebar";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer";
 import { PageIdentifier } from "@/components/global/PageIdentifier";
 
 export function AppSidebar() {
     const pathname = usePathname();
-    const { isMobile } = useSidebar();
-
-    if (isMobile) {
-        return (
-            <Drawer>
-                <DrawerTrigger className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-foreground/10 px-6 py-1.5 rounded-md cursor-pointer">
-                    Menu
-                </DrawerTrigger>
-                <DrawerContent>
-                    <DrawerHeader className="flex flex-row justify-between items-center">
-                        <DrawerTitle>Select a tool</DrawerTitle>
-                        <DrawerClose className="w-fit cursor-pointer">
-                            <XIcon />
-                        </DrawerClose>
-                        <DrawerDescription className="sr-only">
-                            Select a tool from the list below
-                        </DrawerDescription>
-                    </DrawerHeader>
-                    <div className="space-y-4 min-h-72 overflow-scroll p-2">
-                        {sidebarItems.map((category) => (
-                            <div key={category.title} className="bg-foreground/5 rounded-md p-4">
-                                <h2 className="text-sm font-semibold mb-3 text-accent">
-                                    {category.title}
-                                </h2>
-                                <ul className="space-y-2">
-                                    {category.items.map((tool) => (
-                                        <li key={tool.url}>
-                                            <Link
-                                                href={tool.url}
-                                                className="flex items-center justify-between gap-2 text-sm p-2 rounded hover:bg-foreground/20"
-                                            >
-                                                <div className="flex items-center gap-2">
-                                                    <tool.icon className="w-4 h-4" />
-                                                    <span className="whitespace-nowrap">
-                                                        {tool.title}
-                                                    </span>
-                                                </div>
-                                                <ChevronRight className="w-4 h-4 text-muted" />
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* <DrawerFooter>
-                        <DrawerClose>Cancel</DrawerClose>
-                    </DrawerFooter> */}
-                </DrawerContent>
-            </Drawer>
-        );
-    }
 
     return (
-        <Sidebar collapsible="none" className="h-screen border-r border-border">
-            <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden md:block">
-                <div className="relative hidden md:block">
-                    <p className="flex flex-col min-w-52 transition-opacity duration-200 ease-linear text-md font-semibold">
+        <Sidebar
+            collapsible="none"
+            variant="sidebar"
+            className="h-0 w-0 lg:w-auto lg:h-screen border-r border-border"
+        >
+            <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden lg:block">
+                <div className="relative">
+                    <p className="flex flex-col min-w-52 text-md font-semibold">
                         EDE
                         <span className="text-xs text-muted-foreground font-normal">
                             Your Everyday Digital Essentials.
@@ -96,8 +37,8 @@ export function AppSidebar() {
                     </p>
                 </div>
             </SidebarHeader>
-            <SidebarSeparator className="mx-0 h-[0.5px]!" />
-            <SidebarContent>
+            <SidebarSeparator className="mx-0" />
+            <SidebarContent className="overflow-x-hidden overflow-y-auto">
                 <SidebarGroup key={`Dashboard menu group`}>
                     <SidebarMenu>
                         <SidebarMenuItem>
@@ -112,7 +53,7 @@ export function AppSidebar() {
                                 >
                                     <Home
                                         size={15}
-                                        className={`${
+                                        className={`ml-0.5 ${
                                             pathname === "/" ? "text-accent" : "text-foreground"
                                         }`}
                                     />
@@ -125,7 +66,7 @@ export function AppSidebar() {
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild className="min-h-9 min-w-9">
                                 <Link href="https://github.com/DLee1993/toolbox" target="_blank">
-                                    <FolderGit2 size={15} />
+                                    <FolderGit2 size={15} className="ml-0.5" />
                                     <p className="mx-2 min-w-32">Request a tool</p>
                                 </Link>
                             </SidebarMenuButton>
@@ -140,7 +81,7 @@ export function AppSidebar() {
                                 <Link href="/settings">
                                     <Settings
                                         size={15}
-                                        className={`${
+                                        className={`ml-0.5 ${
                                             pathname === "/settings"
                                                 ? "text-accent"
                                                 : "text-foreground"
@@ -154,14 +95,12 @@ export function AppSidebar() {
                         <ChangeTheme />
                     </SidebarMenu>
                 </SidebarGroup>
-                <SidebarSeparator className="mx-0" />
+
+                <SidebarSeparator className="bg-border" />
+
                 {sidebarItems.map((group) => (
-                    <SidebarGroup key={`${group.title} menu group`} className="py-2 mb-5 md:mb-0">
-                        <SidebarGroupLabel
-                            className={`pointer-events-none text-accent text-[13px] ${
-                                isMobile ? "h-8" : "h-5"
-                            } mb-2`}
-                        >
+                    <SidebarGroup key={`${group.title} menu group`} className="py-2">
+                        <SidebarGroupLabel className="pointer-events-none text-accent text-[13px] mb-2 h-5">
                             {group.title}
                         </SidebarGroupLabel>
                         <SidebarMenu>
@@ -174,18 +113,18 @@ export function AppSidebar() {
                                     >
                                         <Link
                                             href={item.url}
-                                            className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-1"
+                                            className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
                                         >
                                             {item.icon && (
                                                 <item.icon
-                                                    className={`${
+                                                    className={`ml-0.5 ${
                                                         pathname === item.url
                                                             ? "text-primary"
                                                             : "text-foreground"
                                                     }`}
                                                 />
                                             )}
-                                            <p className="min-w-32">{item.title}</p>
+                                            <p className="mx-2 min-w-32">{item.title}</p>
                                             {pathname === item.url && <PageIdentifier />}
                                         </Link>
                                     </SidebarMenuButton>
