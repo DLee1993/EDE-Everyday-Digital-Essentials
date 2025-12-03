@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
+import { MoonIcon, SunIcon, SunMoonIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 
@@ -26,21 +26,21 @@ const ChangeTheme = () => {
         <SidebarMenuItem onClick={toggleTheme}>
             <SidebarMenuButton
                 asChild
-                className="min-h-9 min-w-9 cursor-pointer"
+                className="min-h-9 min-w-9 cursor-pointer p-0! md:group-data-[collapsible=icon]:p-0!"
             >
                 {hasMounted ? (
-                    <div className="px-0">
-                        <div className="relative min-h-8 min-w-8">
+                    <div className="w-full px-0">
+                        <div className="relative min-h-9 min-w-9">
                             <MoonIcon
                                 size={16}
-                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ${
-                                    theme === "dark" || theme === "system" ? "block" : "hidden"
+                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ${
+                                    theme === "dark" || theme === "system" ? "scale-100" : "scale-0"
                                 }`}
                             />
                             <SunIcon
                                 size={18}
-                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  ${
-                                    theme === "light" ? "block" : "hidden"
+                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ${
+                                    theme === "light" ? "scale-100" : "scale-0"
                                 }`}
                             />
                         </div>
@@ -50,14 +50,15 @@ const ChangeTheme = () => {
                         </p>
                     </div>
                 ) : (
-                    <div className="px-0">
-                        <div className="relative min-h-8 min-w-8">
-                            <MoonIcon
+                    <div className="w-full min-w-32">
+                        <div className="relative min-h-9 min-w-9">
+                            <SunMoonIcon
                                 size={16}
                                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                             />
                         </div>
-                        <p className="flex items-center w-full min-w-32">Dark mode</p>
+
+                        <p className="flex items-center w-full min-w-32">Theme mode</p>
                     </div>
                 )}
             </SidebarMenuButton>
