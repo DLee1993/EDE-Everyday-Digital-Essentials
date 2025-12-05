@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { sidebarItems } from "@/components/global/app-sidebar-item-list";
+// import { sidebarItems } from "@/components/global/app-sidebar-item-list";
 import ChangeTheme from "@/components/global/ThemeToggle";
 import { Home, FolderGit2, Settings } from "lucide-react";
 import {
@@ -14,12 +14,14 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarSeparator,
-    SidebarGroupLabel,
+    useSidebar,
 } from "@/components/ui/sidebar";
 import { PageIdentifier } from "@/components/global/PageIdentifier";
+import MenuSearch from "@/components/global/MenuSearch";
 
 export function AppSidebar() {
     const pathname = usePathname();
+    const { openMobile, setOpenMobile } = useSidebar();
 
     return (
         <Sidebar
@@ -46,6 +48,7 @@ export function AppSidebar() {
                                 asChild
                                 isActive={pathname === "/" ? true : false}
                                 className="min-h-9 min-w-9"
+                                onClick={() => setOpenMobile(!openMobile)}
                             >
                                 <Link
                                     href="/"
@@ -77,6 +80,7 @@ export function AppSidebar() {
                                 asChild
                                 isActive={pathname === "/settings" ? true : false}
                                 className="min-h-9 min-w-9"
+                                onClick={() => setOpenMobile(!openMobile)}
                             >
                                 <Link href="/settings">
                                     <Settings
@@ -98,41 +102,7 @@ export function AppSidebar() {
 
                 <SidebarSeparator className="bg-border" />
 
-                {sidebarItems.map((group) => (
-                    <SidebarGroup key={`${group.title} menu group`} className="py-2">
-                        <SidebarGroupLabel className="pointer-events-none text-accent text-[13px] mb-2 h-5">
-                            {group.title}
-                        </SidebarGroupLabel>
-                        <SidebarMenu>
-                            {group.items.map((item, i) => (
-                                <SidebarMenuItem key={`menu-item-${i}`}>
-                                    <SidebarMenuButton
-                                        asChild
-                                        isActive={pathname === item.url ? true : false}
-                                        className="min-h-9 min-w-9"
-                                    >
-                                        <Link
-                                            href={item.url}
-                                            className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
-                                        >
-                                            {item.icon && (
-                                                <item.icon
-                                                    className={`ml-0.5 ${
-                                                        pathname === item.url
-                                                            ? "text-primary"
-                                                            : "text-foreground"
-                                                    }`}
-                                                />
-                                            )}
-                                            <p className="mx-2 min-w-32">{item.title}</p>
-                                            {pathname === item.url && <PageIdentifier />}
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
-                        </SidebarMenu>
-                    </SidebarGroup>
-                ))}
+                <MenuSearch open={openMobile} setOpen={setOpenMobile} />
             </SidebarContent>
         </Sidebar>
     );
