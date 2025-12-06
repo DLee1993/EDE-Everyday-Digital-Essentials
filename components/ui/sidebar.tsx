@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { usePathname } from "next/navigation";
+import { getLocalizedGreeting } from "@/lib/global/GreetUser";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -155,6 +157,21 @@ function Sidebar({
     collapsible?: "offcanvas" | "icon" | "none";
 }) {
     const { isMobile, openMobile, setOpenMobile } = useSidebar();
+    const pathname = usePathname();
+    const [greeting, setGreeting] = React.useState<Greeting>({
+        message: "",
+        icon: undefined,
+    });
+    React.useEffect(() => {
+        try {
+            const greeting = getLocalizedGreeting();
+            if (greeting) {
+                setGreeting({ message: greeting.message, icon: greeting.icon });
+            }
+        } catch (error) {
+            console.error("Greeting error:", error);
+        }
+    }, []);
 
     if (isMobile) {
         return (
@@ -172,11 +189,19 @@ function Sidebar({
                     side={side}
                 >
                     <SheetHeader className="justify-between items-center flex-row! gap-1! p-3!">
-                        <div>
+                        <div className="hidden sm:block">
                             <SheetTitle>EDE</SheetTitle>
                             <SheetDescription className="text-xs">
                                 Your Everyday Digital Essentials.
                             </SheetDescription>
+                        </div>
+                        <div className="sm:hidden">
+                            {(pathname === "/" || pathname === "/settings") && (
+                                <div className="flex items-center gap-2 text-sm">
+                                    <div>{greeting.icon}</div>
+                                    <h1>{greeting.message}</h1>
+                                </div>
+                            )}
                         </div>
                         <SheetClose className="cursor-pointer">
                             <XIcon />
@@ -211,7 +236,7 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
             data-slot="sidebar-trigger"
             variant="ghost"
             size="icon"
-            className={cn("size-7", className)}
+            className={cn("", className)}
             onClick={(event) => {
                 onClick?.(event);
                 toggleSidebar();

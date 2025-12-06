@@ -1,14 +1,62 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { getLocalizedGreeting } from "@/lib/global/GreetUser";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import Link from "next/link";
+import { PhoneIcon, SettingsIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
+    const pathname = usePathname();
+    const [greeting, setGreeting] = useState<Greeting>({
+        message: "",
+        icon: undefined,
+    });
+
+    useEffect(() => {
+        try {
+            const greeting = getLocalizedGreeting();
+            if (greeting) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
+                setGreeting({ message: greeting.message, icon: greeting.icon });
+            }
+        } catch (error) {
+            console.error("Greeting error:", error);
+        }
+    }, []);
     return (
-        <header className="flex justify-between items-center px-2 md:px-5 z-50 border-b border-border">
+        <header className="flex justify-between items-center px-2.5 md:px-5 z-50 border-b border-border">
             <div className="flex justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
-                <h1>hello</h1>
+                <div className="hidden sm:block">
+                    {(pathname === "/" || pathname === "/settings") && (
+                        <div className="flex items-center gap-2 text-sm">
+                            <div>{greeting.icon}</div>
+                            <h1>{greeting.message}</h1>
+                        </div>
+                    )}
+                </div>
             </div>
+            <ul className="flex gap-2.5 md:gap-5 text-sm">
+                <li>
+                    <Link href="/settings">
+                        <Button variant="secondary" className="pointer-events-none">
+                            <SettingsIcon size={15} />
+                            <span className="hidden md:block">Settings</span>
+                        </Button>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/contact">
+                        <Button variant="secondary" className="pointer-events-none">
+                            <PhoneIcon size={15} />
+                            <span className="hidden md:block">Get in touch</span>
+                        </Button>
+                    </Link>
+                </li>
+            </ul>
         </header>
     );
 }
