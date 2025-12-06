@@ -28,9 +28,9 @@ export default function Header() {
     }, []);
     return (
         <header className="flex justify-between items-center px-2.5 md:px-5 z-50 border-b border-border">
-            <div className="flex justify-center items-center gap-5">
+            <div className="w-full sm:w-auto flex justify-between sm:justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
-                <div className="hidden sm:block">
+                <div>
                     {(pathname === "/" || pathname === "/settings") && (
                         <div className="flex items-center gap-2 text-sm">
                             <div>{greeting.icon}</div>
@@ -39,20 +39,20 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <ul className="flex gap-2.5 md:gap-5 text-sm">
+            <ul className="hidden sm:flex gap-2.5 md:gap-5 text-sm">
                 <li>
                     <Link href="/settings">
-                        <Button variant="secondary" className="pointer-events-none">
+                        <Button variant="link" className="pointer-events-none">
                             <SettingsIcon size={15} />
-                            <span className="hidden md:block">Settings</span>
+                            <span>Settings</span>
                         </Button>
                     </Link>
                 </li>
                 <li>
                     <Link href="/contact">
-                        <Button variant="secondary" className="pointer-events-none">
+                        <Button variant="link" className="pointer-events-none">
                             <PhoneIcon size={15} />
-                            <span className="hidden md:block">Get in touch</span>
+                            <span>Get in touch</span>
                         </Button>
                     </Link>
                 </li>
