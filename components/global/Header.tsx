@@ -27,7 +27,7 @@ export default function Header() {
         }
     }, []);
     return (
-        <header className="flex justify-between items-center px-2.5 md:px-5 z-50 border-b border-border">
+        <header className="sticky top-0 left-0 w-full flex justify-between items-center px-2.5 md:px-5 z-50 border-b border-border bg-background">
             <div className="w-full sm:w-auto flex justify-between sm:justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
                 <div>
@@ -42,7 +42,7 @@ export default function Header() {
             <ul className="hidden sm:flex gap-2.5 md:gap-5 text-sm">
                 <li>
                     <Link href="/settings">
-                        <Button variant="link" className="pointer-events-none">
+                        <Button variant="link" className="pointer-events-none text-foreground">
                             <SettingsIcon size={15} />
                             <span>Settings</span>
                         </Button>
@@ -50,7 +50,7 @@ export default function Header() {
                 </li>
                 <li>
                     <Link href="/contact">
-                        <Button variant="link" className="pointer-events-none">
+                        <Button variant="link" className="pointer-events-none text-foreground">
                             <PhoneIcon size={15} />
                             <span>Get in touch</span>
                         </Button>
