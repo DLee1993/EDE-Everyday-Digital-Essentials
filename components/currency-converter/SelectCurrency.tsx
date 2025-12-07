@@ -62,7 +62,7 @@ export function SelectCurrency({ type, selectedValue, setSelectedValue, countryC
                         <ChevronDown className={`${open ? "rotate-180" : "rotate-0"}`} />
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent align="start" className="w-80 p-1">
+                <PopoverContent align="start" className="w-80 h-60 p-1">
                     <CurrencyList
                         setOpen={setOpen}
                         setSelectedUnit={setSelectedValue}
