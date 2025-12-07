@@ -69,6 +69,7 @@ export const MenuSearch = ({
         <div className="space-y-2.5">
             <Input
                 type="search"
+                name="menuSearch"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search tools..."
