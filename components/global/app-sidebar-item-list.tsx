@@ -20,7 +20,7 @@ import {
     Barcode,
     Lock,
     DollarSign,
-    Timer
+    Timer,
 } from "lucide-react";
 
 //! DO NOT REMOVE
@@ -30,31 +30,31 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Calculator",
-                url: "/tools/calculator",
+                url: "/modules/conversion/calculator",
                 icon: Calculator,
                 description: "Perform basic arithmetic and conversion calculations.",
             },
             {
                 title: "File Converter",
-                url: "/tools/file-converter",
+                url: "/modules/conversion/file-converter",
                 icon: Combine,
                 description: "Convert files between different formats.",
             },
             {
                 title: "Unit Converter",
-                url: "/tools/unit-converter",
+                url: "/modules/conversion/unit-converter",
                 icon: ArrowLeftRight,
                 description: "Convert units of measurement.",
             },
             {
                 title: "Currency Converter",
-                url: "/tools/currency-converter",
+                url: "/modules/conversion/currency-converter",
                 icon: DollarSign,
                 description: "Convert currencies.",
             },
             {
                 title: "Color Converter",
-                url: "/tools/color-converter",
+                url: "/modules/conversion/color-converter",
                 icon: Palette,
                 description: "Convert between HEX, RGB, HSL, and OKLCH color formats.",
             },
@@ -65,31 +65,31 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Lorem Ipsum",
-                url: "/tools/lorem-ipsum-generator",
+                url: "/modules/productivity/lorem-ipsum-generator",
                 icon: Text,
                 description: "Generate placeholder text for your designs and projects.",
             },
             {
                 title: "Focus Timer",
-                url: "/tools/focus-timer",
+                url: "/modules/productivity/focus-timer",
                 icon: Timer,
                 description: "Stay focused and manage your time effectively.",
             },
             {
                 title: "World Clock",
-                url: "/tools/world-clock",
+                url: "/modules/productivity/world-clock",
                 icon: Clock,
                 description: "Check what time it is, anywhere in the world.",
             },
             {
                 title: "Notepad",
-                url: "/tools/notepad",
+                url: "/modules/productivity/notepad",
                 icon: Notebook,
                 description: "Write and save notes easily.",
             },
             {
                 title: "Calendar",
-                url: "/tools/calendar",
+                url: "/modules/productivity/calendar",
                 icon: Calendar,
                 description: "View dates and manage your schedule.",
             },
@@ -100,31 +100,31 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Generate Credentials",
-                url: "/tools/credentials-generator",
+                url: "/modules/security/credentials-generator",
                 icon: Key,
                 description: "Generate strong and secure credentials.",
             },
             {
                 title: "Test Credentials",
-                url: "/tools/credentials-tester",
+                url: "/modules/security/credentials-tester",
                 icon: Shield,
                 description: "Check the strength of your passwords and credentials.",
             },
             {
                 title: "Hash Generator",
-                url: "/tools/hash-generator",
+                url: "/modules/security/hash-generator",
                 icon: Hash,
                 description: "Generate hashes for your data.",
             },
             {
                 title: "JWT Decoder",
-                url: "/tools/jwt-decoder",
+                url: "/modules/security/jwt-decoder",
                 icon: LockOpen,
                 description: "Decode and inspect JSON Web Tokens securely.",
             },
             {
                 title: "Encryption Sandbox",
-                url: "/tools/encryption-sandbox",
+                url: "/modules/security/encryption-sandbox",
                 icon: Lock,
                 description: "Experiment with encryption algorithms and sample inputs.",
             },
@@ -135,19 +135,19 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Regex Tester",
-                url: "/tools/regex-tester",
+                url: "/modules/developer-tools/regex-tester",
                 icon: ALargeSmall,
                 description: "Test and debug regular expressions with ease.",
             },
             {
                 title: "Markdown Previewer",
-                url: "/tools/markdown-previewer",
+                url: "/modules/developer-tools/markdown-previewer",
                 icon: FileText,
                 description: "Live preview and syntax highlighting for Markdown content.",
             },
             {
                 title: "JSON Tools",
-                url: "/tools/json-formatter",
+                url: "/modules/developer-tools/json-formatter",
                 icon: Braces,
                 description: "Beautify, validate, and debug JSON structures.",
             },
@@ -158,13 +158,13 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Base64 Tools",
-                url: "/tools/base64-encoder-decoder",
+                url: "/modules/utilities/base64-encoder-decoder",
                 icon: Code2,
                 description: "Encode or decode Base64 strings and files.",
             },
             {
                 title: "UUID Generator",
-                url: "/tools/uuid-generator",
+                url: "/modules/utilities/uuid-generator",
                 icon: Barcode,
                 description: "Generate UUIDs for sessions, databases, and more.",
             },
@@ -175,13 +175,13 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Link in Bio",
-                url: "/tools/link-in-bio-creator",
+                url: "/modules/sharing-tools/link-in-bio-creator",
                 icon: Network,
                 description: "Create a personalized landing page for your links.",
             },
             {
                 title: "QR Code Generator",
-                url: "/tools/qr-code-generator",
+                url: "/modules/sharing-tools/qr-code-generator",
                 icon: QrCode,
                 description: "Generate QR codes for any URL.",
             },

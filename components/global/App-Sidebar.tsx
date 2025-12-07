@@ -27,7 +27,7 @@ export function AppSidebar() {
         <Sidebar
             collapsible="none"
             variant="sidebar"
-            className="h-0 w-0 lg:w-auto lg:h-screen border-r border-border"
+            className="h-0 w-0 lg:w-60 lg:h-screen border-r border-border"
         >
             <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden lg:block">
                 <div className="relative">
