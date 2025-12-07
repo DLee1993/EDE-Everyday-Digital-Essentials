@@ -56,7 +56,7 @@ export default function Home() {
                         </p>
                     </li>
                 </ul>
-                <p className="text-center">And so much more...</p>
+                <p className="text-center">and so much more...</p>
             </section>
             <footer className="w-full h-fit border-t border-border py-7 px-5">
                 <section className="flex flex-wrap justify-between items-start gap-12">
@@ -67,8 +67,8 @@ export default function Home() {
                             daily tasks—bringing clarity, and organization to your
                             fingertips.
                         </p>
-                        <p className="text-muted-foreground">
-                            Built with care. Feedback is welcome as we continue to improve the platform.
+                        <p>
+                            Feedback is always welcome as we continue to improve the platform.
                         </p>
                     </article>
                     <ul className="w-full flex gap-5">
