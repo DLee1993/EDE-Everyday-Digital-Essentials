@@ -10,6 +10,7 @@ import {
     SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
+import { PageIdentifier } from "@/components/global/PageIdentifier";
 
 // Flatten the toolbox for search
 const allTools = sidebarItems.flatMap((category) =>
@@ -57,8 +58,7 @@ export const MenuSearch = ({
         ? allTools.filter((tool) => {
               const q = query.toLowerCase();
               return (
-                  tool.title.toLowerCase().includes(q) ||
-                  tool.category.toLowerCase().includes(q)
+                  tool.title.toLowerCase().includes(q) || tool.category.toLowerCase().includes(q)
               );
           })
         : allTools;
@@ -100,11 +100,7 @@ export const MenuSearch = ({
                                         <p className="mx-2 min-w-32">
                                             {highlightMatch(item.title, query)}
                                         </p>
-                                        {pathname === item.url && (
-                                            <div className="relative size-1.5 rounded-full dot-bg ml-auto">
-                                                <div className="absolute top-0 left-0 w-full h-full rounded-full bg-background/40"></div>
-                                            </div>
-                                        )}
+                                        {pathname === item.url && <PageIdentifier />}
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
