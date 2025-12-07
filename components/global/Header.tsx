@@ -39,12 +39,12 @@ export default function Header() {
                     )}
                 </div>
             </div>
-            <ul className="hidden sm:flex gap-2.5 md:gap-5 text-sm">
+            <ul className="flex gap-2.5 md:gap-5 text-sm">
                 <li>
                     <Link href="/settings">
                         <Button variant="link" className="pointer-events-none text-foreground">
                             <SettingsIcon size={15} />
-                            <span>Settings</span>
+                            <span className="hidden sm:block">Settings</span>
                         </Button>
                     </Link>
                 </li>
@@ -52,7 +52,7 @@ export default function Header() {
                     <Link href="/contact">
                         <Button variant="link" className="pointer-events-none text-foreground">
                             <PhoneIcon size={15} />
-                            <span>Get in touch</span>
+                            <span className="hidden sm:block">Get in touch</span>
                         </Button>
                     </Link>
                 </li>
