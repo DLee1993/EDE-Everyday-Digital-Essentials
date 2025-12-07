@@ -36,7 +36,7 @@ export default function RootLayout({
                             <AppSidebar />
                             <div className="w-full flex flex-col min-h-screen">
                                 <Header />
-                                <main>
+                                <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center">
                                     {children}
                                 </main>
                             </div>
