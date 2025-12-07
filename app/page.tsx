@@ -72,7 +72,7 @@ export default function Home() {
                         </p>
                     </article>
                     <ul className="w-full flex gap-5">
-                        <li>&copy; 2025 ORYN. All rights reserved.</li>
+                        <li>&copy; 2025 EDE. All rights reserved.</li>
                         <li className="ml-auto">
                             <Link href="https://github.com/DLee1993/oryn" target="_blank">
                                 Github
