@@ -189,7 +189,7 @@ function Sidebar({
                     side={side}
                 >
                     <SheetHeader className="justify-between items-center flex-row! gap-1! p-3!">
-                        <div className="hidden sm:block">
+                        <div>
                             <SheetTitle>EDE</SheetTitle>
                             <SheetDescription className="text-xs">
                                 Your Everyday Digital Essentials.
