@@ -27,7 +27,6 @@ export default function Password() {
     return (
         <section className="min-w-80">
             <div className="flex flex-col space-y-12">
-                <h3 className="text-center">Generate a Password</h3>
                 <div className="space-y-2.5">
                     <p className="text-sm">Select password length</p>
                     <SelectLength type="password" pwLength={pwLength} setPwLength={setPwLength} />

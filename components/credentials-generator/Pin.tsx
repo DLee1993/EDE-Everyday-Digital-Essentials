@@ -27,7 +27,6 @@ export default function Pin() {
     return (
         <section className="min-w-80">
             <div className="flex flex-col space-y-12">
-                <h3 className="text-center">Generate a Pin number</h3>
                 <div className="space-y-2.5">
                     <p className="text-sm">Select pin length</p>
                     <SelectLength type="code" pcLength={pcLength} setPcLength={setPcLength} />
