@@ -4,9 +4,9 @@ export default function Home() {
     return (
         <section className="pt-12 sm:pt-14 md:pt-16 lg:pt-20 space-y-20">
             <article className="text-center space-y-10">
-                <sup>Welcome to</sup>
+                <sup>Welcome to your</sup>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-medium">
-                    Your Everyday Digital Essentials
+                    Everyday Digital Essentials
                 </h1>
                 <p className="max-w-2xl mx-auto">
                     EDE is a versatile minimalist platform designed to simplify and enhance your
