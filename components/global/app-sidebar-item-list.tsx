@@ -174,7 +174,7 @@ export const rawSidebarItems = [
         title: "Sharing Tools",
         items: [
             {
-                title: "Link in Bio",
+                title: "Link in Bio Creator",
                 url: "/modules/sharing-tools/link-in-bio-creator",
                 icon: Network,
                 description: "Create a personalized landing page for your links.",
