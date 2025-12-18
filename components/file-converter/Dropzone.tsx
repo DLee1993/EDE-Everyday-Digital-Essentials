@@ -331,7 +331,7 @@ export default function FileConverterDropzone() {
                     <DropdownMenu>
                         <DropdownMenuTrigger
                             aria-label="click to open actions menu"
-                            className="w-5 h-5 cursor-pointer"
+                            className="w-5 h-5 cursor-pointer grid place-content-center"
                         >
                             <EllipsisVertical size={15} />
                         </DropdownMenuTrigger>
