@@ -73,7 +73,7 @@ export const MenuSearch = ({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search tools..."
-                className="w-[95%] ml-2 p-2 border-b border-t-0! border-x-0! border border-border focus-visible:border-border focus-visible:ring-1 shadow-none mb-2 rounded-none! bg-transparent"
+                className="w-[95%] ml-2 p-2 border border-border focus-visible:border-border focus-visible:ring-1 shadow-none mb-2"
             />
             {query && filteredTools.length === 0 && (
                 <p className="text-muted text-sm">No tools found for {query}.</p>
