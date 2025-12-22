@@ -88,7 +88,6 @@ export const MenuSearch = ({
                             <SidebarMenuItem key={`menu-item-${i}`}>
                                 <SidebarMenuButton
                                     asChild
-                                    tooltip={item.title}
                                     isActive={pathname === item.url ? true : false}
                                     className="min-h-9 min-w-9"
                                     onClick={() => setOpen(!open)}
