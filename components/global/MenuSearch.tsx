@@ -35,7 +35,7 @@ function highlightMatch(text: string, query: string) {
     const regex = new RegExp(`(${query})`, "gi");
     return text.split(regex).map((part, i) =>
         regex.test(part) ? (
-            <mark key={i} className="bg-primary px-1 rounded-sm">
+            <mark key={i} className="bg-primary text-background px-1 rounded-sm">
                 {part}
             </mark>
         ) : (
