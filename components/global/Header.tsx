@@ -8,6 +8,7 @@ import Link from "next/link";
 import { PhoneIcon, SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HowToUse from "@/components/global/How-to-use";
+import { rawSidebarItems } from "@/components/global/app-sidebar-item-list";
 
 export default function Header() {
     const pathname = usePathname();
@@ -37,7 +38,13 @@ export default function Header() {
                 </div>
             </div>
             <ul className="flex gap-2.5 md:gap-5 text-sm">
-                {pathname !== "/settings" && pathname !== "/" && <HowToUse />}
+                {rawSidebarItems
+                    .flatMap((cat) => cat.items)
+                    .some((item) => item.url === pathname) && (
+                    <li>
+                        <HowToUse />
+                    </li>
+                )}
                 <li>
                     <Link href="/settings">
                         <Button variant="link" className="pointer-events-none text-foreground">
