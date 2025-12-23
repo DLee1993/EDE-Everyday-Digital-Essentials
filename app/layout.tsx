@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Courier_Prime } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "next-themes";
@@ -11,6 +11,11 @@ import { AppSidebar } from "@/components/global/App-Sidebar";
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],
     subsets: ["latin"],
+});
+const courierPrime = Courier_Prime({
+    weight: ["400", "700"],
+    subsets: ["latin"],
+    variable: "--font-prime",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +34,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${dmSans.className} antialiased`}>
+            <body className={`${dmSans.className} ${courierPrime.variable} antialiased`}>
                 <ThemeProvider storageKey="ede-theme">
                     <SidebarProvider defaultOpen={false}>
                         <TooltipProvider>

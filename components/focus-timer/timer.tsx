@@ -8,8 +8,8 @@ export default function Timer({ remaining }: { remaining: number }) {
     }
 
     return (
-        <section className="flex-1 max-w-xl min-h-40 flex jjustify-center items-center">
-            <p className="text-8xl min-[425px]:text-9xl lg:text-[9rem] text-center w-full">
+        <section className="font-prime flex-1 max-w-xl min-h-40 flex justify-center items-center">
+            <p className="text-8xl min-[425px]:text-9xl lg:text-[11rem] text-center w-full">
                 {Math.floor(remaining / 60)
                     .toString()
                     .padStart(2, "0")}
