@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function CredentialsGenerator() {
     return (
         <div className="flex w-full max-w-2xl flex-col gap-6">
-            <HowToUse description="Select either a Pin or Password, select the desired length and click generate." />
+            <HowToUse />
             <Tabs defaultValue="password">
                 <TabsList className="w-52 mb-10">
                     <TabsTrigger value="password" className="cursor-pointer">
