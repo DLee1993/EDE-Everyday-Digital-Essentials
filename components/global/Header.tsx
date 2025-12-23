@@ -7,6 +7,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { PhoneIcon, SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HowToUse from "@/components/global/How-to-use";
 
 export default function Header() {
     const pathname = usePathname();
@@ -30,16 +31,13 @@ export default function Header() {
         <header className="sticky top-0 left-0 w-full flex justify-between items-center px-2.5 z-50 border-b border-border bg-background">
             <div className="w-full sm:w-auto flex justify-between sm:justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
-                <div>
-                    {(pathname === "/" || pathname === "/settings") && (
-                        <div className="flex items-center gap-2 text-sm">
-                            <div>{greeting.icon}</div>
-                            <h1>{greeting.message}</h1>
-                        </div>
-                    )}
+                <div className="hidden md:flex items-center gap-2 text-sm">
+                    <div>{greeting.icon}</div>
+                    <h1>{greeting.message}</h1>
                 </div>
             </div>
             <ul className="flex gap-2.5 md:gap-5 text-sm">
+                {pathname !== "/settings" && pathname !== "/" && <HowToUse />}
                 <li>
                     <Link href="/settings">
                         <Button variant="link" className="pointer-events-none text-foreground">
