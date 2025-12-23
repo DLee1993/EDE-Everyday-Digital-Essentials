@@ -1,12 +1,10 @@
 import Password from "@/components/credentials-generator/Password";
 import Pin from "@/components/credentials-generator/Pin";
-import HowToUse from "@/components/global/How-to-use";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function CredentialsGenerator() {
     return (
         <div className="flex w-full max-w-2xl flex-col gap-6">
-            <HowToUse />
             <Tabs defaultValue="password">
                 <TabsList className="w-52 mb-10">
                     <TabsTrigger value="password" className="cursor-pointer">
