@@ -27,7 +27,7 @@ export default function Header() {
         }
     }, []);
     return (
-        <header className="sticky top-0 left-0 w-full flex justify-between items-center px-2.5 md:px-5 z-50 border-b border-border bg-background">
+        <header className="sticky top-0 left-0 w-full flex justify-between items-center px-2.5 z-50 border-b border-border bg-background">
             <div className="w-full sm:w-auto flex justify-between sm:justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
                 <div>
