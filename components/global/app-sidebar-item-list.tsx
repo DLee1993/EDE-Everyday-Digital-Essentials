@@ -36,63 +36,63 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Calculator",
-                url: "/modules/conversion/calculator",
+                url: "/modules/converters/calculator",
                 icon: Calculator,
                 instructions:
                     "Enter numbers and operators (+, -, ×, ÷) to quickly solve arithmetic or conversion problems.",
             },
             {
                 title: "Files",
-                url: "/modules/conversion/file-converter",
+                url: "/modules/converters/file-converter",
                 icon: Combine,
                 instructions:
                     "Upload a file, choose the target format, and convert it instantly for download.",
             },
             {
                 title: "Units",
-                url: "/modules/conversion/unit-converter",
+                url: "/modules/converters/unit-converter",
                 icon: ArrowLeftRight,
                 instructions:
                     "Select a measurement type, input a value, and convert it into another unit.",
             },
             {
                 title: "Currencies",
-                url: "/modules/conversion/currency-converter",
+                url: "/modules/converters/currency-converter",
                 icon: DollarSign,
                 instructions:
                     "Enter an amount and pick currencies to see real-time conversion results.",
             },
             {
                 title: "Colors",
-                url: "/modules/conversion/color-converter",
+                url: "/modules/converters/color-converter",
                 icon: Palette,
                 instructions:
                     "Paste or pick a color, then convert it between HEX, RGB, HSL, and OKLCH formats.",
             },
             {
                 title: "Number Base",
-                url: "/modules/conversion/number-base-converter",
+                url: "/modules/converters/number-base-converter",
                 icon: Hash,
                 instructions:
                     "Type a number and instantly convert it between binary, decimal, octal, or hexadecimal bases.",
             },
             {
                 title: "Text Case",
-                url: "/modules/conversion/text-case-converter",
+                url: "/modules/converters/text-case-converter",
                 icon: Text,
                 instructions:
                     "Paste text and switch its casing (uppercase, lowercase, title case, etc.) with one click.",
             },
             {
                 title: "Date Format",
-                url: "/modules/conversion/date-format-converter",
+                url: "/modules/converters/date-format-converter",
                 icon: Calendar,
                 instructions:
                     "Enter a date and convert it between ISO format and human-readable styles.",
             },
             {
                 title: "MIME Type Lookup",
-                url: "/modules/conversion/mime-type-lookup",
+                url: "/modules/converters/mime-type-lookup",
                 icon: FileText,
                 instructions: "Enter a file extension to instantly look up its MIME type.",
             },
@@ -103,48 +103,48 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Focus Timer",
-                url: "/modules/productivity/focus-timer",
+                url: "/modules/workspace/focus-timer",
                 icon: Timer,
                 instructions:
                     "Set a work interval and break schedule to stay focused and manage time effectively.",
             },
             {
                 title: "World Clock",
-                url: "/modules/productivity/world-clock",
+                url: "/modules/workspace/world-clock",
                 icon: Clock,
                 instructions:
                     "Search or select a city to check the current time anywhere in the world.",
             },
             {
                 title: "Notepad",
-                url: "/modules/productivity/notepad",
+                url: "/modules/workspace/notepad",
                 icon: Notebook,
                 instructions:
                     "Write, edit, and save notes directly in the browser for quick reference.",
             },
             {
                 title: "Calendar",
-                url: "/modules/productivity/calendar",
+                url: "/modules/workspace/calendar",
                 icon: Calendar,
                 instructions:
                     "Browse dates, add events, and manage your schedule in a simple calendar view.",
             },
             {
                 title: "Stopwatch",
-                url: "/modules/productivity/stopwatch",
+                url: "/modules/workspace/stopwatch",
                 icon: Timer,
                 instructions:
                     "Start, pause, and reset the stopwatch to track elapsed time with precision.",
             },
             {
                 title: "Countdown Timer",
-                url: "/modules/productivity/countdown-timer",
+                url: "/modules/workspace/countdown-timer",
                 icon: Timer,
                 instructions: "Set a duration and start the countdown to track deadlines or events.",
             },
             {
                 title: "Word Counter",
-                url: "/modules/productivity/word-counter",
+                url: "/modules/workspace/word-counter",
                 icon: Text,
                 instructions:
                     "Paste text to count words, characters, and estimate reading time instantly.",
@@ -219,58 +219,58 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Lorem Ipsum",
-                url: "/modules/productivity/lorem-ipsum-generator",
+                url: "/modules/development/lorem-ipsum-generator",
                 icon: Text,
                 instructions:
                     "Click generate to create placeholder text you can copy into designs or drafts.",
             },
             {
                 title: "Regex Tester",
-                url: "/modules/developer-tools/regex-tester",
+                url: "/modules/development/regex-tester",
                 icon: ALargeSmall,
                 instructions:
                     "Enter a regex pattern and sample text to test matches and debug expressions.",
             },
             {
                 title: "Markdown Previewer",
-                url: "/modules/developer-tools/markdown-previewer",
+                url: "/modules/development/markdown-previewer",
                 icon: FileText,
                 instructions:
                     "Type or paste Markdown to see a live preview with syntax highlighting.",
             },
             {
                 title: "JSON Tools",
-                url: "/modules/developer-tools/json-formatter",
+                url: "/modules/development/json-formatter",
                 icon: Braces,
                 instructions: "Paste JSON to beautify, validate, and debug its structure instantly.",
             },
             {
                 title: "Diff Tool",
-                url: "/modules/developer-tools/diff-tool",
+                url: "/modules/development/diff-tool",
                 icon: Code2,
                 instructions: "Paste two texts or JSON files to compare and highlight differences.",
             },
             {
                 title: "YAML to JSON",
-                url: "/modules/developer-tools/yaml-json-converter",
+                url: "/modules/development/yaml-json-converter",
                 icon: Braces,
                 instructions: "Paste YAML or JSON and convert it between formats with one click.",
             },
             {
                 title: "HTML Formatter",
-                url: "/modules/developer-tools/html-formatter",
+                url: "/modules/development/html-formatter",
                 icon: FileText,
                 instructions: "Paste HTML code to clean up and format it for readability.",
             },
             {
                 title: "Git Ignore Generator",
-                url: "/modules/developer-tools/gitignore-generator",
+                url: "/modules/development/gitignore-generator",
                 icon: FileText,
                 instructions: "Select your environment to generate a ready-to-use .gitignore file.",
             },
             {
                 title: "Cron Helper",
-                url: "/modules/developer-tools/cron-helper",
+                url: "/modules/development/cron-helper",
                 icon: Clock,
                 instructions:
                     "Build or paste a cron expression to understand its schedule instantly.",
@@ -282,63 +282,63 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Base64 Tools",
-                url: "/modules/utilities/base64-encoder-decoder",
+                url: "/modules/system/base64-encoder-decoder",
                 icon: Code2,
                 instructions: "Paste text or upload a file to encode or decode Base64.",
             },
             {
                 title: "UUID Generator",
-                url: "/modules/utilities/uuid-generator",
+                url: "/modules/system/uuid-generator",
                 icon: Barcode,
                 instructions:
                     "Click generate to create unique UUIDs for sessions, databases, or projects.",
             },
             {
                 title: "URL Encode / Decode",
-                url: "/modules/utilities/url-encoder-decoder",
+                url: "/modules/system/url-encoder-decoder",
                 icon: Code2,
                 instructions:
                     "Paste a string to encode it for URLs or decode it back to plain text.",
             },
             {
                 title: "Slug Generator",
-                url: "/modules/utilities/slug-generator",
+                url: "/modules/system/slug-generator",
                 icon: Text,
                 instructions: "Enter text to generate a clean, URL-friendly slug automatically.",
             },
             {
                 title: "Text Normalizer",
-                url: "/modules/utilities/text-normalizer",
+                url: "/modules/system/text-normalizer",
                 icon: Text,
                 instructions: "Paste text to clean, normalize, and standardize its formatting.",
             },
             {
                 title: "JWT Encoder",
-                url: "/modules/utilities/jwt-encoder",
+                url: "/modules/system/jwt-encoder",
                 icon: LockOpen,
                 instructions: "Enter payload and secret to encode a JSON Web Token securely.",
             },
             {
                 title: "File Metadata Viewer",
-                url: "/modules/utilities/file-metadata-viewer",
+                url: "/modules/system/file-metadata-viewer",
                 icon: FileText,
                 instructions: "Upload a file to inspect its metadata details.",
             },
             {
                 title: "CSV Viewer",
-                url: "/modules/utilities/csv-viewer",
+                url: "/modules/system/csv-viewer",
                 icon: Table,
                 instructions: "Upload a CSV file to view it in a clean, sortable table.",
             },
             {
                 title: "Data Cleaner",
-                url: "/modules/utilities/data-cleaner",
+                url: "/modules/system/data-cleaner",
                 icon: Filter,
                 instructions: "Paste or upload data to clean, normalize, and prepare it for reuse.",
             },
             {
                 title: "Table Editor",
-                url: "/modules/utilities/table-editor",
+                url: "/modules/system/table-editor",
                 icon: Grid,
                 instructions:
                     "Upload or create a table to edit, sort, and export data directly in the browser.",
@@ -350,37 +350,37 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "Link in Bio Creator",
-                url: "/modules/sharing-tools/link-in-bio-creator",
+                url: "/modules/sharing/link-in-bio-creator",
                 icon: Network,
                 instructions: "Add your links to build a personalized landing page you can share.",
             },
             {
                 title: "QR Code Generator",
-                url: "/modules/sharing-tools/qr-code-generator",
+                url: "/modules/sharing/qr-code-generator",
                 icon: QrCode,
                 instructions: "Paste a URL or text to generate a scannable QR code.",
             },
             {
                 title: "URL Shortener",
-                url: "/modules/sharing-tools/url-shortener",
+                url: "/modules/sharing/url-shortener",
                 icon: Link,
                 instructions: "Paste a long URL to shorten it for easier sharing.",
             },
             {
                 title: "vCard Generator",
-                url: "/modules/sharing-tools/vcard-generator",
+                url: "/modules/sharing/vcard-generator",
                 icon: Contact,
                 instructions: "Enter your details to generate a digital business card (vCard).",
             },
             {
                 title: "OpenGraph Preview",
-                url: "/modules/sharing-tools/opengraph-preview",
+                url: "/modules/sharing/opengraph-preview",
                 icon: Image,
                 instructions: "Paste a link to preview how it will appear on social media.",
             },
             {
                 title: "Social Image",
-                url: "/modules/sharing-tools/social-image-generator",
+                url: "/modules/sharing/social-image-generator",
                 icon: Image,
                 instructions:
                     "Enter text and choose a style to create shareable images for social platforms.",
@@ -392,43 +392,43 @@ export const rawSidebarItems = [
         items: [
             {
                 title: "HTML",
-                url: "/modules/cheat-sheets/html-cheat-sheet",
+                url: "/modules/reference/html-cheat-sheet",
                 icon: FileText,
                 instructions: "Browse common HTML tags and attributes for quick reference.",
             },
             {
                 title: "CSS",
-                url: "/modules/cheat-sheets/css-cheat-sheet",
+                url: "/modules/reference/css-cheat-sheet",
                 icon: FileText,
                 instructions: "Look up CSS properties and syntax to style your projects.",
             },
             {
                 title: "JavaScript",
-                url: "/modules/cheat-sheets/js-cheat-sheet",
+                url: "/modules/reference/js-cheat-sheet",
                 icon: FileText,
                 instructions: "Find common JavaScript methods, syntax, and examples quickly.",
             },
             {
                 title: "Git",
-                url: "/modules/cheat-sheets/git-cheat-sheet",
+                url: "/modules/reference/git-cheat-sheet",
                 icon: FileText,
                 instructions: "Reference Git commands and workflows for version control.",
             },
             {
                 title: "HTTP Status Codes",
-                url: "/modules/cheat-sheets/http-status-codes",
+                url: "/modules/reference/http-status-codes",
                 icon: FileText,
                 instructions: "Check meanings of HTTP status codes for debugging and development.",
             },
             {
                 title: "Regex",
-                url: "/modules/cheat-sheets/regex-reference",
+                url: "/modules/reference/regex-reference",
                 icon: FileText,
                 instructions: "Browse common regex patterns and syntax for quick use.",
             },
             {
                 title: "Color Theory",
-                url: "/modules/cheat-sheets/color-theory",
+                url: "/modules/reference/color-theory",
                 icon: Palette,
                 instructions: "Learn about OKLCH, WCAG contrast, and color harmony for design.",
             },
