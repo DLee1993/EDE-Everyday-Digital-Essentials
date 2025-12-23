@@ -4,13 +4,15 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import {
     SidebarGroup,
-    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuItem,
     SidebarMenuButton,
+    SidebarMenuBadge,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { PageIdentifier } from "@/components/global/PageIdentifier";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronRight } from "lucide-react";
 
 // Flatten the toolbox for search
 const allTools = sidebarItems.flatMap((category) =>
@@ -66,7 +68,7 @@ export const MenuSearch = ({
     const groupedResults = groupByCategory(filteredTools);
 
     return (
-        <div className="space-y-2.5">
+        <div>
             <Input
                 type="search"
                 name="menuSearch"
@@ -80,31 +82,46 @@ export const MenuSearch = ({
             )}
             {Object.entries(groupedResults).map(([category, tools]) => (
                 <SidebarGroup key={`${category} menu group`}>
-                    <SidebarGroupLabel className="pointer-events-none text-accent text-[13px] mb-2 h-5">
-                        {category}
-                    </SidebarGroupLabel>
                     <SidebarMenu>
-                        {tools.map((item, i) => (
-                            <SidebarMenuItem key={`menu-item-${i}`}>
-                                <SidebarMenuButton
-                                    asChild
-                                    isActive={pathname === item.url ? true : false}
-                                    className="min-h-9 min-w-9"
-                                    onClick={() => setOpen(!open)}
-                                >
-                                    <Link
-                                        href={item.url}
-                                        className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
-                                    >
-                                        {item.icon && <item.icon className="ml-[3px]" />}
-                                        <p className="mx-2 min-w-32">
-                                            {highlightMatch(item.title, query)}
-                                        </p>
-                                        {pathname === item.url && <PageIdentifier />}
-                                    </Link>
+                        <Collapsible className="group/collapsible">
+                            <CollapsibleTrigger asChild className="cursor-pointer group">
+                                <SidebarMenuButton className="data-[state=open]:bg-primary/15 hover:data-[state=open]:bg-primary/15">
+                                    {category}
+                                    <div className="flex justify-center items-center gap-1 ml-auto">
+                                        <SidebarMenuBadge className="text-primary relative">
+                                            {tools.length}
+                                        </SidebarMenuBadge>
+                                        <ChevronRight
+                                            size={14}
+                                            className="text-muted-foreground group-data-[state=open]:rotate-90 transition-transform duration-300"
+                                        />
+                                    </div>
                                 </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
+                            </CollapsibleTrigger>
+                            <CollapsibleContent className="border-l-2 border-border ml-4">
+                                {tools.map((item, i) => (
+                                    <SidebarMenuItem key={`menu-item-${i}`}>
+                                        <SidebarMenuButton
+                                            asChild
+                                            isActive={pathname === item.url ? true : false}
+                                            className="min-h-9 min-w-9"
+                                            onClick={() => setOpen(!open)}
+                                        >
+                                            <Link
+                                                href={item.url}
+                                                className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
+                                            >
+                                                {item.icon && <item.icon className="ml-[3px]" />}
+                                                <p className="mx-2 min-w-32">
+                                                    {highlightMatch(item.title, query)}
+                                                </p>
+                                                {pathname === item.url && <PageIdentifier />}
+                                            </Link>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                ))}
+                            </CollapsibleContent>
+                        </Collapsible>
                     </SidebarMenu>
                 </SidebarGroup>
             ))}

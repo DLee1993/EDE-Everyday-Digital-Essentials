@@ -13,7 +13,6 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarSeparator,
     useSidebar,
 } from "@/components/ui/sidebar";
 import { PageIdentifier } from "@/components/global/PageIdentifier";
@@ -29,7 +28,7 @@ export function AppSidebar() {
             variant="sidebar"
             className="h-screen border-r border-border"
         >
-            <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden lg:block">
+            <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden lg:block border-b border-border">
                 <div className="relative">
                     <p className="flex flex-col min-w-52 text-md font-semibold">
                         EDE
@@ -39,7 +38,6 @@ export function AppSidebar() {
                     </p>
                 </div>
             </SidebarHeader>
-            <SidebarSeparator className="mx-0" />
             <SidebarContent className="overflow-x-hidden overflow-y-auto">
                 <SidebarGroup key={`Dashboard menu group`}>
                     <SidebarMenu>
@@ -99,9 +97,6 @@ export function AppSidebar() {
                         <ChangeTheme />
                     </SidebarMenu>
                 </SidebarGroup>
-
-                <SidebarSeparator className="bg-border" />
-
                 <MenuSearch open={openMobile} setOpen={setOpenMobile} />
             </SidebarContent>
         </Sidebar>
