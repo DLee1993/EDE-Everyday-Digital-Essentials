@@ -98,7 +98,7 @@ export const MenuSearch = ({
                                     </div>
                                 </SidebarMenuButton>
                             </CollapsibleTrigger>
-                            <CollapsibleContent className="border-l-2 border-border ml-4">
+                            <CollapsibleContent className="border-l-2 border-border ml-3">
                                 {tools.map((item, i) => (
                                     <SidebarMenuItem key={`menu-item-${i}`}>
                                         <SidebarMenuButton
@@ -112,7 +112,7 @@ export const MenuSearch = ({
                                                 className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
                                             >
                                                 {item.icon && <item.icon className="ml-[3px]" />}
-                                                <p className="mx-2 min-w-32">
+                                                <p className="min-w-32">
                                                     {highlightMatch(item.title, query)}
                                                 </p>
                                                 {pathname === item.url && <PageIdentifier />}
