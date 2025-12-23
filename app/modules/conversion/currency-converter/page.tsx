@@ -62,8 +62,7 @@ export default function CurrencyConverter() {
     };
 
     return (
-        <section className="relative space-y-10 md:space-y-20 max-w-3xl">
-            <h2 className="w-full">Select a Currency to convert</h2>
+        <section className="relative space-y-20 max-w-3xl">
             <section className="w-full flex flex-col md:flex-row gap-10">
                 <div className="w-full flex flex-col gap-2">
                     <h2 className="text-sm font-semibold text-muted-foreground">From</h2>
