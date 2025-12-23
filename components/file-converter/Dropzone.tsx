@@ -548,18 +548,14 @@ export default function FileConverterDropzone() {
                     handleExitHover();
                     NotifyUser({
                         type: "destructive",
-                        title: "Error",
-                        message:
-                            "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
+                        title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
                     });
                 }}
                 onError={() => {
                     handleExitHover();
                     NotifyUser({
                         type: "destructive",
-                        title: "Error",
-                        message:
-                            "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
+                        title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
                     });
                 }}
             >
