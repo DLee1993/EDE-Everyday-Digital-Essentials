@@ -38,59 +38,66 @@ export const rawSidebarItems = [
                 title: "Calculator",
                 url: "/modules/conversion/calculator",
                 icon: Calculator,
-                description: "Perform basic arithmetic and conversion calculations.",
+                instructions:
+                    "Enter numbers and operators (+, -, ×, ÷) to quickly solve arithmetic or conversion problems.",
             },
             {
                 title: "Files",
                 url: "/modules/conversion/file-converter",
                 icon: Combine,
-                description: "Convert files between different formats.",
+                instructions:
+                    "Upload a file, choose the target format, and convert it instantly for download.",
             },
             {
                 title: "Units",
                 url: "/modules/conversion/unit-converter",
                 icon: ArrowLeftRight,
-                description: "Convert units of measurement.",
+                instructions:
+                    "Select a measurement type, input a value, and convert it into another unit.",
             },
             {
                 title: "Currencies",
                 url: "/modules/conversion/currency-converter",
                 icon: DollarSign,
-                description: "Convert currencies.",
+                instructions:
+                    "Enter an amount and pick currencies to see real-time conversion results.",
             },
             {
                 title: "Colors",
                 url: "/modules/conversion/color-converter",
                 icon: Palette,
-                description: "Convert between HEX, RGB, HSL, and OKLCH color formats.",
+                instructions:
+                    "Paste or pick a color, then convert it between HEX, RGB, HSL, and OKLCH formats.",
             },
             {
                 title: "Number Base",
                 url: "/modules/conversion/number-base-converter",
                 icon: Hash,
-                description: "Convert between binary, decimal, octal, and hexadecimal.",
+                instructions:
+                    "Type a number and instantly convert it between binary, decimal, octal, or hexadecimal bases.",
             },
             {
                 title: "Text Case",
                 url: "/modules/conversion/text-case-converter",
                 icon: Text,
-                description: "Convert text between different casing formats.",
+                instructions:
+                    "Paste text and switch its casing (uppercase, lowercase, title case, etc.) with one click.",
             },
             {
                 title: "Date Format",
                 url: "/modules/conversion/date-format-converter",
                 icon: Calendar,
-                description: "Convert dates between ISO and human-readable formats.",
+                instructions:
+                    "Enter a date and convert it between ISO format and human-readable styles.",
             },
             {
                 title: "MIME Type Lookup",
                 url: "/modules/conversion/mime-type-lookup",
                 icon: FileText,
-                description: "Look up MIME types for file extensions.",
+                instructions: "Enter a file extension to instantly look up its MIME type.",
             },
         ],
     },
-
     {
         title: "Workspace",
         items: [
@@ -98,47 +105,52 @@ export const rawSidebarItems = [
                 title: "Focus Timer",
                 url: "/modules/productivity/focus-timer",
                 icon: Timer,
-                description: "Stay focused and manage your time effectively.",
+                instructions:
+                    "Set a work interval and break schedule to stay focused and manage time effectively.",
             },
             {
                 title: "World Clock",
                 url: "/modules/productivity/world-clock",
                 icon: Clock,
-                description: "Check what time it is, anywhere in the world.",
+                instructions:
+                    "Search or select a city to check the current time anywhere in the world.",
             },
             {
                 title: "Notepad",
                 url: "/modules/productivity/notepad",
                 icon: Notebook,
-                description: "Write and save notes easily.",
+                instructions:
+                    "Write, edit, and save notes directly in the browser for quick reference.",
             },
             {
                 title: "Calendar",
                 url: "/modules/productivity/calendar",
                 icon: Calendar,
-                description: "View dates and manage your schedule.",
+                instructions:
+                    "Browse dates, add events, and manage your schedule in a simple calendar view.",
             },
             {
                 title: "Stopwatch",
                 url: "/modules/productivity/stopwatch",
                 icon: Timer,
-                description: "Track elapsed time with precision.",
+                instructions:
+                    "Start, pause, and reset the stopwatch to track elapsed time with precision.",
             },
             {
                 title: "Countdown Timer",
                 url: "/modules/productivity/countdown-timer",
                 icon: Timer,
-                description: "Set a countdown for tasks and events.",
+                instructions: "Set a duration and start the countdown to track deadlines or events.",
             },
             {
                 title: "Word Counter",
                 url: "/modules/productivity/word-counter",
                 icon: Text,
-                description: "Count words, characters, and reading time.",
+                instructions:
+                    "Paste text to count words, characters, and estimate reading time instantly.",
             },
         ],
     },
-
     {
         title: "Security",
         items: [
@@ -146,59 +158,62 @@ export const rawSidebarItems = [
                 title: "Credentials Generator",
                 url: "/modules/security/credentials-generator",
                 icon: Key,
-                description: "Generate strong and secure credentials.",
+                instructions: "Choose your length to generate strong, secure credentials.",
             },
             {
                 title: "Test Credentials",
                 url: "/modules/security/credentials-tester",
                 icon: Shield,
-                description: "Check the strength of your passwords and credentials.",
+                instructions: "Enter a password or key to check its strength and security level.",
             },
             {
                 title: "Hash Generator",
                 url: "/modules/security/hash-generator",
                 icon: Hash,
-                description: "Generate hashes for your data.",
+                instructions: "Paste data and generate hashes using algorithms like SHA or MD5.",
             },
             {
                 title: "JWT Decoder",
                 url: "/modules/security/jwt-decoder",
                 icon: LockOpen,
-                description: "Decode and inspect JSON Web Tokens securely.",
+                instructions: "Paste a JSON Web Token to decode and inspect its payload securely.",
             },
             {
                 title: "Encryption Sandbox",
                 url: "/modules/security/encryption-sandbox",
                 icon: Lock,
-                description: "Experiment with encryption algorithms and sample inputs.",
+                instructions:
+                    "Experiment with encryption algorithms by entering sample inputs and viewing results.",
             },
             {
                 title: "Metadata Stripper",
                 url: "/modules/security/metadata-stripper",
                 icon: FileText,
-                description: "Remove EXIF and metadata from images.",
+                instructions: "Upload an image to remove EXIF and metadata before sharing.",
             },
             {
                 title: "HMAC Generator",
                 url: "/modules/security/hmac-generator",
                 icon: Key,
-                description: "Generate HMAC signatures using various algorithms.",
+                instructions:
+                    "Enter a message and secret key to generate HMAC signatures with chosen algorithms.",
             },
             {
                 title: "PEM Inspector",
                 url: "/modules/security/pem-inspector",
                 icon: FileText,
-                description: "Inspect and validate PEM-formatted keys and certificates.",
+                instructions:
+                    "Upload or paste PEM-formatted keys/certificates to inspect and validate them.",
             },
             {
                 title: "Argon2 Playground",
                 url: "/modules/security/argon2-playground",
                 icon: Lock,
-                description: "Experiment with Argon2 password hashing parameters.",
+                instructions:
+                    "Adjust Argon2 parameters and test password hashing outputs interactively.",
             },
         ],
     },
-
     {
         title: "Development",
         items: [
@@ -206,55 +221,59 @@ export const rawSidebarItems = [
                 title: "Lorem Ipsum",
                 url: "/modules/productivity/lorem-ipsum-generator",
                 icon: Text,
-                description: "Generate placeholder text for your designs and projects.",
+                instructions:
+                    "Click generate to create placeholder text you can copy into designs or drafts.",
             },
             {
                 title: "Regex Tester",
                 url: "/modules/developer-tools/regex-tester",
                 icon: ALargeSmall,
-                description: "Test and debug regular expressions with ease.",
+                instructions:
+                    "Enter a regex pattern and sample text to test matches and debug expressions.",
             },
             {
                 title: "Markdown Previewer",
                 url: "/modules/developer-tools/markdown-previewer",
                 icon: FileText,
-                description: "Live preview and syntax highlighting for Markdown content.",
+                instructions:
+                    "Type or paste Markdown to see a live preview with syntax highlighting.",
             },
             {
                 title: "JSON Tools",
                 url: "/modules/developer-tools/json-formatter",
                 icon: Braces,
-                description: "Beautify, validate, and debug JSON structures.",
+                instructions: "Paste JSON to beautify, validate, and debug its structure instantly.",
             },
             {
                 title: "Diff Tool",
                 url: "/modules/developer-tools/diff-tool",
                 icon: Code2,
-                description: "Compare and highlight differences between text or JSON.",
+                instructions: "Paste two texts or JSON files to compare and highlight differences.",
             },
             {
                 title: "YAML to JSON",
                 url: "/modules/developer-tools/yaml-json-converter",
                 icon: Braces,
-                description: "Convert between YAML and JSON formats.",
+                instructions: "Paste YAML or JSON and convert it between formats with one click.",
             },
             {
                 title: "HTML Formatter",
                 url: "/modules/developer-tools/html-formatter",
                 icon: FileText,
-                description: "Beautify and format HTML code.",
+                instructions: "Paste HTML code to clean up and format it for readability.",
             },
             {
                 title: "Git Ignore Generator",
                 url: "/modules/developer-tools/gitignore-generator",
                 icon: FileText,
-                description: "Generate .gitignore files for common environments.",
+                instructions: "Select your environment to generate a ready-to-use .gitignore file.",
             },
             {
                 title: "Cron Helper",
                 url: "/modules/developer-tools/cron-helper",
                 icon: Clock,
-                description: "Build and understand cron expressions.",
+                instructions:
+                    "Build or paste a cron expression to understand its schedule instantly.",
             },
         ],
     },
@@ -265,61 +284,64 @@ export const rawSidebarItems = [
                 title: "Base64 Tools",
                 url: "/modules/utilities/base64-encoder-decoder",
                 icon: Code2,
-                description: "Encode or decode Base64 strings and files.",
+                instructions: "Paste text or upload a file to encode or decode Base64.",
             },
             {
                 title: "UUID Generator",
                 url: "/modules/utilities/uuid-generator",
                 icon: Barcode,
-                description: "Generate UUIDs for sessions, databases, and more.",
+                instructions:
+                    "Click generate to create unique UUIDs for sessions, databases, or projects.",
             },
             {
                 title: "URL Encode / Decode",
                 url: "/modules/utilities/url-encoder-decoder",
                 icon: Code2,
-                description: "Encode or decode URL-safe strings.",
+                instructions:
+                    "Paste a string to encode it for URLs or decode it back to plain text.",
             },
             {
                 title: "Slug Generator",
                 url: "/modules/utilities/slug-generator",
                 icon: Text,
-                description: "Generate clean, URL-friendly slugs.",
+                instructions: "Enter text to generate a clean, URL-friendly slug automatically.",
             },
             {
                 title: "Text Normalizer",
                 url: "/modules/utilities/text-normalizer",
                 icon: Text,
-                description: "Clean and normalize text for consistent formatting.",
+                instructions: "Paste text to clean, normalize, and standardize its formatting.",
             },
             {
                 title: "JWT Encoder",
                 url: "/modules/utilities/jwt-encoder",
                 icon: LockOpen,
-                description: "Encode JSON Web Tokens securely.",
+                instructions: "Enter payload and secret to encode a JSON Web Token securely.",
             },
             {
                 title: "File Metadata Viewer",
                 url: "/modules/utilities/file-metadata-viewer",
                 icon: FileText,
-                description: "Inspect metadata for uploaded files.",
+                instructions: "Upload a file to inspect its metadata details.",
             },
             {
                 title: "CSV Viewer",
                 url: "/modules/utilities/csv-viewer",
                 icon: Table,
-                description: "Upload and view CSV files in a clean, readable table.",
+                instructions: "Upload a CSV file to view it in a clean, sortable table.",
             },
             {
                 title: "Data Cleaner",
                 url: "/modules/utilities/data-cleaner",
                 icon: Filter,
-                description: "Clean, normalize, and prepare data for further use.",
+                instructions: "Paste or upload data to clean, normalize, and prepare it for reuse.",
             },
             {
                 title: "Table Editor",
                 url: "/modules/utilities/table-editor",
                 icon: Grid,
-                description: "Edit, sort, and export tabular data directly in the browser.",
+                instructions:
+                    "Upload or create a table to edit, sort, and export data directly in the browser.",
             },
         ],
     },
@@ -330,41 +352,41 @@ export const rawSidebarItems = [
                 title: "Link in Bio Creator",
                 url: "/modules/sharing-tools/link-in-bio-creator",
                 icon: Network,
-                description: "Create a personalized landing page for your links.",
+                instructions: "Add your links to build a personalized landing page you can share.",
             },
             {
                 title: "QR Code Generator",
                 url: "/modules/sharing-tools/qr-code-generator",
                 icon: QrCode,
-                description: "Generate QR codes for any URL.",
+                instructions: "Paste a URL or text to generate a scannable QR code.",
             },
             {
                 title: "URL Shortener",
                 url: "/modules/sharing-tools/url-shortener",
                 icon: Link,
-                description: "Shorten long URLs for easy sharing.",
+                instructions: "Paste a long URL to shorten it for easier sharing.",
             },
             {
                 title: "vCard Generator",
                 url: "/modules/sharing-tools/vcard-generator",
                 icon: Contact,
-                description: "Generate digital business cards.",
+                instructions: "Enter your details to generate a digital business card (vCard).",
             },
             {
                 title: "OpenGraph Preview",
                 url: "/modules/sharing-tools/opengraph-preview",
                 icon: Image,
-                description: "Preview how your link will appear on social media.",
+                instructions: "Paste a link to preview how it will appear on social media.",
             },
             {
                 title: "Social Image",
                 url: "/modules/sharing-tools/social-image-generator",
                 icon: Image,
-                description: "Create shareable images for social platforms.",
+                instructions:
+                    "Enter text and choose a style to create shareable images for social platforms.",
             },
         ],
     },
-
     {
         title: "Reference",
         items: [
@@ -372,43 +394,43 @@ export const rawSidebarItems = [
                 title: "HTML",
                 url: "/modules/cheat-sheets/html-cheat-sheet",
                 icon: FileText,
-                description: "HTML Cheat Sheet for quick reference.",
+                instructions: "Browse common HTML tags and attributes for quick reference.",
             },
             {
                 title: "CSS",
                 url: "/modules/cheat-sheets/css-cheat-sheet",
                 icon: FileText,
-                description: "CSS Cheat Sheet for quick reference.",
+                instructions: "Look up CSS properties and syntax to style your projects.",
             },
             {
                 title: "JavaScript",
                 url: "/modules/cheat-sheets/js-cheat-sheet",
                 icon: FileText,
-                description: "JavaScript Cheat Sheet for quick reference.",
+                instructions: "Find common JavaScript methods, syntax, and examples quickly.",
             },
             {
                 title: "Git",
                 url: "/modules/cheat-sheets/git-cheat-sheet",
                 icon: FileText,
-                description: "Git commands and workflows.",
+                instructions: "Reference Git commands and workflows for version control.",
             },
             {
                 title: "HTTP Status Codes",
                 url: "/modules/cheat-sheets/http-status-codes",
                 icon: FileText,
-                description: "Reference for HTTP status codes.",
+                instructions: "Check meanings of HTTP status codes for debugging and development.",
             },
             {
                 title: "Regex",
                 url: "/modules/cheat-sheets/regex-reference",
                 icon: FileText,
-                description: "Common regex patterns and syntax.",
+                instructions: "Browse common regex patterns and syntax for quick use.",
             },
             {
                 title: "Color Theory",
                 url: "/modules/cheat-sheets/color-theory",
                 icon: Palette,
-                description: "OKLCH, WCAG contrast, and color harmony.",
+                instructions: "Learn about OKLCH, WCAG contrast, and color harmony for design.",
             },
         ],
     },
