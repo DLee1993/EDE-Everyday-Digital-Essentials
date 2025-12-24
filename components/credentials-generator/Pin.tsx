@@ -32,7 +32,7 @@ export default function Pin() {
                     <p className="text-sm">Select pin length</p>
                     <SelectLength type="code" pcLength={pcLength} setPcLength={setPcLength} />
                 </div>
-                <Label htmlFor="pinInput">Read only pin input</Label>
+                <Label htmlFor="pinInput" className="sr-only">Read only pin input</Label>
                 <Input
                     id="pinInput"
                     aria-label="Read only pin number input element"
