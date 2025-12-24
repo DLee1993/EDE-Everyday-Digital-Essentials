@@ -77,7 +77,7 @@ export default function LorumIpsumGenerator() {
         <section>
             <div className="w-full max-w-4xl space-y-10">
                 <div>
-                    <p className="text-sm text-accent font-medium mb-2.5">Generation Options</p>
+                    <p className="text-sm text-primary font-medium mb-2.5">Generation Options</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-4 md:grid-rows-2 gap-5">
                         <fieldset className="md:max-w-72 flex justify-between items-end gap-5">
                             <Label htmlFor="paragraphs">Number of paragraphs</Label>

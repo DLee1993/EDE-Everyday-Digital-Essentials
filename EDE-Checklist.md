@@ -170,9 +170,9 @@ Each tool progresses through four stages. Use these definitions to guide when to
 
     -   Development Stages:
         -   [x] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### Test Credentials
 

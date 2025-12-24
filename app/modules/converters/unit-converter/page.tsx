@@ -72,15 +72,6 @@ export default function UnitConverter() {
             </section>
             <div className="w-full flex gap-5">
                 <Button
-                    variant="secondary"
-                    className="text-sm"
-                    onClick={() => ClearUnits()}
-                    disabled={!selectedValue.from}
-                >
-                    Reset
-                    <CircleX />
-                </Button>
-                <Button
                     onClick={() => {
                         ConvertUnits({
                             amount,
@@ -92,6 +83,15 @@ export default function UnitConverter() {
                     }}
                 >
                     Convert
+                </Button>
+                <Button
+                    variant="secondary"
+                    className="text-sm"
+                    onClick={() => ClearUnits()}
+                    disabled={!selectedValue.from}
+                >
+                    Reset
+                    <CircleX />
                 </Button>
             </div>
         </section>

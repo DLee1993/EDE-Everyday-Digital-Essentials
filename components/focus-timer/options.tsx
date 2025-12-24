@@ -117,7 +117,7 @@ export default function Options({
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button className="bg-accent text-background flex-1 rounded-sm">
+                <Button className="flex-1 rounded-sm">
                     <SettingsIcon /> Settings
                 </Button>
             </SheetTrigger>

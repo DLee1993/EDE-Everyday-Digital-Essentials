@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 // import { sidebarItems } from "@/components/global/app-sidebar-item-list";
 import ChangeTheme from "@/components/global/ThemeToggle";
-import { Home, FolderGit2, Settings } from "lucide-react";
+import { Home, FolderGit2 } from "lucide-react";
 import {
     Sidebar,
     SidebarContent,
@@ -23,16 +23,12 @@ export function AppSidebar() {
     const { openMobile, setOpenMobile } = useSidebar();
 
     return (
-        <Sidebar
-            collapsible="none"
-            variant="sidebar"
-            className="h-screen border-r border-border"
-        >
+        <Sidebar collapsible="none" variant="sidebar" className="h-screen border-r border-border">
             <SidebarHeader className="overflow-hidden px-3 py-2.5 hidden lg:block border-b border-border">
                 <div className="relative">
                     <p className="flex flex-col min-w-52 text-md font-semibold">
                         EDE
-                        <span className="text-xs text-muted-foreground font-normal">
+                        <span className="text-xs font-normal">
                             Your Everyday Digital Essentials.
                         </span>
                     </p>
@@ -50,15 +46,25 @@ export function AppSidebar() {
                             >
                                 <Link
                                     href="/"
-                                    className="data-[active=true]:bg-foreground data-[active=true]:text-background"
+                                    className="data-[active=true]:bg-foreground data-[active=true]:text-background group"
                                 >
                                     <Home
                                         size={15}
                                         className={`ml-0.5 ${
-                                            pathname === "/" ? "text-accent" : "text-foreground"
+                                            pathname === "/"
+                                                ? "text-sidebar-primary-foreground"
+                                                : "group-hover:text-sidebar-primary-foreground"
                                         }`}
                                     />
-                                    <p className="mx-2 min-w-32">Home</p>
+                                    <p
+                                        className={`mx-2 min-w-32 ${
+                                            pathname === "/"
+                                                ? "text-sidebar-primary-foreground"
+                                                : "group-hover:text-sidebar-primary-foreground"
+                                        }`}
+                                    >
+                                        Home
+                                    </p>
                                     {pathname === "/" && <PageIdentifier />}
                                 </Link>
                             </SidebarMenuButton>
@@ -66,34 +72,17 @@ export function AppSidebar() {
 
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild className="min-h-9 min-w-9">
-                                <Link href="https://github.com/DLee1993/toolbox" target="_blank">
-                                    <FolderGit2 size={15} className="ml-0.5" />
-                                    <p className="mx-2 min-w-32">Request a tool</p>
+                                <Link
+                                    href="https://github.com/DLee1993/toolbox"
+                                    target="_blank"
+                                    className="group"
+                                >
+                                    <FolderGit2 size={15} className="ml-0.5 group-hover:text-sidebar-primary-foreground" />
+                                    <p className="mx-2 min-w-32 group-hover:text-sidebar-primary-foreground">Request a tool</p>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
-
-                        <SidebarMenuItem>
-                            <SidebarMenuButton
-                                asChild
-                                isActive={pathname === "/settings" ? true : false}
-                                className="min-h-9 min-w-9"
-                                onClick={() => setOpenMobile(!openMobile)}
-                            >
-                                <Link href="/settings">
-                                    <Settings
-                                        size={15}
-                                        className={`ml-0.5 ${
-                                            pathname === "/settings"
-                                                ? "text-accent"
-                                                : "text-foreground"
-                                        }`}
-                                    />
-                                    <p className="mx-2 min-w-32">Settings</p>
-                                    {pathname === "/settings" && <PageIdentifier />}
-                                </Link>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
+                        {/* Theme */}
                         <ChangeTheme />
                     </SidebarMenu>
                 </SidebarGroup>

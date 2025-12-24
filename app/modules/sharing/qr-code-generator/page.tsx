@@ -132,7 +132,7 @@ export default function QRCodeGenerator() {
             </section>
             <section className="w-full max-w-lg mx-auto h-fit space-y-10">
                 <div className="space-y-5">
-                    <h2 className="mb-2.5 text-accent">Step 1 - Select a QR Code type</h2>
+                    <h2 className="mb-2.5 text-primary">Step 1 - Select a QR Code type</h2>
                     <Select
                         value={type}
                         defaultValue={type}
@@ -155,7 +155,7 @@ export default function QRCodeGenerator() {
                     </Select>
                 </div>
                 <div className="space-y-5">
-                    <p className="mb-2.5 text-accent">Step 2 - Fill in the details</p>
+                    <p className="mb-2.5 text-primary">Step 2 - Fill in the details</p>
                     <section className="[&_input]:bg-transparent! [&_input]:focus-visible:ring-ring/15! [&_textarea]:bg-transparent! [&_textarea]:focus-visible:ring-ring/15!">
                         {/* RUN A CHECK TO RENDER EACH FORM BASED ON TYPE, ALSO PASS ON THE SET VALUE FUNCTION */}
                         {/* {type === "URL" ? <URL setQrCodeValue={setQrCodeValue} /> : null} */}
@@ -167,7 +167,7 @@ export default function QRCodeGenerator() {
                     </section>
                 </div>
                 <div className="space-y-5">
-                    <p className="mb-2.5 text-accent">Step 3 - Create a Custom Design</p>
+                    <p className="mb-2.5 text-primary">Step 3 - Create a Custom Design</p>
                     <QRCodeSettings qrProps={qrProps} handleChange={handleChange} />
                 </div>
             </section>

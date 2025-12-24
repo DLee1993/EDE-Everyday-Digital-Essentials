@@ -114,7 +114,9 @@ export default function UUIDGenerator() {
     };
 
     useEffect(() => {
-        NotifyUser({ type: "Error", title: "Error", message: "Invalid input" });
+        if (error) {
+            NotifyUser({ type: "Error", title: "Error" });
+        }
     }, [error]);
 
     return (

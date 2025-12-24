@@ -122,6 +122,13 @@ export default function CurrencyConverter() {
             </section>
             <div className="w-full flex gap-5">
                 <Button
+                    onClick={() => {
+                        SubmitConversion();
+                    }}
+                >
+                    Convert
+                </Button>
+                 <Button
                     variant="secondary"
                     className="text-sm"
                     onClick={() => ClearUnits()}
@@ -129,13 +136,6 @@ export default function CurrencyConverter() {
                 >
                     Reset
                     <CircleX />
-                </Button>
-                <Button
-                    onClick={() => {
-                        SubmitConversion();
-                    }}
-                >
-                    Convert
                 </Button>
             </div>
             <p className="text-xs text-muted-foreground absolute bottom-1 left-1/2 -translate-x-1/2">

@@ -8,11 +8,10 @@ import {
     SidebarMenuItem,
     SidebarMenuButton,
     SidebarMenuBadge,
+    SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { PageIdentifier } from "@/components/global/PageIdentifier";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronRight } from "lucide-react";
 
 // Flatten the toolbox for search
 const allTools = sidebarItems.flatMap((category) =>
@@ -37,7 +36,7 @@ function highlightMatch(text: string, query: string) {
     const regex = new RegExp(`(${query})`, "gi");
     return text.split(regex).map((part, i) =>
         regex.test(part) ? (
-            <mark key={i} className="bg-primary text-background px-1 rounded-sm">
+            <mark key={i} className="bg-primary text-foreground px-1 rounded-sm">
                 {part}
             </mark>
         ) : (
@@ -82,46 +81,40 @@ export const MenuSearch = ({
             )}
             {Object.entries(groupedResults).map(([category, tools]) => (
                 <SidebarGroup key={`${category} menu group`}>
+                    <SidebarGroupLabel className="text-sm text-green-600 bg-primary/10">
+                        {category}
+                        <SidebarMenuBadge className="text-green-600">{tools.length}</SidebarMenuBadge>
+                    </SidebarGroupLabel>
                     <SidebarMenu>
-                        <Collapsible className="group/collapsible">
-                            <CollapsibleTrigger asChild className="cursor-pointer group">
-                                <SidebarMenuButton className="data-[state=open]:bg-primary/15 hover:data-[state=open]:bg-primary/15">
-                                    {category}
-                                    <div className="flex justify-center items-center gap-1 ml-auto">
-                                        <SidebarMenuBadge className="text-primary relative">
-                                            {tools.length}
-                                        </SidebarMenuBadge>
-                                        <ChevronRight
-                                            size={14}
-                                            className="text-muted-foreground group-data-[state=open]:rotate-90 transition-transform duration-300"
-                                        />
-                                    </div>
-                                </SidebarMenuButton>
-                            </CollapsibleTrigger>
-                            <CollapsibleContent className="border-l-2 border-border ml-3">
-                                {tools.map((item, i) => (
-                                    <SidebarMenuItem key={`menu-item-${i}`}>
-                                        <SidebarMenuButton
-                                            asChild
-                                            isActive={pathname === item.url ? true : false}
-                                            className="min-h-9 min-w-9"
-                                            onClick={() => setOpen(!open)}
+                        {tools.map((item, i) => (
+                            <SidebarMenuItem key={`menu-item-${i}`}>
+                                <SidebarMenuButton
+                                    asChild
+                                    isActive={pathname === item.url ? true : false}
+                                    className="min-h-9 min-w-9"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    <Link
+                                        href={item.url}
+                                        className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2 group"
+                                    >
+                                        {item.icon && (
+                                            <item.icon className="ml-[3px] group-hover:text-sidebar-primary-foreground" />
+                                        )}
+                                        <p
+                                            className={`min-w-32 ${
+                                                pathname === item.url
+                                                    ? "text-sidebar-primary-foreground"
+                                                    : "group-hover:text-sidebar-primary-foreground"
+                                            }`}
                                         >
-                                            <Link
-                                                href={item.url}
-                                                className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2"
-                                            >
-                                                {item.icon && <item.icon className="ml-[3px]" />}
-                                                <p className="min-w-32">
-                                                    {highlightMatch(item.title, query)}
-                                                </p>
-                                                {pathname === item.url && <PageIdentifier />}
-                                            </Link>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                ))}
-                            </CollapsibleContent>
-                        </Collapsible>
+                                            {highlightMatch(item.title, query)}
+                                        </p>
+                                        {pathname === item.url && <PageIdentifier />}
+                                    </Link>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        ))}
                     </SidebarMenu>
                 </SidebarGroup>
             ))}

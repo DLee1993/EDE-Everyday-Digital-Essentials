@@ -342,18 +342,21 @@ export default function FileConverterDropzone() {
                                 <DropdownMenuItem
                                     aria-label="Download File"
                                     onClick={() => download(action)}
-                                    className="flex justify-between items-center focus:bg-foreground/10 focus:text-foreground"
+                                    className="flex justify-between items-center"
                                 >
                                     <span>Download file</span>
                                     <Download className="text-foreground" />
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
+                                    asChild
                                     aria-label="Delete File"
                                     onClick={() => deleteAction(action)}
-                                    className="flex justify-between items-center bg-destructive text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground"
+                                    className="w-full flex justify-between items-center"
                                 >
-                                    <span>Delete file</span>
-                                    <Trash className="text-foreground" />
+                                    <Button variant="destructive">
+                                        <span>Delete file</span>
+                                        <Trash className="text-foreground" />
+                                    </Button>
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                         </DropdownMenuContent>
@@ -591,16 +594,6 @@ export default function FileConverterDropzone() {
                         <Button
                             size="sm"
                             variant="link"
-                            onClick={reset}
-                            disabled={files.length === 0}
-                            className="text-foreground"
-                        >
-                            Clear
-                        </Button>
-                        <p className="text-foreground/50">|</p>
-                        <Button
-                            size="sm"
-                            variant="link"
                             disabled={!is_ready || is_converting}
                             onClick={convert}
                             className="text-foreground"
@@ -616,6 +609,16 @@ export default function FileConverterDropzone() {
                             className="text-foreground"
                         >
                             <span>Download all</span>
+                        </Button>
+                        <p className="text-foreground/50">|</p>
+                        <Button
+                            size="sm"
+                            variant="link"
+                            onClick={reset}
+                            disabled={files.length === 0}
+                            className="text-foreground"
+                        >
+                            Clear
                         </Button>
                     </div>
                     <div className="w-full min-[425px]:w-auto flex justify-between items-center">
