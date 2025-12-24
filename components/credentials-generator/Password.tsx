@@ -7,6 +7,7 @@ import SelectLength from "@/components/credentials-generator/SelectLength";
 import { Button } from "@/components/ui/button";
 import { CopyIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function Password() {
     const [pwLength, setPwLength] = useState<number>(8);
@@ -31,11 +32,16 @@ export default function Password() {
                     <p className="text-sm">Select password length</p>
                     <SelectLength type="password" pwLength={pwLength} setPwLength={setPwLength} />
                 </div>
+                <Label htmlFor="passwordInput" className="sr-only">
+                    Read only Password Input
+                </Label>
                 <Input
+                    id="passwordInput"
+                    aria-label="Read only password input element"
                     maxLength={pwLength}
                     readOnly
                     value={passwordInput}
-                    className="text-xl! bg-input/15! h-12 shadow-none border-border tracking-widest rounded-none text-center"
+                    className="text-xl! h-12 shadow-none border-border tracking-widest rounded-none text-center"
                 ></Input>
 
                 {/* Password Controls */}

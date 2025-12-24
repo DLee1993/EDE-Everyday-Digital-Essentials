@@ -21,6 +21,7 @@ export default function SelectLength({
     return (
         <div className="flex gap-5 sm:gap-10">
             <Slider
+                id={type === "password" ? "password" : "pin"}
                 min={sliderMinLength}
                 max={sliderMaxLength}
                 step={1}

@@ -7,6 +7,7 @@ import { Copy } from "@/lib/global/copy-to-clipboard";
 import SelectLength from "@/components/credentials-generator/SelectLength";
 import { CopyIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function Pin() {
     const [pcLength, setPcLength] = useState<number>(4);
@@ -31,7 +32,10 @@ export default function Pin() {
                     <p className="text-sm">Select pin length</p>
                     <SelectLength type="code" pcLength={pcLength} setPcLength={setPcLength} />
                 </div>
+                <Label htmlFor="pinInput">Read only pin input</Label>
                 <Input
+                    id="pinInput"
+                    aria-label="Read only pin number input element"
                     maxLength={pcLength}
                     readOnly
                     value={codeInput}
