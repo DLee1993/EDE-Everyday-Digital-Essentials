@@ -1,42 +1,43 @@
-import { Slider } from "@/components/ui/slider";
+"use client";
+
+import * as React from "react";
+
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectSeparator,
+    SelectTrigger,
+} from "@/components/ui/select";
 
 interface LengthProps {
-    type: string;
-    pwLength?: number;
-    pcLength?: number;
-    setPwLength?: React.Dispatch<React.SetStateAction<number>>;
-    setPcLength?: React.Dispatch<React.SetStateAction<number>>;
+    length: number;
+    setLength: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function SelectLength({
-    type,
-    pwLength,
-    pcLength,
-    setPwLength,
-    setPcLength,
-}: LengthProps) {
-    const sliderMaxLength = type === "password" ? 38 : 36;
-    const sliderMinLength = type === "password" ? 8 : 4;
+export default function SelectLength({ length, setLength }: LengthProps) {
+
+    const ChangeLength = (value: number) => {
+        setLength(value);
+        console.log(value)
+    };
 
     return (
-        <div className="flex gap-5 sm:gap-10">
-            <Slider
-                id={type === "password" ? "password" : "pin"}
-                min={sliderMinLength}
-                max={sliderMaxLength}
-                step={1}
-                defaultValue={type === "password" ? [pwLength || 8] : [pcLength || 4]}
-                onValueChange={(value) => {
-                    if (type === "password" && setPwLength) {
-                        setPwLength(Number(value));
-                    } else if (type === "code" && setPcLength) {
-                        setPcLength(Number(value));
-                    }
-                }}
-            />
-            <p className="h-7 w-14 text-center bg-foreground/20 rounded-sm grid place-content-center">
-                {type === "password" ? pwLength : pcLength}
-            </p>
-        </div>
+        <Select onValueChange={(v) => ChangeLength(Number(v))}>
+            <SelectTrigger>{length}</SelectTrigger>
+            <SelectContent className="h-56">
+                <SelectGroup>
+                    <SelectLabel>Select Length</SelectLabel>
+                    <SelectSeparator />
+                    {Array.from({ length: 35 }, (_, i) => i + 4).map((n, i) => (
+                        <SelectItem value={String(n)} key={i}>
+                            {n}
+                        </SelectItem>
+                    ))}
+                </SelectGroup>
+            </SelectContent>
+        </Select>
     );
 }

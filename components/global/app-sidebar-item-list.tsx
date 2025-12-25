@@ -158,7 +158,7 @@ export const rawSidebarItems = [
                 title: "Credentials Generator",
                 url: "/modules/security/credentials-generator",
                 icon: Key,
-                instructions: "Choose your length to generate strong, secure credentials.",
+                instructions: "Select the type, choose your length. Click generate.",
             },
             {
                 title: "Test Credentials",
