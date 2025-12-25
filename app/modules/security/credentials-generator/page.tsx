@@ -2,7 +2,7 @@
 
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Copy } from "@/lib/global/copy-to-clipboard";
 import { GeneratePassword, GeneratePin } from "@/lib/credentials-generator/generate-credentials";
 import SelectLength from "@/components/credentials-generator/SelectLength";
@@ -16,38 +16,26 @@ export default function CredentialsGenerator() {
     const [pwLength, setPwLength] = useState<number>(8);
     const [pcLength, setPcLength] = useState<number>(4);
 
-    const toggleType = (type: string) => {
+    const toggleType = (type: string | null) => {
+        if (!type) return;
         setType(type);
         setOtpInput("");
     };
 
-    const GenerateType = () => {
-        if (type === "password") {
-            const password = GeneratePassword(pwLength);
-            if (password) {
-                setOtpInput(password);
-            }
-        }
-        if (type === "pin") {
-            const pin = GeneratePin(pcLength);
-            if (pin) {
-                setOtpInput(pin);
-            }
-        }
-    };
+    const GenerateType = useCallback(() => {
+        const value = type === "password" ? GeneratePassword(pwLength) : GeneratePin(pcLength);
+
+        if (value) setOtpInput(value);
+    }, [type, pwLength, pcLength]);
 
     return (
         <section className="space-y-7">
             <section className="w-full max-w-231 flex max-[425px]:justify-between items-center gap-5">
-                <ToggleGroup type="single" value={type} onValueChange={setType}>
-                    <ToggleGroupItem
-                        className="w-24"
-                        value="password"
-                        onClick={() => toggleType("password")}
-                    >
+                <ToggleGroup type="single" value={type} onValueChange={(val) => toggleType(val)}>
+                    <ToggleGroupItem className="w-24" value="password">
                         Password
                     </ToggleGroupItem>
-                    <ToggleGroupItem className="w-24" value="pin" onClick={() => toggleType("pin")}>
+                    <ToggleGroupItem className="w-24" value="pin">
                         Pin
                     </ToggleGroupItem>
                 </ToggleGroup>
@@ -56,7 +44,12 @@ export default function CredentialsGenerator() {
                     setLength={type === "password" ? setPwLength : setPcLength}
                 />
             </section>
-            <InputOTP value={otpInput} maxLength={gridLength} readOnly>
+            <InputOTP
+                value={otpInput}
+                maxLength={gridLength}
+                readOnly
+                className="select-none cursor-default"
+            >
                 <InputOTPGroup className="flex flex-wrap max-w-231 justify-center">
                     {Array.from({ length: gridLength }).map((_, index) => (
                         <InputOTPSlot key={index} index={index} className="size-12 text-lg" />
@@ -65,15 +58,18 @@ export default function CredentialsGenerator() {
             </InputOTP>
             <section className="w-full flex gap-5 max-w-231">
                 <Button
-                    id={type === "password" ? "password" : "pin"}
                     onClick={GenerateType}
-                    aria-label="click to generate password"
+                    aria-label={`Generate ${type}`}
                     className="flex-1 min-[425px]:max-w-24"
                     type="button"
                 >
                     Generate
                 </Button>
-                <Button variant="outline" onClick={() => Copy({ input: otpInput })}>
+                <Button
+                    variant="outline"
+                    onClick={() => Copy({ input: otpInput })}
+                    disabled={!otpInput}
+                >
                     Copy
                     <CopyIcon />
                 </Button>
