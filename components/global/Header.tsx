@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { getLocalizedGreeting } from "@/lib/global/GreetUser";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { PhoneIcon, SettingsIcon } from "lucide-react";
+import { PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HowToUse from "@/components/global/How-to-use";
 import { rawSidebarItems } from "@/components/global/app-sidebar-item-list";
@@ -45,14 +45,6 @@ export default function Header() {
                         <HowToUse />
                     </li>
                 )}
-                <li>
-                    <Link href="/settings">
-                        <Button variant="link" className="pointer-events-none text-foreground">
-                            <SettingsIcon size={15} />
-                            <span className="hidden sm:block">Settings</span>
-                        </Button>
-                    </Link>
-                </li>
                 <li>
                     <Link href="/contact">
                         <Button variant="link" className="pointer-events-none text-foreground">
