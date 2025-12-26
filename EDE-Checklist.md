@@ -36,9 +36,9 @@ Each tool progresses through four stages. Use these definitions to guide when to
 
     -   Development Stages:
         -   [x] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### Units
 
@@ -52,9 +52,9 @@ Each tool progresses through four stages. Use these definitions to guide when to
 
     -   Development Stages:
         -   [x] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### Colors
 
@@ -106,7 +106,7 @@ Each tool progresses through four stages. Use these definitions to guide when to
     ### Focus Timer
 
     -   Development Stages:
-        -   [x] Built
+        -   [ ] Built
         -   [ ] Refined
         -   [ ] Tested
         -   [ ] Verified
@@ -115,9 +115,9 @@ Each tool progresses through four stages. Use these definitions to guide when to
 
     -   Development Stages:
         -   [x] Built
-        -   [x] Refined
-        -   [x] Tested
-        -   [x] Verified
+        -   [ ] Refined
+        -   [ ] Tested
+        -   [ ] Verified
 
     ### Notepad
 
