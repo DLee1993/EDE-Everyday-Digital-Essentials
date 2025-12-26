@@ -1,66 +1,55 @@
 "use client";
 
-import { useState } from "react";
-import { Unit } from "convert-units";
-import { ConvertUnits } from "@/lib/unit-converter/convertUnits";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SelectUnit } from "@/components/unit-converter/SelectUnit";
 import { CircleAlert, CircleX } from "lucide-react";
+import { useUnitConverter } from "@/hooks/unit-converter/useUnitConverter";
 
 export default function UnitConverter() {
-    const [amount, setAmount] = useState("");
-    const [selectedValue, setSelectedValue] = useState<{ from: Unit | ""; to: Unit | "" }>({
-        from: "",
-        to: "",
-    });
-    const [result, setResult] = useState<number | null>(null);
-    const [error, setError] = useState<string>("");
-
-    const ClearUnits = () => {
-        setSelectedValue({ from: "", to: "" });
-        setAmount("");
-        setResult(null);
-        setError("");
-    };
+    const { amount, setAmount, selectedValue, setSelectedValue, result, error, convert, reset } =
+        useUnitConverter();
 
     return (
         <section className="relative space-y-20 max-w-3xl">
-            <section className="w-full flex flex-col md:flex-row gap-10">
-                <div className="w-full flex flex-col gap-2">
-                    <h2 className="text-sm font-semibold text-muted-foreground">From</h2>
-                    <div className="flex gap-2">
-                        <SelectUnit
-                            type="from"
-                            selectedValue={selectedValue}
-                            setSelectedValue={setSelectedValue}
-                        />
-                        <Input
-                            value={amount}
-                            id="amount"
-                            onChange={(e) => setAmount(e.target.value)}
-                            className="text-center"
-                            placeholder="Amount"
-                            type="number"
-                        />
+            <section className="w-full space-y-2">
+                <section className="flex flex-col md:flex-row gap-10">
+                    <div className="w-full flex flex-col gap-2">
+                        <h2 className="text-sm font-semibold text-muted-foreground">From</h2>
+                        <fieldset className="flex gap-2">
+                            <SelectUnit
+                                type="from"
+                                selectedValue={selectedValue}
+                                setSelectedValue={setSelectedValue}
+                            />
+                            <Input
+                                value={amount}
+                                id="amount"
+                                onChange={(e) => setAmount(e.target.value)}
+                                className="text-center"
+                                placeholder="Amount"
+                                type="number"
+                            />
+                        </fieldset>
                     </div>
-                </div>
-                <div className="w-full flex flex-col gap-2">
-                    <h2 className="text-sm font-semibold text-muted-foreground">To</h2>
-                    <div className="flex gap-2">
-                        <SelectUnit
-                            type="to"
-                            selectedValue={selectedValue}
-                            setSelectedValue={setSelectedValue}
-                        />
-                        <Input
-                            readOnly
-                            id="result"
-                            value={result !== null ? Number(result).toLocaleString() : ""}
-                            className="text-center"
-                        />
+
+                    <div className="w-full flex flex-col gap-2">
+                        <h2 className="text-sm font-semibold text-muted-foreground">To</h2>
+                        <fieldset className="flex gap-2">
+                            <SelectUnit
+                                type="to"
+                                selectedValue={selectedValue}
+                                setSelectedValue={setSelectedValue}
+                            />
+                            <Input
+                                readOnly
+                                id="result"
+                                value={result !== null ? Number(result).toLocaleString() : ""}
+                                className="text-center"
+                            />
+                        </fieldset>
                     </div>
-                </div>
+                </section>
                 <p className="min-h-5 text-red-600 text-sm font-medium">
                     {error && (
                         <span className="flex items-center gap-2">
@@ -70,24 +59,14 @@ export default function UnitConverter() {
                     )}
                 </p>
             </section>
+
             <div className="w-full flex gap-5">
-                <Button
-                    onClick={() => {
-                        ConvertUnits({
-                            amount,
-                            from: selectedValue.from,
-                            to: selectedValue.to,
-                            setResult,
-                            setError,
-                        });
-                    }}
-                >
-                    Convert
-                </Button>
+                <Button onClick={convert}>Convert</Button>
+
                 <Button
                     variant="secondary"
                     className="text-sm"
-                    onClick={() => ClearUnits()}
+                    onClick={reset}
                     disabled={!selectedValue.from}
                 >
                     Reset
