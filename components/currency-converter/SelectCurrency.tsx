@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { useMediaQuery } from "@/lib/global/use-media-query";
+import { useMediaQuery } from "@/hooks/global/use-media-query";
 import rateNames from "@/lib/currency-converter/rateNames.json";
 import CurrencyFlag from "react-currency-flags";
 import { Button } from "@/components/ui/button";
