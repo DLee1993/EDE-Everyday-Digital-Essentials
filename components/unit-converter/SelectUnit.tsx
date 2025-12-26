@@ -1,11 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { MeasurementTypes } from "@/lib/unit-converter/convertUnits";
 import { Unit } from "convert-units";
-
+import { MeasurementTypes } from "@/lib/unit-converter/convertUnits";
+import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/global/use-media-query";
+
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { ChevronDown } from "lucide-react";
 import {
     Command,
     CommandEmpty,
@@ -22,8 +26,6 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { ChevronDown } from "lucide-react";
 
 type Props = {
     type: "from" | "to";
@@ -43,17 +45,30 @@ export function SelectUnit({ type, selectedValue, setSelectedValue }: Props) {
     const [open, setOpen] = React.useState(false);
     const isDesktop = useMediaQuery("(min-width: 768px)");
 
+    const placeholder = selectedValue[type] || `Select unit`;
+
+    const triggerRef = React.useRef<HTMLButtonElement>(null);
+
+    const handleSelect = (value: Unit) => {
+        setSelectedValue((prev) => ({ ...prev, [type]: value }));
+        setOpen(false);
+
+        triggerRef.current?.focus();
+    };
+
+    const triggerButton = (
+        <Button ref={triggerRef} variant="secondary" className="min-w-20 flex justify-between items-center">
+            {placeholder}
+            <ChevronDown className={`${open ? "rotate-180" : "rotate-0"} transition-transform`} />
+        </Button>
+    );
+
     if (isDesktop) {
         return (
             <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                    <Button variant="secondary" className="flex justify-between items-center">
-                        {selectedValue[type] ? selectedValue[type] : `Select unit`}
-                        <ChevronDown className={`${open ? "rotate-180" : "rotate-0"}`} />
-                    </Button>
-                </PopoverTrigger>
+                <PopoverTrigger asChild>{triggerButton}</PopoverTrigger>
                 <PopoverContent className="w-[200px] h-60 p-0" align="start">
-                    <UnitList setOpen={setOpen} setSelectedUnit={setSelectedValue} type={type} />
+                    <UnitList onSelect={handleSelect} selected={selectedValue[type]} />
                 </PopoverContent>
             </Popover>
         );
@@ -61,58 +76,54 @@ export function SelectUnit({ type, selectedValue, setSelectedValue }: Props) {
 
     return (
         <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerTrigger asChild>
-                <Button variant="outline" className="sm:w-[150px]">
-                    {selectedValue[type] ? selectedValue[type] : `Convert ${type}`}
-                </Button>
-            </DrawerTrigger>
+            <DrawerTrigger asChild>{triggerButton}</DrawerTrigger>
             <DrawerContent>
                 <div className="mt-4 border-t">
                     <DrawerHeader>
                         <DrawerTitle>Select a unit</DrawerTitle>
                         <DrawerDescription>Choose the unit you want to use.</DrawerDescription>
                     </DrawerHeader>
-                    <UnitList setOpen={setOpen} setSelectedUnit={setSelectedValue} type={type} />
+                    <UnitList onSelect={handleSelect} selected={selectedValue[type]} />
                 </div>
             </DrawerContent>
         </Drawer>
     );
 }
 
-function UnitList({
-    setOpen,
-    setSelectedUnit,
-    type,
-}: {
-    setOpen: (open: boolean) => void;
-    setSelectedUnit: React.Dispatch<React.SetStateAction<{ from: Unit | ""; to: Unit | "" }>>;
-    type: string;
-}) {
+function UnitList({ onSelect, selected }: { onSelect: (unit: Unit) => void; selected: Unit | "" }) {
     return (
         <Command>
             <CommandInput placeholder="Filter units..." autoFocus />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
-                {MeasurementTypes.map((mType) => (
-                    <CommandGroup key={mType.measurement}>
-                        <h4 className="text-sm font-semibold p-2 capitalize">
-                            {mType.measurement}
+
+                {MeasurementTypes.map((group) => (
+                    <div key={group.measurement}>
+                        <h4 className="text-sm font-semibold p-2 capitalize border-b-4 border-border! bg-primary-foreground/5">
+                            {group.measurement}
                         </h4>
-                        {mType.units.map((unit, i) => (
-                            <CommandItem
-                                key={i}
-                                className="cursor-pointer ml-1 hover:bg-popover-foreground/10!"
-                                value={unit}
-                                onSelect={(value) => {
-                                    setSelectedUnit((prev) => ({ ...prev, [type]: value }));
-                                    setOpen(false);
-                                }}
-                            >
-                                {unit}
-                            </CommandItem>
-                        ))}
-                        {/* <CommandSeparator /> */}
-                    </CommandGroup>
+                        <CommandGroup key={group.measurement}>
+                            {group.units.map((unit) => {
+                                const isSelected = selected === unit;
+
+                                return (
+                                    <CommandItem
+                                        key={unit}
+                                        value={unit}
+                                        onSelect={() => onSelect(unit)}
+                                        className={cn(
+                                            "cursor-pointer flex items-center justify-between",
+                                            isSelected && "bg-accent text-accent-foreground"
+                                        )}
+                                    >
+                                        <span>{unit}</span>
+
+                                        {isSelected && <Check className="h-4 w-4 opacity-100" />}
+                                    </CommandItem>
+                                );
+                            })}
+                        </CommandGroup>
+                    </div>
                 ))}
             </CommandList>
         </Command>
