@@ -1,715 +1,808 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { NotifyUser } from "@/lib/global/NotifyUser";
-import { cn } from "@/lib/utils";
-import bytesToSize from "@/lib/file-converter/bites-to-size";
-import convertFile from "@/lib/file-converter/convert";
-import compressFileName from "@/lib/file-converter/compress-filename";
-
-import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { toBlobURL } from "@ffmpeg/util";
 import ReactDropzone from "react-dropzone";
+import { UploadCloud, Send } from "lucide-react";
 
-import {
-    AlertCircle,
-    Check,
-    ChevronLeft,
-    ChevronRight,
-    Clock,
-    Download,
-    EllipsisVertical,
-    Minus,
-    Send,
-    Trash,
-    UploadCloud,
-} from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import {
-    ColumnDef,
-    RowData,
-    flexRender,
-    getCoreRowModel,
-    getPaginationRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
-
-declare module "@tanstack/react-table" {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    interface ColumnMeta<TData extends RowData, TValue> {
-        className?: string;
-    }
+interface ConverterDropzoneProps {
+    isHover: boolean;
+    onHover: () => void;
+    onExitHover: () => void;
+    onUpload: (files: File[]) => void;
 }
 
-const extensions = {
-    image: ["jpg", "jpeg", "png", "gif", "bmp", "webp", "ico", "tif", "tiff", "svg", "raw", "tga"],
-    video: [
-        "mp4",
-        "m4v",
-        "mp4v",
-        "3gp",
-        "3g2",
-        "avi",
-        "mov",
-        "wmv",
-        "mkv",
-        "flv",
-        "ogv",
-        "webm",
-        "h264",
-        "264",
-        "hevc",
-        "265",
-    ],
-    audio: ["mp3", "wav", "ogg", "aac", "wma", "flac", "m4a"],
-};
-
-const ImageSelect = ({
-    updateAction,
-    action,
-}: {
-    updateAction: (file_name: string, to: string) => void;
-    action: Action;
-}) => {
+export default function ConverterDropzone({
+    isHover,
+    onHover,
+    onExitHover,
+    onUpload,
+}: ConverterDropzoneProps) {
     return (
-        <Select
-            onValueChange={(value) => {
-                updateAction(action.file_name, value);
+        <ReactDropzone
+            onDrop={onUpload}
+            onDragEnter={onHover}
+            onDragLeave={onExitHover}
+            onError={onExitHover}
+            onDropRejected={onExitHover}
+            accept={{
+                "image/*": [],
+                "video/*": [],
+                "audio/*": [],
             }}
-            value={action.to && action.to.length > 1 ? action.to : action.from}
         >
-            <SelectTrigger className="w-[90px] border-0 shadow-none uppercase">
-                <SelectValue
-                    aria-placeholder="Select type to convert to"
-                    placeholder={action.from.toUpperCase()}
-                />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectGroup className="max-h-40">
-                    {extensions.image.map((elt, i) => (
-                        <SelectItem key={i} value={elt} className="uppercase cursor-pointer">
-                            {elt}
-                        </SelectItem>
-                    ))}
-                </SelectGroup>
-            </SelectContent>
-        </Select>
-    );
-};
+            {({ getRootProps, getInputProps }) => (
+                <div
+                    {...getRootProps()}
+                    className="h-full min-h-52 flex flex-1 lg:max-w-sm justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
+                >
+                    <input {...getInputProps()} />
 
-const VideoSelect = ({
-    updateAction,
-    action,
-}: {
-    updateAction: (file_name: string, to: string) => void;
-    action: Action;
-}) => {
-    return (
-        <Select
-            onValueChange={(value) => {
-                updateAction(action.file_name, value);
-            }}
-            value={action.to || action.from}
-        >
-            <SelectTrigger className="w-[90px] uppercase">
-                <SelectValue
-                    aria-placeholder="Select type to convert to"
-                    placeholder="Convert to"
-                />
-            </SelectTrigger>
-            <SelectContent>
-                <Tabs defaultValue="video" className="w-full">
-                    <TabsList className="w-full">
-                        <TabsTrigger value="video" className="w-full">
-                            Video
-                        </TabsTrigger>
-                        <TabsTrigger value="audio" className="w-full">
-                            Audio
-                        </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="video">
-                        <div className="max-h-40">
-                            {extensions.video.map((elt, i) => (
-                                <div key={i} className="col-span-1 text-center">
-                                    <SelectItem value={elt} className="uppercase cursor-pointer">
-                                        {elt}
-                                    </SelectItem>
-                                </div>
-                            ))}
-                        </div>
-                    </TabsContent>
-                    <TabsContent value="audio">
-                        <div className="max-h-40">
-                            {extensions.audio.map((elt, i) => (
-                                <div key={i} className="col-span-1 text-center">
-                                    <SelectItem value={elt} className="uppercase cursor-pointer">
-                                        {elt}
-                                    </SelectItem>
-                                </div>
-                            ))}
-                        </div>
-                    </TabsContent>
-                </Tabs>
-            </SelectContent>
-        </Select>
-    );
-};
-
-const AudioSelect = ({
-    updateAction,
-    action,
-}: {
-    updateAction: (file_name: string, to: string) => void;
-    action: Action;
-}) => {
-    return (
-        <Select
-            onValueChange={(value) => {
-                updateAction(action.file_name, value);
-            }}
-            value={action.to || action.from}
-        >
-            <SelectTrigger className="w-[90px] uppercase">
-                <SelectValue
-                    aria-placeholder="Select type to convert to"
-                    placeholder="Convert to"
-                />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectGroup className="max-h-40">
-                    {extensions.audio.map((elt, i) => (
-                        <SelectItem key={i} value={elt} className="uppercase cursor-pointer">
-                            {elt}
-                        </SelectItem>
-                    ))}
-                </SelectGroup>
-            </SelectContent>
-        </Select>
-    );
-};
-
-export default function FileConverterDropzone() {
-    // variables & hooks
-    const ffmpegRef = useRef(new FFmpeg());
-    const [is_hover, setIsHover] = useState<boolean>(false);
-    const [actions, setActions] = useState<Action[]>([]);
-    const [is_ready, setIsReady] = useState<boolean>(false);
-    const [files, setFiles] = useState<Array<Action>>([]);
-    const [is_converting, setIsConverting] = useState<boolean>(false);
-    const [is_done, setIsDone] = useState<boolean>(false);
-    const [rowSelection, setRowSelection] = useState({});
-    const [pagination, setPagination] = useState({
-        pageIndex: 0, //initial page index
-        pageSize: 5, //default page size
-    });
-    // Accepted File formats
-    const accepted_files = {
-        "image/*": [
-            ".jpg",
-            ".jpeg",
-            ".png",
-            ".gif",
-            ".bmp",
-            ".webp",
-            ".ico",
-            ".tif",
-            ".tiff",
-            ".raw",
-            ".tga",
-        ],
-        "audio/*": [],
-        "video/*": [],
-    };
-
-    const columns: ColumnDef<Action>[] = [
-        {
-            accessorKey: "file_name",
-            header: "Filename",
-            cell: ({ row }) => {
-                const action = row.original;
-                return (
-                    <div className="flex flex-col space-y-2">
-                        <span className="font-semibold">{compressFileName(action.file_name)}</span>
-                        <sub>{bytesToSize(action.file_size)}</sub>
-                    </div>
-                );
-            },
-        },
-        {
-            accessorKey: "status",
-            header: "Status",
-            cell: ({ row }) => {
-                const action = row.original;
-                return (
-                    <>
-                        {!action.is_error && !action.is_converting && !action.is_converted && (
-                            <Badge variant="default" className="w-10 flex gap-2">
-                                <span className="sr-only">Pending</span>
-                                <Minus />
-                            </Badge>
-                        )}
-                        {action.is_error && !action.is_converting && (
-                            <Badge variant="destructive" className="w-10 flex gap-2">
-                                <span className="sr-only">Failed</span>
-                                <AlertCircle />
-                            </Badge>
-                        )}
-                        {action.is_converting && !action.is_converted && (
-                            <Badge variant="default" className="w-10 flex gap-2">
-                                <span className="sr-only">Converting</span>
-                                <Clock />
-                            </Badge>
-                        )}
-                        {action.is_converted && (
-                            <Badge variant="default" className="w-10 flex gap-2">
-                                <span className="sr-only">Completed</span>
-                                <Check />
-                            </Badge>
-                        )}
-                    </>
-                );
-            },
-        },
-        {
-            accessorKey: "convert_to",
-            header: "Convert to",
-            cell: ({ row }) => {
-                const action = row.original;
-                return (
-                    <>
-                        {action.file_type.includes("image") && (
-                            <ImageSelect action={action} updateAction={updateAction} />
-                        )}
-                        {action.file_type.includes("video") && (
-                            <VideoSelect action={action} updateAction={updateAction} />
-                        )}
-                        {action.file_type.includes("audio") && (
-                            <AudioSelect action={action} updateAction={updateAction} />
-                        )}
-                    </>
-                );
-            },
-            meta: {
-                className: "w-32",
-            },
-        },
-        {
-            accessorKey: "action",
-            header: "",
-            cell: ({ row }) => {
-                const action = row.original;
-                return (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger
-                            aria-label="click to open actions menu"
-                            className="w-5 h-5 cursor-pointer grid place-content-center"
-                        >
-                            <EllipsisVertical size={15} />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                            <DropdownMenuGroup className="space-y-1">
-                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                    aria-label="Download File"
-                                    onClick={() => download(action)}
-                                    className="flex justify-between items-center"
-                                >
-                                    <span>Download file</span>
-                                    <Download className="text-foreground" />
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                    asChild
-                                    aria-label="Delete File"
-                                    onClick={() => deleteAction(action)}
-                                    className="w-full flex justify-between items-center"
-                                >
-                                    <Button variant="destructive">
-                                        <span>Delete file</span>
-                                        <Trash className="text-foreground" />
-                                    </Button>
-                                </DropdownMenuItem>
-                            </DropdownMenuGroup>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                );
-            },
-            meta: {
-                className: "text-right w-10",
-            },
-        },
-    ];
-
-    const table = useReactTable({
-        data: actions,
-        columns,
-        getCoreRowModel: getCoreRowModel(),
-        onRowSelectionChange: setRowSelection,
-        getPaginationRowModel: getPaginationRowModel(),
-        onPaginationChange: setPagination,
-        state: {
-            rowSelection,
-            pagination,
-        },
-    });
-
-    // functions
-
-    const load = async () => {
-        const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.2/dist/umd";
-        const ffmpeg = ffmpegRef.current;
-        ffmpeg?.on("log", ({ message }) => {
-            console.log(message);
-        });
-        // toBlobURL is used to bypass CORS issue, urls with the same
-        // domain can be used directly.
-        await ffmpeg.load({
-            coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
-            wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
-        });
-    };
-
-    const reset = () => {
-        setIsDone(false);
-        setActions([]);
-        setFiles([]);
-        setIsReady(false);
-        setIsConverting(false);
-    };
-
-    const download = (action: Action) => {
-        const a = document.createElement("a");
-        a.style.display = "none";
-        a.href = action.url || "";
-        a.download = action.output || "";
-
-        document.body.appendChild(a);
-        a.click();
-
-        // Clean up after download
-        if (action.url) {
-            URL.revokeObjectURL(action.url);
-        }
-        document.body.removeChild(a);
-    };
-
-    const downloadAll = (): void => {
-        for (const action of actions) {
-            if (!action.is_error) download(action);
-        }
-    };
-
-    const convert = async (): Promise<any> => {
-        let tmp_actions = actions.map((elt) => ({
-            ...elt,
-            is_converting: true,
-        }));
-        setActions(tmp_actions);
-        setIsConverting(true);
-        for (const action of tmp_actions) {
-            try {
-                if (!ffmpegRef.current) {
-                    throw new Error("FFmpeg is not loaded.");
-                }
-                const { url, output } = await convertFile(ffmpegRef.current, action);
-                tmp_actions = tmp_actions.map((elt) =>
-                    elt === action
-                        ? {
-                              ...elt,
-                              is_converted: true,
-                              is_converting: false,
-                              url,
-                              output,
-                          }
-                        : elt
-                );
-                setActions(tmp_actions);
-            } catch (err) {
-                console.log(err);
-                tmp_actions = tmp_actions.map((elt) =>
-                    elt === action
-                        ? {
-                              ...elt,
-                              is_converted: false,
-                              is_converting: false,
-                              is_error: true,
-                          }
-                        : elt
-                );
-                setActions(tmp_actions);
-            }
-        }
-        setIsDone(true);
-        setIsConverting(false);
-    };
-
-    const handleUpload = (data: Array<any>): void => {
-        handleExitHover();
-
-        // Append new files to existing ones
-        setFiles((prev) => [...prev, ...data]);
-
-        // Generate new actions from uploaded files
-        const newActions: Action[] = data.map((file: any) => ({
-            file_name: file.name,
-            file_size: file.size,
-            from: file.name.slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2),
-            to: null,
-            file_type: file.type,
-            file,
-            is_converted: false,
-            is_converting: false,
-            is_error: false,
-        }));
-
-        // Append new actions to existing ones
-        setActions((prev) => [...prev, ...newActions]);
-    };
-
-    const handleHover = (): void => setIsHover(true);
-
-    const handleExitHover = (): void => setIsHover(false);
-
-    const checkIsReady = useCallback((): void => {
-        let tmp_is_ready = true;
-        actions.forEach((action: Action) => {
-            if (!action.to) tmp_is_ready = false;
-        });
-        setIsReady(tmp_is_ready);
-    }, [actions]);
-
-    const updateAction = (file_name: string, to: string) => {
-        setActions(
-            actions.map((action): Action => {
-                if (action.file_name === file_name) {
-                    return {
-                        ...action,
-                        to,
-                    };
-                }
-
-                return action;
-            })
-        );
-    };
-
-    const deleteAction = (action: Action): void => {
-        setActions(actions.filter((elt) => elt !== action));
-        setFiles(files.filter((elt) => elt.file_name !== action.file_name));
-    };
-
-    useEffect(() => {
-        if (!actions.length) {
-            setIsDone(false);
-            setFiles([]);
-            setIsReady(false);
-            setIsConverting(false);
-        } else checkIsReady();
-    }, [actions, checkIsReady]);
-
-    useEffect(() => {
-        load();
-    }, []);
-
-    return (
-        <div className="w-full flex flex-col md:flex-row gap-5 h-full">
-            <ReactDropzone
-                onDrop={handleUpload}
-                onDragEnter={handleHover}
-                onDragLeave={handleExitHover}
-                accept={accepted_files}
-                onDropRejected={() => {
-                    handleExitHover();
-                    NotifyUser({
-                        type: "destructive",
-                        title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
-                    });
-                }}
-                onError={() => {
-                    handleExitHover();
-                    NotifyUser({
-                        type: "destructive",
-                        title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
-                    });
-                }}
-            >
-                {({ getRootProps, getInputProps }) => (
-                    <div
-                        {...getRootProps()}
-                        className="min-h-52 flex flex-1 lg:max-w-sm justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
-                    >
-                        <input {...getInputProps()} />
-
-                        <article className="h-full flex flex-col justify-evenly items-center">
-                            {is_hover ? (
-                                <div>
-                                    <Send className="text-2xl" />
-                                    <h3>Send it</h3>
-                                </div>
-                            ) : (
-                                <div className="space-y-2 flex flex-col justify-center items-center text-center">
-                                    <h1 className="text-sm flex flex-col justify-center items-center gap-5">
-                                        <UploadCloud size={40} />
-                                        Drop your files here to start
-                                    </h1>
-                                </div>
-                            )}
-                        </article>
-                    </div>
-                )}
-            </ReactDropzone>
-            <div className="flex-1 space-y-5">
-                {/* CTA */}
-                <section className="flex flex-col min-[425px]:flex-row justify-between items-center space-y-2.5 min-[425px]:space-y-0">
-                    <div className="w-full min-[425px]:w-auto flex justify-between items-center">
-                        <Button
-                            size="sm"
-                            variant="link"
-                            disabled={!is_ready || is_converting}
-                            onClick={convert}
-                            className="text-foreground"
-                        >
-                            <span>Convert</span>
-                        </Button>
-                        <p className="text-foreground/50">|</p>
-                        <Button
-                            size="sm"
-                            variant="link"
-                            onClick={downloadAll}
-                            disabled={!is_done}
-                            className="text-foreground"
-                        >
-                            <span>Download all</span>
-                        </Button>
-                        <p className="text-foreground/50">|</p>
-                        <Button
-                            size="sm"
-                            variant="link"
-                            onClick={reset}
-                            disabled={files.length === 0}
-                            className="text-foreground"
-                        >
-                            Clear
-                        </Button>
-                    </div>
-                    <div className="w-full min-[425px]:w-auto flex justify-between items-center">
-                        <Button
-                            size="icon"
-                            variant="link"
-                            onClick={() => table.previousPage()}
-                            disabled={!table.getCanPreviousPage()}
-                            aria-label="previous page"
-                        >
-                            <ChevronLeft />
-                        </Button>
-                        <p className="flex text-xs gap-1">
-                            <span>
-                                {table.getPageCount()
-                                    ? table.getState().pagination.pageIndex + 1
-                                    : 0}
-                            </span>
-                            <span>of</span>
-                            <span>{table.getPageCount()}</span>
-                        </p>
-                        <Button
-                            size="icon"
-                            variant="link"
-                            onClick={() => table.nextPage()}
-                            disabled={!table.getCanNextPage()}
-                            aria-label="next page"
-                        >
-                            <ChevronRight />
-                        </Button>
-                    </div>
-                </section>
-                {/* File table / conversion selector */}
-                <Table className="w-full">
-                    <TableHeader>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id} className="hover:bg-transparent">
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <TableHead
-                                            key={header.id}
-                                            className={cn(
-                                                header.column.columnDef.meta?.className,
-                                                "border-y-0"
-                                            )}
-                                        >
-                                            {header.isPlaceholder
-                                                ? null
-                                                : flexRender(
-                                                      header.column.columnDef.header,
-                                                      header.getContext()
-                                                  )}
-                                        </TableHead>
-                                    );
-                                })}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    data-state={row.getIsSelected() && "selected"}
-                                >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell
-                                            key={cell.id}
-                                            className={cn(
-                                                cell.column.columnDef.meta?.className,
-                                                "p-0 h-16 px-2"
-                                            )}
-                                        >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            ))
+                    <article className="h-full flex flex-col justify-evenly items-center">
+                        {isHover ? (
+                            <div className="flex flex-col items-center gap-2">
+                                <Send className="text-2xl" />
+                                <h3>Send it</h3>
+                            </div>
                         ) : (
-                            <TableRow className="hover:bg-transparent">
-                                <TableCell colSpan={columns.length} className="text-center h-14">
-                                    Add a file to start
-                                </TableCell>
-                            </TableRow>
+                            <div className="space-y-2 flex flex-col justify-center items-center text-center">
+                                <h1 className="text-sm flex flex-col justify-center items-center gap-5">
+                                    <UploadCloud size={40} />
+                                    Drop your files here to start
+                                </h1>
+                            </div>
                         )}
-                    </TableBody>
-                </Table>
-            </div>
-        </div>
+                    </article>
+                </div>
+            )}
+        </ReactDropzone>
     );
 }
+
+// /* eslint-disable @typescript-eslint/no-explicit-any */
+// "use client";
+
+// import { useState, useEffect, useRef, useCallback } from "react";
+// import { NotifyUser } from "@/lib/global/NotifyUser";
+// import { cn } from "@/lib/utils";
+// import bytesToSize from "@/lib/file-converter/bites-to-size";
+// import convertFile from "@/lib/file-converter/convert";
+// import compressFileName from "@/lib/file-converter/compress-filename";
+
+// import { FFmpeg } from "@ffmpeg/ffmpeg";
+// import { toBlobURL } from "@ffmpeg/util";
+// import ReactDropzone from "react-dropzone";
+
+// import {
+//     AlertCircle,
+//     Check,
+//     ChevronLeft,
+//     ChevronRight,
+//     Clock,
+//     Download,
+//     EllipsisVertical,
+//     Minus,
+//     Send,
+//     Trash,
+//     UploadCloud,
+// } from "lucide-react";
+
+// import { Badge } from "@/components/ui/badge";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Button } from "@/components/ui/button";
+// import {
+//     Select,
+//     SelectContent,
+//     SelectGroup,
+//     SelectItem,
+//     SelectTrigger,
+//     SelectValue,
+// } from "@/components/ui/select";
+// import {
+//     DropdownMenu,
+//     DropdownMenuContent,
+//     DropdownMenuGroup,
+//     DropdownMenuItem,
+//     DropdownMenuLabel,
+//     DropdownMenuSeparator,
+//     DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+// import {
+//     Table,
+//     TableBody,
+//     TableCell,
+//     TableHead,
+//     TableHeader,
+//     TableRow,
+// } from "@/components/ui/table";
+// import {
+//     ColumnDef,
+//     RowData,
+//     flexRender,
+//     getCoreRowModel,
+//     getPaginationRowModel,
+//     useReactTable,
+// } from "@tanstack/react-table";
+
+// declare module "@tanstack/react-table" {
+//     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+//     interface ColumnMeta<TData extends RowData, TValue> {
+//         className?: string;
+//     }
+// }
+
+// const extensions = {
+//     image: ["jpg", "jpeg", "png", "gif", "bmp", "webp", "ico", "tif", "tiff", "svg", "raw", "tga"],
+//     video: [
+//         "mp4",
+//         "m4v",
+//         "mp4v",
+//         "3gp",
+//         "3g2",
+//         "avi",
+//         "mov",
+//         "wmv",
+//         "mkv",
+//         "flv",
+//         "ogv",
+//         "webm",
+//         "h264",
+//         "264",
+//         "hevc",
+//         "265",
+//     ],
+//     audio: ["mp3", "wav", "ogg", "aac", "wma", "flac", "m4a"],
+// };
+
+// const ImageSelect = ({
+//     updateAction,
+//     action,
+// }: {
+//     updateAction: (file_name: string, to: string) => void;
+//     action: Action;
+// }) => {
+//     return (
+//         <Select
+//             onValueChange={(value) => {
+//                 updateAction(action.file_name, value);
+//             }}
+//             value={action.to && action.to.length > 1 ? action.to : action.from}
+//         >
+//             <SelectTrigger className="w-[90px] border-0 shadow-none uppercase">
+//                 <SelectValue
+//                     aria-placeholder="Select type to convert to"
+//                     placeholder={action.from.toUpperCase()}
+//                 />
+//             </SelectTrigger>
+//             <SelectContent>
+//                 <SelectGroup className="max-h-40">
+//                     {extensions.image.map((elt, i) => (
+//                         <SelectItem key={i} value={elt} className="uppercase cursor-pointer">
+//                             {elt}
+//                         </SelectItem>
+//                     ))}
+//                 </SelectGroup>
+//             </SelectContent>
+//         </Select>
+//     );
+// };
+
+// const VideoSelect = ({
+//     updateAction,
+//     action,
+// }: {
+//     updateAction: (file_name: string, to: string) => void;
+//     action: Action;
+// }) => {
+//     return (
+//         <Select
+//             onValueChange={(value) => {
+//                 updateAction(action.file_name, value);
+//             }}
+//             value={action.to || action.from}
+//         >
+//             <SelectTrigger className="w-[90px] uppercase">
+//                 <SelectValue
+//                     aria-placeholder="Select type to convert to"
+//                     placeholder="Convert to"
+//                 />
+//             </SelectTrigger>
+//             <SelectContent>
+//                 <Tabs defaultValue="video" className="w-full">
+//                     <TabsList className="w-full">
+//                         <TabsTrigger value="video" className="w-full">
+//                             Video
+//                         </TabsTrigger>
+//                         <TabsTrigger value="audio" className="w-full">
+//                             Audio
+//                         </TabsTrigger>
+//                     </TabsList>
+//                     <TabsContent value="video">
+//                         <div className="max-h-40">
+//                             {extensions.video.map((elt, i) => (
+//                                 <div key={i} className="col-span-1 text-center">
+//                                     <SelectItem value={elt} className="uppercase cursor-pointer">
+//                                         {elt}
+//                                     </SelectItem>
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     </TabsContent>
+//                     <TabsContent value="audio">
+//                         <div className="max-h-40">
+//                             {extensions.audio.map((elt, i) => (
+//                                 <div key={i} className="col-span-1 text-center">
+//                                     <SelectItem value={elt} className="uppercase cursor-pointer">
+//                                         {elt}
+//                                     </SelectItem>
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     </TabsContent>
+//                 </Tabs>
+//             </SelectContent>
+//         </Select>
+//     );
+// };
+
+// const AudioSelect = ({
+//     updateAction,
+//     action,
+// }: {
+//     updateAction: (file_name: string, to: string) => void;
+//     action: Action;
+// }) => {
+//     return (
+//         <Select
+//             onValueChange={(value) => {
+//                 updateAction(action.file_name, value);
+//             }}
+//             value={action.to || action.from}
+//         >
+//             <SelectTrigger className="w-[90px] uppercase">
+//                 <SelectValue
+//                     aria-placeholder="Select type to convert to"
+//                     placeholder="Convert to"
+//                 />
+//             </SelectTrigger>
+//             <SelectContent>
+//                 <SelectGroup className="max-h-40">
+//                     {extensions.audio.map((elt, i) => (
+//                         <SelectItem key={i} value={elt} className="uppercase cursor-pointer">
+//                             {elt}
+//                         </SelectItem>
+//                     ))}
+//                 </SelectGroup>
+//             </SelectContent>
+//         </Select>
+//     );
+// };
+
+// export default function FileConverterDropzone() {
+//     // variables & hooks
+//     const ffmpegRef = useRef(new FFmpeg());
+//     const [is_hover, setIsHover] = useState<boolean>(false);
+//     const [actions, setActions] = useState<Action[]>([]);
+//     const [is_ready, setIsReady] = useState<boolean>(false);
+//     const [files, setFiles] = useState<Array<Action>>([]);
+//     const [is_converting, setIsConverting] = useState<boolean>(false);
+//     const [is_done, setIsDone] = useState<boolean>(false);
+//     const [rowSelection, setRowSelection] = useState({});
+//     const [pagination, setPagination] = useState({
+//         pageIndex: 0, //initial page index
+//         pageSize: 5, //default page size
+//     });
+//     // Accepted File formats
+//     const accepted_files = {
+//         "image/*": [
+//             ".jpg",
+//             ".jpeg",
+//             ".png",
+//             ".gif",
+//             ".bmp",
+//             ".webp",
+//             ".ico",
+//             ".tif",
+//             ".tiff",
+//             ".raw",
+//             ".tga",
+//         ],
+//         "audio/*": [],
+//         "video/*": [],
+//     };
+
+//     const columns: ColumnDef<Action>[] = [
+//         {
+//             accessorKey: "file_name",
+//             header: "Filename",
+//             cell: ({ row }) => {
+//                 const action = row.original;
+//                 return (
+//                     <div className="flex flex-col space-y-2">
+//                         <span className="font-semibold">{compressFileName(action.file_name)}</span>
+//                         <sub>{bytesToSize(action.file_size)}</sub>
+//                     </div>
+//                 );
+//             },
+//         },
+//         {
+//             accessorKey: "status",
+//             header: "Status",
+//             cell: ({ row }) => {
+//                 const action = row.original;
+//                 return (
+//                     <>
+//                         {!action.is_error && !action.is_converting && !action.is_converted && (
+//                             <Badge variant="default" className="w-10 flex gap-2">
+//                                 <span className="sr-only">Pending</span>
+//                                 <Minus />
+//                             </Badge>
+//                         )}
+//                         {action.is_error && !action.is_converting && (
+//                             <Badge variant="destructive" className="w-10 flex gap-2">
+//                                 <span className="sr-only">Failed</span>
+//                                 <AlertCircle />
+//                             </Badge>
+//                         )}
+//                         {action.is_converting && !action.is_converted && (
+//                             <Badge variant="default" className="w-10 flex gap-2">
+//                                 <span className="sr-only">Converting</span>
+//                                 <Clock />
+//                             </Badge>
+//                         )}
+//                         {action.is_converted && (
+//                             <Badge variant="default" className="w-10 flex gap-2">
+//                                 <span className="sr-only">Completed</span>
+//                                 <Check />
+//                             </Badge>
+//                         )}
+//                     </>
+//                 );
+//             },
+//         },
+//         {
+//             accessorKey: "convert_to",
+//             header: "Convert to",
+//             cell: ({ row }) => {
+//                 const action = row.original;
+//                 return (
+//                     <>
+//                         {action.file_type.includes("image") && (
+//                             <ImageSelect action={action} updateAction={updateAction} />
+//                         )}
+//                         {action.file_type.includes("video") && (
+//                             <VideoSelect action={action} updateAction={updateAction} />
+//                         )}
+//                         {action.file_type.includes("audio") && (
+//                             <AudioSelect action={action} updateAction={updateAction} />
+//                         )}
+//                     </>
+//                 );
+//             },
+//             meta: {
+//                 className: "w-32",
+//             },
+//         },
+//         {
+//             accessorKey: "action",
+//             header: "",
+//             cell: ({ row }) => {
+//                 const action = row.original;
+//                 return (
+//                     <DropdownMenu>
+//                         <DropdownMenuTrigger
+//                             aria-label="click to open actions menu"
+//                             className="w-5 h-5 cursor-pointer grid place-content-center"
+//                         >
+//                             <EllipsisVertical size={15} />
+//                         </DropdownMenuTrigger>
+//                         <DropdownMenuContent>
+//                             <DropdownMenuGroup className="space-y-1">
+//                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
+//                                 <DropdownMenuSeparator />
+//                                 <DropdownMenuItem
+//                                     aria-label="Download File"
+//                                     onClick={() => download(action)}
+//                                     className="flex justify-between items-center"
+//                                 >
+//                                     <span>Download file</span>
+//                                     <Download className="text-foreground" />
+//                                 </DropdownMenuItem>
+//                                 <DropdownMenuItem
+//                                     asChild
+//                                     aria-label="Delete File"
+//                                     onClick={() => deleteAction(action)}
+//                                     className="w-full flex justify-between items-center"
+//                                 >
+//                                     <Button variant="destructive">
+//                                         <span>Delete file</span>
+//                                         <Trash className="text-foreground" />
+//                                     </Button>
+//                                 </DropdownMenuItem>
+//                             </DropdownMenuGroup>
+//                         </DropdownMenuContent>
+//                     </DropdownMenu>
+//                 );
+//             },
+//             meta: {
+//                 className: "text-right w-10",
+//             },
+//         },
+//     ];
+
+//     const table = useReactTable({
+//         data: actions,
+//         columns,
+//         getCoreRowModel: getCoreRowModel(),
+//         onRowSelectionChange: setRowSelection,
+//         getPaginationRowModel: getPaginationRowModel(),
+//         onPaginationChange: setPagination,
+//         state: {
+//             rowSelection,
+//             pagination,
+//         },
+//     });
+
+//     // functions
+
+//     const load = async () => {
+//         if (ffmpegRef.current.loaded) return;
+
+//         const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.2/dist/umd";
+//         const ffmpeg = ffmpegRef.current;
+//         ffmpeg?.on("log", ({ message }) => {
+//             console.log(message);
+//         });
+//         // toBlobURL is used to bypass CORS issue, urls with the same
+//         // domain can be used directly.
+//         await ffmpeg.load({
+//             coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
+//             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, "application/wasm"),
+//         });
+//     };
+
+//     const reset = () => {
+//         setIsDone(false);
+//         setActions([]);
+//         setFiles([]);
+//         setIsReady(false);
+//         setIsConverting(false);
+//     };
+
+//     const download = (action: Action) => {
+//         const a = document.createElement("a");
+//         a.style.display = "none";
+//         a.href = action.url || "";
+//         a.download = action.output || "";
+
+//         document.body.appendChild(a);
+//         a.click();
+
+//         // Clean up after download
+//         if (action.url) {
+//             URL.revokeObjectURL(action.url);
+//         }
+//         document.body.removeChild(a);
+//     };
+
+//     const downloadAll = (): void => {
+//         for (const action of actions) {
+//             if (action.is_converted && action.url) download(action);
+//         }
+//     };
+
+//     const convert = async (): Promise<any> => {
+//         if (!is_ready) return;
+
+//         setIsConverting(true);
+//         const tmp_actions = actions.map((elt) => ({
+//             ...elt,
+//             is_converting: true,
+//         }));
+//         setActions(tmp_actions);
+//         for (const action of tmp_actions) {
+//             try {
+//                 if (!ffmpegRef.current) {
+//                     throw new Error("FFmpeg is not loaded.");
+//                 }
+
+//                 const { url, output } = await convertFile(ffmpegRef.current, action);
+
+//                 // Functional update — safe, no race conditions
+//                 setActions((prev) =>
+//                     prev.map((elt) =>
+//                         elt.file_name === action.file_name
+//                             ? {
+//                                   ...elt,
+//                                   is_converted: true,
+//                                   is_converting: false,
+//                                   url,
+//                                   output,
+//                               }
+//                             : elt
+//                     )
+//                 );
+//             } catch (err) {
+//                 console.log(err);
+
+//                 setActions((prev) =>
+//                     prev.map((elt) =>
+//                         elt.file_name === action.file_name
+//                             ? {
+//                                   ...elt,
+//                                   is_converted: false,
+//                                   is_converting: false,
+//                                   is_error: true,
+//                               }
+//                             : elt
+//                     )
+//                 );
+//             }
+//         }
+//         setIsDone(true);
+//         setIsConverting(false);
+//     };
+
+//     const handleUpload = (data: Array<any>): void => {
+//         handleExitHover();
+
+//         // Filter out invalid file types
+//         const validFiles = data.filter((file) => {
+//             const type = file.type;
+
+//             const isValid =
+//                 type.startsWith("image/") || type.startsWith("video/") || type.startsWith("audio/");
+
+//             if (!isValid) {
+//                 NotifyUser({
+//                     type: "destructive",
+//                     title: `Unsupported file: ${file.name}`,
+//                 });
+//             }
+
+//             return isValid;
+//         });
+
+//         if (validFiles.length === 0) return;
+
+//         // Append new files to existing ones
+//         setFiles((prev) => [...prev, ...validFiles]);
+
+//         // Generate new actions from uploaded files
+//         const newActions: Action[] = validFiles.map((file: any) => ({
+//             file_name: file.name,
+//             file_size: file.size,
+//             from: file.name.split(".").pop()?.toLowerCase() || "",
+//             to: null,
+//             file_type: file.type,
+//             file,
+//             is_converted: false,
+//             is_converting: false,
+//             is_error: false,
+//         }));
+
+//         // Append new actions to existing ones
+//         setActions((prev) => [...prev, ...newActions]);
+//     };
+
+//     const handleHover = (): void => setIsHover(true);
+
+//     const handleExitHover = (): void => setIsHover(false);
+
+//     const checkIsReady = useCallback((): void => {
+//         let tmp_is_ready = true;
+//         actions.forEach((action: Action) => {
+//             if (!action.to) tmp_is_ready = false;
+//         });
+//         setIsReady(tmp_is_ready);
+//     }, [actions]);
+
+//     const updateAction = (file_name: string, to: string) => {
+//         setActions(
+//             actions.map((action): Action => {
+//                 if (action.file_name === file_name) {
+//                     return {
+//                         ...action,
+//                         to,
+//                     };
+//                 }
+
+//                 return action;
+//             })
+//         );
+//     };
+
+//     const deleteAction = (action: Action): void => {
+//         setActions(actions.filter((elt) => elt.file_name !== action.file_name));
+//         setFiles(files.filter((elt) => elt.file_name !== action.file_name));
+//     };
+
+//     useEffect(() => {
+//         if (!actions.length) {
+//             setIsDone(false);
+//             setFiles([]);
+//             setIsReady(false);
+//             setIsConverting(false);
+//             return;
+//         }
+
+//         if (!is_converting) {
+//             checkIsReady();
+//         }
+//     }, [actions, checkIsReady, is_converting]);
+
+//     useEffect(() => {
+//         load();
+//     }, []);
+
+//     return (
+//         <div className="w-full flex flex-col md:flex-row gap-5 h-full">
+//             <ReactDropzone
+//                 onDrop={handleUpload}
+//                 onDragEnter={handleHover}
+//                 onDragLeave={handleExitHover}
+//                 accept={accepted_files}
+//                 onDropRejected={() => {
+//                     handleExitHover();
+//                     NotifyUser({
+//                         type: "destructive",
+//                         title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
+//                     });
+//                 }}
+//                 onError={() => {
+//                     handleExitHover();
+//                     NotifyUser({
+//                         type: "destructive",
+//                         title: "Error uploading your file(s), Allowed Files: Audio, Video and Images.",
+//                     });
+//                 }}
+//             >
+//                 {({ getRootProps, getInputProps }) => (
+//                     <div
+//                         {...getRootProps()}
+//                         className="min-h-52 flex flex-1 lg:max-w-sm justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
+//                     >
+//                         <input {...getInputProps()} />
+
+//                         <article className="h-full flex flex-col justify-evenly items-center">
+//                             {is_hover ? (
+//                                 <div>
+//                                     <Send className="text-2xl" />
+//                                     <h3>Send it</h3>
+//                                 </div>
+//                             ) : (
+//                                 <div className="space-y-2 flex flex-col justify-center items-center text-center">
+//                                     <h1 className="text-sm flex flex-col justify-center items-center gap-5">
+//                                         <UploadCloud size={40} />
+//                                         Drop your files here to start
+//                                     </h1>
+//                                 </div>
+//                             )}
+//                         </article>
+//                     </div>
+//                 )}
+//             </ReactDropzone>
+//             <div className="flex-1 space-y-5">
+//                 {/* CTA */}
+//                 <section className="flex flex-col min-[425px]:flex-row justify-between items-center space-y-2.5 min-[425px]:space-y-0">
+//                     <div className="w-full min-[425px]:w-auto flex justify-between items-center">
+//                         <Button
+//                             size="sm"
+//                             variant="link"
+//                             disabled={!is_ready || is_converting}
+//                             onClick={convert}
+//                             className="text-foreground"
+//                         >
+//                             <span>Convert</span>
+//                         </Button>
+//                         <p className="text-foreground/50">|</p>
+//                         <Button
+//                             size="sm"
+//                             variant="link"
+//                             onClick={downloadAll}
+//                             disabled={!is_done}
+//                             className="text-foreground"
+//                         >
+//                             <span>Download all</span>
+//                         </Button>
+//                         <p className="text-foreground/50">|</p>
+//                         <Button
+//                             size="sm"
+//                             variant="link"
+//                             onClick={reset}
+//                             disabled={files.length === 0}
+//                             className="text-foreground"
+//                         >
+//                             Clear
+//                         </Button>
+//                     </div>
+//                     <div className="w-full min-[425px]:w-auto flex justify-between items-center">
+//                         <Button
+//                             size="icon"
+//                             variant="link"
+//                             onClick={() => table.previousPage()}
+//                             disabled={!table.getCanPreviousPage()}
+//                             aria-label="previous page"
+//                         >
+//                             <ChevronLeft />
+//                         </Button>
+//                         <p className="flex text-xs gap-1">
+//                             <span>
+//                                 {table.getPageCount()
+//                                     ? table.getState().pagination.pageIndex + 1
+//                                     : 0}
+//                             </span>
+//                             <span>of</span>
+//                             <span>{table.getPageCount()}</span>
+//                         </p>
+//                         <Button
+//                             size="icon"
+//                             variant="link"
+//                             onClick={() => table.nextPage()}
+//                             disabled={!table.getCanNextPage()}
+//                             aria-label="next page"
+//                         >
+//                             <ChevronRight />
+//                         </Button>
+//                     </div>
+//                 </section>
+//                 {/* File table / conversion selector */}
+//                 <Table className="w-full">
+//                     <TableHeader>
+//                         {table.getHeaderGroups().map((headerGroup) => (
+//                             <TableRow key={headerGroup.id} className="hover:bg-transparent">
+//                                 {headerGroup.headers.map((header) => {
+//                                     return (
+//                                         <TableHead
+//                                             key={header.id}
+//                                             className={cn(
+//                                                 header.column.columnDef.meta?.className,
+//                                                 "border-y-0"
+//                                             )}
+//                                         >
+//                                             {header.isPlaceholder
+//                                                 ? null
+//                                                 : flexRender(
+//                                                       header.column.columnDef.header,
+//                                                       header.getContext()
+//                                                   )}
+//                                         </TableHead>
+//                                     );
+//                                 })}
+//                             </TableRow>
+//                         ))}
+//                     </TableHeader>
+//                     <TableBody>
+//                         {table.getRowModel().rows?.length ? (
+//                             table.getRowModel().rows.map((row) => (
+//                                 <TableRow
+//                                     key={row.id}
+//                                     data-state={row.getIsSelected() && "selected"}
+//                                 >
+//                                     {row.getVisibleCells().map((cell) => (
+//                                         <TableCell
+//                                             key={cell.id}
+//                                             className={cn(
+//                                                 cell.column.columnDef.meta?.className,
+//                                                 "p-0 h-16 px-2"
+//                                             )}
+//                                         >
+//                                             {flexRender(
+//                                                 cell.column.columnDef.cell,
+//                                                 cell.getContext()
+//                                             )}
+//                                         </TableCell>
+//                                     ))}
+//                                 </TableRow>
+//                             ))
+//                         ) : (
+//                             <TableRow className="hover:bg-transparent">
+//                                 <TableCell colSpan={columns.length} className="text-center h-14">
+//                                     Add a file to start
+//                                 </TableCell>
+//                             </TableRow>
+//                         )}
+//                     </TableBody>
+//                 </Table>
+//             </div>
+//         </div>
+//     );
+// }
