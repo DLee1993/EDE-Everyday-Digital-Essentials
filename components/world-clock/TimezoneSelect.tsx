@@ -38,11 +38,15 @@ export default function TimezoneSelect({
         timezones: allTimezones,
     });
 
-    // get current timezone from the browser
     useEffect(() => {
-        const date = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        setCurrentTz(parseTimezone(date));
-    });
+        const guessed = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        const match = options.find((o) => o.value === guessed);
+
+        if (match) {
+            setCurrentTz(match); // ✔ now correctly typed
+        }
+    }, [options, setCurrentTz]);
 
     if (isDesktop) {
         return (

@@ -43,3 +43,12 @@ type Action = {
     url?: string;
     output?: string;
 };
+
+type FormattedTimezone = {
+    date: string;
+    time: string;
+    location: string;
+    offset: string;
+    timezone: string;
+    name: string;
+};
