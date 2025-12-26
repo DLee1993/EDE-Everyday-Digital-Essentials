@@ -18,15 +18,30 @@ export default function CurrencyConverter() {
     });
 
     const AddPunctuation = (value: string) => {
-        const formattedValue = value.replace(/,/g, "");
+        const stripped = value.replace(/,/g, "");
 
-        if (Number(formattedValue)) {
-            setAmount(Number(formattedValue).toLocaleString());
+        // Allow clearing the field
+        if (stripped === "") {
+            setAmount("");
+            return;
+        }
+
+        // Validate numeric input
+        if (!isNaN(Number(stripped))) {
+            setAmount(Number(stripped).toLocaleString());
         }
     };
 
     const SubmitConversion = useCallback(() => {
         setError("");
+
+        // Validate before converting
+        const numeric = Number(amount.replace(/,/g, ""));
+        if (isNaN(numeric)) {
+            setError("Enter a valid number");
+            return;
+        }
+
         ConvertCurrency({
             amount: amount,
             to: selectedValue.to,
@@ -45,9 +60,15 @@ export default function CurrencyConverter() {
                 });
                 const data = await exchangeRates.json();
 
+                if (!data?.rates) {
+                    setError("Unable to fetch exchange rates");
+                    return;
+                }
+
                 setCountryCodes(data.rates);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
-                console.log(error);
+                setError("Unable to fetch exchange rates");
             }
         }
 
@@ -60,6 +81,14 @@ export default function CurrencyConverter() {
         setResult(null);
         setError("");
     };
+
+    // Determine if Reset should be disabled
+    const resetDisabled =
+        amount === "1" &&
+        selectedValue.from === "GBP" &&
+        selectedValue.to === "USD" &&
+        !result &&
+        !error;
 
     return (
         <section className="relative space-y-20 max-w-3xl">
@@ -77,15 +106,13 @@ export default function CurrencyConverter() {
                             value={amount}
                             id="amount"
                             name="amount"
-                            onChange={(e) => {
-                                setAmount(e.target.value);
-                                AddPunctuation(e.target.value);
-                            }}
+                            onChange={(e) => AddPunctuation(e.target.value)}
                             placeholder="Enter currency amount"
                             type="text"
                         />
                     </div>
                 </div>
+
                 <div className="w-full flex flex-col gap-2">
                     <h2 className="text-sm font-semibold text-muted-foreground">To</h2>
                     <div className="flex gap-2">
@@ -100,17 +127,12 @@ export default function CurrencyConverter() {
                             type="text"
                             id="result"
                             name="result"
-                            value={
-                                result !== null
-                                    ? Number(result).toLocaleString()
-                                    : error
-                                    ? error
-                                    : ""
-                            }
+                            value={error || (result !== null ? result.toLocaleString() : "")}
                             className={`${error ? "text-red-500 font-medium" : ""}`}
                         />
                     </div>
                 </div>
+
                 <p className="min-h-5 text-red-600 text-sm font-medium">
                     {error && (
                         <span className="flex items-center gap-2">
@@ -120,27 +142,23 @@ export default function CurrencyConverter() {
                     )}
                 </p>
             </section>
+
             <div className="w-full flex gap-5">
+                <Button onClick={SubmitConversion}>Convert</Button>
+
                 <Button
-                    onClick={() => {
-                        SubmitConversion();
-                    }}
-                >
-                    Convert
-                </Button>
-                 <Button
                     variant="secondary"
                     className="text-sm"
-                    onClick={() => ClearUnits()}
-                    disabled={!selectedValue.from}
+                    onClick={ClearUnits}
+                    disabled={resetDisabled}
                 >
                     Reset
                     <CircleX />
                 </Button>
             </div>
+
             <p className="text-xs text-muted-foreground absolute bottom-1 left-1/2 -translate-x-1/2">
-                Powered by -{" "}
-                <a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>
+                Powered by <a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>
             </p>
         </section>
     );

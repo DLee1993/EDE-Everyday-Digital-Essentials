@@ -52,10 +52,10 @@ export function SelectCurrency({ type, selectedValue, setSelectedValue, countryC
                 <PopoverTrigger asChild>
                     <Button variant="secondary" className="flex justify-between items-center">
                         {selectedValue[type] ? (
-                            <>
-                                <CurrencyFlag currency={selectedValue[type]} />{" "}
+                            <div className="flex items-center gap-2">
+                                <CurrencyFlag currency={selectedValue[type]} />
                                 {selectedValue[type]}
-                            </>
+                            </div>
                         ) : (
                             `Select currency`
                         )}
@@ -113,7 +113,7 @@ function CurrencyList({
 }: {
     setOpen: (open: boolean) => void;
     setSelectedUnit: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
-    type: string;
+    type: "from" | "to";
     rates: {
         [key: string]: number;
     };
@@ -123,11 +123,10 @@ function CurrencyList({
             <CommandInput placeholder="Filter currencies..." autoFocus />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
-                {Object.keys(rates).flatMap((rate, i) => (
-                    <CommandGroup key={rate}>
+                <CommandGroup>
+                    {Object.keys(rates).map((rate) => (
                         <CommandItem
-                            key={i}
-                            className="cursor-pointer ml-1"
+                            key={rate}
                             value={rate}
                             onSelect={(value) => {
                                 setSelectedUnit((prev) => ({ ...prev, [type]: value }));
@@ -137,8 +136,8 @@ function CurrencyList({
                             <CurrencyFlag currency={rate} /> {rate} (
                             {rateNames[rate as keyof typeof rateNames]})
                         </CommandItem>
-                    </CommandGroup>
-                ))}
+                    ))}
+                </CommandGroup>
             </CommandList>
         </Command>
     );
