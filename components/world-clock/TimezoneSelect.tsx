@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { allTimezones, ITimezone, ITimezoneOption, useTimezoneSelect } from "react-timezone-select";
-import { useMediaQuery } from "@/lib/global/use-media-query";
+import { useMediaQuery } from "@/hooks/global/use-media-query";
 import { Button } from "@/components/ui/button";
 import {
     Command,

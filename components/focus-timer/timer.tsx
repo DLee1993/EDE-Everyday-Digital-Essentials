@@ -1,4 +1,4 @@
-import { useMounted } from "@/lib/global/use-mounted";
+import { useMounted } from "@/hooks/global/use-mounted";
 
 export default function Timer({ remaining }: { remaining: number }) {
     const mounted = useMounted();

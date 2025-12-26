@@ -4,7 +4,7 @@ import * as React from "react";
 import { MeasurementTypes } from "@/lib/unit-converter/convertUnits";
 import { Unit } from "convert-units";
 
-import { useMediaQuery } from "@/lib/global/use-media-query";
+import { useMediaQuery } from "@/hooks/global/use-media-query";
 import { Button } from "@/components/ui/button";
 import {
     Command,

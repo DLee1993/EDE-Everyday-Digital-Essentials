@@ -1,8 +1,8 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import usePersistentState from "@/lib/global/usePersistentState";
-import { useMounted } from "@/lib/global/use-mounted";
+import usePersistentState from "@/hooks/global/usePersistentState";
+import { useMounted } from "@/hooks/global/use-mounted";
 
 type SessionSelectorProps = {
     time: number; // current time in seconds
@@ -53,7 +53,11 @@ export default function SessionSelector({ time, calculateTime }: SessionSelector
                             }`}
                         >
                             <div className="flex items-center gap-2">
-                                <RadioGroupItem className="cursor-pointer" value={mounted ? String(value) : "0"} id={label} />
+                                <RadioGroupItem
+                                    className="cursor-pointer"
+                                    value={mounted ? String(value) : "0"}
+                                    id={label}
+                                />
                                 <Label htmlFor={label} className="text-sm">
                                     {label}
                                 </Label>

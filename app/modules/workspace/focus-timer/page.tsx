@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import usePersistentState from "@/lib/global/usePersistentState";
+import usePersistentState from "@/hooks/global/usePersistentState";
 
 import Timer from "@/components/focus-timer/timer";
 import Options from "@/components/focus-timer/options";
