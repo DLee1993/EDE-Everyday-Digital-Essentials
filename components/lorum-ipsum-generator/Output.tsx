@@ -13,7 +13,7 @@ type Props = {
 export function LoremOutput({ output, onGenerate, onClear }: Props) {
     return (
         <section className="w-full space-y-10">
-            <Textarea className="resize-none w-full h-52" value={output} readOnly />
+            <Textarea name="output" className="resize-none w-full h-52" value={output} readOnly />
 
             <div className="w-fit flex justify-between items-center gap-2">
                 <Button className="flex-1" onClick={onGenerate}>

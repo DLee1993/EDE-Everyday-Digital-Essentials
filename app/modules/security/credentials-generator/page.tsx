@@ -45,6 +45,7 @@ export default function CredentialsGenerator() {
                 />
             </section>
             <InputOTP
+                name="one time input"
                 value={otpInput}
                 maxLength={gridLength}
                 readOnly
