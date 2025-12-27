@@ -30,9 +30,9 @@ export default function Header() {
     }, []);
     return (
         <header className="sticky top-0 left-0 w-full flex justify-between items-center px-2.5 z-50 border-b border-border bg-background">
-            <div className="w-full sm:w-auto flex justify-between sm:justify-center items-center gap-5">
+            <div className="w-full min-[425px]:w-auto flex justify-between sm:justify-center items-center gap-5">
                 <SidebarTrigger variant="secondary" className="lg:hidden cursor-pointer" />
-                <div className="hidden md:flex items-center gap-2 text-sm">
+                <div className="hidden min-[425px]:flex items-center gap-2 text-sm">
                     <div>{greeting.icon}</div>
                     <h1>{greeting.message}</h1>
                 </div>
