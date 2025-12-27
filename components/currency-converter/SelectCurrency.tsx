@@ -27,21 +27,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown } from "lucide-react";
 
-type Props = {
-    type: "from" | "to";
-    selectedValue: { from: string; to: string };
-    countryCodes: Record<string, number>;
-    setSelectedValue: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
-    loading?: boolean;
-};
-
 export function SelectCurrency({
     type,
     selectedValue,
     setSelectedValue,
     countryCodes,
     loading = false,
-}: Props) {
+}: SelectCurrenyProps) {
     const [open, setOpen] = React.useState(false);
     const mounted = useMounted();
     const isDesktop = useMediaQuery("(min-width: 768px)");

@@ -4,19 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-type Preset = {
-    label: string;
-    value: number; // minutes
-};
-
-type Props = {
-    presets: Preset[];
-    selected: number;
-    onSelect: (minutes: number) => void;
-    onEditPreset: (label: string, minutes: number) => void;
-};
-
-export default function SessionSelector({ presets, selected, onSelect, onEditPreset }: Props) {
+export default function SessionSelector({ presets, selected, onSelect, onEditPreset }: FocusTimerSessionSelectorProps) {
     return (
         <section className="space-y-2.5">
             <p className="text-sm text-left">

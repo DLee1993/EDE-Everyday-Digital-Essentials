@@ -9,12 +9,7 @@ import {
 } from "@/components/ui/select";
 import { extensions } from "@/lib/file-converter/extensions";
 
-interface ImageSelectProps {
-    action: Action;
-    updateAction: (to: string) => void;
-}
-
-export function ImageSelect({ action, updateAction }: ImageSelectProps) {
+export function ImageSelect({ action, updateAction }: FileConverterImageSelectProps) {
     const filtered = extensions.image.filter((ext) => ext !== action.from);
 
     return (

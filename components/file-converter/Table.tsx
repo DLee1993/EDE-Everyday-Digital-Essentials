@@ -37,17 +37,11 @@ import {
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-interface ConverterTableProps {
-    actions: Action[];
-    updateAction: (fileName: string, patch: Partial<Action>) => void;
-    deleteAction: (fileName: string) => void;
-}
-
 export default function ConverterTable({
     actions,
     updateAction,
     deleteAction,
-}: ConverterTableProps) {
+}: FileConverterTableProps) {
     const columns: ColumnDef<Action>[] = [
         {
             accessorKey: "file_name",

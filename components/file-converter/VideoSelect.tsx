@@ -9,12 +9,7 @@ import {
 } from "@/components/ui/select";
 import { extensions } from "@/lib/file-converter/extensions";
 
-interface VideoSelectProps {
-    action: Action;
-    updateAction: (to: string) => void;
-}
-
-export function VideoSelect({ action, updateAction }: VideoSelectProps) {
+export function VideoSelect({ action, updateAction }: FileConverterVideoSelectProps) {
     const filtered = extensions.video.filter((ext) => ext !== action.from);
 
     return (

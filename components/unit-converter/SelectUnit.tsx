@@ -26,22 +26,9 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
+import { SelectUnitProps } from "@/types";
 
-type Props = {
-    type: "from" | "to";
-    selectedValue: {
-        from: Unit | "";
-        to: Unit | "";
-    };
-    setSelectedValue: React.Dispatch<
-        React.SetStateAction<{
-            from: Unit | "";
-            to: Unit | "";
-        }>
-    >;
-};
-
-export function SelectUnit({ type, selectedValue, setSelectedValue }: Props) {
+export function SelectUnit({ type, selectedValue, setSelectedValue }: SelectUnitProps) {
     const [open, setOpen] = React.useState(false);
     const isDesktop = useMediaQuery("(min-width: 768px)");
 

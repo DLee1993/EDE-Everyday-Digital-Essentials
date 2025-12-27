@@ -3,18 +3,6 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-type Props = {
-    paragraphs: number;
-    sentences: number;
-    minWords: number;
-    maxWords: number;
-
-    setParagraphs: (n: number) => void;
-    setSentences: (n: number) => void;
-    setMinWords: (n: number) => void;
-    setMaxWords: (n: number) => void;
-};
-
 export function LoremOptions({
     paragraphs,
     sentences,
@@ -24,7 +12,7 @@ export function LoremOptions({
     setSentences,
     setMinWords,
     setMaxWords,
-}: Props) {
+}: LorumIpsumOptionsProps) {
     return (
         <section className="w-full">
             <p className="text-sm text-primary font-medium mb-2.5">Generation Options</p>

@@ -19,23 +19,6 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 
-type Props = {
-    alarm: boolean;
-    sound: boolean;
-    toggleAlarm: () => void;
-    toggleSound: () => void;
-
-    sessionPresets: { label: string; value: number }[];
-    selectedPreset: number;
-    selectPreset: (minutes: number) => void;
-    updatePreset: (label: string, minutes: number) => void;
-
-    breakTime: number;
-    setBreakMinutes: (minutes: number) => void;
-
-    time: number;
-};
-
 export default function Options({
     alarm,
     toggleAlarm,
@@ -49,7 +32,7 @@ export default function Options({
 
     breakTime,
     setBreakMinutes,
-}: Props) {
+}: FocusTimerOptionsProps) {
     const presets = [
         { label: "5 minutes", value: 5 },
         { label: "10 minutes", value: 10 },

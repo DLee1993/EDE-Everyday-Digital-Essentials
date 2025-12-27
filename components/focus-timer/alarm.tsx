@@ -12,16 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { formatTime } from "@/lib/focus-timer/formatTime";
 
-type Props = {
-    isBreak: boolean;
-    breakTime: number;
-    alarm: boolean;
-    shouldPlaySound: boolean;
-    replaySound: number;
-    onAlarmEnded: () => void;
-    cancelBreak: () => void;
-};
-
 export default function Alarm({
     isBreak,
     breakTime,
@@ -30,7 +20,7 @@ export default function Alarm({
     replaySound,
     onAlarmEnded,
     cancelBreak,
-}: Props) {
+}: FocusTimerAlarmProps) {
     return (
         <Dialog modal open={isBreak}>
             <DialogContent

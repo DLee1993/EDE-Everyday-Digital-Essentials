@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch, SetStateAction } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -8,13 +7,9 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { QRCodeSettingsProps } from "@/types";
 
-type Props = {
-    qrProps: { [key: string]: any };
-    handleChange: Dispatch<SetStateAction<{ [key: string]: any }>>;
-};
-
-export default function QRCodeSettings({ qrProps, handleChange }: Props) {
+export default function QRCodeSettings({ qrProps, handleChange }: QRCodeSettingsProps) {
     const buildEyeRadiusInput = (id: string) => {
         return (
             <Input

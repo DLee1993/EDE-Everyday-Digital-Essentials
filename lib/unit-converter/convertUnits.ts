@@ -1,14 +1,7 @@
-import convert, { Unit } from "convert-units";
+import convert from "convert-units";
+import { ConvertUnitsProps } from "@/types";
 
-type Props = {
-    amount: string;
-    from: Unit | "";
-    to: Unit | "";
-    setResult: (result: number) => void;
-    setError: (error: string) => void;
-};
-
-export const ConvertUnits = ({ amount, from, to, setResult, setError }: Props) => {
+export const ConvertUnits = ({ amount, from, to, setResult, setError }: ConvertUnitsProps) => {
     try {
         if (!from || !to) throw new Error("Both units need to be selected");
         if (from && to) {

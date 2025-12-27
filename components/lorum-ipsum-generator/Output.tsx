@@ -3,14 +3,9 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Copy } from "@/lib/global/copy-to-clipboard";
+import { LorumIpsumOutputProps } from "@/types";
 
-type Props = {
-    output: string;
-    onGenerate: () => void;
-    onClear: () => void;
-};
-
-export function LoremOutput({ output, onGenerate, onClear }: Props) {
+export function LoremOutput({ output, onGenerate, onClear }: LorumIpsumOutputProps) {
     return (
         <section className="w-full space-y-10">
             <Textarea name="output" className="resize-none w-full h-52" value={output} readOnly />

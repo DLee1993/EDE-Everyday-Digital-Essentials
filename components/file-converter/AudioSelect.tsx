@@ -9,12 +9,8 @@ import {
 } from "@/components/ui/select";
 import { extensions } from "@/lib/file-converter/extensions";
 
-interface AudioSelectProps {
-    action: Action;
-    updateAction: (to: string) => void;
-}
 
-export function AudioSelect({ action, updateAction }: AudioSelectProps) {
+export function AudioSelect({ action, updateAction }: FileConverterAudioSelectProps) {
     const filtered = extensions.audio.filter((ext) => ext !== action.from);
 
     return (
