@@ -1,32 +1,35 @@
-type Props = {
-    amount: string;
-    to: string;
+export function convertCurrency({
+    amount,
+    from,
+    to,
+    rates,
+}: {
+    amount: number;
     from: string;
-    rates: {
-        [key: string]: number;
-    };
-    setResult: (result: number) => void;
-    setError: (error: string) => void;
-};
-
-export function ConvertCurrency({ amount, from, to, rates, setResult, setError }: Props) {
-    const formattedValue = amount.replace(/,/g, "");
-    const numberFormat = Number(formattedValue);
-
-    if (!(from in rates)) {
-        return setError(`Exchange rate for ${from} not found.`);
+    to: string;
+    rates: Record<string, number>;
+    base: string; // e.g., "GBP" or "EUR"
+}) {
+    if (isNaN(amount)) {
+        throw new Error("Invalid amount");
     }
 
-    if (!(to in rates)) {
-        return setError(`Exchange rate for ${to} not found.`);
+    if (!rates[from]) {
+        throw new Error(`Exchange rate for ${from} not found`);
     }
 
-    const fromRate = rates[from]; // e.g., AUD = 1.95
-    const toRate = rates[to]; // e.g., GBP = 1.0
+    if (!rates[to]) {
+        throw new Error(`Exchange rate for ${to} not found`);
+    }
 
-    // Convert from source to GBP, then to target
-    const gbpAmount = numberFormat / fromRate;
-    const convertedAmount = gbpAmount * toRate;
+    if (from === to) {
+        return amount;
+    }
 
-    return setResult(convertedAmount);
+    const fromRate = rates[from];
+    const toRate = rates[to];
+
+    // Convert from → base → target
+    const baseAmount = amount / fromRate;
+    return baseAmount * toRate;
 }

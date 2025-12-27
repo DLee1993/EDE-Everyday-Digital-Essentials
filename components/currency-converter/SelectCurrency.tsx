@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { useMediaQuery } from "@/hooks/global/use-media-query";
+import { useMounted } from "@/hooks/global/use-mounted";
 import rateNames from "@/lib/currency-converter/rateNames.json";
 import CurrencyFlag from "react-currency-flags";
 import { Button } from "@/components/ui/button";
@@ -23,46 +24,68 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown } from "lucide-react";
 
 type Props = {
     type: "from" | "to";
-    selectedValue: {
-        from: string;
-        to: string;
-    };
-    countryCodes: {
-        [key: string]: number;
-    };
-    setSelectedValue: React.Dispatch<
-        React.SetStateAction<{
-            from: string;
-            to: string;
-        }>
-    >;
+    selectedValue: { from: string; to: string };
+    countryCodes: Record<string, number>;
+    setSelectedValue: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
+    loading?: boolean;
 };
 
-export function SelectCurrency({ type, selectedValue, setSelectedValue, countryCodes }: Props) {
+export function SelectCurrency({
+    type,
+    selectedValue,
+    setSelectedValue,
+    countryCodes,
+    loading = false,
+}: Props) {
     const [open, setOpen] = React.useState(false);
+    const mounted = useMounted();
     const isDesktop = useMediaQuery("(min-width: 768px)");
+
+    const current = selectedValue[type];
+
+    // Fixed-size wrapper to prevent layout shift
+    const FlagOrSkeleton = (
+        <div className="w-5 h-5 flex items-center justify-center">
+            {loading ? (
+                <Skeleton className="w-5 h-5 rounded-sm" />
+            ) : (
+                <CurrencyFlag currency={current} />
+            )}
+        </div>
+    );
+
+    if (!mounted) {
+        return (
+            <Button variant="secondary" className="w-28 flex justify-start items-center gap-2">
+                <Skeleton className="w-5 h-5 rounded-sm" />
+                <Skeleton className="h-4 w-10" />
+            </Button>
+        );
+    }
 
     if (isDesktop) {
         return (
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
-                    <Button variant="secondary" className="flex justify-between items-center">
-                        {selectedValue[type] ? (
+                    <Button variant="secondary" className="flex justify-between items-center w-28">
+                        {current ? (
                             <div className="flex items-center gap-2">
-                                <CurrencyFlag currency={selectedValue[type]} />
-                                {selectedValue[type]}
+                                {FlagOrSkeleton}
+                                <span className={loading ? "opacity-50" : ""}>{current}</span>
                             </div>
                         ) : (
-                            `Select currency`
+                            "Select"
                         )}
                         <ChevronDown className={`${open ? "rotate-180" : "rotate-0"}`} />
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent align="start" className="w-80 h-60 p-1">
+
+                <PopoverContent align="start" className="w-86 h-60 p-1">
                     <CurrencyList
                         setOpen={setOpen}
                         setSelectedUnit={setSelectedValue}
@@ -77,22 +100,25 @@ export function SelectCurrency({ type, selectedValue, setSelectedValue, countryC
     return (
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-                <Button variant="secondary">
-                    {selectedValue[type] ? (
-                        <span className="flex justify-start items-center w-full gap-2">
-                            <CurrencyFlag currency={selectedValue[type]} /> {selectedValue[type]}
+                <Button variant="secondary" className="w-full">
+                    {current ? (
+                        <span className="flex items-center gap-2">
+                            {FlagOrSkeleton}
+                            <span className={loading ? "opacity-50" : ""}>{current}</span>
                         </span>
                     ) : (
-                        `Select currency`
+                        "Select currency"
                     )}
                 </Button>
             </DrawerTrigger>
+
             <DrawerContent className="p-1">
                 <div className="mt-4 border-t">
                     <DrawerHeader>
                         <DrawerTitle>Select a currency</DrawerTitle>
                         <DrawerDescription>Choose the currency you want to use.</DrawerDescription>
                     </DrawerHeader>
+
                     <CurrencyList
                         setOpen={setOpen}
                         setSelectedUnit={setSelectedValue}
@@ -114,9 +140,7 @@ function CurrencyList({
     setOpen: (open: boolean) => void;
     setSelectedUnit: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
     type: "from" | "to";
-    rates: {
-        [key: string]: number;
-    };
+    rates: Record<string, number>;
 }) {
     return (
         <Command>
