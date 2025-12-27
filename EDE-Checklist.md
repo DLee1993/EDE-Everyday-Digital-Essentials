@@ -7,7 +7,7 @@ Each tool progresses through four stages. Use these definitions to guide when to
 
 -   **Refined**  
     The tool's UI/UX has been polished. It feels harmonious with the platform, labels are clear, and the flow is intuitive.
-
+v
 -   **Tested**  
     The tool has been checked against edge cases and resilience scenarios. It performs reliably under different inputs and conditions.
 
@@ -106,10 +106,10 @@ Each tool progresses through four stages. Use these definitions to guide when to
     ### Focus Timer
 
     -   Development Stages:
-        -   [ ] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Built
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### World Clock
 
