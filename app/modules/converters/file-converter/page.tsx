@@ -34,7 +34,7 @@ export default function Converter() {
             </NoSSRWrapper>
 
             {/* Right side */}
-            <div className="h-full flex-1 space-y-5">
+            <div className="w-full h-full flex-1 space-y-5">
                 <ConverterToolbar
                     isReady={actions.isReady}
                     isDone={actions.isDone}
