@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+"use client";
+
 import { BellRing } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,87 +10,76 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import { formatTime } from "@/lib/focus-timer/formatTime";
 
 type Props = {
     isBreak: boolean;
     breakTime: number;
-    sound: boolean;
     alarm: boolean;
+    shouldPlaySound: boolean;
+    replaySound: number;
+    onAlarmEnded: () => void;
     cancelBreak: () => void;
 };
 
-export default function Alarm({ isBreak, cancelBreak, breakTime, sound, alarm }: Props) {
-    const [shouldPlay, setShouldPlay] = useState(false);
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const loopCountRef = useRef(0);
-
-    useEffect(() => {
-        if (isBreak && sound) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setShouldPlay(true);
-        } else {
-            setShouldPlay(false);
-        }
-    }, [isBreak, sound]);
-
-    useEffect(() => {
-        if (shouldPlay && audioRef.current) {
-            loopCountRef.current = 0;
-            audioRef.current!.play();
-        }
-    }, [shouldPlay]);
-
-    const handleEnded = () => {
-        loopCountRef.current += 1;
-        if (loopCountRef.current < 3) {
-            audioRef.current!.play();
-        } else {
-            setShouldPlay(false);
-            if (!alarm) {
-                cancelBreak();
-            }
-        }
-    };
-
+export default function Alarm({
+    isBreak,
+    breakTime,
+    alarm,
+    shouldPlaySound,
+    replaySound,
+    onAlarmEnded,
+    cancelBreak,
+}: Props) {
     return (
         <Dialog modal open={isBreak}>
             <DialogContent
                 onInteractOutside={(e) => e.preventDefault()}
-                className="[&>button:last-child]:hidden"
+                className="max-w-sm rounded-xl border-border/50 shadow-xl backdrop-blur-sm
+                   bg-background/95 animate-in fade-in-0 zoom-in-95
+                   [&>button:last-child]:hidden"
             >
-                <DialogHeader>
-                    <DialogTitle className="text-center text-base font-normal flex justify-center items-center gap-5">
-                        <BellRing size={16} /> <span>It&apos;s time to take a break</span>{" "}
-                        <BellRing size={16} />
+                <DialogHeader className="space-y-2">
+                    <DialogTitle className="text-center text-lg font-medium flex justify-center items-center gap-3">
+                        <BellRing size={18} className="text-foreground/80" />
+                        <span>Break Time</span>
+                        <BellRing size={18} className="text-foreground/80" />
                     </DialogTitle>
-                    <DialogDescription className="sr-only">
-                        This is the break timer, this can be cancelled manually by pressing cancel
-                        at the bottom.
+
+                    <DialogDescription className="text-center text-sm text-muted-foreground">
+                        Step away, stretch, breathe.
                     </DialogDescription>
                 </DialogHeader>
-                <section className="space-y-10">
-                    {sound && isBreak && (
+
+                <section className="space-y-8 pt-4">
+                    {shouldPlaySound && (
                         <audio
-                            ref={audioRef}
+                            key={replaySound}
                             src="/sound/alarm.mp3"
-                            autoPlay={shouldPlay}
-                            onEnded={handleEnded}
+                            autoPlay
+                            onEnded={onAlarmEnded}
                         />
                     )}
-                    {alarm && isBreak && (
-                        <div className="flex justify-center items-center min-h-40">
-                            <p className="relative z-10 text-8xl sm:text-9xl w-full text-center font-mono">
-                                {Math.floor(breakTime / 60)
-                                    .toString()
-                                    .padStart(2, "0")}
-                                :{(breakTime % 60).toString().padStart(2, "0")}
+
+                    {alarm && (
+                        <div className="flex justify-center items-center min-h-32">
+                            <p
+                                className="relative z-10 text-7xl sm:text-8xl font-mono text-center
+                           tracking-tight select-none animate-in fade-in-0 slide-in-from-bottom-2"
+                            >
+                                {formatTime(breakTime)}
                             </p>
                         </div>
                     )}
-                    <div className="flex justify-center items-center gap-5">
+
+                    <div className="flex justify-center items-center">
                         <DialogClose asChild>
-                            <Button variant="secondary" onClick={cancelBreak}>
-                                Cancel break
+                            <Button
+                                variant="secondary"
+                                onClick={cancelBreak}
+                                className="px-6 py-2 rounded-md"
+                            >
+                                End break
                             </Button>
                         </DialogClose>
                     </div>

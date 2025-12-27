@@ -1,7 +1,6 @@
 "use client";
 
 import SessionSelector from "@/components/focus-timer/SessionButtons";
-import { useMounted } from "@/hooks/global/use-mounted";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, SettingsIcon } from "lucide-react";
@@ -25,14 +24,16 @@ type Props = {
     sound: boolean;
     toggleAlarm: () => void;
     toggleSound: () => void;
-    calculateTime: (newTime: number) => void;
-    handleBreakTimeClick: (time: number) => void;
+
+    sessionPresets: { label: string; value: number }[];
+    selectedPreset: number;
+    selectPreset: (minutes: number) => void;
+    updatePreset: (label: string, minutes: number) => void;
+
     breakTime: number;
+    setBreakMinutes: (minutes: number) => void;
+
     time: number;
-    start: () => void;
-    pause: () => void;
-    reset: () => void;
-    running: boolean;
 };
 
 export default function Options({
@@ -40,12 +41,15 @@ export default function Options({
     toggleAlarm,
     sound,
     toggleSound,
-    calculateTime,
-    handleBreakTimeClick,
+
+    sessionPresets,
+    selectedPreset,
+    selectPreset,
+    updatePreset,
+
     breakTime,
-    time,
+    setBreakMinutes,
 }: Props) {
-    const mounted = useMounted();
     const presets = [
         { label: "5 minutes", value: 5 },
         { label: "10 minutes", value: 10 },
@@ -61,59 +65,6 @@ export default function Options({
         { label: "60 minutes", value: 60 },
     ];
 
-    const BreakDurationSelector = (
-        <div
-            className={`flex justify-between items-center ${
-                mounted && alarm
-                    ? "opacity-100 pointer-events-auto"
-                    : "opacity-25 pointer-events-none"
-            }`}
-        >
-            <p className="text-sm">Select a break duration</p>
-
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button className="w-36 flex justify-between items-center bg-transparent border-b border-border text-foreground gap-2.5 hover:bg-foreground/10">
-                        {`${mounted ? breakTime / 60 : 0} minutes`} <ChevronDown />
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-40">
-                    {presets.map((preset) => (
-                        <DropdownMenuItem
-                            key={preset.value}
-                            onClick={() => handleBreakTimeClick(preset.value)}
-                            disabled={mounted && breakTime / 60 === preset.value}
-                            className="cursor-pointer focus:bg-foreground/10 focus:text-foreground"
-                        >
-                            {preset.label}
-                        </DropdownMenuItem>
-                    ))}
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
-    );
-
-    const AdditionalSettings = (
-        <div className="space-y-5">
-            <div className="flex-1 flex justify-between items-center">
-                <p className="text-sm">Add a Break</p>
-                <Checkbox
-                    onClick={toggleAlarm}
-                    checked={mounted ? alarm : false}
-                    className="cursor-pointer"
-                />
-            </div>
-            <div className="flex-1 flex justify-between items-center">
-                <p className="text-sm">Add Sound</p>
-                <Checkbox
-                    onClick={toggleSound}
-                    checked={mounted ? sound : false}
-                    className="cursor-pointer"
-                />
-            </div>
-        </div>
-    );
-
     return (
         <Sheet>
             <SheetTrigger asChild>
@@ -121,17 +72,61 @@ export default function Options({
                     <SettingsIcon /> Settings
                 </Button>
             </SheetTrigger>
+
             <SheetContent>
                 <SheetHeader>
                     <SheetTitle>Session Settings</SheetTitle>
-                    <SheetDescription className="sr-only">
-                        Here you can update the session settings.
-                    </SheetDescription>
+                    <SheetDescription className="sr-only">Update session settings</SheetDescription>
                 </SheetHeader>
+
                 <section className="w-full flex-1 space-y-10 p-2">
-                    {<SessionSelector time={time} calculateTime={calculateTime} />}
-                    {AdditionalSettings}
-                    {BreakDurationSelector}
+                    <SessionSelector
+                        presets={sessionPresets}
+                        selected={selectedPreset}
+                        onSelect={selectPreset}
+                        onEditPreset={updatePreset}
+                    />
+
+                    <div className="space-y-5">
+                        <div className="flex justify-between items-center">
+                            <p className="text-sm">Add a Break</p>
+                            <Checkbox onClick={toggleAlarm} checked={alarm} />
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                            <p className="text-sm">Add Sound</p>
+                            <Checkbox onClick={toggleSound} checked={sound} />
+                        </div>
+                    </div>
+
+                    <div
+                        className={`flex justify-between items-center ${
+                            alarm ? "opacity-100" : "opacity-25 pointer-events-none"
+                        }`}
+                    >
+                        <p className="text-sm">Select a break duration</p>
+
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button className="w-36 flex justify-between items-center bg-transparent border-b border-border text-foreground gap-2.5 hover:bg-foreground/10">
+                                    {`${breakTime / 60} minutes`} <ChevronDown />
+                                </Button>
+                            </DropdownMenuTrigger>
+
+                            <DropdownMenuContent className="w-40">
+                                {presets.map((preset) => (
+                                    <DropdownMenuItem
+                                        key={preset.value}
+                                        onClick={() => setBreakMinutes(preset.value)}
+                                        disabled={breakTime / 60 === preset.value}
+                                        className="cursor-pointer focus:bg-foreground/10 focus:text-foreground"
+                                    >
+                                        {preset.label}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
                 </section>
             </SheetContent>
         </Sheet>
