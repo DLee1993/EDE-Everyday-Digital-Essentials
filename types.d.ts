@@ -261,3 +261,23 @@ type UseCredentialsOptions = {
     defaultPasswordLength?: number;
     defaultPinLength?: number;
 };
+
+//NOTE - Word Counter
+
+type TextAnalysis = {
+    words: number;
+    characters: number;
+    charactersNoSpaces: number;
+    lines: number;
+    paragraphs: number;
+    readingTime: {
+        slow: string;
+        average: string;
+        fast: string;
+    };
+    speakingTime: {
+        slow: string;
+        average: string;
+        fast: string;
+    };
+}
