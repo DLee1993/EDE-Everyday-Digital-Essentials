@@ -31,16 +31,15 @@ export default function SlugGenerator() {
         <section className="space-y-5">
             <section className="w-full max-w-4xl flex flex-wrap gap-4">
                 <div className="flex flex-col gap-1">
-                    <label className="text-xs font-medium">Separator</label>
+                    <label className="text-xs font-medium">Add a Separator</label>
                     <Input
                         value={separator}
                         onChange={(e) => setSeparator(e.target.value)}
-                        className="w-32"
                     />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                    <label className="text-xs font-medium">Max length</label>
+                    <label className="text-xs font-medium">Select max length</label>
                     <Input
                         type="number"
                         value={maxLength ?? "200"}
@@ -48,7 +47,6 @@ export default function SlugGenerator() {
                         onChange={(e) =>
                             setMaxLength(e.target.value ? Number(e.target.value) : null)
                         }
-                        className="w-24"
                     />
                 </div>
             </section>

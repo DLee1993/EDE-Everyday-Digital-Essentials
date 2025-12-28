@@ -11,6 +11,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { formatTime } from "@/lib/focus-timer/formatTime";
+import { FocusTimerAlarmProps } from "@/types";
 
 export default function Alarm({
     isBreak,

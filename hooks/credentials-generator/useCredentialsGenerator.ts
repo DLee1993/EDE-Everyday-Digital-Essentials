@@ -1,13 +1,6 @@
 import { useCallback, useState } from "react";
 import { GeneratePassword, GeneratePin } from "@/lib/credentials-generator/generate-credentials";
-
-type CredentialType = "password" | "pin";
-
-interface UseCredentialsOptions {
-    defaultType?: CredentialType;
-    defaultPasswordLength?: number;
-    defaultPinLength?: number;
-}
+import { CredentialType, UseCredentialsOptions } from "@/types";
 
 export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
     const { defaultType = "password", defaultPasswordLength = 8, defaultPinLength = 4 } = options;

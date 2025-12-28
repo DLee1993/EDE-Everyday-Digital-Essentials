@@ -29,8 +29,6 @@ export function UuidOptions({
 }: UuidOptionsProps) {
     return (
         <section className="w-full! max-w-4xl space-y-10">
-            <h2 className="text-sm font-medium text-primary">Identifier Options</h2>
-
             <div className="flex justify-between gap-5 flex-wrap">
                 <fieldset className="flex gap-5">
                     <p className="flex items-center gap-2 text-sm leading-none font-medium">Select a Format</p>

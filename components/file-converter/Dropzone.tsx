@@ -2,20 +2,14 @@
 
 import ReactDropzone from "react-dropzone";
 import { UploadCloud, Send } from "lucide-react";
-
-interface ConverterDropzoneProps {
-    isHover: boolean;
-    onHover: () => void;
-    onExitHover: () => void;
-    onUpload: (files: File[]) => void;
-}
+import { FileConverterDropzoneProps } from "@/types";
 
 export default function ConverterDropzone({
     isHover,
     onHover,
     onExitHover,
     onUpload,
-}: ConverterDropzoneProps) {
+}: FileConverterDropzoneProps) {
     return (
         <ReactDropzone
             onDrop={onUpload}

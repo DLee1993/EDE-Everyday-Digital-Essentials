@@ -1,6 +1,7 @@
 import { ITimezoneOption } from "react-timezone-select";
 import { TZDate } from "@date-fns/tz";
 import { format } from "date-fns";
+import { FormattedTimezone } from "@/types";
 
 export function formatTimezone(tz: ITimezoneOption | undefined): FormattedTimezone | undefined {
     if (!tz) return undefined;

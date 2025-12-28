@@ -1,3 +1,5 @@
+import { FormattedTimezone } from "@/types";
+
 export function TimezoneCard({ data }: { data?: FormattedTimezone }) {
     if (!data) return null;
 

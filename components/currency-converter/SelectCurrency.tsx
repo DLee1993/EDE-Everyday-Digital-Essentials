@@ -26,6 +26,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown } from "lucide-react";
+import { SelectCurrenyProps } from "@/types";
 
 export function SelectCurrency({
     type,

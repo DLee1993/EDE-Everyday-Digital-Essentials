@@ -18,6 +18,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import { FocusTimerOptionsProps } from "@/types";
 
 export default function Options({
     alarm,

@@ -1,25 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { FileConverterToolbarProps } from "@/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-interface ToolbarProps {
-    isReady: boolean;
-    isDone: boolean;
-    isConverting: boolean;
-
-    onConvert: () => void;
-    onDownloadAll: () => void;
-    onClear: () => void;
-
-    // Pagination
-    pageIndex: number;
-    pageCount: number;
-    canPrev: boolean;
-    canNext: boolean;
-    onPrev: () => void;
-    onNext: () => void;
-}
 
 export default function ConverterToolbar({
     isReady,
@@ -36,7 +19,7 @@ export default function ConverterToolbar({
     canNext,
     onPrev,
     onNext,
-}: ToolbarProps) {
+}: FileConverterToolbarProps) {
     return (
         <section className="flex flex-col min-[425px]:flex-row justify-between items-center space-y-2.5 min-[425px]:space-y-0">
             {/* Left side: Convert / Download All / Clear */}

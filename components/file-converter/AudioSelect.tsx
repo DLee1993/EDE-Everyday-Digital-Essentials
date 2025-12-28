@@ -8,6 +8,7 @@ import {
     SelectItem,
 } from "@/components/ui/select";
 import { extensions } from "@/lib/file-converter/extensions";
+import { FileConverterAudioSelectProps } from "@/types";
 
 
 export function AudioSelect({ action, updateAction }: FileConverterAudioSelectProps) {

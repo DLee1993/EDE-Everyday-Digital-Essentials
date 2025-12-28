@@ -2,6 +2,7 @@
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { LorumIpsumOptionsProps } from "@/types";
 
 export function LoremOptions({
     paragraphs,
@@ -15,8 +16,6 @@ export function LoremOptions({
 }: LorumIpsumOptionsProps) {
     return (
         <section className="w-full">
-            <p className="text-sm text-primary font-medium mb-2.5">Generation Options</p>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <fieldset className="md:max-w-72 flex justify-between items-end gap-5">
                     <Label htmlFor="paragraphs">Number of paragraphs</Label>

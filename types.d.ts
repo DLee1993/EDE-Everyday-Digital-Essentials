@@ -1,24 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction } from "react";
 
+//NOTE - Header & sidebar Props
+
 type Greeting = {
     message: string;
     icon: React.ReactNode;
 };
 
-type Action = {
-    file: File;
-    file_name: string;
-    file_size: number;
-    from: string;
-    to: string | null;
-    file_type: string;
-    is_converting?: boolean;
-    is_converted?: boolean;
-    is_error?: boolean;
-    url?: string;
-    output?: string;
-};
+//NOTE - Link in bio Props
 
 type LinkInBioValues = {
     name?: string;
@@ -37,6 +27,8 @@ type LinkInBioValues = {
     [key: string]: string;
 };
 
+//NOTE - Notepad Props
+
 type NotepadNoteValues = {
     title: string;
     content?: string;
@@ -47,6 +39,8 @@ type NotepadNoteValues = {
     completed: boolean;
 };
 
+//NOTE - Timezone Props
+
 type FormattedTimezone = {
     date: string;
     time: string;
@@ -56,6 +50,8 @@ type FormattedTimezone = {
     name: string;
 };
 
+//NOTE - Select currency Props
+
 type SelectCurrenyProps = {
     type: "from" | "to";
     selectedValue: { from: string; to: string };
@@ -63,6 +59,8 @@ type SelectCurrenyProps = {
     setSelectedValue: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
     loading?: boolean;
 };
+
+//NOTE - Focus timer Props
 
 type FocusTimerAlarmProps = {
     isBreak: boolean;
@@ -103,6 +101,22 @@ type FocusTimerSessionSelectorProps = {
     onEditPreset: (label: string, minutes: number) => void;
 };
 
+//NOTE - File Converter Props
+
+type Action = {
+    file: File;
+    file_name: string;
+    file_size: number;
+    from: string;
+    to: string | null;
+    file_type: string;
+    is_converting?: boolean;
+    is_converted?: boolean;
+    is_error?: boolean;
+    url?: string;
+    output?: string;
+};
+
 type FileConverterTableProps = {
     actions: Action[];
     updateAction: (fileName: string, patch: Partial<Action>) => void;
@@ -123,6 +137,33 @@ type FileConverterVideoSelectProps = {
     action: Action;
     updateAction: (to: string) => void;
 };
+
+type FileConverterToolbarProps = {
+    isReady: boolean;
+    isDone: boolean;
+    isConverting: boolean;
+
+    onConvert: () => void;
+    onDownloadAll: () => void;
+    onClear: () => void;
+
+    // Pagination
+    pageIndex: number;
+    pageCount: number;
+    canPrev: boolean;
+    canNext: boolean;
+    onPrev: () => void;
+    onNext: () => void;
+};
+
+type FileConverterDropzoneProps = {
+    isHover: boolean;
+    onHover: () => void;
+    onExitHover: () => void;
+    onUpload: (files: File[]) => void;
+};
+
+//NOTE - Lorum Ipsum Props
 
 type LorumIpsumOptionsProps = {
     paragraphs: number;
@@ -147,6 +188,8 @@ type QRCodeSettingsProps = {
     handleChange: Dispatch<SetStateAction<{ [key: string]: any }>>;
 };
 
+//NOTE - Unit Converter Props
+
 type SelectUnitProps = {
     type: "from" | "to";
     selectedValue: {
@@ -168,6 +211,8 @@ type ConvertUnitsProps = {
     setResult: (result: number) => void;
     setError: (error: string) => void;
 };
+
+//NOTE - UUID Props
 
 type UuidActionsProps = {
     uuids: UuidObject[];
@@ -205,4 +250,14 @@ type UuidObject = {
     prefix: string;
     id: string;
     suffix: string;
+};
+
+//NOTE - Credentials Props
+
+type CredentialType = "password" | "pin";
+
+type UseCredentialsOptions = {
+    defaultType?: CredentialType;
+    defaultPasswordLength?: number;
+    defaultPinLength?: number;
 };

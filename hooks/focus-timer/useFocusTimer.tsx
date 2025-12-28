@@ -17,7 +17,7 @@ export function useFocusTimer() {
 
     //
     // ────────────────────────────────────────────────────────────────
-    //  SESSION PRESETS (REPLACES short/medium/long)
+    //  SESSION PRESETS
     // ────────────────────────────────────────────────────────────────
     //
 
@@ -116,7 +116,7 @@ export function useFocusTimer() {
 
     //
     // ────────────────────────────────────────────────────────────────
-    //  PRESET LOGIC (THIS FIXES YOUR ISSUE)
+    //  PRESET LOGIC
     // ────────────────────────────────────────────────────────────────
     //
 
