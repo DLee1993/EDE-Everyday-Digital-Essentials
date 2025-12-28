@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useCurrencyRates } from "@/hooks/currency-converter/useCurrencyRates";
 import { useCurrencyConverter } from "@/hooks/currency-converter/useCurrencyConverter";
 import { SelectCurrency } from "@/components/currency-converter/SelectCurrency";
@@ -10,37 +9,18 @@ import { CircleAlert, CircleX } from "lucide-react";
 
 export default function CurrencyConverter() {
     const { rates, base, offline } = useCurrencyRates();
-    const { result, error, convert, setResult, setError } = useCurrencyConverter(rates, base);
-
-    const [amount, setAmount] = useState("1");
-    const [selected, setSelected] = useState({ from: "GBP", to: "USD" });
-
-    const AddPunctuation = (value: string) => {
-        const stripped = value.replace(/,/g, "");
-
-        if (stripped === "") {
-            setAmount("");
-            return;
-        }
-
-        if (!isNaN(Number(stripped))) {
-            setAmount(Number(stripped).toLocaleString());
-        }
-    };
-
-    const handleConvert = () => {
-        convert(amount, selected.from, selected.to);
-    };
-
-    const handleReset = () => {
-        setSelected({ from: "GBP", to: "USD" });
-        setAmount("1");
-        setResult(null);
-        setError("");
-    };
-
-    const resetDisabled =
-        amount === "1" && selected.from === "GBP" && selected.to === "USD" && !result && !error;
+    const {
+        amount,
+        setAmount,
+        selected,
+        setSelected,
+        result,
+        error,
+        convert,
+        reset,
+        resetDisabled,
+        formatAmountInput,
+    } = useCurrencyConverter(rates, base);
 
     return (
         <section className="relative space-y-16 max-w-3xl">
@@ -58,7 +38,7 @@ export default function CurrencyConverter() {
                             value={amount}
                             id="amount"
                             name="amount"
-                            onChange={(e) => AddPunctuation(e.target.value)}
+                            onChange={(e) => setAmount(formatAmountInput(e.target.value))}
                             placeholder="Enter currency amount"
                             type="text"
                         />
@@ -96,12 +76,12 @@ export default function CurrencyConverter() {
             </section>
 
             <div className="w-full flex gap-5">
-                <Button onClick={handleConvert}>Convert</Button>
+                <Button onClick={convert}>Convert</Button>
 
                 <Button
                     variant="secondary"
                     className="text-sm"
-                    onClick={handleReset}
+                    onClick={reset}
                     disabled={resetDisabled}
                 >
                     Reset
@@ -110,7 +90,9 @@ export default function CurrencyConverter() {
             </div>
 
             {offline && (
-                <p className="text-xs text-muted-foreground absolute bottom-1 left-1/2 -translate-x-1/2">Offline mode — using fallback rates</p>
+                <p className="text-xs text-muted-foreground absolute bottom-1 left-1/2 -translate-x-1/2">
+                    Offline mode — using fallback rates
+                </p>
             )}
             <p className="text-xs text-muted-foreground absolute bottom-1 left-1/2 -translate-x-1/2">
                 Powered by <a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>

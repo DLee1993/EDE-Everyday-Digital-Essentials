@@ -1,36 +1,79 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// /hooks/currency/useCurrencyConverter.ts
+import { useCallback, useState, useMemo } from "react";
+import {
+    convertCurrency,
+    parseAmount,
+    RatesMap,
+} from "@/lib/currency-converter/convert-currency";
 
-import { useState } from "react";
-import { convertCurrency } from "@/lib/currency-converter/convertCurrency";
 
-export function useCurrencyConverter(rates: Record<string, number>, base: string) {
+export function useCurrencyConverter(rates: RatesMap, base: string) {
+  
+    const [amount, setAmount] = useState("1");
+    const [selected, setSelected] = useState({ from: "GBP", to: "USD" });
     const [result, setResult] = useState<number | null>(null);
     const [error, setError] = useState("");
 
-    function convert(amount: string, from: string, to: string) {
-        setError("");
+   
+    const formatAmountInput = useCallback((value: string) => {
+        const stripped = value.replace(/,/g, "");
 
-        const numeric = Number(amount.replace(/,/g, ""));
-        if (isNaN(numeric)) {
+        if (stripped === "") return "";
+
+        if (!isNaN(Number(stripped))) {
+            return Number(stripped).toLocaleString();
+        }
+
+        return value;
+    }, []);
+
+  
+    const convert = useCallback(() => {
+        setError("");
+        setResult(null);
+
+        const parsed = parseAmount(amount);
+        if (parsed === null) {
             setError("Invalid amount");
             return;
         }
 
-        try {
-            const value = convertCurrency({
-                amount: numeric,
-                from,
-                to,
-                rates,
-                base,
-            });
+        const output = convertCurrency(parsed, selected.from, selected.to, rates, base);
 
-            setResult(value);
-        } catch (err: any) {
-            setError(err.message);
+        if (output === null) {
+            setError("Conversion failed");
+            return;
         }
-    }
 
-    return { result, error, convert, setResult, setError };
+        setResult(output);
+    }, [amount, selected, rates, base]);
+
+
+    const reset = useCallback(() => {
+        setAmount("1");
+        setSelected({ from: "GBP", to: "USD" });
+        setResult(null);
+        setError("");
+    }, []);
+
+    
+    const resetDisabled = useMemo(() => {
+        return (
+            amount === "1" && selected.from === "GBP" && selected.to === "USD" && !result && !error
+        );
+    }, [amount, selected, result, error]);
+
+    return {
+        amount,
+        setAmount,
+        selected,
+        setSelected,
+        result,
+        error,
+        convert,
+        reset,
+        resetDisabled,
+        formatAmountInput,
+        setResult,
+        setError,
+    };
 }
