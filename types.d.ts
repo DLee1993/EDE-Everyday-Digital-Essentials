@@ -175,6 +175,7 @@ type UuidActionsProps = {
     deleteAll: () => void;
     downloadAll: () => void;
     copyAll: () => void;
+    downloadJson: () => void;
 };
 
 type UuidOptionsProps = {
