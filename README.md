@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EDE — Everyday Developer Essentials
 
-## Getting Started
+_A free, resilient, human‑friendly toolkit for developers_
 
-First, run the development server:
+EDE is a collection of small, focused, beautifully crafted tools designed to make everyday development tasks effortless.  
+Each tool is fast, accessible, and intentionally minimal — no ads, no tracking, no friction.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+EDE is built on a simple belief:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Essential tools should be free, reliable, and available to everyone.**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Whether you're generating UUIDs, converting files, creating slugs, or exploring time zones, EDE gives you a consistent, predictable experience across all tools.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Core Principles
 
-To learn more about Next.js, take a look at the following resources:
+### **1. Clarity over complexity**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Every tool is designed to be obvious at a glance.  
+No hidden states. No surprises.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **2. Resilience by design**
 
-## Deploy on Vercel
+Tools work offline where possible.  
+Fallback logic is explicit and intentional.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **3. Free and accessible forever**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+EDE rejects gatekeeping.  
+These tools belong to the community.
+
+### **4. Consistency across tools**
+
+Every tool follows the same structure, UI rhythm, and interaction patterns.
+
+### **5. Human‑friendly documentation**
+
+Clear language. No jargon. No guesswork.
+
+---
+
+## 🧰 What's Inside
+
+EDE includes a growing suite of developer tools, such as:
+
+-   UUID Generator
+-   Slug Generator
+-   File Converter
+-   Credentials Generator
+-   World Clock
+-   Unit Converter
+-   Focus Timer
+-   And more — all built with the same philosophy
+
+Each tool is modular, self‑contained, and easy to extend.
+
+---
+
+## 🏗️ Technology
+
+EDE is built with:
+
+-   **Next.js** (App Router)
+-   **React**
+-   **TypeScript**
+-   **Tailwind CSS**
+-   A carefully structured architecture for clarity and maintainability
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions that align with EDE's principles.  
+To learn how to add new tools or contribute safely, see:
+
+👉 **[CONTRIBUTING.md](./CONTRIBUTING.md)**
+
+---
+
+## 📜 License
+
+EDE is released under the **MIT License**, a permissive open‑source license that allows anyone to use, modify, and distribute the software freely.
+
+You are free to:
+
+-   Use EDE for personal or commercial projects
+-   Modify the source code
+-   Distribute your own versions
+-   Build new tools on top of it
+
+As long as you include the original copyright notice.
+
+For full details, see the [LICENSE](./LICENSE.md) file.
