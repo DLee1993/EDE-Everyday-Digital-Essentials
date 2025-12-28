@@ -43,7 +43,7 @@ export default function CurrencyConverter() {
         amount === "1" && selected.from === "GBP" && selected.to === "USD" && !result && !error;
 
     return (
-        <section className="relative space-y-20 max-w-3xl">
+        <section className="relative space-y-16 max-w-3xl">
             <section className="w-full flex flex-col md:flex-row gap-10">
                 <div className="w-full flex flex-col gap-2">
                     <h2 className="text-sm font-semibold text-muted-foreground">From</h2>

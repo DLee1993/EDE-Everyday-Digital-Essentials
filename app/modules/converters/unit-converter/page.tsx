@@ -11,45 +11,43 @@ export default function UnitConverter() {
         useUnitConverter();
 
     return (
-        <section className="relative space-y-20 max-w-3xl">
-            <section className="w-full space-y-2">
-                <section className="flex flex-col md:flex-row gap-10">
-                    <div className="w-full flex flex-col gap-2">
-                        <h2 className="text-sm font-semibold text-muted-foreground">From</h2>
-                        <fieldset className="flex gap-2">
-                            <SelectUnit
-                                type="from"
-                                selectedValue={selectedValue}
-                                setSelectedValue={setSelectedValue}
-                            />
-                            <Input
-                                value={amount}
-                                id="amount"
-                                onChange={(e) => setAmount(e.target.value)}
-                                className="text-center"
-                                placeholder="Amount"
-                                type="number"
-                            />
-                        </fieldset>
-                    </div>
+        <section className="relative space-y-16 max-w-3xl">
+            <section className="w-full flex flex-col md:flex-row gap-10">
+                <div className="w-full flex flex-col gap-2">
+                    <h2 className="text-sm font-semibold text-muted-foreground">From</h2>
+                    <fieldset className="flex gap-2">
+                        <SelectUnit
+                            type="from"
+                            selectedValue={selectedValue}
+                            setSelectedValue={setSelectedValue}
+                        />
+                        <Input
+                            value={amount}
+                            id="amount"
+                            onChange={(e) => setAmount(e.target.value)}
+                            className="text-center"
+                            placeholder="Amount"
+                            type="number"
+                        />
+                    </fieldset>
+                </div>
 
-                    <div className="w-full flex flex-col gap-2">
-                        <h2 className="text-sm font-semibold text-muted-foreground">To</h2>
-                        <fieldset className="flex gap-2">
-                            <SelectUnit
-                                type="to"
-                                selectedValue={selectedValue}
-                                setSelectedValue={setSelectedValue}
-                            />
-                            <Input
-                                readOnly
-                                id="result"
-                                value={result !== null ? Number(result).toLocaleString() : ""}
-                                className="text-center"
-                            />
-                        </fieldset>
-                    </div>
-                </section>
+                <div className="w-full flex flex-col gap-2">
+                    <h2 className="text-sm font-semibold text-muted-foreground">To</h2>
+                    <fieldset className="flex gap-2">
+                        <SelectUnit
+                            type="to"
+                            selectedValue={selectedValue}
+                            setSelectedValue={setSelectedValue}
+                        />
+                        <Input
+                            readOnly
+                            id="result"
+                            value={result !== null ? Number(result).toLocaleString() : ""}
+                            className="text-center"
+                        />
+                    </fieldset>
+                </div>
                 <p className="min-h-5 text-red-600 text-sm font-medium">
                     {error && (
                         <span className="flex items-center gap-2">

@@ -31,10 +31,14 @@ export function UuidOptions({
         <section className="w-full! max-w-4xl space-y-10">
             <h2 className="text-sm font-medium text-primary">Identifier Options</h2>
 
-            <div className="flex justify-between gap-5">
+            <div className="flex justify-between gap-5 flex-wrap">
                 <fieldset className="flex gap-5">
-                    <Label>Select a Format</Label>
-                    <Select value={format} onValueChange={setFormat}>
+                    <p className="flex items-center gap-2 text-sm leading-none font-medium">Select a Format</p>
+                    <Select
+                        name="country-label"
+                        value={format}
+                        onValueChange={setFormat}
+                    >
                         <SelectTrigger className="w-40">
                             <SelectValue placeholder="Select format" />
                         </SelectTrigger>
@@ -47,7 +51,7 @@ export function UuidOptions({
                 </fieldset>
 
                 {format === "uuid" && (
-                    <div className="w-fit grid md:grid-cols-2 gap-6">
+                    <div className="w-fit grid grid-cols-2 gap-6">
                         <fieldset className="flex items-center gap-2">
                             <input
                                 id="hyphens"
