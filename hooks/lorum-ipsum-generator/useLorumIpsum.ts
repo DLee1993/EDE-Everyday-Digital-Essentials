@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { generateLorem } from "@/lib/lorum-ipsum-generator/generate";
 

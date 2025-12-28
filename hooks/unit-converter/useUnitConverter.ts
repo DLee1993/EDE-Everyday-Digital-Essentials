@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Unit } from "convert-units";
 import { ConvertUnits } from "@/lib/unit-converter/convertUnits";

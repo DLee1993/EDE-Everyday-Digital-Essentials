@@ -1,7 +1,4 @@
 // /hooks/currency/useCurrencyRates.ts
-
-"use client";
-
 import { useEffect, useState } from "react";
 import { fetchRates } from "@/lib/currency-converter/fetchRates";
 import { FALLBACK_RATES, FALLBACK_BASE } from "@/lib/currency-converter/fallbackRates";

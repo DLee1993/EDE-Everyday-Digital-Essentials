@@ -37,6 +37,7 @@ import {
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Action, FileConverterTableProps } from "@/types";
+import { downloadBlobUrlFile } from "@/lib/global/download";
 
 export default function ConverterTable({
     actions,
@@ -146,10 +147,7 @@ export default function ConverterTable({
                                 <DropdownMenuItem
                                     onClick={() => {
                                         if (!a.url) return;
-                                        const link = document.createElement("a");
-                                        link.href = a.url;
-                                        link.download = a.output || a.file_name;
-                                        link.click();
+                                        downloadBlobUrlFile(a.url, a.output || a.file_name);
                                     }}
                                     className="flex justify-between items-center"
                                 >

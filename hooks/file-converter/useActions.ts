@@ -1,5 +1,4 @@
-"use client";
-
+import { Action } from "@/types";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export function useActions() {

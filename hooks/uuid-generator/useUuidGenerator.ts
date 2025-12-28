@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
 
 import { useState } from "react";
 import { clampValues } from "@/lib/uuid-generator/validation";
 import { generateIdentifier } from "@/lib/uuid-generator/identifiers";
 import { UuidObject } from "@/types";
+import { downloadJsonFile, downloadTextFile } from "@/lib/global/download";
 
 export function useUuidGenerator(options: any) {
     const [uuids, setUuids] = useState<UuidObject[]>([]);
@@ -94,29 +94,11 @@ export function useUuidGenerator(options: any) {
             suffixList,
         ].join("\n");
 
-        const blob = new Blob([text], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "identifiers.txt";
-        a.click();
-
-        URL.revokeObjectURL(url);
+        downloadTextFile("identifiers.txt", text);
     };
 
     const downloadJson = () => {
-        const json = JSON.stringify(uuids, null, 2); // pretty-printed JSON
-
-        const blob = new Blob([json], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "identifiers.json";
-        a.click();
-
-        URL.revokeObjectURL(url);
+        downloadJsonFile("identifiers.json", uuids);
     };
 
     return {
@@ -127,6 +109,6 @@ export function useUuidGenerator(options: any) {
         deleteOne,
         deleteAll,
         downloadAll,
-        downloadJson
+        downloadJson,
     };
 }

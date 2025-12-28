@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // /hooks/currency/useCurrencyConverter.ts
 
-"use client";
-
 import { useState } from "react";
 import { convertCurrency } from "@/lib/currency-converter/convertCurrency";
 

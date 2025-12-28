@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useMemo, useState } from "react";
 import { NotifyUser } from "@/lib/global/NotifyUser";
 import { Action } from "@/types";

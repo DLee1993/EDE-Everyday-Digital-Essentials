@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import usePersistentState from "@/hooks/global/usePersistentState";

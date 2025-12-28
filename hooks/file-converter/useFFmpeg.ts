@@ -1,9 +1,8 @@
-"use client";
-
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { toBlobURL } from "@ffmpeg/util";
 import convertFile from "@/lib/file-converter/convert";
+import { Action } from "@/types";
 
 export function useFFmpeg() {
     const ffmpegRef = useRef<FFmpeg | null>(null);

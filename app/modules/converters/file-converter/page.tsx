@@ -7,16 +7,14 @@ import { useFFmpeg } from "@/hooks/file-converter/useFFmpeg";
 import ConverterDropzone from "@/components/file-converter/Dropzone";
 import ConverterToolbar from "@/components/file-converter/Toolbar";
 import ConverterTable from "@/components/file-converter/Table";
+import { downloadBlobUrlFile } from "@/lib/global/download";
 
 export default function Converter() {
-    // State + logic hooks
     const actions = useActions();
     const uploader = useUploader(actions.addActions);
     const ffmpeg = useFFmpeg();
 
-    // Pagination comes from the table instance, so we pass it through
-    // (ConverterToolbar expects these props)
-    const pageIndex = 0; // Table handles its own pagination internally
+    const pageIndex = 0;
     const pageCount = Math.ceil(actions.actions.length / 5);
     const canPrev = pageIndex > 0;
     const canNext = pageIndex + 1 < pageCount;
@@ -47,10 +45,7 @@ export default function Converter() {
                     onDownloadAll={() => {
                         actions.actions.forEach((a) => {
                             if (a.is_converted && a.url) {
-                                const link = document.createElement("a");
-                                link.href = a.url;
-                                link.download = a.output || a.file_name;
-                                link.click();
+                                downloadBlobUrlFile(a.url, a.output || a.file_name);
                             }
                         });
                     }}
