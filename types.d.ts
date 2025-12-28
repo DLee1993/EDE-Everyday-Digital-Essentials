@@ -170,7 +170,7 @@ type ConvertUnitsProps = {
 };
 
 type UuidActionsProps = {
-    uuids: string[];
+    uuids: UuidObject[];
     generate: () => void;
     deleteAll: () => void;
     downloadAll: () => void;
@@ -196,8 +196,15 @@ type UuidOptionsProps = {
 };
 
 type UuidTableProps = {
-    uuids: string[];
+    uuids: UuidObject[];
     regenerateOne: (index: number) => void;
     deleteOne: (index: number) => void;
     copyOne: (id: string) => void;
+};
+
+type UuidObject = {
+    full: string;
+    prefix: string;
+    id: string;
+    suffix: string;
 };
