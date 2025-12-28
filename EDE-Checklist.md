@@ -336,9 +336,9 @@ v
 
     -   Development Stages:
         -   [x] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### URL Encode / Decode
 
