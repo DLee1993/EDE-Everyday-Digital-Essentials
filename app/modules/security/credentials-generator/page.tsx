@@ -2,36 +2,35 @@
 
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
-import { useCallback, useState } from "react";
-import { Copy } from "@/lib/global/copy-to-clipboard";
-import { GeneratePassword, GeneratePin } from "@/lib/credentials-generator/generate-credentials";
 import SelectLength from "@/components/credentials-generator/SelectLength";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { CopyIcon } from "lucide-react";
+import { useCredentialsGenerator } from "@/hooks/credentials-generator/useCredentialsGenerator";
 
 export default function CredentialsGenerator() {
     const gridLength = 38;
-    const [otpInput, setOtpInput] = useState("");
-    const [type, setType] = useState("password");
-    const [pwLength, setPwLength] = useState<number>(8);
-    const [pcLength, setPcLength] = useState<number>(4);
-
-    const toggleType = (type: string | null) => {
-        if (!type) return;
-        setType(type);
-        setOtpInput("");
-    };
-
-    const GenerateType = useCallback(() => {
-        const value = type === "password" ? GeneratePassword(pwLength) : GeneratePin(pcLength);
-
-        if (value) setOtpInput(value);
-    }, [type, pwLength, pcLength]);
+    const {
+        type,
+        value: otpInput,
+        passwordLength: pwLength,
+        pinLength: pcLength,
+        setPasswordLength: setPwLength,
+        setPinLength: setPcLength,
+        changeType: toggleType,
+        regenerate: GenerateType,
+        actions,
+    } = useCredentialsGenerator();
 
     return (
         <section className="space-y-7">
             <section className="w-full max-w-231 flex max-[425px]:justify-between items-center gap-5">
-                <ToggleGroup type="single" value={type} onValueChange={(val) => toggleType(val)}>
+                <ToggleGroup
+                    type="single"
+                    value={type}
+                    onValueChange={(val) => {
+                        if (val === "password" || val === "pin") toggleType(val);
+                    }}
+                >
                     <ToggleGroupItem className="w-24" value="password">
                         Password
                     </ToggleGroupItem>
@@ -66,11 +65,7 @@ export default function CredentialsGenerator() {
                 >
                     Generate
                 </Button>
-                <Button
-                    variant="outline"
-                    onClick={() => Copy({ input: otpInput })}
-                    disabled={!otpInput}
-                >
+                <Button variant="outline" onClick={actions.copy} disabled={!otpInput}>
                     Copy
                     <CopyIcon />
                 </Button>
