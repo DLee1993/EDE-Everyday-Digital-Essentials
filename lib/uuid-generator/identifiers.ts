@@ -22,3 +22,45 @@ export function generateUUIDv4(length: number, hyphens: boolean, uppercase: bool
     if (uppercase) uuid = uuid.toUpperCase();
     return uuid;
 }
+
+export function generateIdentifier({
+    format,
+    length,
+    hyphens,
+    uppercase,
+    prefix,
+    suffix,
+}: {
+    format: string;
+    length: number;
+    hyphens: boolean;
+    uppercase: boolean;
+    prefix: string;
+    suffix: string;
+}) {
+    let id = "";
+
+    switch (format) {
+        case "uuid":
+            id = generateUUIDv4(length, hyphens, uppercase);
+            break;
+        case "base36":
+            id = generateBase36(length);
+            break;
+        case "base62":
+            id = generateBase62(length);
+            break;
+        default:
+            id = generateUUIDv4(length, hyphens, uppercase);
+    }
+
+    const prefixPart = prefix ? `${prefix}-` : "";
+    const suffixPart = suffix ? `-${suffix}` : "";
+
+    return {
+        full: `${prefixPart}${id}${suffixPart}`,
+        prefix,
+        id,
+        suffix,
+    };
+}
