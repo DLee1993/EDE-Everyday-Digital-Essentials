@@ -36,6 +36,7 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { Action, FileConverterTableProps } from "@/types";
 
 export default function ConverterTable({
     actions,
