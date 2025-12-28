@@ -9,15 +9,15 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Copy, Download, Trash } from "lucide-react";
+import { ChevronDown, CopyIcon, Download, Trash } from "lucide-react";
+import { CopyAll } from "@/lib/global/copy-to-clipboard";
+import { downloadJsonFile } from "@/lib/global/download";
 
 export function UuidActions({
     generate,
     uuids,
     deleteAll,
     downloadAll,
-    copyAll,
-    downloadJson,
 }: UuidActionsProps) {
     return (
         <section className="flex flex-wrap gap-2">
@@ -44,9 +44,9 @@ export function UuidActions({
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem onClick={copyAll} disabled={uuids.length === 0} className="flex justify-between items-center">
+                    <DropdownMenuItem onClick={() => CopyAll({ inputs: uuids.map((u) => u.full) })} disabled={uuids.length === 0} className="flex justify-between items-center">
                         <span>Copy all</span>
-                        <Copy size={14} />
+                        <CopyIcon size={14} />
                     </DropdownMenuItem>
 
                     <DropdownMenuItem onClick={downloadAll} disabled={uuids.length === 0} className="flex justify-between items-center">
@@ -54,7 +54,7 @@ export function UuidActions({
                         <Download size={14} />
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem onClick={downloadJson} disabled={uuids.length === 0} className="flex justify-between items-center">
+                    <DropdownMenuItem onClick={() => downloadJsonFile("identifiers.json", uuids)} disabled={uuids.length === 0} className="flex justify-between items-center">
                         <span>Download as JSON</span>
                         <Download size={14} />
                     </DropdownMenuItem>

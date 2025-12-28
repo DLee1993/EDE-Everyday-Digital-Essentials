@@ -6,6 +6,7 @@ import SelectLength from "@/components/credentials-generator/SelectLength";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { CopyIcon } from "lucide-react";
 import { useCredentialsGenerator } from "@/hooks/credentials-generator/useCredentialsGenerator";
+import { Copy } from "@/lib/global/copy-to-clipboard";
 
 export default function CredentialsGenerator() {
     const gridLength = 38;
@@ -18,7 +19,6 @@ export default function CredentialsGenerator() {
         setPinLength: setPcLength,
         changeType: toggleType,
         regenerate: GenerateType,
-        actions,
     } = useCredentialsGenerator();
 
     return (
@@ -65,7 +65,11 @@ export default function CredentialsGenerator() {
                 >
                     Generate
                 </Button>
-                <Button variant="outline" onClick={actions.copy} disabled={!otpInput}>
+                <Button
+                    variant="outline"
+                    onClick={() => Copy({ input: otpInput })}
+                    disabled={!otpInput}
+                >
                     Copy
                     <CopyIcon />
                 </Button>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { clampValues } from "@/lib/uuid-generator/validation";
 import { generateIdentifier } from "@/lib/uuid-generator/identifiers";
 import { UuidObject } from "@/types";
-import { downloadJsonFile, downloadTextFile } from "@/lib/global/download";
+import { downloadTextFile } from "@/lib/global/download";
 
 export function useUuidGenerator(options: any) {
     const [uuids, setUuids] = useState<UuidObject[]>([]);
@@ -72,33 +72,26 @@ export function useUuidGenerator(options: any) {
 
     const downloadAll = () => {
         const fullList = uuids.map((u) => u.full).join("\n");
-        const prefixList = uuids.map((u) => u.prefix).join("\n");
+        const prefix = uuids[0]?.prefix ?? "";
+        const suffix = uuids[0]?.suffix ?? "";
         const coreList = uuids.map((u) => u.id).join("\n");
-        const suffixList = uuids.map((u) => u.suffix).join("\n");
 
         const text = [
+            `PREFIX - ${prefix}`,
+            `SUFFIX - ${suffix}`,
+            "",
+            "",
             "FULL IDENTIFIERS",
-            "----------------",
+            "",
             fullList,
             "",
-            "PREFIXES",
-            "--------",
-            prefixList,
             "",
-            "CORES",
-            "-----",
+            "ID",
+            "",
             coreList,
-            "",
-            "SUFFIXES",
-            "--------",
-            suffixList,
         ].join("\n");
 
         downloadTextFile("identifiers.txt", text);
-    };
-
-    const downloadJson = () => {
-        downloadJsonFile("identifiers.json", uuids);
     };
 
     return {
@@ -109,6 +102,5 @@ export function useUuidGenerator(options: any) {
         deleteOne,
         deleteAll,
         downloadAll,
-        downloadJson,
     };
 }

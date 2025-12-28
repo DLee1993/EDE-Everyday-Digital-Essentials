@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { GeneratePassword, GeneratePin } from "@/lib/credentials-generator/generate-credentials";
-import { Copy } from "@/lib/global/copy-to-clipboard";
 
 type CredentialType = "password" | "pin";
 
@@ -30,10 +29,6 @@ export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
         setValue("");
     }, []);
 
-    const actions = {
-        copy: () => Copy({ input: value }),
-    };
-
     return {
         type,
         value,
@@ -43,6 +38,5 @@ export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
         setPinLength,
         changeType,
         regenerate,
-        actions,
     };
 }

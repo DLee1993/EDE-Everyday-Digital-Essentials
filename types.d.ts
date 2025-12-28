@@ -174,8 +174,6 @@ type UuidActionsProps = {
     generate: () => void;
     deleteAll: () => void;
     downloadAll: () => void;
-    copyAll: () => void;
-    downloadJson: () => void;
 };
 
 type UuidOptionsProps = {
@@ -200,7 +198,6 @@ type UuidTableProps = {
     uuids: UuidObject[];
     regenerateOne: (index: number) => void;
     deleteOne: (index: number) => void;
-    copyOne: (id: string) => void;
 };
 
 type UuidObject = {

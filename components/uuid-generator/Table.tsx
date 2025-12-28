@@ -22,12 +22,13 @@ import {
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-import { Copy, RefreshCcw, Trash, EllipsisVertical } from "lucide-react";
+import { CopyIcon, RefreshCcw, Trash, EllipsisVertical } from "lucide-react";
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { UuidObject, UuidTableProps } from "@/types";
+import { Copy } from "@/lib/global/copy-to-clipboard";
 
-export function UuidTable({ uuids, regenerateOne, deleteOne, copyOne }: UuidTableProps) {
+export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
     const data = useMemo<UuidObject[]>(() => uuids, [uuids]);
 
     const columns = useMemo<ColumnDef<UuidObject>[]>(() => {
@@ -73,11 +74,11 @@ export function UuidTable({ uuids, regenerateOne, deleteOne, copyOne }: UuidTabl
                                 <DropdownMenuContent>
                                     <DropdownMenuGroup>
                                         <DropdownMenuItem
-                                            onClick={() => copyOne(value)}
+                                            onClick={() => Copy({ input: value })}
                                             className="flex justify-between items-center"
                                         >
                                             <span>Copy</span>
-                                            <Copy size={14} />
+                                            <CopyIcon size={14} />
                                         </DropdownMenuItem>
 
                                         <DropdownMenuItem
@@ -91,7 +92,7 @@ export function UuidTable({ uuids, regenerateOne, deleteOne, copyOne }: UuidTabl
                                         <DropdownMenuItem
                                             variant="destructive"
                                             onClick={() => deleteOne(index)}
-                                            className="flex justify-between items-center"
+                                            className="flex justify-between items-center hover:text-foreground!"
                                         >
                                             <span>Delete</span>
                                             <Trash size={14} />
@@ -104,7 +105,7 @@ export function UuidTable({ uuids, regenerateOne, deleteOne, copyOne }: UuidTabl
                 },
             },
         ];
-    }, [copyOne, regenerateOne, deleteOne]);
+    }, [regenerateOne, deleteOne]);
 
     const table = useReactTable({
         data,

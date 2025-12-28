@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Copy } from "@/lib/global/copy-to-clipboard";
 import { LorumIpsumOutputProps } from "@/types";
+import { CopyIcon } from "lucide-react";
 
 export function LoremOutput({ output, onGenerate, onClear }: LorumIpsumOutputProps) {
     return (
@@ -21,6 +22,7 @@ export function LoremOutput({ output, onGenerate, onClear }: LorumIpsumOutputPro
                     onClick={() => Copy({ input: output })}
                 >
                     Copy
+                    <CopyIcon/>
                 </Button>
 
                 <Button className="flex-1" variant="secondary" onClick={onClear}>

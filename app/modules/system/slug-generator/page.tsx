@@ -1,6 +1,7 @@
 "use client";
 
 import { useSlugGenerator } from "@/hooks/slug-generator/useSlugGenerator";
+import { Copy } from "@/lib/global/copy-to-clipboard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,8 +12,9 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Copy, Download } from "lucide-react";
+import {  CopyIcon, Download } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { downloadJsonFile, downloadTextFile } from "@/lib/global/download";
 
 export default function SlugGenerator() {
     const {
@@ -23,10 +25,6 @@ export default function SlugGenerator() {
         setSeparator,
         maxLength,
         setMaxLength,
-        copy,
-        download,
-        downloadJson,
-        copyJson,
     } = useSlugGenerator();
 
     return (
@@ -84,28 +82,28 @@ export default function SlugGenerator() {
 
                     <DropdownMenuContent align="end" className="w-48">
                         <DropdownMenuItem
-                            onClick={copy}
+                            onClick={() => Copy({ input: slug })}
                             className="flex justify-between items-center"
                         >
-                            Copy slug <Copy />
+                            Copy slug <CopyIcon />
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                            onClick={copyJson}
+                            onClick={() => Copy({ input: JSON.stringify({ slug }, null, 2) })}
                             className="flex justify-between items-center"
                         >
-                            Copy JSON <Copy />{" "}
+                            Copy JSON <CopyIcon />{" "}
                         </DropdownMenuItem>
 
                         <DropdownMenuSeparator />
 
                         <DropdownMenuItem
-                            onClick={download}
+                            onClick={() => downloadTextFile("slug.txt", `SLUG - ${slug}`)}
                             className="flex justify-between items-center"
                         >
                             Download slug <Download />
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                            onClick={downloadJson}
+                            onClick={() => downloadJsonFile("slug.json", { slug })}
                             className="flex justify-between items-center"
                         >
                             Download JSON <Download />
