@@ -2,7 +2,18 @@
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { LorumIpsumOptionsProps } from "@/types";
+import { Dispatch, SetStateAction } from "react";
+
+type LoremOptionsProps = {
+    paragraphs: number;
+    sentences: number;
+    minWords: number;
+    maxWords: number;
+    setParagraphs: Dispatch<SetStateAction<number>>;
+    setSentences: Dispatch<SetStateAction<number>>;
+    setMinWords: Dispatch<SetStateAction<number>>;
+    setMaxWords: Dispatch<SetStateAction<number>>;
+};
 
 export function LoremOptions({
     paragraphs,
@@ -13,7 +24,7 @@ export function LoremOptions({
     setSentences,
     setMinWords,
     setMaxWords,
-}: LorumIpsumOptionsProps) {
+}: LoremOptionsProps) {
     return (
         <section className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -25,8 +36,8 @@ export function LoremOptions({
                         min={1}
                         max={20}
                         value={paragraphs}
-                        onChange={(e) => setParagraphs(+e.target.value)}
-                         className="bg-transparent! border-x-0 border-t-0 w-16"
+                        onChange={(e) => setParagraphs(Number(e.target.value))}
+                        className="bg-transparent! border-x-0 border-t-0 w-16"
                     />
                 </fieldset>
 
@@ -38,8 +49,8 @@ export function LoremOptions({
                         min={1}
                         max={15}
                         value={sentences}
-                        onChange={(e) => setSentences(+e.target.value)}
-                         className="bg-transparent! border-x-0 border-t-0 w-16"
+                        onChange={(e) => setSentences(Number(e.target.value))}
+                        className="bg-transparent! border-x-0 border-t-0 w-16"
                     />
                 </fieldset>
 
@@ -51,8 +62,8 @@ export function LoremOptions({
                         min={2}
                         max={20}
                         value={minWords}
-                        onChange={(e) => setMinWords(+e.target.value)}
-                         className="bg-transparent! border-x-0 border-t-0 w-16"
+                        onChange={(e) => setMinWords(Number(e.target.value))}
+                        className="bg-transparent! border-x-0 border-t-0 w-16"
                     />
                 </fieldset>
 
@@ -64,8 +75,8 @@ export function LoremOptions({
                         min={2}
                         max={20}
                         value={maxWords}
-                        onChange={(e) => setMaxWords(+e.target.value)}
-                         className="bg-transparent! border-x-0 border-t-0 w-16"
+                        onChange={(e) => setMaxWords(Number(e.target.value))}
+                        className="bg-transparent! border-x-0 border-t-0 w-16"
                     />
                 </fieldset>
             </div>

@@ -7,7 +7,12 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { QRCodeSettingsProps } from "@/types";
+import { Dispatch, SetStateAction } from "react";
+
+type QRCodeSettingsProps = {
+    qrProps: { [key: string]: any };
+    handleChange: Dispatch<SetStateAction<{ [key: string]: any }>>;
+};
 
 export default function QRCodeSettings({ qrProps, handleChange }: QRCodeSettingsProps) {
     const buildEyeRadiusInput = (id: string) => {

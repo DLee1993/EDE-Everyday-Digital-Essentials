@@ -26,7 +26,20 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
-import { SelectUnitProps } from "@/types";
+
+type SelectUnitProps = {
+    type: "from" | "to";
+    selectedValue: {
+        from: Unit | "";
+        to: Unit | "";
+    };
+    setSelectedValue: React.Dispatch<
+        React.SetStateAction<{
+            from: Unit | "";
+            to: Unit | "";
+        }>
+    >;
+};
 
 export function SelectUnit({ type, selectedValue, setSelectedValue }: SelectUnitProps) {
     const [open, setOpen] = React.useState(false);
@@ -44,7 +57,11 @@ export function SelectUnit({ type, selectedValue, setSelectedValue }: SelectUnit
     };
 
     const triggerButton = (
-        <Button ref={triggerRef} variant="secondary" className="min-w-20 flex justify-between items-center">
+        <Button
+            ref={triggerRef}
+            variant="secondary"
+            className="min-w-20 flex justify-between items-center"
+        >
             {placeholder}
             <ChevronDown className={`${open ? "rotate-180" : "rotate-0"} transition-transform`} />
         </Button>

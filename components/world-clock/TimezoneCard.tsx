@@ -1,4 +1,11 @@
-import { FormattedTimezone } from "@/types";
+type FormattedTimezone = {
+    date: string;
+    time: string;
+    location: string;
+    offset: string;
+    timezone: string;
+    name: string;
+};
 
 export function TimezoneCard({ data }: { data?: FormattedTimezone }) {
     if (!data) return null;

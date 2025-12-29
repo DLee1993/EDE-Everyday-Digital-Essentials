@@ -18,7 +18,23 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { FocusTimerOptionsProps } from "@/types";
+
+type FocusTimerOptionsProps = {
+    alarm: boolean;
+    sound: boolean;
+    toggleAlarm: () => void;
+    toggleSound: () => void;
+
+    sessionPresets: { label: string; value: number }[];
+    selectedPreset: number;
+    selectPreset: (minutes: number) => void;
+    updatePreset: (label: string, minutes: number) => void;
+
+    breakTime: number;
+    setBreakMinutes: (minutes: number) => void;
+
+    time: number;
+};
 
 export default function Options({
     alarm,
@@ -74,12 +90,20 @@ export default function Options({
                     <div className="space-y-5">
                         <div className="flex justify-between items-center">
                             <p className="text-sm">Add a Break</p>
-                            <Checkbox onClick={toggleAlarm} checked={alarm} />
+                            <Checkbox
+                                onClick={toggleAlarm}
+                                checked={alarm}
+                                className="cursor-pointer"
+                            />
                         </div>
 
                         <div className="flex justify-between items-center">
                             <p className="text-sm">Add Sound</p>
-                            <Checkbox onClick={toggleSound} checked={sound} />
+                            <Checkbox
+                                onClick={toggleSound}
+                                checked={sound}
+                                className="cursor-pointer"
+                            />
                         </div>
                     </div>
 

@@ -1,19 +1,32 @@
-import { Action } from "@/types";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+export type FileConverterAction = {
+    file: File;
+    file_name: string;
+    file_size: number;
+    from: string;
+    to: string | null;
+    file_type: string;
+    is_converting?: boolean;
+    is_converted?: boolean;
+    is_error?: boolean;
+    url?: string;
+    output?: string;
+};
+
 export function useActions() {
-    const [actions, setActions] = useState<Action[]>([]);
+    const [actions, setActions] = useState<FileConverterAction[]>([]);
     const [isReady, setIsReady] = useState(false);
     const [isDone, setIsDone] = useState(false);
     const [isConverting, setIsConverting] = useState(false);
 
     // Add new actions (from uploader)
-    const addActions = useCallback((newActions: Action[]) => {
+    const addActions = useCallback((newActions: FileConverterAction[]) => {
         setActions((prev) => [...prev, ...newActions]);
     }, []);
 
     // Update a single action by file_name
-    const updateAction = useCallback((fileName: string, patch: Partial<Action>) => {
+    const updateAction = useCallback((fileName: string, patch: Partial<FileConverterAction>) => {
         setActions((prev) => prev.map((a) => (a.file_name === fileName ? { ...a, ...patch } : a)));
     }, []);
 

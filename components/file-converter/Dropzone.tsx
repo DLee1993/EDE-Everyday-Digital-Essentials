@@ -2,7 +2,13 @@
 
 import ReactDropzone from "react-dropzone";
 import { UploadCloud, Send } from "lucide-react";
-import { FileConverterDropzoneProps } from "@/types";
+
+type FileConverterDropzoneProps = {
+    isHover: boolean;
+    onHover: () => void;
+    onExitHover: () => void;
+    onUpload: (files: File[]) => void;
+};
 
 export default function ConverterDropzone({
     isHover,
@@ -26,7 +32,7 @@ export default function ConverterDropzone({
             {({ getRootProps, getInputProps }) => (
                 <div
                     {...getRootProps()}
-                    className="h-full min-h-52 w-full flex flex-1 lg:max-w-sm justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
+                    className="h-full min-h-52 w-full flex flex-1 lg:max-w-sm xl:max-w-1/3 justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
                 >
                     <input {...getInputProps()} />
 

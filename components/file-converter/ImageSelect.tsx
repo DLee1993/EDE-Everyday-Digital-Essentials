@@ -7,8 +7,13 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
 import { extensions } from "@/lib/file-converter/extensions";
-import { FileConverterImageSelectProps } from "@/types";
+
+type FileConverterImageSelectProps = {
+    action: FileConverterAction;
+    updateAction: (to: string) => void;
+};
 
 export function ImageSelect({ action, updateAction }: FileConverterImageSelectProps) {
     const filtered = extensions.image.filter((ext) => ext !== action.from);

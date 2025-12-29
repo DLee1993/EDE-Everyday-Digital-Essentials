@@ -9,7 +9,11 @@ import { PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HowToUse from "@/components/global/How-to-use";
 import { rawSidebarItems } from "@/components/global/app-sidebar-item-list";
-import { Greeting } from "@/types";
+
+type Greeting = {
+    message: string;
+    icon: React.ReactNode;
+};
 
 export default function Header() {
     const pathname = usePathname();

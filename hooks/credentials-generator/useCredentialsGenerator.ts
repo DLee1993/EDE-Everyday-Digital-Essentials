@@ -1,14 +1,11 @@
 import { useCallback, useState } from "react";
 import { GeneratePassword, GeneratePin } from "@/lib/credentials-generator/generate-credentials";
-import { CredentialType, UseCredentialsOptions } from "@/types";
 
-export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
-    const { defaultType = "password", defaultPasswordLength = 8, defaultPinLength = 4 } = options;
-
-    const [type, setType] = useState<CredentialType>(defaultType);
-    const [passwordLength, setPasswordLength] = useState(defaultPasswordLength);
-    const [pinLength, setPinLength] = useState(defaultPinLength);
-    const [value, setValue] = useState("");
+export function useCredentialsGenerator() {
+    const [type, setType] = useState<"password" | "pin">("password");
+    const [passwordLength, setPasswordLength] = useState<number>(8);
+    const [pinLength, setPinLength] = useState<number>(4);
+    const [value, setValue] = useState<string>("");
 
     const regenerate = useCallback(() => {
         const generated =
@@ -17,7 +14,7 @@ export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
         if (generated) setValue(generated);
     }, [type, passwordLength, pinLength]);
 
-    const changeType = useCallback((next: CredentialType) => {
+    const changeType = useCallback((next: "password" | "pin") => {
         setType(next);
         setValue("");
     }, []);
@@ -27,9 +24,9 @@ export function useCredentialsGenerator(options: UseCredentialsOptions = {}) {
         value,
         passwordLength,
         pinLength,
+        regenerate,
+        changeType,
         setPasswordLength,
         setPinLength,
-        changeType,
-        regenerate,
     };
 }

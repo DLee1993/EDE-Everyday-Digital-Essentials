@@ -4,22 +4,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import usePersistentState from "@/hooks/global/usePersistentState";
 
 export function useFocusTimer() {
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  PERSISTENT SETTINGS
-    // ────────────────────────────────────────────────────────────────
-    //
-
     const [time, setTime] = usePersistentState<number>("time", 300);
     const [breakTime, setBreakTime] = usePersistentState<number>("break", 300);
     const [alarm, setAlarm] = usePersistentState<boolean>("alarm", false);
     const [sound, setSound] = usePersistentState<boolean>("sound", false);
-
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  SESSION PRESETS
-    // ────────────────────────────────────────────────────────────────
-    //
 
     const [sessionPresets, setSessionPresets] = usePersistentState("sessionPresets", [
         { label: "Short", value: 1 },
@@ -37,22 +25,10 @@ export function useFocusTimer() {
         }
     }, [sessionPresets, selectedPreset, setSelectedPreset]);
 
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  RUNTIME STATE
-    // ────────────────────────────────────────────────────────────────
-    //
-
     const [remainingTime, setRemainingTime] = useState(time);
     const [remainingBreakTime, setRemainingBreakTime] = useState(breakTime);
     const [isRunning, setIsRunning] = useState(false);
     const [isBreak, setIsBreak] = useState(false);
-
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  ACTIONS
-    // ────────────────────────────────────────────────────────────────
-    //
 
     const toggleAlarm = () => setAlarm((prev) => !prev);
     const toggleSound = () => setSound((prev) => !prev);
@@ -93,12 +69,6 @@ export function useFocusTimer() {
         }, 1000);
     }, [time, breakTime]);
 
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  ALARM SOUND LOOP
-    // ────────────────────────────────────────────────────────────────
-    //
-
     const loopCountRef = useRef(0);
     const [replaySound, setReplaySound] = useState(0);
     const shouldPlaySound = sound && isBreak;
@@ -113,12 +83,6 @@ export function useFocusTimer() {
             if (!alarm) cancelBreak();
         }
     }, [alarm, cancelBreak]);
-
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  PRESET LOGIC
-    // ────────────────────────────────────────────────────────────────
-    //
 
     const selectPreset = (minutes: number) => {
         setSelectedPreset(minutes);
@@ -143,12 +107,6 @@ export function useFocusTimer() {
             })
         );
     };
-
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  TIMERS
-    // ────────────────────────────────────────────────────────────────
-    //
 
     // Work timer
     useEffect(() => {
@@ -200,12 +158,6 @@ export function useFocusTimer() {
             cancelBreak();
         }
     }, [alarm, remainingBreakTime, isBreak, cancelBreak]);
-
-    //
-    // ────────────────────────────────────────────────────────────────
-    //  EXPORT
-    // ────────────────────────────────────────────────────────────────
-    //
 
     return {
         time,

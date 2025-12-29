@@ -7,7 +7,7 @@ import { useFFmpeg } from "@/hooks/file-converter/useFFmpeg";
 import ConverterDropzone from "@/components/file-converter/Dropzone";
 import ConverterToolbar from "@/components/file-converter/Toolbar";
 import ConverterTable from "@/components/file-converter/Table";
-import { downloadBlobUrlFile } from "@/lib/global/download";
+import { DownloadBlobUrlFile } from "@/lib/global/download";
 
 export default function Converter() {
     const actions = useActions();
@@ -45,7 +45,7 @@ export default function Converter() {
                     onDownloadAll={() => {
                         actions.actions.forEach((a) => {
                             if (a.is_converted && a.url) {
-                                downloadBlobUrlFile(a.url, a.output || a.file_name);
+                                DownloadBlobUrlFile(a.url, a.output || a.file_name);
                             }
                         });
                     }}

@@ -1,11 +1,11 @@
 import { useCallback, useMemo, useState } from "react";
 import { NotifyUser } from "@/lib/global/NotifyUser";
-import { Action } from "@/types";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
 
 // Accepted MIME roots
 const VALID_TYPES = ["image/", "video/", "audio/"];
 
-export function useUploader(addActions: (actions: Action[]) => void) {
+export function useUploader(addActions: (actions: FileConverterAction[]) => void) {
     const [isHover, setIsHover] = useState(false);
 
     // Validate MIME type
@@ -36,7 +36,7 @@ export function useUploader(addActions: (actions: Action[]) => void) {
 
             if (validFiles.length === 0) return;
 
-            const newActions: Action[] = validFiles.map((file) => ({
+            const newActions: FileConverterAction[] = validFiles.map((file) => ({
                 file_name: file.name,
                 file_size: file.size,
                 from: getExtension(file.name),

@@ -2,17 +2,27 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Copy } from "@/lib/global/copy-to-clipboard";
-import { LorumIpsumOutputProps } from "@/types";
 import { CopyIcon } from "lucide-react";
+import { Copy } from "@/lib/global/copy-to-clipboard";
 
-export function LoremOutput({ output, onGenerate, onClear }: LorumIpsumOutputProps) {
+type LoremOutputProps = {
+    generate: () => void;
+    clear: () => void;
+    output: string;
+};
+
+export function LoremOutput({ generate, clear, output }: LoremOutputProps) {
     return (
         <section className="w-full space-y-10">
-            <Textarea name="output" className="resize-none w-full h-52" value={output} readOnly />
+            <Textarea
+                name="output"
+                className="resize-none w-full h-52"
+                value={output}
+                readOnly
+            />
 
             <div className="w-fit flex justify-between items-center gap-2">
-                <Button className="flex-1" onClick={onGenerate}>
+                <Button className="flex-1" onClick={generate}>
                     Generate
                 </Button>
 
@@ -22,10 +32,10 @@ export function LoremOutput({ output, onGenerate, onClear }: LorumIpsumOutputPro
                     onClick={() => Copy({ input: output })}
                 >
                     Copy
-                    <CopyIcon/>
+                    <CopyIcon />
                 </Button>
 
-                <Button className="flex-1" variant="secondary" onClick={onClear}>
+                <Button className="flex-1" variant="secondary" onClick={clear}>
                     Clear
                 </Button>
             </div>

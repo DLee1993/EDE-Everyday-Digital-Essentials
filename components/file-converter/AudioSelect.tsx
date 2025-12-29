@@ -7,9 +7,13 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
 import { extensions } from "@/lib/file-converter/extensions";
-import { FileConverterAudioSelectProps } from "@/types";
 
+type FileConverterAudioSelectProps = {
+    action: FileConverterAction;
+    updateAction: (to: string) => void;
+};
 
 export function AudioSelect({ action, updateAction }: FileConverterAudioSelectProps) {
     const filtered = extensions.audio.filter((ext) => ext !== action.from);

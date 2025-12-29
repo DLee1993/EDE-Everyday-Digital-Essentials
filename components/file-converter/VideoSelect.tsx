@@ -7,8 +7,13 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
 import { extensions } from "@/lib/file-converter/extensions";
-import { FileConverterVideoSelectProps } from "@/types";
+
+type FileConverterVideoSelectProps = {
+    action: FileConverterAction;
+    updateAction: (to: string) => void;
+};
 
 export function VideoSelect({ action, updateAction }: FileConverterVideoSelectProps) {
     const filtered = extensions.video.filter((ext) => ext !== action.from);

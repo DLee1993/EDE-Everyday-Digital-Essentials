@@ -24,6 +24,22 @@ export const Copy = async ({ input }: { input: string }) => {
     }
 };
 
+export const CopyJson = async ({ input }: { input: unknown }) => {
+    if (input === undefined || input === null) {
+        return NotifyUser({ type: "Error", title: "Error - Nothing to copy" });
+    }
+
+    const stringifiedInput = JSON.stringify(input, null, 2);
+
+    const success = await writeToClipboard(stringifiedInput);
+
+    if (success) {
+        NotifyUser({ type: "Success", title: "Success - Copied to clipboard" });
+    } else {
+        NotifyUser({ type: "Error", title: "Error - Failed to copy to clipboard" });
+    }
+};
+
 export const CopyAll = async ({ inputs }: { inputs: string[] }) => {
     if (!inputs || inputs.length === 0) {
         return NotifyUser({ type: "Error", title: "Error - Nothing to copy" });

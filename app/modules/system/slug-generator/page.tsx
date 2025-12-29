@@ -1,7 +1,6 @@
 "use client";
 
 import { useSlugGenerator } from "@/hooks/slug-generator/useSlugGenerator";
-import { Copy } from "@/lib/global/copy-to-clipboard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,30 +11,21 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import {  CopyIcon, Download } from "lucide-react";
+import { ChevronDown, CopyIcon, Download } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { downloadJsonFile, downloadTextFile } from "@/lib/global/download";
+import { Copy } from "@/lib/global/copy-to-clipboard";
+import { DownloadJsonFile, DownloadTextFile } from "@/lib/global/download";
 
 export default function SlugGenerator() {
-    const {
-        input,
-        setInput,
-        slug,
-        separator,
-        setSeparator,
-        maxLength,
-        setMaxLength,
-    } = useSlugGenerator();
+    const { input, setInput, slug, separator, setSeparator, maxLength, setMaxLength } =
+        useSlugGenerator();
 
     return (
         <section className="space-y-5">
             <section className="w-full max-w-4xl flex flex-wrap gap-4">
                 <div className="flex flex-col gap-1">
                     <label className="text-xs font-medium">Add a Separator</label>
-                    <Input
-                        value={separator}
-                        onChange={(e) => setSeparator(e.target.value)}
-                    />
+                    <Input value={separator} onChange={(e) => setSeparator(e.target.value)} />
                 </div>
 
                 <div className="flex flex-col gap-1">
@@ -75,12 +65,13 @@ export default function SlugGenerator() {
                     <DropdownMenuTrigger asChild>
                         <Button variant="secondary" disabled={!slug}>
                             Actions
+                            <ChevronDown />
                         </Button>
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent align="end" className="w-48">
                         <DropdownMenuItem
-                            onClick={() => Copy({ input: slug })}
+                            onClick={() => Copy({ input: slug})}
                             className="flex justify-between items-center"
                         >
                             Copy slug <CopyIcon />
@@ -95,13 +86,13 @@ export default function SlugGenerator() {
                         <DropdownMenuSeparator />
 
                         <DropdownMenuItem
-                            onClick={() => downloadTextFile("slug.txt", `SLUG - ${slug}`)}
+                            onClick={() => DownloadTextFile("slug.txt", `SLUG - ${slug}`)}
                             className="flex justify-between items-center"
                         >
                             Download slug <Download />
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                            onClick={() => downloadJsonFile("slug.json", { slug })}
+                            onClick={() => DownloadJsonFile("slug.json", { slug })}
                             className="flex justify-between items-center"
                         >
                             Download JSON <Download />

@@ -3,9 +3,25 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { FocusTimerSessionSelectorProps } from "@/types";
 
-export default function SessionSelector({ presets, selected, onSelect, onEditPreset }: FocusTimerSessionSelectorProps) {
+type FocusTimerPreset = {
+    label: string;
+    value: number; // minutes
+};
+
+type FocusTimerSessionSelectorProps = {
+    presets: FocusTimerPreset[];
+    selected: number;
+    onSelect: (minutes: number) => void;
+    onEditPreset: (label: string, minutes: number) => void;
+};
+
+export default function SessionSelector({
+    presets,
+    selected,
+    onSelect,
+    onEditPreset,
+}: FocusTimerSessionSelectorProps) {
     return (
         <section className="space-y-2.5">
             <p className="text-sm text-left">
@@ -18,21 +34,20 @@ export default function SessionSelector({ presets, selected, onSelect, onEditPre
                 className="flex flex-col"
             >
                 {presets.map((preset) => (
-                    <div
+                    <Label
                         key={preset.label}
-                        className={`flex-1 flex items-center justify-between gap-3 p-2 rounded border ${
+                        htmlFor={preset.label}
+                        className={`flex-1 flex items-center justify-between gap-3 p-2 rounded border cursor-pointer ${
                             selected === preset.value ? "border-ring/50" : "border-border"
                         }`}
                     >
                         <div className="flex items-center gap-2">
                             <RadioGroupItem
-                                className="cursor-pointer"
                                 value={String(preset.value)}
                                 id={preset.label}
+                                className="cursor-pointer"
                             />
-                            <Label htmlFor={preset.label} className="text-sm">
-                                {preset.label}
-                            </Label>
+                            <span className="text-sm">{preset.label}</span>
                         </div>
 
                         <Input
@@ -42,8 +57,9 @@ export default function SessionSelector({ presets, selected, onSelect, onEditPre
                             onChange={(e) => onEditPreset(preset.label, parseFloat(e.target.value))}
                             className="w-20 text-center"
                             min={0.5}
+                            onClick={(e) => e.stopPropagation()} // prevent selecting when editing
                         />
-                    </div>
+                    </Label>
                 ))}
             </RadioGroup>
         </section>

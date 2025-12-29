@@ -1,8 +1,8 @@
 "use client";
 
-import { useLoremIpsum } from "@/hooks/lorum-ipsum-generator/useLorumIpsum";
 import { LoremOptions } from "@/components/lorum-ipsum-generator/Options";
 import { LoremOutput } from "@/components/lorum-ipsum-generator/Output";
+import { useLoremIpsum } from "@/hooks/lorum-ipsum-generator/useLorumIpsum";
 
 export default function LoremIpsumGenerator() {
     const {
@@ -10,15 +10,13 @@ export default function LoremIpsumGenerator() {
         sentences,
         minWords,
         maxWords,
-        output,
-
         setParagraphs,
         setSentences,
         setMinWords,
         setMaxWords,
-
         generate,
         clear,
+        output,
     } = useLoremIpsum();
 
     return (
@@ -34,7 +32,7 @@ export default function LoremIpsumGenerator() {
                 setMaxWords={setMaxWords}
             />
 
-            <LoremOutput output={output} onGenerate={generate} onClear={clear} />
+            <LoremOutput generate={generate} clear={clear} output={output} />
         </section>
     );
 }

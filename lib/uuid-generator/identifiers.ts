@@ -19,7 +19,14 @@ export function generateUUIDv4(length: number, hyphens: boolean, uppercase: bool
     let uuid = crypto.randomUUID();
     if (!hyphens) uuid = uuid.replace(/-/g, "");
     if (length > 0) uuid = uuid.slice(0, length);
-    if (uppercase) uuid = uuid.toUpperCase();
+    if (uppercase) {
+        uuid = uuid
+            .split("")
+            .map((char) =>
+                /[a-f]/i.test(char) && Math.random() < 0.5 ? char.toUpperCase() : char.toLowerCase()
+            )
+            .join("");
+    }
     return uuid;
 }
 

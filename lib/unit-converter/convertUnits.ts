@@ -1,5 +1,12 @@
-import convert from "convert-units";
-import { ConvertUnitsProps } from "@/types";
+import convert, { Unit } from "convert-units";
+
+type ConvertUnitsProps = {
+    amount: string;
+    from: Unit | "";
+    to: Unit | "";
+    setResult: (result: number) => void;
+    setError: (error: string) => void;
+};
 
 export const ConvertUnits = ({ amount, from, to, setResult, setError }: ConvertUnitsProps) => {
     try {

@@ -1,42 +1,46 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { analyzeText } from "@/lib/word-counter/analyzeText";
 import { cleanFormatting } from "@/lib/word-counter/cleanFormatting";
 import { createStatsTable } from "@/lib/word-counter/createStatsTable";
 
-import { Copy } from "@/lib/global/copy-to-clipboard";
-import { downloadTextFile, downloadJsonFile } from "@/lib/global/download";
-import { TextAnalysis } from "@/types";
+type TextAnalysis = {
+    words: number;
+    characters: number;
+    charactersNoSpaces: number;
+    lines: number;
+    paragraphs: number;
+    readingTime: {
+        slow: string;
+        average: string;
+        fast: string;
+    };
+    speakingTime: {
+        slow: string;
+        average: string;
+        fast: string;
+    };
+};
 
 export function useWordCounter() {
     const [text, setText] = useState("");
 
     const analysis: TextAnalysis = useMemo(() => analyzeText(text), [text]);
-
-    const reset = () => setText("");
+    const table = useMemo(() => createStatsTable(analysis), [analysis]);
 
     const clearFormattingAction = () => {
         setText((t) => cleanFormatting(t));
     };
 
-    const actions = {
-        copyText: () => Copy({ input: text }),
-        downloadText: () => downloadTextFile("text.txt", text),
-
-        copyStats: () => Copy({ input: JSON.stringify(analysis, null, 2) }),
-        downloadStats: () => downloadJsonFile("word-stats.json", analysis),
-
-        downloadTable: () => {
-            const table = createStatsTable(analysis);
-            downloadTextFile("word-stats.txt", table);
-        },
-    };
+    const reset = useCallback(() => {
+        setText("");
+    }, []);
 
     return {
         text,
-        setText,
         analysis,
-        reset,
+        table,
+        setText,
         clearFormattingAction,
-        actions,
+        reset
     };
 }

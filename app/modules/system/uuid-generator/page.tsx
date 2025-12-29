@@ -7,6 +7,13 @@ import { UuidOptions } from "@/components/uuid-generator/Options";
 import { UuidActions } from "@/components/uuid-generator/Actions";
 import { UuidTable } from "@/components/uuid-generator/Table";
 
+export type UuidObject = {
+    full: string;
+    prefix: string;
+    id: string;
+    suffix: string;
+};
+
 export default function UUIDGeneratorPage() {
     const options = useUuidOptions();
     const generator = useUuidGenerator(options);
@@ -19,17 +26,13 @@ export default function UUIDGeneratorPage() {
 
             <div className="w-full max-w-4xl space-y-5">
                 <UuidActions
-                    generate={generator.generate}
                     uuids={generator.uuids}
+                    generate={generator.generate}
                     deleteAll={generator.deleteAll}
                     downloadAll={generator.downloadAll}
                 />
 
-                <UuidTable
-                    uuids={generator.uuids}
-                    regenerateOne={generator.regenerateOne}
-                    deleteOne={generator.deleteOne}
-                />
+                <UuidTable uuids={generator.uuids} regenerateOne={generator.regenerateOne} deleteOne={generator.deleteOne} />
             </div>
         </section>
     );

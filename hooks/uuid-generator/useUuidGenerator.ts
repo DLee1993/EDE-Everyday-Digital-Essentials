@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { clampValues } from "@/lib/uuid-generator/validation";
 import { generateIdentifier } from "@/lib/uuid-generator/identifiers";
-import { UuidObject } from "@/types";
-import { downloadTextFile } from "@/lib/global/download";
+import { DownloadTextFile } from "@/lib/global/download";
+import { UuidObject } from "@/app/modules/system/uuid-generator/page";
 
 export function useUuidGenerator(options: any) {
     const [uuids, setUuids] = useState<UuidObject[]>([]);
@@ -91,16 +91,16 @@ export function useUuidGenerator(options: any) {
             coreList,
         ].join("\n");
 
-        downloadTextFile("identifiers.txt", text);
+        DownloadTextFile("identifiers.txt", text);
     };
 
     return {
         uuids,
         error,
-        generate,
         regenerateOne,
+        generate,
         deleteOne,
         deleteAll,
-        downloadAll,
+        downloadAll
     };
 }

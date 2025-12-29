@@ -19,15 +19,16 @@ import {
     RotateCcw,
     ChevronDown,
 } from "lucide-react";
+import { Copy, CopyJson } from "@/lib/global/copy-to-clipboard";
+import { DownloadJsonFile, DownloadTextFile } from "@/lib/global/download";
 
 export default function WordCounter() {
-    const { text, setText, analysis, reset, clearFormattingAction, actions } =
-        useWordCounter();
+    const { text, setText, analysis, table, clearFormattingAction, reset } = useWordCounter();
 
     return (
         <section className="flex! md:flex-row! justify-evenly! space-y-10 gap-10">
             {/* LEFT COLUMN */}
-            <div className="w-full md:max-w-3/5 space-y-6">
+            <div className="w-full md:max-w-3/5 xl:max-w-1/3 space-y-6">
                 <Textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
@@ -62,7 +63,7 @@ export default function WordCounter() {
 
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
-                                onClick={actions.copyText}
+                                onClick={() => Copy({ input: text })}
                             >
                                 Copy Text
                                 <ClipboardCopy className="w-4 h-4" />
@@ -70,7 +71,7 @@ export default function WordCounter() {
 
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
-                                onClick={actions.downloadText}
+                                onClick={() => DownloadTextFile("text.txt", text)}
                             >
                                 Download Text
                                 <Download className="w-4 h-4" />
@@ -78,7 +79,7 @@ export default function WordCounter() {
 
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
-                                onClick={actions.copyStats}
+                                onClick={() => CopyJson({ input: analysis })}
                             >
                                 Copy Stats (JSON)
                                 <FileJson className="w-4 h-4" />
@@ -86,7 +87,7 @@ export default function WordCounter() {
 
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
-                                onClick={actions.downloadStats}
+                                onClick={() => DownloadJsonFile("wordStats.json", analysis)}
                             >
                                 Download Stats
                                 <FileJson className="w-4 h-4" />
@@ -94,7 +95,7 @@ export default function WordCounter() {
 
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
-                                onClick={actions.downloadTable}
+                                onClick={() => DownloadTextFile("word-stats.txt", table)}
                             >
                                 Download Table
                                 <Table className="w-4 h-4" />
@@ -105,7 +106,7 @@ export default function WordCounter() {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="w-full md:w-1/3 space-y-4">
+            <div className="w-full md:w-1/3 xl:max-w-1/5 space-y-4">
                 <div className="rounded-lg border p-4 bg-muted/30 space-y-2">
                     <h2 className="text-sm font-semibold text-muted-foreground">Metrics</h2>
 
@@ -115,12 +116,12 @@ export default function WordCounter() {
                     <p>Lines: {analysis.lines}</p>
                     <p>Paragraphs: {analysis.paragraphs}</p>
 
-                    <h3 className="text-sm font-semibold mt-4">Reading Time</h3>
+                    <h3 className="text-sm font-semibold mt-4 text-primary">Reading Time</h3>
                     <p>Slow: {analysis.readingTime.slow}</p>
                     <p>Average: {analysis.readingTime.average}</p>
                     <p>Fast: {analysis.readingTime.fast}</p>
 
-                    <h3 className="text-sm font-semibold mt-4">Speaking Time</h3>
+                    <h3 className="text-sm font-semibold mt-4 text-primary">Speaking Time</h3>
                     <p>Slow: {analysis.speakingTime.slow}</p>
                     <p>Average: {analysis.speakingTime.average}</p>
                     <p>Fast: {analysis.speakingTime.fast}</p>

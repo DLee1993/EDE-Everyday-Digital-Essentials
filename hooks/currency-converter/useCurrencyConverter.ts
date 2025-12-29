@@ -2,11 +2,10 @@ import { useCallback, useState, useMemo } from "react";
 import {
     convertCurrency,
     parseAmount,
-    RatesMap,
 } from "@/lib/currency-converter/convert-currency";
 
 
-export function useCurrencyConverter(rates: RatesMap, base: string) {
+export function useCurrencyConverter(rates: Record<string, number>, base: string) {
   
     const [amount, setAmount] = useState("1");
     const [selected, setSelected] = useState({ from: "GBP", to: "USD" });

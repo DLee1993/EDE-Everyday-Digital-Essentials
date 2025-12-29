@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { toBlobURL } from "@ffmpeg/util";
 import convertFile from "@/lib/file-converter/convert";
-import { Action } from "@/types";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
 
 export function useFFmpeg() {
     const ffmpegRef = useRef<FFmpeg | null>(null);
@@ -28,14 +28,14 @@ export function useFFmpeg() {
     }, [isLoaded]);
 
     // Convert a single file
-    const convertOne = useCallback(async (action: Action) => {
+    const convertOne = useCallback(async (action: FileConverterAction) => {
         if (!ffmpegRef.current) throw new Error("FFmpeg not loaded");
         return await convertFile(ffmpegRef.current, action);
     }, []);
 
     // Convert many files sequentially
     const convertMany = useCallback(
-        async (actions: Action[], update: (fileName: string, patch: Partial<Action>) => void) => {
+        async (actions: FileConverterAction[], update: (fileName: string, patch: Partial<FileConverterAction>) => void) => {
             setIsConverting(true);
 
             for (const action of actions) {

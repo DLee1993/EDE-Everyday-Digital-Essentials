@@ -9,7 +9,6 @@ import { useFocusTimer } from "@/hooks/focus-timer/useFocusTimer";
 
 export default function FocusTimer() {
     const {
-        // state
         time,
         breakTime,
         alarm,
@@ -21,7 +20,6 @@ export default function FocusTimer() {
         shouldPlaySound,
         replaySound,
 
-        // actions
         start,
         pause,
         reset,

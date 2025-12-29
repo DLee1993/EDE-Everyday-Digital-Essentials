@@ -1,6 +1,4 @@
-export type RatesMap = Record<string, number>;
-
-export function validateCurrency(code: string, rates: RatesMap): boolean {
+export function validateCurrency(code: string, rates: Record<string, number>): boolean {
     return Boolean(code && rates && rates[code] !== undefined);
 }
 
@@ -15,7 +13,7 @@ export function convertCurrency(
     amount: number,
     from: string,
     to: string,
-    rates: RatesMap,
+    rates: Record<string, number>,
     base: string
 ): number | null {
     if (!validateCurrency(from, rates) || !validateCurrency(to, rates)) return null;

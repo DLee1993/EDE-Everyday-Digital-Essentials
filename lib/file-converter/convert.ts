@@ -1,8 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// imports
-import { Action } from "@/types";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
+
+type FileConverterAction = {
+    file: File;
+    file_name: string;
+    file_size: number;
+    from: string;
+    to: string | null;
+    file_type: string;
+    is_converting?: boolean;
+    is_converted?: boolean;
+    is_error?: boolean;
+    url?: string;
+    output?: string;
+};
 
 function getFileExtension(file_name: string) {
     const regex = /(?:\.([^.]+))?$/; // Matches the last dot and everything after it
@@ -21,7 +33,7 @@ function removeFileExtension(file_name: string) {
     return file_name; // No file extension found
 }
 
-export default async function convert(ffmpeg: FFmpeg, action: Action): Promise<any> {
+export default async function convert(ffmpeg: FFmpeg, action: FileConverterAction): Promise<any> {
     const { file, to, file_name, file_type } = action;
     const input = getFileExtension(file_name);
     const output = removeFileExtension(file_name) + "." + to;

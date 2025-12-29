@@ -36,15 +36,21 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Action, FileConverterTableProps } from "@/types";
-import { downloadBlobUrlFile } from "@/lib/global/download";
+import { DownloadBlobUrlFile } from "@/lib/global/download";
+import { FileConverterAction } from "@/hooks/file-converter/useActions";
+
+type FileConverterTableProps = {
+    actions: FileConverterAction[];
+    updateAction: (fileName: string, patch: Partial<FileConverterAction>) => void;
+    deleteAction: (fileName: string) => void;
+};
 
 export default function ConverterTable({
     actions,
     updateAction,
     deleteAction,
 }: FileConverterTableProps) {
-    const columns: ColumnDef<Action>[] = [
+    const columns: ColumnDef<FileConverterAction>[] = [
         {
             accessorKey: "file_name",
             header: "Filename",
@@ -52,7 +58,8 @@ export default function ConverterTable({
                 const action = row.original;
                 return (
                     <div className="flex flex-col space-y-2">
-                        <span className="font-semibold">{compressFileName(action.file_name)}</span>
+                        <span className="font-semibold xl:hidden">{compressFileName(action.file_name)}</span>
+                        <span className="font-semibold hidden xl:block">{action.file_name}</span>
                         <sub>{bytesToSize(action.file_size)}</sub>
                     </div>
                 );
@@ -147,7 +154,7 @@ export default function ConverterTable({
                                 <DropdownMenuItem
                                     onClick={() => {
                                         if (!a.url) return;
-                                        downloadBlobUrlFile(a.url, a.output || a.file_name);
+                                        DownloadBlobUrlFile(a.url, a.output || a.file_name);
                                     }}
                                     className="flex justify-between items-center"
                                 >

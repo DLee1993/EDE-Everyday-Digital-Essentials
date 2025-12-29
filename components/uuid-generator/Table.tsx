@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/incompatible-library */
-
 "use client";
 
 import { useMemo } from "react";
@@ -25,10 +24,20 @@ import {
 import { CopyIcon, RefreshCcw, Trash, EllipsisVertical } from "lucide-react";
 
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { UuidObject, UuidTableProps } from "@/types";
 import { Copy } from "@/lib/global/copy-to-clipboard";
+import { UuidObject } from "@/app/modules/system/uuid-generator/page";
 
-export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
+type UuidTableProps = {
+    uuids: UuidObject[];
+    regenerateOne: (index: number) => void;
+    deleteOne: (index: number) => void;
+};
+
+export function UuidTable({
+    uuids,
+    regenerateOne: RegenerateOne,
+    deleteOne: DeleteOne,
+}: UuidTableProps) {
     const data = useMemo<UuidObject[]>(() => uuids, [uuids]);
 
     const columns = useMemo<ColumnDef<UuidObject>[]>(() => {
@@ -41,15 +50,11 @@ export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
 
                     return (
                         <div className="font-mono text-sm truncate max-w-[400px] flex gap-1">
-                            {prefix && (
-                                <span className="text-chart-4 font-semibold">{prefix}</span>
-                            )}
+                            {prefix && <span className="text-chart-4 font-semibold">{prefix}</span>}
 
                             <span className="text-foreground">{id}</span>
 
-                            {suffix && (
-                                <span className="text-chart-4 font-semibold">{suffix}</span>
-                            )}
+                            {suffix && <span className="text-chart-4 font-semibold">{suffix}</span>}
                         </div>
                     );
                 },
@@ -82,7 +87,7 @@ export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
                                         </DropdownMenuItem>
 
                                         <DropdownMenuItem
-                                            onClick={() => regenerateOne(index)}
+                                            onClick={() => RegenerateOne(index)}
                                             className="flex justify-between items-center"
                                         >
                                             <span>Regenerate</span>
@@ -91,7 +96,7 @@ export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
 
                                         <DropdownMenuItem
                                             variant="destructive"
-                                            onClick={() => deleteOne(index)}
+                                            onClick={() => DeleteOne(index)}
                                             className="flex justify-between items-center hover:text-foreground!"
                                         >
                                             <span>Delete</span>
@@ -105,7 +110,7 @@ export function UuidTable({ uuids, regenerateOne, deleteOne }: UuidTableProps) {
                 },
             },
         ];
-    }, [regenerateOne, deleteOne]);
+    }, [RegenerateOne, DeleteOne]);
 
     const table = useReactTable({
         data,

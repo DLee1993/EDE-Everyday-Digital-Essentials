@@ -26,7 +26,14 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronDown } from "lucide-react";
-import { SelectCurrenyProps } from "@/types";
+
+type SelectCurrenyProps = {
+    type: "from" | "to";
+    selectedValue: { from: string; to: string };
+    countryCodes: Record<string, number>;
+    setSelectedValue: React.Dispatch<React.SetStateAction<{ from: string; to: string }>>;
+    loading?: boolean;
+};
 
 export function SelectCurrency({
     type,

@@ -9,7 +9,25 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
-import { UuidOptionsProps } from "@/types";
+import { Checkbox } from "@/components/ui/checkbox";
+
+type UuidOptionsProps = {
+    count: number;
+    length: number;
+    hyphens: boolean;
+    uppercase: boolean;
+    prefix: string;
+    suffix: string;
+    format: string;
+
+    setCount: (value: number) => void;
+    setLength: (value: number) => void;
+    setHyphens: (value: boolean) => void;
+    setUppercase: (value: boolean) => void;
+    setPrefix: (value: string) => void;
+    setSuffix: (value: string) => void;
+    setFormat: (value: string) => void;
+};
 
 export function UuidOptions({
     count,
@@ -31,12 +49,10 @@ export function UuidOptions({
         <section className="w-full! max-w-4xl space-y-10">
             <div className="flex justify-between gap-5 flex-wrap">
                 <fieldset className="flex gap-5">
-                    <p className="flex items-center gap-2 text-sm leading-none font-medium">Select a Format</p>
-                    <Select
-                        name="country-label"
-                        value={format}
-                        onValueChange={setFormat}
-                    >
+                    <p className="flex items-center gap-2 text-sm leading-none font-medium">
+                        Select a Format
+                    </p>
+                    <Select name="country-label" value={format} onValueChange={setFormat}>
                         <SelectTrigger className="w-40">
                             <SelectValue placeholder="Select format" />
                         </SelectTrigger>
@@ -51,23 +67,21 @@ export function UuidOptions({
                 {format === "uuid" && (
                     <div className="w-fit grid grid-cols-2 gap-6">
                         <fieldset className="flex items-center gap-2">
-                            <input
-                                id="hyphens"
-                                type="checkbox"
-                                checked={hyphens}
-                                onChange={(e) => setHyphens(e.target.checked)}
-                            />
                             <Label htmlFor="hyphens">Include hyphens</Label>
+                            <Checkbox
+                                id="hyphens"
+                                checked={hyphens}
+                                onClick={() => setHyphens(!hyphens)}
+                            />
                         </fieldset>
 
                         <fieldset className="flex items-center gap-2">
-                            <input
+                            <Label htmlFor="uppercase">Uppercase & Lowercase</Label>
+                            <Checkbox
                                 id="uppercase"
-                                type="checkbox"
                                 checked={uppercase}
-                                onChange={(e) => setUppercase(e.target.checked)}
+                                onClick={() => setUppercase(!uppercase)}
                             />
-                            <Label htmlFor="uppercase">Uppercase</Label>
                         </fieldset>
                     </div>
                 )}

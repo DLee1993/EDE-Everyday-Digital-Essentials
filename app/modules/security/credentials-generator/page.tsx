@@ -17,8 +17,8 @@ export default function CredentialsGenerator() {
         pinLength: pcLength,
         setPasswordLength: setPwLength,
         setPinLength: setPcLength,
-        changeType: toggleType,
-        regenerate: GenerateType,
+        changeType,
+        regenerate,
     } = useCredentialsGenerator();
 
     return (
@@ -28,7 +28,7 @@ export default function CredentialsGenerator() {
                     type="single"
                     value={type}
                     onValueChange={(val) => {
-                        if (val === "password" || val === "pin") toggleType(val);
+                        if (val === "password" || val === "pin") changeType(val);
                     }}
                 >
                     <ToggleGroupItem className="w-24" value="password">
@@ -58,7 +58,7 @@ export default function CredentialsGenerator() {
             </InputOTP>
             <section className="w-full flex gap-5 max-w-231">
                 <Button
-                    onClick={GenerateType}
+                    onClick={regenerate}
                     aria-label={`Generate ${type}`}
                     className="flex-1 min-[425px]:max-w-24"
                     type="button"
