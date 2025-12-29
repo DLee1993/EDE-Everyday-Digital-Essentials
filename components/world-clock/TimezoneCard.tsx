@@ -1,11 +1,4 @@
-type FormattedTimezone = {
-    date: string;
-    time: string;
-    location: string;
-    offset: string;
-    timezone: string;
-    name: string;
-};
+import { FormattedTimezone } from "@/app/modules/workspace/world-clock/page";
 
 export function TimezoneCard({ data }: { data?: FormattedTimezone }) {
     if (!data) return null;

@@ -1,6 +1,6 @@
 
+import { FormattedTimezone } from "@/app/modules/workspace/world-clock/page";
 import { formatTimezone } from "@/lib/world-clock/format-timezones";
-import { FormattedTimezone } from "@/types";
 import { useState, useMemo } from "react";
 import { ITimezoneOption } from "react-timezone-select";
 

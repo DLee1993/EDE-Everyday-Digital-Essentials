@@ -4,6 +4,15 @@ import TimezoneSelect from "@/components/world-clock/TimezoneSelect";
 import { TimezoneCard } from "@/components/world-clock/TimezoneCard";
 import { useWorldClock } from "@/hooks/world-clock/useWorldClock";
 
+export type FormattedTimezone = {
+    date: string;
+    time: string;
+    location: string;
+    offset: string;
+    timezone: string;
+    name: string;
+};
+
 export default function WorldClock() {
     const { selected, setSelected, setCurrent, selectedTimezone, currentTimezone } =
         useWorldClock();
