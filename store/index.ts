@@ -2,8 +2,19 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-
 import focusTimerReducer from "@/store/slices/focus-timer-slice";
+
+// ---------------------------------------------
+// Persisted State Helper
+// ---------------------------------------------
+
+function persist<T>(key: string, data: T) {
+    try {
+        localStorage.setItem(key, JSON.stringify(data));
+    } catch (err) {
+        console.warn(`Error writing localStorage key "${key}":`, err);
+    }
+}
 
 // ---------------------------------------------
 // STORE
@@ -20,17 +31,14 @@ store.subscribe(() => {
     const { sessionMinutes, breakMinutes, selectedPreset, sessionPresets, alarm, sound } =
         store.getState().focusTimer;
 
-    localStorage.setItem(
-        "focusTimerConfig",
-        JSON.stringify({
-            sessionMinutes,
-            breakMinutes,
-            selectedPreset,
-            sessionPresets,
-            alarm,
-            sound,
-        })
-    );
+    persist("focusTimerConfig", {
+        sessionMinutes,
+        breakMinutes,
+        selectedPreset,
+        sessionPresets,
+        alarm,
+        sound,
+    });
 });
 
 // ---------------------------------------------
