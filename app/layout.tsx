@@ -8,6 +8,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/global/Header";
 import { AppSidebar } from "@/components/global/App-Sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import FocusTimerAlarm from "@/components/focus-timer/alarm";
+import { ToolEngine } from "@/store/ToolEngines";
 
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],
@@ -37,6 +39,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className={`${dmSans.className} ${courierPrime.variable} antialiased`}>
                 <StoreProvider>
+                    <ToolEngine />
                     <ThemeProvider storageKey="ede-theme">
                         <SidebarProvider defaultOpen={false}>
                             <TooltipProvider>
@@ -51,6 +54,7 @@ export default function RootLayout({
                         </SidebarProvider>
                     </ThemeProvider>
                     <Toaster />
+                    <FocusTimerAlarm />
                 </StoreProvider>
             </body>
         </html>
