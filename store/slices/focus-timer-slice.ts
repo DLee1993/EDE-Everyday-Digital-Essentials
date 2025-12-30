@@ -1,3 +1,4 @@
+import { rehydrateSlice } from "@/store/rehydrateSlice";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SessionPreset {
@@ -29,39 +30,34 @@ export interface FocusTimerState {
     showAlarm: boolean;
 }
 
-function loadConfig() {
-    if (typeof window === "undefined") return null;
-
-    try {
-        const raw = localStorage.getItem("focusTimerConfig");
-        return raw ? JSON.parse(raw) : null;
-    } catch {
-        return null;
-    }
-}
-
-const persisted = loadConfig();
-
-const initialState: FocusTimerState = {
-    sessionMinutes: persisted?.sessionMinutes ?? 5,
-    breakMinutes: persisted?.breakMinutes ?? 5,
-
-    time: Math.round((persisted?.sessionMinutes ?? 5) * 60),
-    breakTime: Math.round((persisted?.breakMinutes ?? 5) * 60),
-
-    alarm: persisted?.alarm ?? false,
-    sound: persisted?.sound ?? false,
-
-    sessionPresets: persisted?.sessionPresets ?? [
+const persisted = rehydrateSlice("focusTimerConfig", {
+    sessionMinutes: 5,
+    breakMinutes: 5,
+    alarm: false,
+    sound: false,
+    sessionPresets: [
         { label: "Short", value: 1 },
         { label: "Medium", value: 5 },
         { label: "Long", value: 30 },
     ],
+    selectedPreset: 5,
+});
 
-    selectedPreset: persisted?.selectedPreset ?? 5,
+const initialState: FocusTimerState = {
+    sessionMinutes: persisted.sessionMinutes,
+    breakMinutes: persisted.breakMinutes,
 
-    remainingTime: Math.round((persisted?.sessionMinutes ?? 5) * 60),
-    remainingBreakTime: Math.round((persisted?.breakMinutes ?? 5) * 60),
+    time: Math.round(persisted.sessionMinutes * 60),
+    breakTime: Math.round(persisted.breakMinutes * 60),
+
+    alarm: persisted.alarm,
+    sound: persisted.sound,
+
+    sessionPresets: persisted.sessionPresets,
+    selectedPreset: persisted.selectedPreset,
+
+    remainingTime: Math.round(persisted.sessionMinutes * 60),
+    remainingBreakTime: Math.round(persisted.breakMinutes * 60),
 
     isRunning: false,
     isBreak: false,
