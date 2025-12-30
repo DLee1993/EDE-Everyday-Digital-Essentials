@@ -28,7 +28,7 @@ export default function WordCounter() {
     return (
         <section className="flex! md:flex-row! justify-evenly! space-y-10 gap-10">
             {/* LEFT COLUMN */}
-            <div className="w-full md:max-w-3/5 xl:max-w-1/3 space-y-6">
+            <div className="w-full md:max-w-3/5 2xl:max-w-1/3 space-y-6">
                 <Textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
@@ -106,7 +106,7 @@ export default function WordCounter() {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="w-full md:w-1/3 xl:max-w-1/5 space-y-4">
+            <div className="w-full md:w-1/3 2xl:max-w-1/5 space-y-4">
                 <div className="rounded-lg border p-4 bg-muted/30 space-y-2">
                     <h2 className="text-sm font-semibold text-muted-foreground">Metrics</h2>
 
