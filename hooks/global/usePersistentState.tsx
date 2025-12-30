@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 
-export default function usePersistentState<T>(
+export default function usePersistentState<T extends object>(
     key: string,
     defaultValue: T
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
     const [value, setValue] = useState<T>(() => {
-        if (typeof window !== "undefined") {
-            try {
-                const stored = localStorage.getItem(key);
-                if (stored !== null) {
-                    return JSON.parse(stored);
-                }
-            } catch (err) {
-                console.warn(`Error reading localStorage key "${key}":`, err);
+        if (typeof window === "undefined") return defaultValue;
+
+        try {
+            const stored = localStorage.getItem(key);
+            if (stored !== null) {
+                const parsed = JSON.parse(stored);
+
+                // Merge stored values with defaults
+                return { ...defaultValue, ...parsed };
             }
+        } catch (err) {
+            console.warn(`Error reading localStorage key "${key}":`, err);
         }
+
         return defaultValue;
     });
 
@@ -32,7 +36,10 @@ export default function usePersistentState<T>(
         const syncAcrossTabs = (event: StorageEvent) => {
             if (event.key === key && event.newValue !== null) {
                 try {
-                    setValue(JSON.parse(event.newValue));
+                    const parsed = JSON.parse(event.newValue);
+
+                    // Merge again when syncing
+                    setValue((prev) => ({ ...prev, ...parsed }));
                 } catch (err) {
                     console.warn(`Error syncing localStorage key "${key}" across tabs:`, err);
                 }
