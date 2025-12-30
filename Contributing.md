@@ -34,7 +34,7 @@ This keeps the platform predictable and prevents accidental coupling.
 -   No JSX
 -   No UI imports
 -   Can import from `lib/`
--   Contains state, derived values, and actions
+-   Contains state, derived values, and functions
 
 ---
 
@@ -68,7 +68,7 @@ Contains:
 
 -   state
 -   derived values
--   actions
+-   functions
 -   logic
 
 No JSX. No `"use client"`.
@@ -129,7 +129,7 @@ Before submitting a PR:
 -   Tool works as expected
 -   Tool loads with no errors or warnings
 -   Tool loads correctly
--   Copy/download actions work
+-   Copy/download function work
 -   No `"use client"` leaks into hooks/lib
 -   Components are reusable
 -   Module page is thin
