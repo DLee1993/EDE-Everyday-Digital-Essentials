@@ -11,26 +11,19 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { formatTime } from "@/lib/focus-timer/formatTime";
+import { useFocusTimerState } from "@/hooks/focus-timer/useFocusTimer";
 
-type FocusTimerAlarmProps = {
-    isBreak: boolean;
-    breakTime: number;
-    alarm: boolean;
-    shouldPlaySound: boolean;
-    replaySound: number;
-    onAlarmEnded: () => void;
-    cancelBreak: () => void;
-};
+export default function FocusTimerAlarm() {
+    const {
+        isBreak,
+        remainingBreakTime,
+        alarm,
+        shouldPlaySound,
+        replaySound,
+        handleAlarmEnded,
+        actions,
+    } = useFocusTimerState();
 
-export default function Alarm({
-    isBreak,
-    breakTime,
-    alarm,
-    shouldPlaySound,
-    replaySound,
-    onAlarmEnded,
-    cancelBreak,
-}: FocusTimerAlarmProps) {
     return (
         <Dialog modal open={isBreak}>
             <DialogContent
@@ -57,7 +50,7 @@ export default function Alarm({
                             key={replaySound}
                             src="/sound/alarm.mp3"
                             autoPlay
-                            onEnded={onAlarmEnded}
+                            onEnded={handleAlarmEnded}
                         />
                     )}
 
@@ -67,7 +60,7 @@ export default function Alarm({
                                 className="relative z-10 text-7xl sm:text-8xl font-mono text-center
                            tracking-tight select-none animate-in fade-in-0 slide-in-from-bottom-2"
                             >
-                                {formatTime(breakTime)}
+                                {formatTime(remainingBreakTime)}
                             </p>
                         </div>
                     )}
@@ -76,7 +69,7 @@ export default function Alarm({
                         <DialogClose asChild>
                             <Button
                                 variant="secondary"
-                                onClick={cancelBreak}
+                                onClick={actions.cancelBreak}
                                 className="px-6 py-2 rounded-md"
                             >
                                 End break

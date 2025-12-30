@@ -1,77 +1,38 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import usePersistentState from "@/hooks/global/usePersistentState";
+// useFocusTimer.ts
+import { useEffect, useRef, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import {
+    start,
+    pause,
+    reset,
+    setBreakMinutes,
+    setSessionMinutes,
+    toggleAlarm,
+    toggleSound,
+    selectPreset,
+    updatePreset,
+    workTimer,
+    breakTimer,
+    startBreak,
+    cancelBreak,
+    closeAlarm,
+} from "@/store/slices/focus-timer-slice";
+import { useAppSelector } from "@/store";
 
-export function useFocusTimer() {
-    const [time, setTime] = usePersistentState<number>("time", 300);
-    const [breakTime, setBreakTime] = usePersistentState<number>("break", 300);
-    const [alarm, setAlarm] = usePersistentState<boolean>("alarm", false);
-    const [sound, setSound] = usePersistentState<boolean>("sound", false);
+// ---------------------------------------------------------
+// 1. PURE STATE + ACTIONS + SOUND LOGIC (SAFE ANYWHERE)
+// ---------------------------------------------------------
+export function useFocusTimerState() {
+    const dispatch = useDispatch();
+    const state = useAppSelector((state) => state.focusTimer);
 
-    const [sessionPresets, setSessionPresets] = usePersistentState("sessionPresets", [
-        { label: "Short", value: 1 },
-        { label: "Medium", value: 5 },
-        { label: "Long", value: 30 },
-    ]);
-
-    const [selectedPreset, setSelectedPreset] = usePersistentState("selectedPreset", 5);
-
-    // Ensure selectedPreset always matches an existing preset
-    useEffect(() => {
-        const exists = sessionPresets.some((p) => p.value === selectedPreset);
-        if (!exists) {
-            setSelectedPreset(sessionPresets[0].value);
-        }
-    }, [sessionPresets, selectedPreset, setSelectedPreset]);
-
-    const [remainingTime, setRemainingTime] = useState(time);
-    const [remainingBreakTime, setRemainingBreakTime] = useState(breakTime);
-    const [isRunning, setIsRunning] = useState(false);
-    const [isBreak, setIsBreak] = useState(false);
-
-    const toggleAlarm = () => setAlarm((prev) => !prev);
-    const toggleSound = () => setSound((prev) => !prev);
-
-    const start = () => {
-        setIsRunning(true);
-        setIsBreak(false);
-    };
-
-    const pause = () => setIsRunning(false);
-
-    const reset = () => {
-        setRemainingTime(time);
-        setRemainingBreakTime(breakTime);
-        setIsRunning(false);
-        setIsBreak(false);
-    };
-
-    const setSessionMinutes = (minutes: number) => {
-        const seconds = minutes * 60;
-        setTime(seconds);
-        setRemainingTime(seconds);
-        setIsRunning(false);
-    };
-
-    const setBreakMinutes = (minutes: number) => {
-        const seconds = minutes * 60;
-        setBreakTime(seconds);
-        setRemainingBreakTime(seconds);
-    };
-
-    const cancelBreak = useCallback(() => {
-        setRemainingTime(time);
-        setIsBreak(false);
-
-        setTimeout(() => {
-            setRemainingBreakTime(breakTime);
-        }, 1000);
-    }, [time, breakTime]);
-
+    // -----------------------------
+    // LOCAL UI-ONLY SOUND LOGIC
+    // -----------------------------
     const loopCountRef = useRef(0);
     const [replaySound, setReplaySound] = useState(0);
-    const shouldPlaySound = sound && isBreak;
+    const shouldPlaySound = state.sound && state.isBreak;
 
     const handleAlarmEnded = useCallback(() => {
         loopCountRef.current += 1;
@@ -80,110 +41,95 @@ export function useFocusTimer() {
             setReplaySound((prev) => prev + 1);
         } else {
             setReplaySound(0);
-            if (!alarm) cancelBreak();
+
+            if (!state.alarm) {
+                dispatch(cancelBreak());
+            }
+
+            dispatch(closeAlarm());
         }
-    }, [alarm, cancelBreak]);
+    }, [state.alarm, dispatch]);
 
-    const selectPreset = (minutes: number) => {
-        setSelectedPreset(minutes);
-        setSessionMinutes(minutes);
+    // -----------------------------
+    // ACTIONS OBJECT (EDE STYLE)
+    // -----------------------------
+    const actions = {
+        start: () => dispatch(start()),
+        pause: () => dispatch(pause()),
+        reset: () => dispatch(reset()),
+
+        setSessionMinutes: (m: number) => dispatch(setSessionMinutes(m)),
+        setBreakMinutes: (m: number) => dispatch(setBreakMinutes(m)),
+
+        selectPreset: (m: number) => dispatch(selectPreset(m)),
+        updatePreset: (label: string, minutes: number) =>
+            dispatch(updatePreset({ label, minutes })),
+
+        toggleAlarm: () => dispatch(toggleAlarm()),
+        toggleSound: () => dispatch(toggleSound()),
+
+        cancelBreak: () => dispatch(cancelBreak()),
     };
 
-    const updatePreset = (label: string, minutes: number) => {
-        setSessionPresets((prev) =>
-            prev.map((p) => {
-                if (p.label === label) {
-                    const oldValue = p.value;
-
-                    // If editing the active preset → update timer
-                    if (oldValue === selectedPreset) {
-                        setSelectedPreset(minutes);
-                        setSessionMinutes(minutes);
-                    }
-
-                    return { ...p, value: minutes };
-                }
-                return p;
-            })
-        );
+    return {
+        ...state,
+        shouldPlaySound,
+        replaySound,
+        handleAlarmEnded,
+        actions,
     };
+}
 
-    // Work timer
+// ---------------------------------------------------------
+// 2. INTERVAL ENGINE (CALL ONLY ONCE IN PAGE)
+// ---------------------------------------------------------
+export function useFocusTimerEngine() {
+    const dispatch = useDispatch();
+    const { isRunning, isBreak, alarm, remainingTime, remainingBreakTime } = useAppSelector(
+        (state) => state.focusTimer
+    );
+
+    // -----------------------------
+    // WORK INTERVAL
+    // -----------------------------
     useEffect(() => {
         if (!isRunning || isBreak) return;
 
-        const timer = setInterval(() => {
-            setRemainingTime((prev) => {
-                if (prev <= 1) {
-                    clearInterval(timer);
-                    return 0;
-                }
-                return prev - 1;
-            });
+        const id = setInterval(() => {
+            dispatch(workTimer());
         }, 1000);
 
-        return () => clearInterval(timer);
-    }, [isRunning, isBreak]);
+        return () => clearInterval(id);
+    }, [isRunning, isBreak, dispatch]);
 
-    // Transition to break
+    // -----------------------------
+    // BREAK INTERVAL
+    // -----------------------------
+    useEffect(() => {
+        if (!isBreak || !alarm) return;
+
+        const id = setInterval(() => {
+            dispatch(breakTimer());
+        }, 1000);
+
+        return () => clearInterval(id);
+    }, [isBreak, alarm, dispatch]);
+
+    // -----------------------------
+    // TRANSITION TO BREAK
+    // -----------------------------
     useEffect(() => {
         if (remainingTime === 0 && isRunning) {
-            setIsRunning(false);
-            setIsBreak(true);
-            setRemainingBreakTime(breakTime);
+            dispatch(startBreak());
         }
-    }, [remainingTime, isRunning, breakTime]);
+    }, [remainingTime, isRunning, dispatch]);
 
-    // Break timer
+    // -----------------------------
+    // AUTO-CANCEL BREAK
+    // -----------------------------
     useEffect(() => {
-        if (!alarm || !isBreak) return;
-
-        const timer = setInterval(() => {
-            setRemainingBreakTime((prev) => {
-                if (prev <= 1) {
-                    clearInterval(timer);
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [alarm, isBreak]);
-
-    // Auto-cancel break
-    useEffect(() => {
-        if (!alarm) return;
-        if (remainingBreakTime === 0 && isBreak) {
-            cancelBreak();
+        if (alarm && remainingBreakTime === 0 && isBreak) {
+            dispatch(cancelBreak());
         }
-    }, [alarm, remainingBreakTime, isBreak, cancelBreak]);
-
-    return {
-        time,
-        breakTime,
-        alarm,
-        sound,
-        remainingTime,
-        remainingBreakTime,
-        isRunning,
-        isBreak,
-        shouldPlaySound,
-        replaySound,
-
-        start,
-        pause,
-        reset,
-        setSessionMinutes,
-        setBreakMinutes,
-        toggleAlarm,
-        toggleSound,
-        cancelBreak,
-        handleAlarmEnded,
-
-        sessionPresets,
-        selectedPreset,
-        selectPreset,
-        updatePreset,
-    };
+    }, [alarm, remainingBreakTime, isBreak, dispatch]);
 }
