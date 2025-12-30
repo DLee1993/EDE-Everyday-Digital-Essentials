@@ -3,10 +3,11 @@ import { DM_Sans, Courier_Prime } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "next-themes";
+import StoreProvider from "@/store/provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/global/Header";
 import { AppSidebar } from "@/components/global/App-Sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],
@@ -35,20 +36,22 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${dmSans.className} ${courierPrime.variable} antialiased`}>
-                <ThemeProvider storageKey="ede-theme">
-                    <SidebarProvider defaultOpen={false}>
-                        <TooltipProvider>
-                            <AppSidebar />
-                            <div className="w-full flex flex-col min-h-screen">
-                                <Header />
-                                <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center">
-                                    {children}
-                                </main>
-                            </div>
-                        </TooltipProvider>
-                    </SidebarProvider>
-                </ThemeProvider>
-                <Toaster />
+                <StoreProvider>
+                    <ThemeProvider storageKey="ede-theme">
+                        <SidebarProvider defaultOpen={false}>
+                            <TooltipProvider>
+                                <AppSidebar />
+                                <div className="w-full flex flex-col min-h-screen">
+                                    <Header />
+                                    <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center">
+                                        {children}
+                                    </main>
+                                </div>
+                            </TooltipProvider>
+                        </SidebarProvider>
+                    </ThemeProvider>
+                    <Toaster />
+                </StoreProvider>
             </body>
         </html>
     );
