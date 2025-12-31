@@ -1,4 +1,3 @@
-
 // useFocusTimer.ts
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -16,7 +15,6 @@ import {
     breakTimer,
     startBreak,
     cancelBreak,
-    closeAlarm,
 } from "@/store/slices/focus-timer-slice";
 import { useAppSelector } from "@/store";
 
@@ -45,8 +43,6 @@ export function useFocusTimerState() {
             if (!state.alarm) {
                 dispatch(cancelBreak());
             }
-
-            dispatch(closeAlarm());
         }
     }, [state.alarm, dispatch]);
 
