@@ -50,7 +50,7 @@ export default function SlugGenerator() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Enter text to generate slug…"
-                    className="resize-none w-full h-52"
+                    className="resize-none w-full h-48"
                 />
             </section>
 
