@@ -1,12 +1,18 @@
 "use client";
 
+import { useFocusTimerState } from "@/hooks/focus-timer/useFocusTimer";
 import Timer from "@/components/focus-timer/timer";
 import Options from "@/components/focus-timer/options";
 import { Button } from "@/components/ui/button";
 import { Pause, Play, RotateCcw } from "lucide-react";
-import { useFocusTimerState } from "@/hooks/focus-timer/useFocusTimer";
+import { useEffect, useRef } from "react";
+import { useAlarmToast } from "@/hooks/global/use-alarm";
+import { toast } from "sonner";
+import { AlarmToastContent } from "@/components/focus-timer/AlarmToastContent";
 
 export default function FocusTimer() {
+    const triggerAlarmToast = useAlarmToast();
+
     const {
         time,
         breakTime,
@@ -14,12 +20,45 @@ export default function FocusTimer() {
         sound,
         remainingTime,
         isRunning,
-
+        isBreak,
         sessionPresets,
         selectedPreset,
-
         actions,
     } = useFocusTimerState();
+
+    const prev = useRef(remainingTime);
+    const toastIdRef = useRef<string | number | null>(null);
+
+    // -----------------------------------------------------
+    // 1. Trigger toast when focus session hits zero
+    // -----------------------------------------------------
+    useEffect(() => {
+        const hitZeroNow = remainingTime === 0 && prev.current !== 0;
+
+        if (hitZeroNow && alarm) {
+            toastIdRef.current = triggerAlarmToast({
+                title: (
+                    <span className="font-semibold text-foreground">Focus Session Complete!</span>
+                ),
+                description: <AlarmToastContent />,
+                actionLabel: "End Break",
+                onAction: () => actions.cancelBreak(),
+                soundEnabled: sound,
+            });
+        }
+
+        prev.current = remainingTime;
+    }, [remainingTime, alarm, sound, triggerAlarmToast, actions]);
+
+    // -----------------------------------------------------
+    // 2. Auto-close toast when break ends
+    // -----------------------------------------------------
+    useEffect(() => {
+        if (!isBreak && toastIdRef.current) {
+            toast.dismiss(toastIdRef.current);
+            toastIdRef.current = null;
+        }
+    }, [isBreak]);
 
     return (
         <section className="max-w-lg">
