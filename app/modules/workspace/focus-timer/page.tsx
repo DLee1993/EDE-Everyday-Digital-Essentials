@@ -8,7 +8,7 @@ import { Pause, Play, RotateCcw } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useAlarmToast } from "@/hooks/global/use-alarm";
 import { toast } from "sonner";
-import { AlarmToastContent } from "@/components/focus-timer/AlarmToastContent";
+import { AlarmToastContent } from "@/components/global/AlarmToastContent";
 
 export default function FocusTimer() {
     const triggerAlarmToast = useAlarmToast();
