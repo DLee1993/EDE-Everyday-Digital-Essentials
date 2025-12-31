@@ -1,5 +1,4 @@
-// useFocusTimer.ts
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
     start,
@@ -19,36 +18,12 @@ import {
 import { useAppSelector } from "@/store";
 
 // ---------------------------------------------------------
-// 1. PURE STATE + ACTIONS + SOUND LOGIC (SAFE ANYWHERE)
+// 1. PURE STATE + ACTIONS (CLEAN + MINIMAL)
 // ---------------------------------------------------------
 export function useFocusTimerState() {
     const dispatch = useDispatch();
     const state = useAppSelector((state) => state.focusTimer);
 
-    // -----------------------------
-    // LOCAL UI-ONLY SOUND LOGIC
-    // -----------------------------
-    const loopCountRef = useRef(0);
-    const [replaySound, setReplaySound] = useState(0);
-    const shouldPlaySound = state.sound && state.isBreak;
-
-    const handleAlarmEnded = useCallback(() => {
-        loopCountRef.current += 1;
-
-        if (loopCountRef.current < 3) {
-            setReplaySound((prev) => prev + 1);
-        } else {
-            setReplaySound(0);
-
-            if (!state.alarm) {
-                dispatch(cancelBreak());
-            }
-        }
-    }, [state.alarm, dispatch]);
-
-    // -----------------------------
-    // ACTIONS OBJECT (EDE STYLE)
-    // -----------------------------
     const actions = {
         start: () => dispatch(start()),
         pause: () => dispatch(pause()),
@@ -67,21 +42,15 @@ export function useFocusTimerState() {
         cancelBreak: () => dispatch(cancelBreak()),
     };
 
-    return {
-        ...state,
-        shouldPlaySound,
-        replaySound,
-        handleAlarmEnded,
-        actions,
-    };
+    return { ...state, actions };
 }
 
 // ---------------------------------------------------------
-// 2. INTERVAL ENGINE (CALL ONLY ONCE IN PAGE)
+// 2. INTERVAL ENGINE (RUN ONLY ONCE IN PAGE)
 // ---------------------------------------------------------
 export function useFocusTimerEngine() {
     const dispatch = useDispatch();
-    const { isRunning, isBreak, alarm, remainingTime, remainingBreakTime } = useAppSelector(
+    const { isRunning, isBreak, alarm, sound, remainingTime, remainingBreakTime } = useAppSelector(
         (state) => state.focusTimer
     );
 
@@ -91,10 +60,7 @@ export function useFocusTimerEngine() {
     useEffect(() => {
         if (!isRunning || isBreak) return;
 
-        const id = setInterval(() => {
-            dispatch(workTimer());
-        }, 1000);
-
+        const id = setInterval(() => dispatch(workTimer()), 1000);
         return () => clearInterval(id);
     }, [isRunning, isBreak, dispatch]);
 
@@ -102,30 +68,54 @@ export function useFocusTimerEngine() {
     // BREAK INTERVAL
     // -----------------------------
     useEffect(() => {
-        if (!isBreak || !alarm) return;
+        if (!isBreak) return;
 
-        const id = setInterval(() => {
-            dispatch(breakTimer());
-        }, 1000);
-
+        const id = setInterval(() => dispatch(breakTimer()), 1000);
         return () => clearInterval(id);
-    }, [isBreak, alarm, dispatch]);
+    }, [isBreak, dispatch]);
 
     // -----------------------------
-    // TRANSITION TO BREAK
+    // TRANSITION TO BREAK OR END
     // -----------------------------
     useEffect(() => {
+        const breakEnabled = alarm === true; // toast + break
+        const soundOnly = alarm === false && sound; // sound only, no break
+
         if (remainingTime === 0 && isRunning) {
-            dispatch(startBreak());
+            // 1. FULL BREAK MODE (alarm = true)
+            if (breakEnabled) {
+                dispatch(startBreak());
+                return;
+            }
+
+            // 2. SOUND-ONLY MODE (alarm = false, sound = true)
+            if (soundOnly) {
+                const audio = new Audio("/sound/alarm.mp3");
+                audio.loop = true;
+                audio.play().catch(() => {});
+
+                // Stop after 5 seconds
+                setTimeout(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }, 5000);
+
+                dispatch(reset());
+                return;
+            }
+
+            // 3. NO ALERT MODE (alarm = false, sound = false)
+            // or sound-only mode after playing sound
+            dispatch(reset());
         }
-    }, [remainingTime, isRunning, dispatch]);
+    }, [remainingTime, isRunning, alarm, sound, dispatch]);
 
     // -----------------------------
     // AUTO-CANCEL BREAK
     // -----------------------------
     useEffect(() => {
-        if (alarm && remainingBreakTime === 0 && isBreak) {
+        if (remainingBreakTime === 0 && isBreak) {
             dispatch(cancelBreak());
         }
-    }, [alarm, remainingBreakTime, isBreak, dispatch]);
+    }, [remainingBreakTime, isBreak, dispatch]);
 }

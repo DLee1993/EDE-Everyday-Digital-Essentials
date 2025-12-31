@@ -5,10 +5,10 @@ import Timer from "@/components/focus-timer/timer";
 import Options from "@/components/focus-timer/options";
 import { Button } from "@/components/ui/button";
 import { Pause, Play, RotateCcw } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useAlarmToast } from "@/hooks/global/use-alarm";
-import { toast } from "sonner";
 import { AlarmToastContent } from "@/components/global/AlarmToastContent";
+import { toast } from "sonner";
 
 export default function FocusTimer() {
     const triggerAlarmToast = useAlarmToast();
@@ -29,30 +29,29 @@ export default function FocusTimer() {
     const prev = useRef(remainingTime);
     const toastIdRef = useRef<string | number | null>(null);
 
-    // -----------------------------------------------------
+    // Helper: show break toast
+    const showBreakToast = useCallback(() => {
+        toastIdRef.current = triggerAlarmToast({
+            title: <span className="font-semibold text-foreground">Focus Session Complete!</span>,
+            description: <AlarmToastContent />,
+            actionLabel: "End Break",
+            onAction: () => actions.cancelBreak(),
+            soundEnabled: sound,
+        });
+    }, [triggerAlarmToast, actions, sound]);
+
     // 1. Trigger toast when focus session hits zero
-    // -----------------------------------------------------
     useEffect(() => {
         const hitZeroNow = remainingTime === 0 && prev.current !== 0;
 
         if (hitZeroNow && alarm) {
-            toastIdRef.current = triggerAlarmToast({
-                title: (
-                    <span className="font-semibold text-foreground">Focus Session Complete!</span>
-                ),
-                description: <AlarmToastContent />,
-                actionLabel: "End Break",
-                onAction: () => actions.cancelBreak(),
-                soundEnabled: sound,
-            });
+            showBreakToast();
         }
 
         prev.current = remainingTime;
-    }, [remainingTime, alarm, sound, triggerAlarmToast, actions]);
+    }, [remainingTime, alarm, showBreakToast]);
 
-    // -----------------------------------------------------
     // 2. Auto-close toast when break ends
-    // -----------------------------------------------------
     useEffect(() => {
         if (!isBreak && toastIdRef.current) {
             toast.dismiss(toastIdRef.current);
