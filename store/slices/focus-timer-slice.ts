@@ -25,9 +25,6 @@ export interface FocusTimerState {
     remainingBreakTime: number;
     isRunning: boolean;
     isBreak: boolean;
-
-    // Alarm visibility
-    showAlarm: boolean;
 }
 
 const persisted = rehydrateSlice("focusTimerConfig", {
@@ -61,7 +58,6 @@ const initialState: FocusTimerState = {
 
     isRunning: false,
     isBreak: false,
-    showAlarm: false,
 };
 
 export const focusTimerSlice = createSlice({
@@ -85,7 +81,6 @@ export const focusTimerSlice = createSlice({
             state.remainingBreakTime = state.breakTime;
             state.isRunning = false;
             state.isBreak = false;
-            state.showAlarm = false;
         },
 
         // -------------------------
@@ -195,25 +190,12 @@ export const focusTimerSlice = createSlice({
             state.isRunning = false;
             state.isBreak = true;
             state.remainingBreakTime = state.breakTime;
-            state.showAlarm = true;
         },
 
         cancelBreak(state) {
             state.isBreak = false;
             state.remainingTime = state.time;
             state.remainingBreakTime = state.breakTime;
-            state.showAlarm = false;
-        },
-
-        // -------------------------
-        // ALARM VISIBILITY
-        // -------------------------
-        openAlarm(state) {
-            state.showAlarm = true;
-        },
-
-        closeAlarm(state) {
-            state.showAlarm = false;
         },
     },
 });
@@ -232,8 +214,6 @@ export const {
     breakTimer,
     startBreak,
     cancelBreak,
-    openAlarm,
-    closeAlarm,
 } = focusTimerSlice.actions;
 
 export default focusTimerSlice.reducer;
