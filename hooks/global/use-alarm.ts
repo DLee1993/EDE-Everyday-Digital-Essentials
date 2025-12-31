@@ -15,7 +15,7 @@ function useAlarmSound() {
     const play = useCallback(() => {
         if (!audioRef.current) {
             const audio = new Audio("/sound/alarm.mp3");
-            audio.loop = true; // ← loop for entire break
+            audio.loop = true;
             audio.volume = 1;
             audioRef.current = audio;
         }
@@ -24,10 +24,11 @@ function useAlarmSound() {
     }, []);
 
     const stop = useCallback(() => {
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-        }
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        audio.pause();
+        audio.currentTime = 0;
     }, []);
 
     return { play, stop };
@@ -49,9 +50,11 @@ export function useAlarmToast() {
             description,
             duration: Infinity,
             closeButton: true,
+
             action: {
                 label: actionLabel,
                 onClick: () => {
+                    stop();
                     onAction();
                     toast.dismiss(id);
                 },
