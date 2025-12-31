@@ -8,7 +8,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/global/Header";
 import { AppSidebar } from "@/components/global/App-Sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import FocusTimerAlarm from "@/components/focus-timer/alarm";
 import { ToolEngine } from "@/store/ToolEngines";
 
 const dmSans = DM_Sans({
@@ -54,7 +53,6 @@ export default function RootLayout({
                         </SidebarProvider>
                     </ThemeProvider>
                     <Toaster />
-                    <FocusTimerAlarm />
                 </StoreProvider>
             </body>
         </html>
