@@ -20,7 +20,7 @@ export default function LoremIpsumGenerator() {
     } = useLoremIpsum();
 
     return (
-        <section className="w-full max-w-4xl space-y-10">
+        <section className="space-y-10">
             <LoremOptions
                 paragraphs={paragraphs}
                 sentences={sentences}

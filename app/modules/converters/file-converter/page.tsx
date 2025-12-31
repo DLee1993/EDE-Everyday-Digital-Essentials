@@ -20,7 +20,7 @@ export default function Converter() {
     const canNext = pageIndex + 1 < pageCount;
 
     return (
-        <section className="w-full flex! flex-col! md:flex-row! gap-5 h-full">
+        <section className="flex! flex-col! md:flex-row! gap-5 h-full">
             {/* Dropzone */}
             <NoSSRWrapper>
                 <ConverterDropzone

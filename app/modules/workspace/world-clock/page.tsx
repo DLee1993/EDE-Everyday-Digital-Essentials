@@ -18,7 +18,7 @@ export default function WorldClock() {
         useWorldClock();
 
     return (
-        <section className="w-11/12 max-w-2xl mx-auto flex flex-col items-center space-y-12">
+        <section className="mx-auto flex flex-col items-center space-y-12">
             <TimezoneSelect tz={selected} setTz={setSelected} setCurrentTz={setCurrent} />
 
             <section className="w-full">

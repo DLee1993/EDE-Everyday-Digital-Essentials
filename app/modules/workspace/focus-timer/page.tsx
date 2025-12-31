@@ -35,8 +35,8 @@ export default function FocusTimer() {
     });
 
     return (
-        <section className="max-w-lg">
-            <section className="w-full space-y-2.5">
+        <section>
+            <section className="space-y-2.5">
                 <Timer remaining={remainingTime} />
 
                 <div className="h-px bg-border w-full" />
