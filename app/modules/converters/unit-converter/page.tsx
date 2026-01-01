@@ -2,9 +2,9 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SelectUnit } from "@/components/unit-converter/SelectUnit";
+import { SelectUnit } from "@/components/unit-converter/select-unit";
 import { CircleAlert, CircleX } from "lucide-react";
-import { useUnitConverter } from "@/hooks/unit-converter/useUnitConverter";
+import { useUnitConverter } from "@/hooks/unit-converter/use-unit-converter";
 
 export default function UnitConverter() {
     const { amount, setAmount, selectedValue, setSelectedValue, result, error, convert, reset } =

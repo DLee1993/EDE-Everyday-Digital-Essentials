@@ -1,4 +1,4 @@
-import { formatTime } from "@/lib/focus-timer/formatTime";
+import { formatTime } from "@/lib/focus-timer/format-time";
 import { useAppSelector } from "@/store";
 import { useEffect, useRef, useCallback } from "react";
 import { toast } from "sonner";

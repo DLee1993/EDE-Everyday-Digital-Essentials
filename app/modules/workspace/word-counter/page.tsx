@@ -1,6 +1,6 @@
 "use client";
 
-import { useWordCounter } from "@/hooks/word-counter/useWordCounter";
+import { useWordCounter } from "@/hooks/word-counter/use-word-counter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {

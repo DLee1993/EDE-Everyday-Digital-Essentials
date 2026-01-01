@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import { NotifyUser } from "@/lib/global/NotifyUser";
-import { FileConverterAction } from "@/hooks/file-converter/useActions";
+import { NotifyUser } from "@/lib/global/notify-user";
+import { FileConverterAction } from "@/hooks/file-converter/use-actions";
 
 // Accepted MIME roots
 const VALID_TYPES = ["image/", "video/", "audio/"];

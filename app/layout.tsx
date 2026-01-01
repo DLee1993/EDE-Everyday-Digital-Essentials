@@ -5,10 +5,10 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "next-themes";
 import StoreProvider from "@/store/provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Header from "@/components/global/Header";
-import { AppSidebar } from "@/components/global/App-Sidebar";
+import Header from "@/components/global/header";
+import { AppSidebar } from "@/components/global/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { ToolEngine } from "@/store/ToolEngines";
+import { ToolEngine } from "@/store/tool-engines";
 
 const dmSans = DM_Sans({
     weight: ["300", "400", "500", "700"],

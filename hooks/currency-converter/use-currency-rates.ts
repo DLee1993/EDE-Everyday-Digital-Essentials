@@ -1,7 +1,7 @@
 // /hooks/currency/useCurrencyRates.ts
 import { useEffect, useState } from "react";
-import { fetchRates } from "@/lib/currency-converter/fetchRates";
-import { FALLBACK_RATES, FALLBACK_BASE } from "@/lib/currency-converter/fallbackRates";
+import { fetchRates } from "@/lib/currency-converter/fetch-rates";
+import { FALLBACK_RATES, FALLBACK_BASE } from "@/lib/currency-converter/fallback-rates";
 
 const CACHE_KEY = "currency_rates_v1";
 

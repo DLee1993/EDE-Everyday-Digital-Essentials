@@ -1,8 +1,8 @@
 "use client";
 
-import { useCurrencyRates } from "@/hooks/currency-converter/useCurrencyRates";
-import { useCurrencyConverter } from "@/hooks/currency-converter/useCurrencyConverter";
-import { SelectCurrency } from "@/components/currency-converter/SelectCurrency";
+import { useCurrencyRates } from "@/hooks/currency-converter/use-currency-rates";
+import { useCurrencyConverter } from "@/hooks/currency-converter/use-currency-converter";
+import { SelectCurrency } from "@/components/currency-converter/select-currency";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CircleAlert, CircleX } from "lucide-react";

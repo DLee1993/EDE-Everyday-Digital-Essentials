@@ -21,7 +21,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
-import { getLocalizedGreeting } from "@/lib/global/GreetUser";
+import { getLocalizedGreeting } from "@/lib/global/greet-user";
 import { Greeting } from "@/types";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";

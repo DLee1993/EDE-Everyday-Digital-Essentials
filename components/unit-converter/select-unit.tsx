@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Unit } from "convert-units";
-import { MeasurementTypes } from "@/lib/unit-converter/convertUnits";
+import { MeasurementTypes } from "@/lib/unit-converter/convert-units";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/global/use-media-query";
 

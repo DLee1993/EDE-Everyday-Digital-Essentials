@@ -1,4 +1,4 @@
-import { rehydrateSlice } from "@/store/rehydrateSlice";
+import { rehydrateSlice } from "@/store/rehydrate-slice";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SessionPreset {

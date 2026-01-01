@@ -1,6 +1,6 @@
 "use client";
 
-import { useFocusTimerState } from "@/hooks/focus-timer/useFocusTimer";
+import { useFocusTimerState } from "@/hooks/focus-timer/use-focus-timer";
 import Timer from "@/components/focus-timer/timer";
 import Options from "@/components/focus-timer/options";
 import { Button } from "@/components/ui/button";

@@ -1,4 +1,4 @@
-import { NotifyUser } from "./NotifyUser";
+import { NotifyUser } from "./notify-user";
 
 const writeToClipboard = async (input: string) => {
     try {

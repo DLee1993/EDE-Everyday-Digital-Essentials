@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { generateQRString, handleChange } from "@/lib/qr-code-generator/generateQR";
+import { generateQRString, handleChange } from "@/lib/qr-code-generator/generate-qr";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export default function EMAIL({

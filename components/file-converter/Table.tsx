@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils";
 import bytesToSize from "@/lib/file-converter/bites-to-size";
 import compressFileName from "@/lib/file-converter/compress-filename";
 
-import { ImageSelect } from "@/components/file-converter/ImageSelect";
-import { VideoSelect } from "@/components/file-converter/VideoSelect";
-import { AudioSelect } from "@/components/file-converter/AudioSelect";
+import { ImageSelect } from "@/components/file-converter/image-select";
+import { VideoSelect } from "@/components/file-converter/video-select";
+import { AudioSelect } from "@/components/file-converter/audio-select";
 import { Badge } from "@/components/ui/badge";
 
 import { EllipsisVertical, Minus, AlertCircle, Clock, Check, Download, Trash } from "lucide-react";
@@ -37,7 +37,7 @@ import {
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { DownloadBlobUrlFile } from "@/lib/global/download";
-import { FileConverterAction } from "@/hooks/file-converter/useActions";
+import { FileConverterAction } from "@/hooks/file-converter/use-actions";
 
 type FileConverterTableProps = {
     actions: FileConverterAction[];
@@ -58,7 +58,9 @@ export default function ConverterTable({
                 const action = row.original;
                 return (
                     <div className="flex flex-col space-y-2">
-                        <span className="font-semibold xl:hidden">{compressFileName(action.file_name)}</span>
+                        <span className="font-semibold xl:hidden">
+                            {compressFileName(action.file_name)}
+                        </span>
                         <span className="font-semibold hidden xl:block">{action.file_name}</span>
                         <sub>{bytesToSize(action.file_size)}</sub>
                     </div>

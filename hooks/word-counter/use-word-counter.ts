@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
-import { analyzeText } from "@/lib/word-counter/analyzeText";
-import { cleanFormatting } from "@/lib/word-counter/cleanFormatting";
-import { createStatsTable } from "@/lib/word-counter/createStatsTable";
+import { analyzeText } from "@/lib/word-counter/analyze-text";
+import { cleanFormatting } from "@/lib/word-counter/clean-formatting";
+import { createStatsTable } from "@/lib/word-counter/create-stats-table";
 
 type TextAnalysis = {
     words: number;
@@ -20,6 +20,7 @@ type TextAnalysis = {
         fast: string;
     };
 };
+
 
 export function useWordCounter() {
     const [text, setText] = useState("");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTextCase, caseOptions } from "@/hooks/text-case-converter/useTextCaseConverter";
+import { useTextCase, caseOptions } from "@/hooks/text-case-converter/use-text-case-converter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -108,7 +108,7 @@ export default function TextCaseConverter() {
                 </section>
             </div>
 
-            <div className="w-full max-w-4xl flex flex-wrap gap-5">
+            <div className="w-full flex flex-wrap gap-5">
                 {/* INPUT TEXTAREA */}
                 <section className="flex-1 min-w-80 flex flex-col gap-2">
                     <Label className="font-medium">Input</Label>

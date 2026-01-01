@@ -1,12 +1,12 @@
 "use client";
-import NoSSRWrapper from "@/app/NoSSRWrapper";
+import NoSSRWrapper from "@/app/no-ssr-wrapper";
 
-import { useActions } from "@/hooks/file-converter/useActions";
-import { useUploader } from "@/hooks/file-converter/useUploader";
-import { useFFmpeg } from "@/hooks/file-converter/useFFmpeg";
-import ConverterDropzone from "@/components/file-converter/Dropzone";
-import ConverterToolbar from "@/components/file-converter/Toolbar";
-import ConverterTable from "@/components/file-converter/Table";
+import { useActions } from "@/hooks/file-converter/use-actions";
+import { useUploader } from "@/hooks/file-converter/use-uploader";
+import { useFFmpeg } from "@/hooks/file-converter/use-ffmpeg";
+import ConverterDropzone from "@/components/file-converter/dropzone";
+import ConverterToolbar from "@/components/file-converter/toolbar";
+import ConverterTable from "@/components/file-converter/table";
 import { DownloadBlobUrlFile } from "@/lib/global/download";
 
 export default function Converter() {

@@ -3,7 +3,7 @@
 
 import { useRef, useState } from "react";
 import { QRCode } from "react-qrcode-logo";
-import QRCodeSettings from "@/components/qr-code-generator/QRCodeSettings";
+import QRCodeSettings from "@/components/qr-code-generator/qr-code-settings";
 import EMAIL from "@/components/qr-code-generator/forms/email";
 // import URL from "@/components/qr-code-generator/forms/url";
 // import SMS from "@/components/qr-code-generator/forms/sms";

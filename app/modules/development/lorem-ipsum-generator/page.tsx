@@ -1,8 +1,8 @@
 "use client";
 
-import { LoremOptions } from "@/components/lorum-ipsum-generator/Options";
-import { LoremOutput } from "@/components/lorum-ipsum-generator/Output";
-import { useLoremIpsum } from "@/hooks/lorum-ipsum-generator/useLorumIpsum";
+import { LoremOptions } from "@/components/lorum-ipsum-generator/options";
+import { LoremOutput } from "@/components/lorum-ipsum-generator/output";
+import { useLoremIpsum } from "@/hooks/lorum-ipsum-generator/use-lorum-ipsum";
 
 export default function LoremIpsumGenerator() {
     const {

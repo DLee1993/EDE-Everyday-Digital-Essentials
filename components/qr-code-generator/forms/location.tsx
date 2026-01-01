@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { GenerateQrCode } from "@/lib/qr-code-generator/generateQR";
+import { GenerateQrCode } from "@/lib/qr-code-generator/generate-qr";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";

@@ -11,7 +11,7 @@ import {
     SidebarGroupLabel,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
-import { PageIdentifier } from "@/components/global/PageIdentifier";
+import { PageIdentifier } from "@/components/global/page-identifier";
 
 // Flatten the toolbox for search
 const allTools = sidebarItems.flatMap((category) =>
@@ -83,7 +83,9 @@ export const MenuSearch = ({
                 <SidebarGroup key={`${category} menu group`}>
                     <SidebarGroupLabel className="text-sm text-green-600 bg-primary/10">
                         {category}
-                        <SidebarMenuBadge className="text-green-600">{tools.length}</SidebarMenuBadge>
+                        <SidebarMenuBadge className="text-green-600">
+                            {tools.length}
+                        </SidebarMenuBadge>
                     </SidebarGroupLabel>
                     <SidebarMenu>
                         {tools.map((item, i) => (

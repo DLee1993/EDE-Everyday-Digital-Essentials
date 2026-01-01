@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { getLocalizedGreeting } from "@/lib/global/GreetUser";
+import { getLocalizedGreeting } from "@/lib/global/greet-user";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HowToUse from "@/components/global/How-to-use";
+import HowToUse from "@/components/global/how-to-use";
 import { rawSidebarItems } from "@/components/global/app-sidebar-item-list";
 
 type Greeting = {

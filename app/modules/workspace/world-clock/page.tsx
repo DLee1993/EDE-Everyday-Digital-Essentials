@@ -1,8 +1,8 @@
 "use client";
 
-import TimezoneSelect from "@/components/world-clock/TimezoneSelect";
-import { TimezoneCard } from "@/components/world-clock/TimezoneCard";
-import { useWorldClock } from "@/hooks/world-clock/useWorldClock";
+import TimezoneSelect from "@/components/world-clock/timezone-select";
+import { TimezoneCard } from "@/components/world-clock/timezone-card";
+import { useWorldClock } from "@/hooks/world-clock/use-world-clock";
 
 export type FormattedTimezone = {
     date: string;

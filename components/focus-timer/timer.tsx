@@ -1,7 +1,7 @@
 "use client";
 
 import { useMounted } from "@/hooks/global/use-mounted";
-import { formatTime } from "@/lib/focus-timer/formatTime";
+import { formatTime } from "@/lib/focus-timer/format-time";
 
 export default function Timer({ remaining }: { remaining: number }) {
     const mounted = useMounted();

@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Dispatch, SetStateAction, useState } from "react";
-import { GenerateQrCode } from "@/lib/qr-code-generator/generateQR";
+import { GenerateQrCode } from "@/lib/qr-code-generator/generate-qr";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 

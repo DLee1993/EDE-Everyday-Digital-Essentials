@@ -1,11 +1,11 @@
 "use client";
 
-import { useUuidOptions } from "@/hooks/uuid-generator/useUuidOptions";
-import { useUuidGenerator } from "@/hooks/uuid-generator/useUuidGenerator";
+import { useUuidOptions } from "@/hooks/uuid-generator/use-uuid-options";
+import { useUuidGenerator } from "@/hooks/uuid-generator/use-uuid-generator";
 
-import { UuidOptions } from "@/components/uuid-generator/Options";
-import { UuidActions } from "@/components/uuid-generator/Actions";
-import { UuidTable } from "@/components/uuid-generator/Table";
+import { UuidOptions } from "@/components/uuid-generator/options";
+import { UuidActions } from "@/components/uuid-generator/actions";
+import { UuidTable } from "@/components/uuid-generator/table";
 
 export type UuidObject = {
     full: string;

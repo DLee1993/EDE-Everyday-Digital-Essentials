@@ -7,16 +7,16 @@ import {
     SelectContent,
     SelectItem,
 } from "@/components/ui/select";
-import { FileConverterAction } from "@/hooks/file-converter/useActions";
+import { FileConverterAction } from "@/hooks/file-converter/use-actions";
 import { extensions } from "@/lib/file-converter/extensions";
 
-type FileConverterAudioSelectProps = {
+type FileConverterImageSelectProps = {
     action: FileConverterAction;
     updateAction: (to: string) => void;
 };
 
-export function AudioSelect({ action, updateAction }: FileConverterAudioSelectProps) {
-    const filtered = extensions.audio.filter((ext) => ext !== action.from);
+export function ImageSelect({ action, updateAction }: FileConverterImageSelectProps) {
+    const filtered = extensions.image.filter((ext) => ext !== action.from);
 
     return (
         <Select value={action.to ?? ""} onValueChange={updateAction}>

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 // import { sidebarItems } from "@/components/global/app-sidebar-item-list";
-import ChangeTheme from "@/components/global/ThemeToggle";
+import ChangeTheme from "@/components/global/theme-toggle";
 import { Home, FolderGit2 } from "lucide-react";
 import {
     Sidebar,
@@ -15,8 +15,8 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
-import { PageIdentifier } from "@/components/global/PageIdentifier";
-import MenuSearch from "@/components/global/MenuSearch";
+import { PageIdentifier } from "@/components/global/page-identifier";
+import MenuSearch from "@/components/global/menu-search";
 
 export function AppSidebar() {
     const pathname = usePathname();
@@ -77,8 +77,13 @@ export function AppSidebar() {
                                     target="_blank"
                                     className="group"
                                 >
-                                    <FolderGit2 size={15} className="ml-0.5 group-hover:text-sidebar-primary-foreground" />
-                                    <p className="mx-2 min-w-32 group-hover:text-sidebar-primary-foreground">Request a tool</p>
+                                    <FolderGit2
+                                        size={15}
+                                        className="ml-0.5 group-hover:text-sidebar-primary-foreground"
+                                    />
+                                    <p className="mx-2 min-w-32 group-hover:text-sidebar-primary-foreground">
+                                        Request a tool
+                                    </p>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>

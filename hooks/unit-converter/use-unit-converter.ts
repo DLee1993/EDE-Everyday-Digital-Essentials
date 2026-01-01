@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Unit } from "convert-units";
-import { ConvertUnits } from "@/lib/unit-converter/convertUnits";
+import { ConvertUnits } from "@/lib/unit-converter/convert-units";
 
 export function useUnitConverter() {
     const [amount, setAmount] = useState("");

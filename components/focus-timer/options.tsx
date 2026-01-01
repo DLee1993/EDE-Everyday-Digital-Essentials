@@ -1,6 +1,6 @@
 "use client";
 
-import SessionSelector from "@/components/focus-timer/SessionButtons";
+import SessionSelector from "@/components/focus-timer/session-buttons";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, SettingsIcon } from "lucide-react";

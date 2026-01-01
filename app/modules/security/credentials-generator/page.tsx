@@ -2,10 +2,10 @@
 
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
-import SelectLength from "@/components/credentials-generator/SelectLength";
+import SelectLength from "@/components/credentials-generator/select-length";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { CopyIcon } from "lucide-react";
-import { useCredentialsGenerator } from "@/hooks/credentials-generator/useCredentialsGenerator";
+import { useCredentialsGenerator } from "@/hooks/credentials-generator/use-credentials-generator";
 import { Copy } from "@/lib/global/copy-to-clipboard";
 
 export default function CredentialsGenerator() {
