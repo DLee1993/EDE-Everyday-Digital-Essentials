@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { GenerateQrCode } from "@/lib/qr-code-generator/generate-qr";
+import { generateQRString } from "@/lib/qr-code-generator/generate-qr";
 import { Dispatch, SetStateAction, useState } from "react";
 
 export default function SMS({ setValue }: { setValue: Dispatch<SetStateAction<string>> }) {
     const [sms, setSms] = useState({});
 
     function ProcessData({ type }: { type: string }) {
-        const qrValue = GenerateQrCode({ value: sms, type });
+        const qrValue = generateQRString(type, sms);
 
         setValue(qrValue as string);
     }
@@ -33,7 +33,7 @@ export default function SMS({ setValue }: { setValue: Dispatch<SetStateAction<st
                     />
                     <Label
                         htmlFor="Number"
-                        className={`pointer-events-none absolute text-xs duration-300 transition-all bg-background transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 
+                        className={`pointer-events-none absolute text-xs duration-300 transition-all bg-background transform -translate-y-4 scale-75 top-2 z-10 origin-left px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 
                     peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1`}
                     >
                         Phone Number
@@ -51,7 +51,7 @@ export default function SMS({ setValue }: { setValue: Dispatch<SetStateAction<st
                 />
                 <Label
                     htmlFor="Body"
-                    className={`pointer-events-none absolute text-xs duration-300 transition-all bg-background transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 
+                    className={`pointer-events-none absolute text-xs duration-300 transition-all bg-background transform -translate-y-4 scale-75 top-2 z-10 origin-left px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 
                     peer-placeholder-shown:top-6 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:text-blue-600 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1`}
                 >
                     Message
