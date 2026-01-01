@@ -32,7 +32,7 @@ export default function ConverterDropzone({
             {({ getRootProps, getInputProps }) => (
                 <div
                     {...getRootProps()}
-                    className="h-full min-h-52 w-full flex flex-1 lg:max-w-sm xl:max-w-1/3 justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
+                    className="h-full min-h-52 w-full flex flex-1 max-w-2/5 justify-center items-center cursor-pointer border-[1.5px] border-dashed border-border rounded-sm"
                 >
                     <input {...getInputProps()} />
 
