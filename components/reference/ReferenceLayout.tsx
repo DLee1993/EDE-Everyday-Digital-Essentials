@@ -1,5 +1,6 @@
 "use client";
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, ReactNode } from "react";
 
 type Topic = {
@@ -16,29 +17,31 @@ export default function ReferenceLayout({ topics, content }: ReferenceLayoutProp
     const [active, setActive] = useState(topics[0].id);
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="relative w-full flex flex-col md:flex-row gap-2 md:gap-6">
             {/* Mobile Dropdown */}
             <div className="md:hidden">
-                <select
-                    value={active}
-                    onChange={(e) => setActive(e.target.value)}
-                    className="w-full rounded-md border bg-background p-2 text-sm"
-                >
-                    {topics.map((topic) => (
-                        <option key={topic.id} value={topic.id}>
-                            {topic.title}
-                        </option>
-                    ))}
-                </select>
+                <Select onValueChange={(value) => setActive(value)}>
+                    <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Topic" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {topics.map((topic) => (
+                            <SelectItem value={topic.id} key={topic.id}>
+                                {topic.title}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
 
-            {/* Desktop List */}
-            <ul className="hidden md:flex gap-4 border-b pb-2">
-                {topics.map((topic) => (
-                    <li
-                        key={topic.id}
-                        onClick={() => setActive(topic.id)}
-                        className={`
+            <div className="sticky top-20 min-w-32 flex justify-center items-center h-fit">
+                {/* Desktop List */}
+                <ul className="hidden md:flex md:flex-col w-full gap-4 border-b pb-2">
+                    {topics.map((topic) => (
+                        <li
+                            key={topic.id}
+                            onClick={() => setActive(topic.id)}
+                            className={`
               cursor-pointer text-sm relative pb-1 transition-colors
               ${
                   active === topic.id
@@ -46,18 +49,19 @@ export default function ReferenceLayout({ topics, content }: ReferenceLayoutProp
                       : "text-muted-foreground hover:text-foreground"
               }
             `}
-                    >
-                        {topic.title}
+                        >
+                            {topic.title}
 
-                        {active === topic.id && (
-                            <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-primary rounded-full" />
-                        )}
-                    </li>
-                ))}
-            </ul>
+                            {active === topic.id && (
+                                <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-primary rounded-full" />
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
             {/* Content */}
-            <div className="mt-4">{content[active]}</div>
+            <div className="mt-4 md:mt-0">{content[active]}</div>
         </div>
     );
 }
