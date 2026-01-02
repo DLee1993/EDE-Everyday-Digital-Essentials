@@ -156,7 +156,7 @@ export default function QRCodeGenerator() {
                 </div>
                 <div className="space-y-5">
                     <p className="mb-2.5 text-primary">Step 2 - Fill in the details</p>
-                    <section className="[&_input]:bg-transparent! [&_input]:focus-visible:ring-ring/15! [&_textarea]:bg-transparent! [&_textarea]:focus-visible:ring-ring/15!">
+                    <section>
                         {/* RUN A CHECK TO RENDER EACH FORM BASED ON TYPE, ALSO PASS ON THE SET VALUE FUNCTION */}
                         {/* {type === "URL" ? <URL setQrCodeValue={setQrCodeValue} /> : null} */}
                         {type === "email" ? <EMAIL setQrCodeValue={setQrCodeValue} /> : null}

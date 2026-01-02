@@ -116,12 +116,12 @@ export function UuidOptions({
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="grid gap-2">
                     <Label htmlFor="prefix">Prefix</Label>
-                    <Input id="prefix" value={prefix} onChange={(e) => setPrefix(e.target.value)} />
+                    <Input id="prefix" value={prefix} onChange={(e) => setPrefix(e.target.value)} placeholder="e.g. prefix-ID"/>
                 </div>
 
                 <div className="grid gap-2">
                     <Label htmlFor="suffix">Suffix</Label>
-                    <Input id="suffix" value={suffix} onChange={(e) => setSuffix(e.target.value)} />
+                    <Input id="suffix" value={suffix} onChange={(e) => setSuffix(e.target.value)} placeholder="e.g. ID-suffix"/>
                 </div>
             </div>
         </section>

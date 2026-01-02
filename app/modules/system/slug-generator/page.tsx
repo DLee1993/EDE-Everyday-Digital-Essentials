@@ -24,12 +24,12 @@ export default function SlugGenerator() {
         <section className="space-y-5">
             <section className="w-full max-w-4xl flex flex-wrap gap-4">
                 <div className="flex flex-col gap-1">
-                    <label className="text-xs font-medium">Add a Separator</label>
+                    <Label className="text-xs font-medium">Add a Separator</Label>
                     <Input value={separator} onChange={(e) => setSeparator(e.target.value)} />
                 </div>
 
                 <div className="flex flex-col gap-1">
-                    <label className="text-xs font-medium">Select max length</label>
+                    <Label className="text-xs font-medium">Select max length</Label>
                     <Input
                         type="number"
                         value={maxLength ?? "200"}
@@ -42,16 +42,19 @@ export default function SlugGenerator() {
             </section>
 
             <section className="w-full max-w-4xl flex flex-col gap-2">
-                <Label htmlFor="slugInput" className="text-sm font-medium">
-                    Text to slugify
-                </Label>
-                <Textarea
-                    id="slugInput"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Enter text to generate slug…"
-                    className="resize-none w-full h-48"
-                />
+                <fieldset className="flex flex-col gap-2">
+                    <Label htmlFor="slugInput" className="text-sm font-medium">
+                        Text to slugify
+                    </Label>
+                    <Textarea
+                        id="slugInput"
+                        name="slugInput"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Enter text to generate slug…"
+                        className="resize-none w-full h-48"
+                    />
+                </fieldset>
             </section>
 
             <section className="w-full max-w-4xl space-y-5">
@@ -71,7 +74,7 @@ export default function SlugGenerator() {
 
                     <DropdownMenuContent align="end" className="w-48">
                         <DropdownMenuItem
-                            onClick={() => Copy({ input: slug})}
+                            onClick={() => Copy({ input: slug })}
                             className="flex justify-between items-center"
                         >
                             Copy slug <CopyIcon />

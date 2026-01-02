@@ -110,15 +110,16 @@ export default function TextCaseConverter() {
 
             <div className="w-full flex flex-wrap gap-5">
                 {/* INPUT TEXTAREA */}
-                <section className="flex-1 min-w-80 flex flex-col gap-2">
-                    <Label className="font-medium">Input</Label>
-                    <Textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        placeholder="Enter text to transform…"
-                        className="resize-none w-full h-48"
-                    />
-                </section>
+                <fieldset className="flex-1 min-w-80 flex flex-col gap-2">
+                        <Label className="font-medium">Input</Label>
+                        <Textarea
+                            name="message"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Enter the text you want to transform..."
+                            className="formField peer resize-none w-full h-48"
+                        />
+                </fieldset>
 
                 {/* OUTPUT TEXTAREA */}
                 <section className="flex-1 min-w-80 flex flex-col gap-2">

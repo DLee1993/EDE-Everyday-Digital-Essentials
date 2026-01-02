@@ -19,6 +19,7 @@ export function LoremOutput({ generate, clear, output }: LoremOutputProps) {
                 className="resize-none w-full h-52"
                 value={output}
                 readOnly
+                placeholder="Click generate to create some lorem ipsum text..."
             />
 
             <div className="w-fit flex justify-between items-center gap-2">

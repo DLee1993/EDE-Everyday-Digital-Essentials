@@ -45,7 +45,7 @@ export default function RootLayout({
                                 <AppSidebar />
                                 <div className="w-full flex flex-col min-h-screen">
                                     <Header />
-                                    <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center [&>section]:w-11/12 [&>section]:max-w-240">
+                                    <main className="flex justify-center items-center flex-1 py-5 px-2.5 [&>section]:flex-1 [&>section]:h-full [&>section]:flex [&>section]:flex-col [&>section]:justify-center [&>section]:items-center [&>section]:w-11/12 [&>section]:max-w-240 [&_input]:focus-visible:ring-ring/15! [&_textarea]:focus-visible:ring-ring/15!">
                                         {children}
                                     </main>
                                 </div>

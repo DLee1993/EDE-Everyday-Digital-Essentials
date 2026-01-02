@@ -20,39 +20,37 @@ export default function EMAIL({
     return (
         <div className="space-y-5">
             <div className="flex justify-between gap-2">
-                <fieldset datatype="input" className="relative flex-1">
+                <fieldset className="flex-1 flex flex-col gap-2">
+                    <Label htmlFor="Address">Email Address</Label>
                     <Input
                         name="Address"
                         id="Address"
                         onChange={handleChange(setEmailData)}
-                        className="formField peer"
                         autoComplete="true"
-                        placeholder=" "
+                        placeholder="johndoe@gmail.com"
                     />
-                    <Label htmlFor="Address">Email Address</Label>
                 </fieldset>
-                <fieldset datatype="input" className="relative flex-1">
+                <fieldset className="flex-1 flex flex-col gap-2">
+                    <Label htmlFor="Subject">Subject</Label>
                     <Input
                         name="Subject"
                         id="Subject"
                         onChange={handleChange(setEmailData)}
-                        className="formField peer"
                         autoComplete="true"
-                        placeholder=" "
+                        placeholder="Welcome to my shop"
                     />
-                    <Label htmlFor="Subject">Subject</Label>
                 </fieldset>
             </div>
-            <fieldset datatype="textarea" className="relative">
+            <fieldset className="flex flex-col gap-2">
+                <Label htmlFor="Body">Message</Label>
                 <Textarea
                     name="Body"
                     id="Body"
                     onChange={handleChange(setEmailData)}
-                    className="formField peer resize-none h-32"
+                    className="resize-none h-32"
                     autoComplete="true"
-                    placeholder=" "
+                    placeholder="Special offer - 50% off"
                 />
-                <Label htmlFor="Body">Message</Label>
             </fieldset>
             <Button variant="outline" onClick={ProcessData}>
                 Generate QR Code
