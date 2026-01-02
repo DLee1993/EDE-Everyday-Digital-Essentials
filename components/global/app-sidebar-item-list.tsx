@@ -27,10 +27,28 @@ import {
     Filter,
     Table,
     Image,
+    Code,
+    ToolCase,
+    Paintbrush,
 } from "lucide-react";
 
+import type { LucideIcon } from "lucide-react";
+
+export type SidebarItem = {
+    title: string;
+    url: string;
+    icon: LucideIcon;
+    instructions?: string;
+    searchTerms?: string[]; // ← THIS fixes the error
+};
+
+export type SidebarGroup = {
+    title: string;
+    items: SidebarItem[];
+};
+
 //! DO NOT REMOVE
-export const rawSidebarItems = [
+export const rawSidebarItems: SidebarGroup[] = [
     {
         title: "Converters",
         items: [
@@ -140,7 +158,8 @@ export const rawSidebarItems = [
                 title: "Countdown Timer",
                 url: "/modules/workspace/countdown-timer",
                 icon: Timer,
-                instructions: "Set a duration and start the countdown to track deadlines or events.",
+                instructions:
+                    "Set a duration and start the countdown to track deadlines or events.",
             },
             {
                 title: "Word Counter",
@@ -242,7 +261,8 @@ export const rawSidebarItems = [
                 title: "JSON Tools",
                 url: "/modules/development/json-formatter",
                 icon: Braces,
-                instructions: "Paste JSON to beautify, validate, and debug its structure instantly.",
+                instructions:
+                    "Paste JSON to beautify, validate, and debug its structure instantly.",
             },
             {
                 title: "Diff Tool",
@@ -391,46 +411,25 @@ export const rawSidebarItems = [
         title: "Reference",
         items: [
             {
-                title: "HTML",
-                url: "/modules/reference/html-cheat-sheet",
-                icon: FileText,
-                instructions: "Browse common HTML tags and attributes for quick reference.",
+                title: "Web Development",
+                url: "/modules/reference/web-development",
+                icon: Code,
+                instructions: "Reference for HTML, CSS, JavaScript, etc.",
+                searchTerms: ["html", "css", "javascript", "js", "frontend", "dev"],
             },
             {
-                title: "CSS",
-                url: "/modules/reference/css-cheat-sheet",
-                icon: FileText,
-                instructions: "Look up CSS properties and syntax to style your projects.",
+                title: "Developer tools",
+                url: "/modules/reference/tooling",
+                icon: ToolCase,
+                instructions: "Reference for Git, Markdown, etc.",
+                searchTerms: ["git", "markdown", "cli", "tools", "dev"],
             },
             {
-                title: "JavaScript",
-                url: "/modules/reference/js-cheat-sheet",
-                icon: FileText,
-                instructions: "Find common JavaScript methods, syntax, and examples quickly.",
-            },
-            {
-                title: "Git",
-                url: "/modules/reference/git-cheat-sheet",
-                icon: FileText,
-                instructions: "Reference Git commands and workflows for version control.",
-            },
-            {
-                title: "HTTP Status Codes",
-                url: "/modules/reference/http-status-codes",
-                icon: FileText,
-                instructions: "Check meanings of HTTP status codes for debugging and development.",
-            },
-            {
-                title: "Regex",
-                url: "/modules/reference/regex-reference",
-                icon: FileText,
-                instructions: "Browse common regex patterns and syntax for quick use.",
-            },
-            {
-                title: "Color Theory",
-                url: "/modules/reference/color-theory",
-                icon: Palette,
-                instructions: "Learn about OKLCH, WCAG contrast, and color harmony for design.",
+                title: "Design",
+                url: "/modules/reference/design",
+                icon: Paintbrush,
+                instructions: "Reference for color theory, typography, etc.",
+                searchTerms: ["color", "color theory", "typography", "ui", "ux", "dev", "designer"],
             },
         ],
     },

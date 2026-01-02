@@ -18,6 +18,7 @@ const allTools = sidebarItems.flatMap((category) =>
     category.items.map((item) => ({
         ...item,
         category: category.title,
+        searchTerms: item.searchTerms ?? [],
     }))
 );
 
@@ -58,9 +59,14 @@ export const MenuSearch = ({
     const filteredTools = query
         ? allTools.filter((tool) => {
               const q = query.toLowerCase();
-              return (
-                  tool.title.toLowerCase().includes(q) || tool.category.toLowerCase().includes(q)
+
+              const inTitle = tool.title.toLowerCase().includes(q);
+              const inCategory = tool.category.toLowerCase().includes(q);
+              const inTerms = tool.searchTerms.some((term: string) =>
+                  term.toLowerCase().includes(q)
               );
+
+              return inTitle || inCategory || inTerms;
           })
         : allTools;
 
