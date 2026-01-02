@@ -419,7 +419,7 @@ export const rawSidebarItems: SidebarGroup[] = [
             },
             {
                 title: "Developer tools",
-                url: "/modules/reference/tooling",
+                url: "/modules/reference/dev-tools",
                 icon: ToolCase,
                 instructions: "Reference for Git, Markdown, etc.",
                 searchTerms: ["git", "markdown", "cli", "tools", "dev"],
