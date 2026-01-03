@@ -41,7 +41,7 @@ export default function ReferenceLayout({ topics, content }: ReferenceLayoutProp
                 </Select>
             </div>
 
-            <div className="sticky top-20 min-w-32 flex justify-center items-center h-fit">
+            <div className="sticky top-20 min-w-44 flex justify-center items-center h-fit">
                 {/* Desktop List */}
                 <ul className="hidden md:flex md:flex-col w-full space-y-2">
                     {topics.map((topic) => (
