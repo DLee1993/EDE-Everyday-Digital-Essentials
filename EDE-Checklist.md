@@ -458,7 +458,7 @@ v
 
 ## <span style="color:teal">Reference</span>
 
-- [ ] Category complete (only check off when all sub items are completed)
+- [x] Category complete (only check off when all sub items are completed)
 
     ### Design
     - Development Stages:
@@ -483,14 +483,14 @@ v
    
     ### Databases
     - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
+        - [x] Built
+        - [x] Refined
+        - [x] Tested
+        - [x] Verified
    
     ### Testing
     - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
+        - [x] Built
+        - [x] Refined
+        - [x] Tested
+        - [x] Verified
