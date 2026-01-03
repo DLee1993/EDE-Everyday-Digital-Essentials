@@ -22,6 +22,17 @@ export function useSectionsNavigation(activeTopicId: string) {
         const handler = () => {
             let current = activeSection;
 
+            // NEW: detect if user is at the bottom of the page
+            const scrollBottom = window.innerHeight + window.scrollY;
+            const pageBottom = document.body.offsetHeight;
+
+            if (scrollBottom >= pageBottom - 50 && sections.length > 0) {
+                current = sections[sections.length - 1].id;
+                setActiveSection(current);
+                return;
+            }
+
+            // Existing behaviour
             sections.forEach((sec) => {
                 const el = document.getElementById(sec.id);
                 if (!el) return;
