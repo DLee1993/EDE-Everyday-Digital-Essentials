@@ -460,49 +460,35 @@ v
 
 - [ ] Category complete (only check off when all sub items are completed)
 
-    ### HTML
+    ### Design
+    - Development Stages:
+        - [x] Built
+        - [x] Refined
+        - [x] Tested
+        - [x] Verified
+
+    ### Developer Tools
+    - Development Stages:
+        - [x] Built
+        - [x] Refined
+        - [x] Tested
+        - [x] Verified
+
+    ### Web Development
+    - Development Stages:
+        - [x] Built
+        - [x] Refined
+        - [x] Tested
+        - [x] Verified
+   
+    ### Databases
     - Development Stages:
         - [ ] Built
         - [ ] Refined
         - [ ] Tested
         - [ ] Verified
-
-    ### CSS
-    - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
-
-    ### JavaScript
-    - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
-
-    ### Git
-    - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
-
-    ### HTTP Status Codes
-    - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
-
-    ### Regex
-    - Development Stages:
-        - [ ] Built
-        - [ ] Refined
-        - [ ] Tested
-        - [ ] Verified
-
-    ### Color Theory
+   
+    ### Testing
     - Development Stages:
         - [ ] Built
         - [ ] Refined
