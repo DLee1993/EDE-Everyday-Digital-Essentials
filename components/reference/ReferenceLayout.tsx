@@ -1,6 +1,13 @@
 "use client";
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PageIdentifier } from "@/components/global/page-identifier";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { useState, ReactNode } from "react";
 
 type Topic = {
@@ -36,25 +43,21 @@ export default function ReferenceLayout({ topics, content }: ReferenceLayoutProp
 
             <div className="sticky top-20 min-w-32 flex justify-center items-center h-fit">
                 {/* Desktop List */}
-                <ul className="hidden md:flex md:flex-col w-full gap-4 border-b pb-2">
+                <ul className="hidden md:flex md:flex-col w-full space-y-2">
                     {topics.map((topic) => (
                         <li
                             key={topic.id}
                             onClick={() => setActive(topic.id)}
-                            className={`
-              cursor-pointer text-sm relative pb-1 transition-colors
+                            className={` flex items-center cursor-pointer text-sm relative pb-1 transition-colors
               ${
                   active === topic.id
-                      ? "font-semibold text-primary"
+                      ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
               }
             `}
                         >
                             {topic.title}
-
-                            {active === topic.id && (
-                                <span className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-primary rounded-full" />
-                            )}
+                            {active === topic.id && <PageIdentifier />}
                         </li>
                     ))}
                 </ul>
