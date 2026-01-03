@@ -75,10 +75,10 @@ v
     ### Text Case
 
     -   Development Stages:
-        -   [ ] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Built
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### Date Format
 
