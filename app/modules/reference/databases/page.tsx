@@ -7,15 +7,15 @@ import ReferenceLayout from "@/components/reference/ReferenceLayout";
 export default function Databases() {
     const topics = [
         { id: "SQLvNoSQL", title: "SQL V NoSQL" },
-        { id: "SQLBasics", title: "Sql-basics" },
-        { id: "NoSQLbasivs", title: "Layout" },
-        { id: "orms", title: "Spacing" },
+        { id: "SQLBasics", title: "SQL Basics" },
+        { id: "NoSQLbasics", title: "NoSQL Basics" },
+        { id: "orms", title: "ORMS" },
     ];
 
     const content = {
         SQLvNoSQL: <SQLvsNoSQL />,
         SQLBasics: <SQLBasics />,
-        NoSQLbasivs: <NoSQLBasics />,
+        NoSQLbasics: <NoSQLBasics />,
         orms: <ORMs />,
     };
 

@@ -2,10 +2,8 @@ export default function ORMs() {
     return (
         <div className="space-y-10">
             {/* Page Title */}
-            <h1 className="text-3xl font-bold">ORMs</h1>
-
-            {/* Overview */}
-            <section id="overview" className="space-y-3">
+            <header className="space-y-3 h-fit">
+                <h1 className="text-3xl font-bold">ORMs</h1>
                 <p>
                     An ORM (Object-Relational Mapping) is a tool that lets you interact with a
                     database using code instead of writing SQL queries manually. ORMs generate the
@@ -16,7 +14,7 @@ export default function ORMs() {
                     Modern web development often uses ORMs to simplify database access and keep
                     application code consistent and maintainable.
                 </p>
-            </section>
+            </header>
 
             {/* What an ORM Does */}
             <section id="what-an-orm-does" className="space-y-3">
