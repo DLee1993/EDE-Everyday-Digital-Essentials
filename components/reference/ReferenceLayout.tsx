@@ -1,6 +1,6 @@
 "use client";
 
-import { PageIdentifier } from "@/components/global/page-identifier";
+import { useState, ReactNode } from "react";
 import {
     Select,
     SelectContent,
@@ -8,7 +8,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useState, ReactNode } from "react";
+import { useSectionsNavigation } from "@/hooks/reference/useSectionsNavigation";
 
 type Topic = {
     id: string;
@@ -23,12 +23,16 @@ type ReferenceLayoutProps = {
 export default function ReferenceLayout({ topics, content }: ReferenceLayoutProps) {
     const [active, setActive] = useState(topics[0].id);
 
+    const { sections, activeSection, setActiveSection, scrollToSection } =
+        useSectionsNavigation(active);
+
     return (
-        <div className="relative w-full flex flex-col md:flex-row gap-2 md:gap-6">
-            {/* Mobile Dropdown */}
-            <div className="md:hidden">
-                <Select onValueChange={(value) => setActive(value)}>
-                    <SelectTrigger className="w-full">
+        <section className="w-full relative flex flex-col gap-6">
+            {/* GLOBAL TOOLBAR */}
+            <div className="w-full flex justify-start py-4 gap-2 sticky top-15 bg-background">
+                {/* TOPICS DROPDOWN */}
+                <Select value={active} onValueChange={(value) => setActive(value)}>
+                    <SelectTrigger className="flex-1 max-w-xs">
                         <SelectValue placeholder="Topic" />
                     </SelectTrigger>
                     <SelectContent>
@@ -39,32 +43,32 @@ export default function ReferenceLayout({ topics, content }: ReferenceLayoutProp
                         ))}
                     </SelectContent>
                 </Select>
+
+                {/* SECTIONS DROPDOWN */}
+                <Select
+                    value={activeSection}
+                    onValueChange={(value) => {
+                        setActiveSection(value);
+                        scrollToSection(value);
+                    }}
+                >
+                    <SelectTrigger className="flex-1 max-w-xs">
+                        <SelectValue placeholder="Section" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {sections.map((sec) => (
+                            <SelectItem value={sec.id} key={sec.id}>
+                                {sec.label}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
 
-            <div className="sticky top-20 min-w-44 flex justify-center items-center h-fit">
-                {/* Desktop List */}
-                <ul className="hidden md:flex md:flex-col w-full space-y-2">
-                    {topics.map((topic) => (
-                        <li
-                            key={topic.id}
-                            onClick={() => setActive(topic.id)}
-                            className={` flex items-center cursor-pointer text-sm relative pb-1 transition-colors
-              ${
-                  active === topic.id
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-              }
-            `}
-                        >
-                            {topic.title}
-                            {active === topic.id && <PageIdentifier />}
-                        </li>
-                    ))}
-                </ul>
+            {/* ACTIVE PAGE CONTENT */}
+            <div className="w-full [&_h2]:bg-primary [&_h2]:pl-1 [&_h2]:text-primary-foreground [&_p]:text-muted-foreground">
+                {content[active]}
             </div>
-
-            {/* Content */}
-            <div className="mt-4 md:mt-0">{content[active]}</div>
-        </div>
+        </section>
     );
 }

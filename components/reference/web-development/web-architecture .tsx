@@ -3,7 +3,7 @@ export default function WebArchitecture() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Web Architecture Basics</h2>
+                <h1 className="text-xl font-bold">Web Architecture Basics</h1>
                 <p className="text-muted-foreground mt-2">
                     A high-level overview of how the web works from request to response.
                 </p>
@@ -11,7 +11,7 @@ export default function WebArchitecture() {
 
             {/* 2. What happens when you visit a URL */}
             <section id="what-happens-when-you-visit-a-url" className="space-y-3">
-                <h3 className="text-xl font-semibold">What happens when you visit a URL?</h3>
+                <h2 className="text-lg font-medium">What happens when you visit a URL?</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`1. You enter a URL.
@@ -25,7 +25,7 @@ export default function WebArchitecture() {
 
             {/* 3. HTTP Requests & Responses */}
             <section id="http-requests-and-responses" className="space-y-3">
-                <h3 className="text-xl font-semibold">HTTP Requests & Responses</h3>
+                <h2 className="text-lg font-medium">HTTP Requests & Responses</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`GET /index.html HTTP/1.1
@@ -44,7 +44,7 @@ Content-Type: text/html
 
             {/* 4. Status Codes */}
             <section id="status-codes" className="space-y-3">
-                <h3 className="text-xl font-semibold">Status Codes</h3>
+                <h2 className="text-lg font-medium">Status Codes</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>
@@ -73,7 +73,7 @@ Content-Type: text/html
 
             {/* 5. Client vs Server */}
             <section id="client-vs-server" className="space-y-3">
-                <h3 className="text-xl font-semibold">Client vs Server</h3>
+                <h2 className="text-lg font-medium">Client vs Server</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`Client (browser):
@@ -90,7 +90,7 @@ Server:
 
             {/* 6. Static vs Dynamic */}
             <section id="static-vs-dynamic" className="space-y-3">
-                <h3 className="text-xl font-semibold">Static vs Dynamic Content</h3>
+                <h2 className="text-lg font-medium">Static vs Dynamic Content</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`Static:
@@ -105,7 +105,7 @@ Dynamic:
 
             {/* 7. Cookies & Sessions */}
             <section id="cookies-and-sessions" className="space-y-3">
-                <h3 className="text-xl font-semibold">Cookies & Sessions</h3>
+                <h2 className="text-lg font-medium">Cookies & Sessions</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`Set-Cookie: sessionId=abc123; HttpOnly; Secure; Path=/;`}
@@ -119,7 +119,7 @@ Dynamic:
 
             {/* 8. CORS Basics */}
             <section id="cors-basics" className="space-y-3">
-                <h3 className="text-xl font-semibold">CORS Basics</h3>
+                <h2 className="text-lg font-medium">CORS Basics</h2>
                 <p>
                     CORS (Cross-Origin Resource Sharing) controls which origins are allowed to
                     access resources on a server.
@@ -137,7 +137,7 @@ Dynamic:
 
             {/* 9. CDNs */}
             <section id="cdns" className="space-y-3">
-                <h3 className="text-xl font-semibold">CDNs</h3>
+                <h2 className="text-lg font-medium">CDNs</h2>
                 <p>
                     A CDN (Content Delivery Network) caches static assets across global servers,
                     reducing latency and improving load times.
@@ -150,7 +150,7 @@ Dynamic:
 
             {/* 10. APIs & JSON */}
             <section id="apis-and-json" className="space-y-3">
-                <h3 className="text-xl font-semibold">APIs & JSON</h3>
+                <h2 className="text-lg font-medium">APIs & JSON</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Example API response
@@ -168,7 +168,7 @@ Dynamic:
 
             {/* 11. Single Page Apps vs Multi Page Apps */}
             <section id="spa-vs-mpa" className="space-y-3">
-                <h3 className="text-xl font-semibold">Single Page Apps vs Multi Page Apps</h3>
+                <h2 className="text-lg font-medium">Single Page Apps vs Multi Page Apps</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`SPA:
@@ -185,7 +185,7 @@ MPA:
 
             {/* 12. Core Mental Model */}
             <section id="core-mental-model" className="space-y-3">
-                <h3 className="text-xl font-semibold">Core Mental Model</h3>
+                <h2 className="text-lg font-medium">Core Mental Model</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Browsers render HTML, CSS, and JS.</li>

@@ -3,7 +3,7 @@ export default function CSS() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">CSS Reference</h2>
+                <h1 className="text-xl font-bold">CSS Reference</h1>
                 <p className="text-muted-foreground mt-2">
                     A beginner-friendly guide to styling and layout with CSS.
                 </p>
@@ -11,7 +11,7 @@ export default function CSS() {
 
             {/* 2. What is CSS */}
             <section id="what-is-css" className="space-y-3">
-                <h3 className="text-xl font-semibold">What is CSS?</h3>
+                <h2 className="text-lg font-medium">What is CSS?</h2>
                 <p>
                     CSS (Cascading Style Sheets) controls the appearance of your webpage. It defines
                     colors, spacing, layout, typography, and responsive behaviour.
@@ -20,7 +20,7 @@ export default function CSS() {
 
             {/* 3. Selectors */}
             <section id="selectors" className="space-y-3">
-                <h3 className="text-xl font-semibold">Selectors</h3>
+                <h2 className="text-lg font-medium">Selectors</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`/* Element selector */
@@ -39,7 +39,7 @@ input[type="email"] { border-color: blue; }`}
 
             {/* 4. Advanced Selectors */}
             <section id="advanced-selectors" className="space-y-3">
-                <h3 className="text-xl font-semibold">Advanced Selectors</h3>
+                <h2 className="text-lg font-medium">Advanced Selectors</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`/* First child */
@@ -52,13 +52,13 @@ tr:nth-child(even) {}
 button:not(.primary) {}
 
 /* Adjacent sibling */
-h2 + p {}`}
+h1 + p {}`}
                 </pre>
             </section>
 
             {/* 5. Colors */}
             <section id="colors" className="space-y-3">
-                <h3 className="text-xl font-semibold">Colors</h3>
+                <h2 className="text-lg font-medium">Colors</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`color: red;
@@ -70,7 +70,7 @@ color: hsl(0, 100%, 50%);`}
 
             {/* 6. Typography */}
             <section id="typography" className="space-y-3">
-                <h3 className="text-xl font-semibold">Typography</h3>
+                <h2 className="text-lg font-medium">Typography</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`font-size: 1rem;
@@ -82,7 +82,7 @@ font-family: "Inter", sans-serif;`}
 
             {/* 7. Box Model */}
             <section id="box-model" className="space-y-3">
-                <h3 className="text-xl font-semibold">Box Model</h3>
+                <h2 className="text-lg font-medium">Box Model</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`padding: 1rem;
@@ -98,7 +98,7 @@ box-sizing: border-box;`}
 
             {/* 8. Display */}
             <section id="display" className="space-y-3">
-                <h3 className="text-xl font-semibold">Display</h3>
+                <h2 className="text-lg font-medium">Display</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`display: block;
@@ -111,7 +111,7 @@ display: grid;`}
 
             {/* 9. Flexbox */}
             <section id="flexbox" className="space-y-3">
-                <h3 className="text-xl font-semibold">Flexbox</h3>
+                <h2 className="text-lg font-medium">Flexbox</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`display: flex;
@@ -125,7 +125,7 @@ gap: 1rem;`}
 
             {/* 10. Grid */}
             <section id="grid" className="space-y-3">
-                <h3 className="text-xl font-semibold">Grid</h3>
+                <h2 className="text-lg font-medium">Grid</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`display: grid;
@@ -138,7 +138,7 @@ gap: 1rem;`}
 
             {/* 11. Layout Patterns */}
             <section id="layout-patterns" className="space-y-3">
-                <h3 className="text-xl font-semibold">Common Layout Patterns</h3>
+                <h2 className="text-lg font-medium">Common Layout Patterns</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`/* Centered container */
@@ -166,7 +166,7 @@ gap: 1rem;`}
 
             {/* 12. Positioning */}
             <section id="positioning" className="space-y-3">
-                <h3 className="text-xl font-semibold">Positioning</h3>
+                <h2 className="text-lg font-medium">Positioning</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`position: static;
@@ -179,7 +179,7 @@ position: sticky;`}
 
             {/* 13. Z-Index */}
             <section id="z-index" className="space-y-3">
-                <h3 className="text-xl font-semibold">Z-Index</h3>
+                <h2 className="text-lg font-medium">Z-Index</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`z-index: 10;
@@ -193,7 +193,7 @@ z-index: 999;`}
 
             {/* 14. Transitions */}
             <section id="transitions" className="space-y-3">
-                <h3 className="text-xl font-semibold">Transitions</h3>
+                <h2 className="text-lg font-medium">Transitions</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`transition: all 0.3s ease;
@@ -206,7 +206,7 @@ button:hover {
 
             {/* 15. Animations */}
             <section id="animations" className="space-y-3">
-                <h3 className="text-xl font-semibold">Animations</h3>
+                <h2 className="text-lg font-medium">Animations</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`@keyframes fade {
@@ -222,7 +222,7 @@ button:hover {
 
             {/* 16. Responsive Design */}
             <section id="responsive-design" className="space-y-3">
-                <h3 className="text-xl font-semibold">Responsive Design</h3>
+                <h2 className="text-lg font-medium">Responsive Design</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`@media (max-width: 600px) {
@@ -235,7 +235,7 @@ button:hover {
 
             {/* 17. Modern Responsive Strategies */}
             <section id="modern-responsive-strategies" className="space-y-3">
-                <h3 className="text-xl font-semibold">Modern Responsive Strategies</h3>
+                <h2 className="text-lg font-medium">Modern Responsive Strategies</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`/* Fluid typography */
@@ -254,7 +254,7 @@ h1 {
 
             {/* 18. Variables */}
             <section id="variables" className="space-y-3">
-                <h3 className="text-xl font-semibold">CSS Variables</h3>
+                <h2 className="text-lg font-medium">CSS Variables</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`:root {
@@ -269,7 +269,7 @@ button {
 
             {/* 19. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Use classes instead of IDs for styling.</li>

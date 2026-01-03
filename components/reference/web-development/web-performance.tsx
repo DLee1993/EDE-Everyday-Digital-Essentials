@@ -3,7 +3,7 @@ export default function WebPerformance() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Web Performance Basics</h2>
+                <h1 className="text-xl font-bold">Web Performance Basics</h1>
                 <p className="text-muted-foreground mt-2">
                     Key concepts and practices to make websites feel fast and responsive.
                 </p>
@@ -11,7 +11,7 @@ export default function WebPerformance() {
 
             {/* 2. Why Performance Matters */}
             <section id="why-performance-matters" className="space-y-3">
-                <h3 className="text-xl font-semibold">Why Performance Matters</h3>
+                <h2 className="text-lg font-medium">Why Performance Matters</h2>
                 <p>
                     Performance affects user experience, engagement, accessibility, and even search
                     ranking. Fast sites feel trustworthy and pleasant to use.
@@ -20,7 +20,7 @@ export default function WebPerformance() {
 
             {/* 3. Critical Rendering Path */}
             <section id="critical-rendering-path" className="space-y-3">
-                <h3 className="text-xl font-semibold">Critical Rendering Path</h3>
+                <h2 className="text-lg font-medium">Critical Rendering Path</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>HTML is parsed into the DOM.</li>
@@ -36,7 +36,7 @@ export default function WebPerformance() {
 
             {/* 4. Optimising Assets */}
             <section id="optimising-assets" className="space-y-3">
-                <h3 className="text-xl font-semibold">Optimising Assets</h3>
+                <h2 className="text-lg font-medium">Optimising Assets</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Compress and resize images.</li>
@@ -48,7 +48,7 @@ export default function WebPerformance() {
 
             {/* 5. Loading JavaScript Wisely */}
             <section id="loading-javascript-wisely" className="space-y-3">
-                <h3 className="text-xl font-semibold">Loading JavaScript Wisely</h3>
+                <h2 className="text-lg font-medium">Loading JavaScript Wisely</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<script src="app.js" defer></script>
@@ -63,7 +63,7 @@ export default function WebPerformance() {
 
             {/* 6. Avoiding Layout Thrashing */}
             <section id="avoiding-layout-thrashing" className="space-y-3">
-                <h3 className="text-xl font-semibold">Avoiding Layout Thrashing</h3>
+                <h2 className="text-lg font-medium">Avoiding Layout Thrashing</h2>
                 <p>
                     Layout thrashing happens when you repeatedly read and write layout properties in
                     a tight loop.
@@ -86,7 +86,7 @@ for (...) {
 
             {/* 7. Debouncing & Throttling */}
             <section id="debouncing-and-throttling" className="space-y-3">
-                <h3 className="text-xl font-semibold">Debouncing & Throttling</h3>
+                <h2 className="text-lg font-medium">Debouncing & Throttling</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Debounce: wait for pause
@@ -114,7 +114,7 @@ function throttle(fn, interval) {
 
             {/* 8. Measuring Performance */}
             <section id="measuring-performance" className="space-y-3">
-                <h3 className="text-xl font-semibold">Measuring Performance</h3>
+                <h2 className="text-lg font-medium">Measuring Performance</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Use browser DevTools performance and network panels.</li>
@@ -126,7 +126,7 @@ function throttle(fn, interval) {
 
             {/* 9. Caching Strategies */}
             <section id="caching-strategies" className="space-y-3">
-                <h3 className="text-xl font-semibold">Caching Strategies</h3>
+                <h2 className="text-lg font-medium">Caching Strategies</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Example: Cache-Control header
@@ -141,7 +141,7 @@ Cache-Control: max-age=31536000, immutable`}
 
             {/* 10. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Optimise images first — they&apos;re usually the biggest files.</li>

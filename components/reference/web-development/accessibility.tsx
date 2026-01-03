@@ -3,7 +3,7 @@ export default function Accessibility() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Accessibility (A11y)</h2>
+                <h1 className="text-xl font-bold">Accessibility (A11y)</h1>
                 <p className="text-muted-foreground mt-2">
                     Practical accessibility basics to make your interfaces usable by everyone.
                 </p>
@@ -11,7 +11,7 @@ export default function Accessibility() {
 
             {/* 2. Why Accessibility Matters */}
             <section id="why-accessibility-matters" className="space-y-3">
-                <h3 className="text-xl font-semibold">Why Accessibility Matters</h3>
+                <h2 className="text-lg font-medium">Why Accessibility Matters</h2>
                 <p>
                     Accessibility ensures that people with disabilities can perceive, understand,
                     navigate, and interact with your content.
@@ -24,7 +24,7 @@ export default function Accessibility() {
 
             {/* 3. Semantic Structure */}
             <section id="semantic-structure" className="space-y-3">
-                <h3 className="text-xl font-semibold">Semantic Structure</h3>
+                <h2 className="text-lg font-medium">Semantic Structure</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<header>...</header>
@@ -41,7 +41,7 @@ export default function Accessibility() {
 
             {/* 4. Keyboard Navigation */}
             <section id="keyboard-navigation" className="space-y-3">
-                <h3 className="text-xl font-semibold">Keyboard Navigation</h3>
+                <h2 className="text-lg font-medium">Keyboard Navigation</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>All interactive elements must be reachable via keyboard.</li>
@@ -61,7 +61,7 @@ export default function Accessibility() {
 
             {/* 5. Forms & Labels */}
             <section id="forms-and-labels" className="space-y-3">
-                <h3 className="text-xl font-semibold">Forms & Labels</h3>
+                <h2 className="text-lg font-medium">Forms & Labels</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<label for="email">Email address</label>
@@ -76,7 +76,7 @@ export default function Accessibility() {
 
             {/* 6. Color & Contrast */}
             <section id="color-and-contrast" className="space-y-3">
-                <h3 className="text-xl font-semibold">Color & Contrast</h3>
+                <h2 className="text-lg font-medium">Color & Contrast</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Do not rely on color alone to convey meaning.</li>
@@ -98,7 +98,7 @@ export default function Accessibility() {
 
             {/* 7. ARIA Essentials */}
             <section id="aria-essentials" className="space-y-3">
-                <h3 className="text-xl font-semibold">ARIA Essentials</h3>
+                <h2 className="text-lg font-medium">ARIA Essentials</h2>
                 <p>
                     ARIA (Accessible Rich Internet Applications) describes roles, states, and
                     properties for custom UI components.
@@ -125,7 +125,7 @@ export default function Accessibility() {
 
             {/* 8. Live Regions */}
             <section id="live-regions" className="space-y-3">
-                <h3 className="text-xl font-semibold">Live Regions</h3>
+                <h2 className="text-lg font-medium">Live Regions</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<div aria-live="polite" id="status"></div>
@@ -143,7 +143,7 @@ export default function Accessibility() {
 
             {/* 9. Reduced Motion */}
             <section id="reduced-motion" className="space-y-3">
-                <h3 className="text-xl font-semibold">Reduced Motion</h3>
+                <h2 className="text-lg font-medium">Reduced Motion</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`@media (prefers-reduced-motion: reduce) {
@@ -162,7 +162,7 @@ export default function Accessibility() {
 
             {/* 10. Testing Accessibility */}
             <section id="testing-accessibility" className="space-y-3">
-                <h3 className="text-xl font-semibold">Testing Accessibility</h3>
+                <h2 className="text-lg font-medium">Testing Accessibility</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Navigate your site using only the keyboard.</li>

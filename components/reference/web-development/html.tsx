@@ -3,7 +3,7 @@ export default function HTML() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">HTML Reference</h2>
+                <h1 className="text-xl font-bold">HTML Reference</h1>
                 <p className="text-muted-foreground mt-2">
                     A beginner-friendly guide to the fundamentals of HTML.
                 </p>
@@ -11,7 +11,7 @@ export default function HTML() {
 
             {/* 2. What is HTML */}
             <section id="what-is-html" className="space-y-3">
-                <h3 className="text-xl font-semibold">What is HTML?</h3>
+                <h2 className="text-lg font-medium">What is HTML?</h2>
                 <p>
                     HTML (HyperText Markup Language) is the structure of a webpage. It defines the
                     content, meaning, and layout of elements on the screen.
@@ -23,7 +23,7 @@ export default function HTML() {
 
             {/* 3. Basic Document Structure */}
             <section id="basic-document-structure" className="space-y-3">
-                <h3 className="text-xl font-semibold">Basic Document Structure</h3>
+                <h2 className="text-lg font-medium">Basic Document Structure</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<!DOCTYPE html>
@@ -41,7 +41,7 @@ export default function HTML() {
 
             {/* 4. Head & Metadata */}
             <section id="head-and-metadata" className="space-y-3">
-                <h3 className="text-xl font-semibold">Head & Metadata</h3>
+                <h2 className="text-lg font-medium">Head & Metadata</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<meta name="description" content="A simple webpage" />
@@ -57,12 +57,12 @@ export default function HTML() {
 
             {/* 5. Headings & Text */}
             <section id="headings-and-text" className="space-y-3">
-                <h3 className="text-xl font-semibold">Headings & Text</h3>
+                <h2 className="text-lg font-medium">Headings & Text</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<h1>Main Title</h1>
-<h2>Section Title</h2>
-<h3>Subsection</h3>
+<h1>Section Title</h1>
+<h2>Subsection</h2>
 
 <p>This is a paragraph.</p>
 <strong>Bold</strong>
@@ -72,14 +72,14 @@ export default function HTML() {
 
             {/* 6. Additional Heading Levels */}
             <section id="additional-heading-levels" className="space-y-3">
-                <h3 className="text-xl font-semibold">Additional Heading Levels</h3>
+                <h2 className="text-lg font-medium">Additional Heading Levels</h2>
                 <p>
                     HTML provides six heading levels. Use deeper levels only when your content
                     structure genuinely requires more nesting.
                 </p>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
-                    {`<h4>Sub-subsection</h4>
+                    {`<h3>Sub-subsection</h3>
 <h5>Deep subsection</h5>
 <h6>Lowest-level heading</h6>`}
                 </pre>
@@ -92,7 +92,7 @@ export default function HTML() {
 
             {/* 7. Links */}
             <section id="links" className="space-y-3">
-                <h3 className="text-xl font-semibold">Links</h3>
+                <h2 className="text-lg font-medium">Links</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<a href="https://example.com">Visit Site</a>
@@ -103,7 +103,7 @@ export default function HTML() {
 
             {/* 8. Images */}
             <section id="images" className="space-y-3">
-                <h3 className="text-xl font-semibold">Images</h3>
+                <h2 className="text-lg font-medium">Images</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<img src="photo.jpg" alt="A mountain at sunrise" />`}
@@ -116,7 +116,7 @@ export default function HTML() {
 
             {/* 9. Lists */}
             <section id="lists" className="space-y-3">
-                <h3 className="text-xl font-semibold">Lists</h3>
+                <h2 className="text-lg font-medium">Lists</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<ul>
@@ -131,7 +131,7 @@ export default function HTML() {
 
             {/* 10. Tables */}
             <section id="tables" className="space-y-3">
-                <h3 className="text-xl font-semibold">Tables</h3>
+                <h2 className="text-lg font-medium">Tables</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<table>
@@ -149,7 +149,7 @@ export default function HTML() {
 
             {/* 11. Semantic Layout */}
             <section id="semantic-layout" className="space-y-3">
-                <h3 className="text-xl font-semibold">Semantic Layout</h3>
+                <h2 className="text-lg font-medium">Semantic Layout</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<header>...</header>
@@ -167,7 +167,7 @@ export default function HTML() {
 
             {/* 12. Forms */}
             <section id="forms" className="space-y-3">
-                <h3 className="text-xl font-semibold">Forms</h3>
+                <h2 className="text-lg font-medium">Forms</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<form>
@@ -180,7 +180,7 @@ export default function HTML() {
 
             {/* 13. Forms API */}
             <section id="forms-api" className="space-y-3">
-                <h3 className="text-xl font-semibold">Forms API</h3>
+                <h2 className="text-lg font-medium">Forms API</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`form.reset();
@@ -193,7 +193,7 @@ input.setCustomValidity("Message");`}
 
             {/* 14. Accessibility Fundamentals */}
             <section id="accessibility-fundamentals" className="space-y-3">
-                <h3 className="text-xl font-semibold">Accessibility Fundamentals</h3>
+                <h2 className="text-lg font-medium">Accessibility Fundamentals</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Use semantic HTML.</li>
@@ -205,7 +205,7 @@ input.setCustomValidity("Message");`}
 
             {/* 15. Accessibility Patterns */}
             <section id="accessibility-patterns" className="space-y-3">
-                <h3 className="text-xl font-semibold">Accessibility Patterns</h3>
+                <h2 className="text-lg font-medium">Accessibility Patterns</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Visible focus states.</li>
@@ -227,7 +227,7 @@ input.setCustomValidity("Message");`}
 
             {/* 16. ARIA Patterns */}
             <section id="aria-patterns" className="space-y-3">
-                <h3 className="text-xl font-semibold">ARIA Patterns</h3>
+                <h2 className="text-lg font-medium">ARIA Patterns</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<!-- Tabs -->
@@ -243,7 +243,7 @@ input.setCustomValidity("Message");`}
 
             {/* 17. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Use semantic elements.</li>

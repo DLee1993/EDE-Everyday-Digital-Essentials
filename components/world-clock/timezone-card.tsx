@@ -6,7 +6,7 @@ export function TimezoneCard({ data }: { data?: FormattedTimezone }) {
     return (
         <section className="space-y-5 min-h-60">
             <span className="flex justify-between items-center">
-                <h2 className="text-2xl font-medium">{data.location}</h2>
+                <h1 className="text-xl font-medium">{data.location}</h1>
                 <p className="hidden md:block font-medium">{data.time}</p>
             </span>
 
@@ -30,7 +30,7 @@ function InfoRow({ label, value }: { label: string; value?: string }) {
 
     return (
         <div className="flex flex-wrap justify-between items-center gap-5">
-            <h3 className="text-sm text-muted-foreground">{label}:</h3>
+            <h2 className="text-sm text-muted-foreground">{label}:</h2>
             <p>{value}</p>
         </div>
     );

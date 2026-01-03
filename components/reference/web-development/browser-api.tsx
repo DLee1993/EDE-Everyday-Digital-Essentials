@@ -3,7 +3,7 @@ export default function BrowserApi() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Browser APIs</h2>
+                <h1 className="text-xl font-bold">Browser APIs</h1>
                 <p className="text-muted-foreground mt-2">
                     A practical overview of the most useful browser APIs for web development.
                 </p>
@@ -11,7 +11,7 @@ export default function BrowserApi() {
 
             {/* 2. What are Browser APIs */}
             <section id="what-are-browser-apis" className="space-y-3">
-                <h3 className="text-xl font-semibold">What are Browser APIs?</h3>
+                <h2 className="text-lg font-medium">What are Browser APIs?</h2>
                 <p>
                     Browser APIs are built-in features exposed by the browser that let you work with
                     the network, storage, clipboard, viewport, and more.
@@ -24,7 +24,7 @@ export default function BrowserApi() {
 
             {/* 3. Fetch API */}
             <section id="fetch-api" className="space-y-3">
-                <h3 className="text-xl font-semibold">Fetch API</h3>
+                <h2 className="text-lg font-medium">Fetch API</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Basic GET request
@@ -42,7 +42,7 @@ await fetch("/api/save", {
 
             {/* 4. Storage */}
             <section id="storage" className="space-y-3">
-                <h3 className="text-xl font-semibold">Storage (localStorage & sessionStorage)</h3>
+                <h2 className="text-lg font-medium">Storage (localStorage & sessionStorage)</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Save
@@ -63,7 +63,7 @@ localStorage.removeItem("theme");`}
 
             {/* 5. URL & URLSearchParams */}
             <section id="url-and-urlsearchparams" className="space-y-3">
-                <h3 className="text-xl font-semibold">URL & URLSearchParams</h3>
+                <h2 className="text-lg font-medium">URL & URLSearchParams</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const url = new URL(window.location.href);
@@ -78,7 +78,7 @@ url.search = query.toString();`}
 
             {/* 6. History API */}
             <section id="history-api" className="space-y-3">
-                <h3 className="text-xl font-semibold">History API</h3>
+                <h2 className="text-lg font-medium">History API</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Change URL without full reload
@@ -92,7 +92,7 @@ window.addEventListener("popstate", (event) => {
 
             {/* 7. Clipboard API */}
             <section id="clipboard-api" className="space-y-3">
-                <h3 className="text-xl font-semibold">Clipboard API</h3>
+                <h2 className="text-lg font-medium">Clipboard API</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`await navigator.clipboard.writeText("Copied text");
@@ -108,7 +108,7 @@ const text = await navigator.clipboard.readText();`}
 
             {/* 8. IntersectionObserver */}
             <section id="intersectionobserver" className="space-y-3">
-                <h3 className="text-xl font-semibold">IntersectionObserver</h3>
+                <h2 className="text-lg font-medium">IntersectionObserver</h2>
                 <p>Detect when elements enter or leave the viewport (great for lazy loading).</p>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
@@ -126,7 +126,7 @@ observer.observe(document.querySelector("#target"));`}
 
             {/* 9. MutationObserver */}
             <section id="mutationobserver" className="space-y-3">
-                <h3 className="text-xl font-semibold">MutationObserver</h3>
+                <h2 className="text-lg font-medium">MutationObserver</h2>
                 <p>Watch for changes in the DOM (great for dynamic UIs).</p>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
@@ -140,7 +140,7 @@ observer.observe(document.body, { childList: true, subtree: true });`}
 
             {/* 10. Timers */}
             <section id="timers" className="space-y-3">
-                <h3 className="text-xl font-semibold">Timers</h3>
+                <h2 className="text-lg font-medium">Timers</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const id = setTimeout(() => {
@@ -159,7 +159,7 @@ clearInterval(intervalId);`}
 
             {/* 11. Geolocation */}
             <section id="geolocation" className="space-y-3">
-                <h3 className="text-xl font-semibold">Geolocation</h3>
+                <h2 className="text-lg font-medium">Geolocation</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`navigator.geolocation.getCurrentPosition((pos) => {
@@ -172,7 +172,7 @@ clearInterval(intervalId);`}
 
             {/* 12. Notifications */}
             <section id="notifications" className="space-y-3">
-                <h3 className="text-xl font-semibold">Notifications</h3>
+                <h2 className="text-lg font-medium">Notifications</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`if (Notification.permission === "granted") {
@@ -185,7 +185,7 @@ clearInterval(intervalId);`}
 
             {/* 13. Device APIs */}
             <section id="device-apis" className="space-y-3">
-                <h3 className="text-xl font-semibold">Device APIs</h3>
+                <h2 className="text-lg font-medium">Device APIs</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Vibrate (mobile)
@@ -200,7 +200,7 @@ navigator.getBattery().then(battery => {
 
             {/* 14. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>

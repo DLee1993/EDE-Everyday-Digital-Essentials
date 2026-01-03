@@ -3,7 +3,7 @@ export default function GitVersionControl() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Git & Version Control</h2>
+                <h1 className="text-xl font-bold">Git & Version Control</h1>
                 <p className="text-muted-foreground mt-2">
                     Essential Git commands and concepts for everyday development.
                 </p>
@@ -11,7 +11,7 @@ export default function GitVersionControl() {
 
             {/* 2. What is Git */}
             <section id="what-is-git" className="space-y-3">
-                <h3 className="text-xl font-semibold">What is Git?</h3>
+                <h2 className="text-lg font-medium">What is Git?</h2>
                 <p>
                     Git is a version control system that tracks changes to your code over time. It
                     lets you experiment safely, collaborate, and roll back when needed.
@@ -20,7 +20,7 @@ export default function GitVersionControl() {
 
             {/* 3. Initial Setup */}
             <section id="initial-setup" className="space-y-3">
-                <h3 className="text-xl font-semibold">Initial Setup</h3>
+                <h2 className="text-lg font-medium">Initial Setup</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`git init
@@ -32,7 +32,7 @@ git commit -m "Initial commit"`}
 
             {/* 4. Branching Basics */}
             <section id="branching-basics" className="space-y-3">
-                <h3 className="text-xl font-semibold">Branching Basics</h3>
+                <h2 className="text-lg font-medium">Branching Basics</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`git branch feature/new-ui
@@ -45,7 +45,7 @@ git checkout -b feature/new-ui`}
 
             {/* 5. Merging */}
             <section id="merging" className="space-y-3">
-                <h3 className="text-xl font-semibold">Merging</h3>
+                <h2 className="text-lg font-medium">Merging</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`# Switch to main
@@ -58,7 +58,7 @@ git merge feature/new-ui`}
 
             {/* 6. Remote Repositories */}
             <section id="remote-repositories" className="space-y-3">
-                <h3 className="text-xl font-semibold">Remote Repositories</h3>
+                <h2 className="text-lg font-medium">Remote Repositories</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`git remote add origin https://github.com/user/repo.git
@@ -71,7 +71,7 @@ git push`}
 
             {/* 7. Resolving Conflicts */}
             <section id="resolving-conflicts" className="space-y-3">
-                <h3 className="text-xl font-semibold">Resolving Conflicts</h3>
+                <h2 className="text-lg font-medium">Resolving Conflicts</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`<<<<<<< HEAD
@@ -89,7 +89,7 @@ their changes
 
             {/* 8. Stashing */}
             <section id="stashing" className="space-y-3">
-                <h3 className="text-xl font-semibold">Stashing</h3>
+                <h2 className="text-lg font-medium">Stashing</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`git stash
@@ -104,7 +104,7 @@ git stash list`}
 
             {/* 9. Logs & History */}
             <section id="logs-and-history" className="space-y-3">
-                <h3 className="text-xl font-semibold">Logs & History</h3>
+                <h2 className="text-lg font-medium">Logs & History</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`git log
@@ -116,7 +116,7 @@ git show <commit>`}
 
             {/* 10. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Commit early and often.</li>

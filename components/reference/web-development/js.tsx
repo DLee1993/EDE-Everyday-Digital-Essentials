@@ -3,7 +3,7 @@ export default function JavaScript() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">JavaScript Reference</h2>
+                <h1 className="text-xl font-bold">JavaScript Reference</h1>
                 <p className="text-muted-foreground mt-2">
                     A beginner-friendly guide to JavaScript fundamentals, syntax, and patterns.
                 </p>
@@ -11,7 +11,7 @@ export default function JavaScript() {
 
             {/* 2. What is JavaScript */}
             <section id="what-is-javascript" className="space-y-3">
-                <h3 className="text-xl font-semibold">What is JavaScript?</h3>
+                <h2 className="text-lg font-medium">What is JavaScript?</h2>
                 <p>
                     JavaScript is the programming language of the web. It adds interactivity, logic,
                     and dynamic behaviour to webpages.
@@ -20,7 +20,7 @@ export default function JavaScript() {
 
             {/* 3. Variables */}
             <section id="variables" className="space-y-3">
-                <h3 className="text-xl font-semibold">Variables</h3>
+                <h2 className="text-lg font-medium">Variables</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`let count = 0;
@@ -36,7 +36,7 @@ var oldWay = true;`}
 
             {/* 4. Data Types */}
             <section id="data-types" className="space-y-3">
-                <h3 className="text-xl font-semibold">Data Types</h3>
+                <h2 className="text-lg font-medium">Data Types</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`string
@@ -52,7 +52,7 @@ function`}
 
             {/* 5. Operators */}
             <section id="operators" className="space-y-3">
-                <h3 className="text-xl font-semibold">Operators</h3>
+                <h2 className="text-lg font-medium">Operators</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`1 + 2
@@ -64,7 +64,7 @@ function`}
 
             {/* 6. Functions */}
             <section id="functions" className="space-y-3">
-                <h3 className="text-xl font-semibold">Functions</h3>
+                <h2 className="text-lg font-medium">Functions</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`function greet(name) {
@@ -77,7 +77,7 @@ const greet2 = (name) => "Hello " + name;`}
 
             {/* 7. Closures */}
             <section id="closures" className="space-y-3">
-                <h3 className="text-xl font-semibold">Closures</h3>
+                <h2 className="text-lg font-medium">Closures</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`function counter() {
@@ -98,7 +98,7 @@ inc(); // 2`}
 
             {/* 8. Scope & Hoisting */}
             <section id="scope-and-hoisting" className="space-y-3">
-                <h3 className="text-xl font-semibold">Scope & Hoisting</h3>
+                <h2 className="text-lg font-medium">Scope & Hoisting</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`console.log(a); // undefined
@@ -116,7 +116,7 @@ let b = 20;`}
 
             {/* 9. Arrays */}
             <section id="arrays" className="space-y-3">
-                <h3 className="text-xl font-semibold">Arrays</h3>
+                <h2 className="text-lg font-medium">Arrays</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const items = [1, 2, 3];
@@ -129,7 +129,7 @@ items.filter(x => x > 2);`}
 
             {/* 10. Objects */}
             <section id="objects" className="space-y-3">
-                <h3 className="text-xl font-semibold">Objects</h3>
+                <h2 className="text-lg font-medium">Objects</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const user = {
@@ -144,7 +144,7 @@ user["age"];`}
 
             {/* 11. Loops */}
             <section id="loops" className="space-y-3">
-                <h3 className="text-xl font-semibold">Loops</h3>
+                <h2 className="text-lg font-medium">Loops</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`for (let i = 0; i < 5; i++) {}
@@ -157,7 +157,7 @@ items.forEach(item => {});`}
 
             {/* 12. Conditionals */}
             <section id="conditionals" className="space-y-3">
-                <h3 className="text-xl font-semibold">Conditionals</h3>
+                <h2 className="text-lg font-medium">Conditionals</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`if (x > 10) {
@@ -172,7 +172,7 @@ const msg = x > 10 ? "Big" : "Small";`}
 
             {/* 13. DOM Manipulation */}
             <section id="dom-manipulation" className="space-y-3">
-                <h3 className="text-xl font-semibold">DOM Manipulation</h3>
+                <h2 className="text-lg font-medium">DOM Manipulation</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const el = document.querySelector("h1");
@@ -184,7 +184,7 @@ el.classList.add("active");`}
 
             {/* 14. Events */}
             <section id="events" className="space-y-3">
-                <h3 className="text-xl font-semibold">Events</h3>
+                <h2 className="text-lg font-medium">Events</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`button.addEventListener("click", () => {
@@ -195,7 +195,7 @@ el.classList.add("active");`}
 
             {/* 15. Event Delegation */}
             <section id="event-delegation" className="space-y-3">
-                <h3 className="text-xl font-semibold">Event Delegation</h3>
+                <h2 className="text-lg font-medium">Event Delegation</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`document.addEventListener("click", (e) => {
@@ -213,7 +213,7 @@ el.classList.add("active");`}
 
             {/* 16. JSON */}
             <section id="json" className="space-y-3">
-                <h3 className="text-xl font-semibold">JSON</h3>
+                <h2 className="text-lg font-medium">JSON</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const obj = { name: "Dave" };
@@ -225,7 +225,7 @@ const parsed = JSON.parse(json);`}
 
             {/* 17. Fetch API */}
             <section id="fetch-api" className="space-y-3">
-                <h3 className="text-xl font-semibold">Fetch API</h3>
+                <h2 className="text-lg font-medium">Fetch API</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`const res = await fetch("/api/data");
@@ -235,7 +235,7 @@ const data = await res.json();`}
 
             {/* 18. Async/Await */}
             <section id="async-await" className="space-y-3">
-                <h3 className="text-xl font-semibold">Async / Await</h3>
+                <h2 className="text-lg font-medium">Async / Await</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`async function load() {
@@ -247,7 +247,7 @@ const data = await res.json();`}
 
             {/* 19. Async Patterns */}
             <section id="async-patterns" className="space-y-3">
-                <h3 className="text-xl font-semibold">Async Patterns</h3>
+                <h2 className="text-lg font-medium">Async Patterns</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// Parallel
@@ -265,7 +265,7 @@ const timeout = (ms) =>
 
             {/* 20. Error Handling */}
             <section id="error-handling" className="space-y-3">
-                <h3 className="text-xl font-semibold">Error Handling</h3>
+                <h2 className="text-lg font-medium">Error Handling</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`try {
@@ -278,7 +278,7 @@ const timeout = (ms) =>
 
             {/* 21. Modules */}
             <section id="modules" className="space-y-3">
-                <h3 className="text-xl font-semibold">Modules</h3>
+                <h2 className="text-lg font-medium">Modules</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`// file.js
@@ -291,7 +291,7 @@ import { x } from "./file.js";`}
 
             {/* 22. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>

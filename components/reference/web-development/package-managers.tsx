@@ -3,7 +3,7 @@ export default function PackageManagers() {
         <section className="space-y-10">
             {/* 1. Overview */}
             <header className="space-y-3 h-fit">
-                <h2 className="text-2xl font-bold">Package Managers</h2>
+                <h1 className="text-xl font-bold">Package Managers</h1>
                 <p className="text-muted-foreground mt-2">
                     Understanding npm, pnpm, yarn, and how JavaScript dependencies are managed.
                 </p>
@@ -11,7 +11,7 @@ export default function PackageManagers() {
 
             {/* 2. What is a Package Manager */}
             <section id="what-is-a-package-manager" className="space-y-3">
-                <h3 className="text-xl font-semibold">What is a Package Manager?</h3>
+                <h2 className="text-lg font-medium">What is a Package Manager?</h2>
                 <p>
                     A package manager installs, updates, and removes dependencies for your project.
                     It keeps track of versions and nested dependencies.
@@ -20,7 +20,7 @@ export default function PackageManagers() {
 
             {/* 3. package.json */}
             <section id="package-json" className="space-y-3">
-                <h3 className="text-xl font-semibold">package.json</h3>
+                <h2 className="text-lg font-medium">package.json</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`{
@@ -38,7 +38,7 @@ export default function PackageManagers() {
 
             {/* 4. Installing Packages */}
             <section id="installing-packages" className="space-y-3">
-                <h3 className="text-xl font-semibold">Installing Packages</h3>
+                <h2 className="text-lg font-medium">Installing Packages</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`# npm
@@ -54,7 +54,7 @@ yarn add react`}
 
             {/* 5. Dev Dependencies */}
             <section id="dev-dependencies" className="space-y-3">
-                <h3 className="text-xl font-semibold">Dev Dependencies</h3>
+                <h2 className="text-lg font-medium">Dev Dependencies</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`npm install -D typescript
@@ -69,7 +69,7 @@ pnpm add -D typescript`}
 
             {/* 6. Removing Packages */}
             <section id="removing-packages" className="space-y-3">
-                <h3 className="text-xl font-semibold">Removing Packages</h3>
+                <h2 className="text-lg font-medium">Removing Packages</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`npm uninstall react
@@ -80,7 +80,7 @@ yarn remove react`}
 
             {/* 7. Updating Packages */}
             <section id="updating-packages" className="space-y-3">
-                <h3 className="text-xl font-semibold">Updating Packages</h3>
+                <h2 className="text-lg font-medium">Updating Packages</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`npm update
@@ -91,7 +91,7 @@ yarn upgrade`}
 
             {/* 8. Scripts */}
             <section id="scripts" className="space-y-3">
-                <h3 className="text-xl font-semibold">Scripts</h3>
+                <h2 className="text-lg font-medium">Scripts</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`"scripts": {
@@ -109,7 +109,7 @@ yarn dev`}
 
             {/* 9. Lockfiles */}
             <section id="lockfiles" className="space-y-3">
-                <h3 className="text-xl font-semibold">Lockfiles</h3>
+                <h2 className="text-lg font-medium">Lockfiles</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`package-lock.json   # npm
@@ -125,7 +125,7 @@ yarn.lock            # yarn`}
 
             {/* 10. Workspaces */}
             <section id="workspaces" className="space-y-3">
-                <h3 className="text-xl font-semibold">Workspaces</h3>
+                <h2 className="text-lg font-medium">Workspaces</h2>
 
                 <pre className="bg-muted p-4 rounded-md overflow-x-auto text-sm">
                     {`# npm
@@ -146,7 +146,7 @@ yarn workspace utils add lodash`}
 
             {/* 11. Best Practices */}
             <section id="best-practices" className="space-y-3">
-                <h3 className="text-xl font-semibold">Best Practices</h3>
+                <h2 className="text-lg font-medium">Best Practices</h2>
 
                 <ul className="list-disc pl-6 space-y-1">
                     <li>Commit your lockfile.</li>
