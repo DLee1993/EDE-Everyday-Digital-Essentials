@@ -9,7 +9,7 @@ import {
     hslToHex,
     rotateHue,
     contrastRatio,
-    ColorExportData
+    ColorExportData,
 } from "@/lib/color-converter/colors";
 
 export function useColorConverter() {
@@ -20,32 +20,45 @@ export function useColorConverter() {
         return parseColor(rawInput, mode);
     }, [rawInput, mode]);
 
-    // Tints & Shades
+    // -----------------------------
+    // Tints & Shades (Main Card)
+    // -----------------------------
     const palette = useMemo(() => {
         if (!parsed) return [];
         return generateTintsAndShades(parsed.hsl);
     }, [parsed]);
 
-    // Complementary
-    const complementary = useMemo(() => {
+    // -----------------------------
+    // Complementary Harmonies
+    // -----------------------------
+    const complementaryHarmonies = useMemo(() => {
         if (!parsed) return [];
-        const h = rotateHue(parsed.hsl.h, 180);
-        return [{ label: "Complementary", hex: hslToHex({ ...parsed.hsl, h }) }];
-    }, [parsed]);
 
-    // Triadic
-    const triadic = useMemo(() => {
-        if (!parsed) return [];
         return [
-            { label: "Triad 1", hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 120) }) },
-            { label: "Triad 2", hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 240) }) },
+            { label: "Base", hex: parsed.hex },
+            {
+                label: "Complementary 180°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 180) }),
+            },
+            {
+                label: "Split -150°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, -150) }),
+            },
+            {
+                label: "Split +150°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 150) }),
+            },
         ];
     }, [parsed]);
 
-    // Analogous
-    const analogous = useMemo(() => {
+    // -----------------------------
+    // Analogous Palette
+    // -----------------------------
+    const analogousPalette = useMemo(() => {
         if (!parsed) return [];
+
         return [
+            { label: "Base", hex: parsed.hex },
             {
                 label: "Analogous -30°",
                 hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, -30) }),
@@ -57,14 +70,75 @@ export function useColorConverter() {
         ];
     }, [parsed]);
 
+    // -----------------------------
+    // Triadic Palette
+    // -----------------------------
+    const triadicPalette = useMemo(() => {
+        if (!parsed) return [];
+
+        return [
+            { label: "Base", hex: parsed.hex },
+            {
+                label: "Triad +120°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 120) }),
+            },
+            {
+                label: "Triad +240°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 240) }),
+            },
+        ];
+    }, [parsed]);
+
+    // -----------------------------
+    // Tetradic Palette
+    // -----------------------------
+    const tetradicPalette = useMemo(() => {
+        if (!parsed) return [];
+
+        return [
+            { label: "Base", hex: parsed.hex },
+            {
+                label: "Tetradic +90°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 90) }),
+            },
+            {
+                label: "Tetradic +180°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 180) }),
+            },
+            {
+                label: "Tetradic +270°",
+                hex: hslToHex({ ...parsed.hsl, h: rotateHue(parsed.hsl.h, 270) }),
+            },
+        ];
+    }, [parsed]);
+
+    // -----------------------------
+    // Monochromatic Palette
+    // -----------------------------
+    const monochromaticPalette = useMemo(() => {
+        if (!parsed) return [];
+        const { h, s, l } = parsed.hsl;
+
+        return [
+            { label: "Base", hex: parsed.hex },
+            { label: "Lighten 15%", hex: hslToHex({ h, s, l: Math.min(100, l + 15) }) },
+            { label: "Lighten 30%", hex: hslToHex({ h, s, l: Math.min(100, l + 30) }) },
+            { label: "Darken 15%", hex: hslToHex({ h, s, l: Math.max(0, l - 15) }) },
+            { label: "Darken 30%", hex: hslToHex({ h, s, l: Math.max(0, l - 30) }) },
+        ];
+    }, [parsed]);
+
+    // -----------------------------
     // Luminance
+    // -----------------------------
     const luminance = parsed ? getLuminance(parsed.rgb) : null;
 
-    // Recommended text color
     const previewTextColor =
         luminance !== null ? (luminance > 0.5 ? "#000000" : "#ffffff") : "#000000";
 
-    // UI strings
+    // -----------------------------
+    // UI Strings
+    // -----------------------------
     const hex = parsed?.hex ?? "";
     const rgb = parsed ? `rgb(${parsed.rgb.r}, ${parsed.rgb.g}, ${parsed.rgb.b})` : "";
     const hsl = parsed
@@ -73,8 +147,10 @@ export function useColorConverter() {
           )}%)`
         : "";
 
-    // WCAG contrast
-    const contrast = useMemo(() => {
+    // -----------------------------
+    // WCAG Contrast
+    // -----------------------------
+    const wcag = useMemo(() => {
         if (luminance === null) return null;
 
         const whiteLum = 1;
@@ -97,7 +173,37 @@ export function useColorConverter() {
         };
     }, [luminance]);
 
-    // Unified export object
+    // -----------------------------
+    // Best Text Color
+    // -----------------------------
+    const bestText = useMemo<"white" | "black" | null>(() => {
+        if (!wcag) return null;
+        return wcag.white.ratio > wcag.black.ratio ? "white" : "black";
+    }, [wcag]);
+
+    // -----------------------------
+    // Color Blindness Simulations
+    // -----------------------------
+    const simulations = useMemo(
+        () =>
+            parsed
+                ? [
+                      { type: "Protanopia", hex: parsed.hex },
+                      { type: "Deuteranopia", hex: parsed.hex },
+                      { type: "Tritanopia", hex: parsed.hex },
+                  ]
+                : [],
+        [parsed]
+    );
+
+    // -----------------------------
+    // HSL Object (Hue Wheel)
+    // -----------------------------
+    const hslObject = parsed?.hsl ?? null;
+
+    // -----------------------------
+    // Export Data
+    // -----------------------------
     const exportData: ColorExportData = useMemo(() => {
         if (!parsed) {
             return {
@@ -106,12 +212,16 @@ export function useColorConverter() {
                 rgb: null,
                 hsl: null,
                 luminance: null,
-                textSuggestion: null,
                 palette: [],
-                complementary: [],
-                triadic: [],
-                analogous: [],
-                contrast: null,
+                complementaryHarmonies: [],
+                analogousPalette: [],
+                triadicPalette: [],
+                tetradicPalette: [],
+                monochromaticPalette: [],
+                wcag: null,
+                bestText: null,
+                simulations: [],
+                hslObject: null,
             };
         }
 
@@ -121,27 +231,31 @@ export function useColorConverter() {
             rgb,
             hsl,
             luminance,
-            textSuggestion:
-                luminance !== null
-                    ? luminance > 0.5
-                        ? "Dark text recommended"
-                        : "Light text recommended"
-                    : null,
             palette,
-            complementary,
-            triadic,
-            analogous,
-            contrast,
+            complementaryHarmonies,
+            analogousPalette,
+            triadicPalette,
+            tetradicPalette,
+            monochromaticPalette,
+            wcag,
+            bestText,
+            simulations,
+            hslObject,
         };
     }, [
         rawInput,
         parsed,
         luminance,
         palette,
-        complementary,
-        triadic,
-        analogous,
-        contrast,
+        complementaryHarmonies,
+        analogousPalette,
+        triadicPalette,
+        tetradicPalette,
+        monochromaticPalette,
+        wcag,
+        bestText,
+        simulations,
+        hslObject,
         hex,
         hsl,
         rgb,
@@ -157,10 +271,15 @@ export function useColorConverter() {
         rgb,
         hsl,
         palette,
-        complementary,
-        triadic,
-        analogous,
-        contrast,
+        complementaryHarmonies,
+        analogousPalette,
+        triadicPalette,
+        tetradicPalette,
+        monochromaticPalette,
+        wcag,
+        bestText,
+        simulations,
+        hslObject,
         luminance,
         previewTextColor,
         exportData,

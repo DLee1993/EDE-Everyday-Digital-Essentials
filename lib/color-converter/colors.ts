@@ -11,23 +11,43 @@ export type ParsedColor = {
     hsl: HSL;
 };
 
-export type ColorExportData = {
+export interface ColorExportData {
     input: string;
+
+    // Core formats
     hex: string | null;
     rgb: string | null;
     hsl: string | null;
+
+    // Core color data
     luminance: number | null;
-    textSuggestion: string | null;
-
     palette: { label: string; hex: string }[];
-    complementary: { label: string; hex: string }[];
-    triadic: { label: string; hex: string }[];
-    analogous: { label: string; hex: string }[];
 
-    contrast: {
+    // Advanced harmonies
+    complementaryHarmonies: { label: string; hex: string }[];
+    analogousPalette: { label: string; hex: string }[];
+    triadicPalette: { label: string; hex: string }[];
+    tetradicPalette: { label: string; hex: string }[];
+    monochromaticPalette: { label: string; hex: string }[];
+
+    // Accessibility
+    wcag: {
         white: { ratio: number; AA: boolean; AAA: boolean };
         black: { ratio: number; AA: boolean; AAA: boolean };
     } | null;
+
+    bestText: "white" | "black" | null;
+
+    // Color blindness simulation
+    simulations: { type: string; hex: string }[];
+
+    // Hue wheel
+    hslObject: { h: number; s: number; l: number } | null;
+}
+
+export type PaletteItem = {
+    label: string;
+    hex: string;
 };
 
 /* -------------------------------------------------------
@@ -272,4 +292,16 @@ export function contrastRatio(l1: number, l2: number) {
     const a = l1 + 0.05;
     const b = l2 + 0.05;
     return l1 > l2 ? a / b : b / a;
+}
+
+export function getTextColorForHex(hex: string) {
+    // Convert hex → RGB
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+    // Relative luminance
+    const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+    return lum > 0.5 ? "#000" : "#fff";
 }
