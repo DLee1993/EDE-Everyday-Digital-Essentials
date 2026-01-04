@@ -135,7 +135,7 @@
         @apply w-2 h-2;
     }
     *::-webkit-scrollbar-track {
-        @apply bg-transparent;
+        @apply bg-transparent border-l border-border;
     }
     *::-webkit-scrollbar-thumb {
         @apply bg-foreground/25;
