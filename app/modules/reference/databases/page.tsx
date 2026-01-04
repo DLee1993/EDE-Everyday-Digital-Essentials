@@ -2,7 +2,7 @@ import NoSQLBasics from "@/components/reference/databases/nosql-basics";
 import ORMs from "@/components/reference/databases/orms";
 import SQLBasics from "@/components/reference/databases/sql-basics";
 import SQLvsNoSQL from "@/components/reference/databases/sql-vs-nosql";
-import ReferenceLayout from "@/components/reference/ReferenceLayout";
+import ReferenceLayout from "@/components/reference/reference-layout";
 
 export default function Databases() {
     const topics = [

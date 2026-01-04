@@ -1,4 +1,4 @@
-import ReferenceLayout from "@/components/reference/ReferenceLayout";
+import ReferenceLayout from "@/components/reference/reference-layout";
 
 import HTML from "@/components/reference/web-development/html";
 import CSS from "@/components/reference/web-development/css";

@@ -1,4 +1,4 @@
-import ReferenceLayout from "@/components/reference/ReferenceLayout";
+import ReferenceLayout from "@/components/reference/reference-layout";
 
 import Markdown from "@/components/reference/developer-workflow/markdown";
 import Terminal from "@/components/reference/developer-workflow/terminal";

@@ -1,4 +1,4 @@
-import ReferenceLayout from "@/components/reference/ReferenceLayout";
+import ReferenceLayout from "@/components/reference/reference-layout";
 import TestingOverview from "@/components/reference/testing/testing-overview";
 import UnitTesting from "@/components/reference/testing/unit-testing";
 import IntegrationTesting from "@/components/reference/testing/integration-testing";

@@ -1,4 +1,4 @@
-import ReferenceLayout from "@/components/reference/ReferenceLayout";
+import ReferenceLayout from "@/components/reference/reference-layout";
 
 import Typography from "@/components/reference/design/typography";
 import Colour from "@/components/reference/design/colour";
