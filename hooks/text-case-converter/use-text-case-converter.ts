@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useMemo } from "react";
 import { transformTextCase, CaseMode } from "@/lib/text-case-converter/transform";
 
