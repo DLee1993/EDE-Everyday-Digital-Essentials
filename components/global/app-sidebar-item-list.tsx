@@ -19,7 +19,6 @@ import {
     Code2,
     Barcode,
     Lock,
-    DollarSign,
     Timer,
     Contact,
     Link,
@@ -67,18 +66,11 @@ export const rawSidebarItems: SidebarGroup[] = [
                     "Upload a file, choose the target format, and convert it instantly for download.",
             },
             {
-                title: "Units",
-                url: "/modules/converters/unit-converter",
+                title: "Currencies / Units",
+                url: "/modules/converters/currencies-units-converter",
                 icon: ArrowLeftRight,
                 instructions:
                     "Select a measurement type, input a value, and convert it into another unit.",
-            },
-            {
-                title: "Currencies",
-                url: "/modules/converters/currency-converter",
-                icon: DollarSign,
-                instructions:
-                    "Enter an amount and pick currencies to see real-time conversion results.",
             },
             {
                 title: "Colors",
