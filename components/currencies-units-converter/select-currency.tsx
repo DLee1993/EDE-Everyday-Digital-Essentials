@@ -100,11 +100,12 @@ export function SelectCurrency({
     return (
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-                <Button variant="secondary" className="w-full">
+                <Button variant="secondary">
                     {current ? (
                         <span className="flex items-center gap-2">
                             {FlagOrSkeleton}
                             <span className={loading ? "opacity-50" : ""}>{current}</span>
+                            <ChevronDown className={`${open ? "rotate-180" : "rotate-0"}`} />
                         </span>
                     ) : (
                         "Select currency"
@@ -143,7 +144,7 @@ function CurrencyList({
     rates: Record<string, number>;
 }) {
     return (
-        <Command>
+        <Command className="w-105">
             <CommandInput placeholder="Filter currencies..." autoFocus />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>

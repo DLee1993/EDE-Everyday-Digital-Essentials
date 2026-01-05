@@ -96,7 +96,7 @@ export function SelectUnit({ type, selectedValue, setSelectedValue }: SelectUnit
 
 function UnitList({ onSelect, selected }: { onSelect: (unit: Unit) => void; selected: Unit | "" }) {
     return (
-        <Command>
+        <Command className="w-105">
             <CommandInput placeholder="Filter units..." autoFocus />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
