@@ -3,7 +3,7 @@ export default function ORMs() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">ORMs</h1>
+                <h1 className="text-xl font-bold">ORMs</h1>
                 <p>
                     An ORM (Object-Relational Mapping) is a tool that lets you interact with a
                     database using code instead of writing SQL queries manually. ORMs generate the

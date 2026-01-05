@@ -3,7 +3,7 @@ export default function TestingOverview() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">Testing Overview</h1>
+                <h1 className="text-xl font-bold">Testing Overview</h1>
 
                 <p>
                     Testing ensures your code works as expected and continues to work as your

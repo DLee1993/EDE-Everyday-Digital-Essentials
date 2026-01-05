@@ -3,7 +3,7 @@ export default function NoSQLBasics() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">NoSQL Basics</h1>
+                <h1 className="text-xl font-bold">NoSQL Basics</h1>
                 <p>
                     NoSQL databases store data in flexible, non-relational formats such as
                     documents, key-value pairs, or wide-column structures. They don&apos;t require a

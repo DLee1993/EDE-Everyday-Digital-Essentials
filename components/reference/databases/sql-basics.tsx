@@ -3,7 +3,7 @@ export default function SQLBasics() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">SQL Basics</h1>
+                <h1 className="text-xl font-bold">SQL Basics</h1>
                 <p>
                     SQL (Structured Query Language) is used to interact with relational databases.
                     It lets you create tables, insert data, update records, and retrieve information

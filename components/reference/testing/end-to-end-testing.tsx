@@ -3,7 +3,7 @@ export default function E2ETesting() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">End-to-End Testing</h1>
+                <h1 className="text-xl font-bold">End-to-End Testing</h1>
 
                 <p>
                     End-to-end (E2E) tests simulate real user behaviour by interacting with your

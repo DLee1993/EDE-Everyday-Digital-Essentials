@@ -3,7 +3,7 @@ export default function UnitTesting() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">Unit Testing</h1>
+                <h1 className="text-xl font-bold">Unit Testing</h1>
 
                 <p>
                     Unit tests check small, isolated pieces of logic. They are fast, reliable, and

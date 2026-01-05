@@ -3,7 +3,7 @@ export default function IntegrationTesting() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">Integration Testing</h1>
+                <h1 className="text-xl font-bold">Integration Testing</h1>
 
                 <p>
                     Integration tests verify how different parts of your system work together. They

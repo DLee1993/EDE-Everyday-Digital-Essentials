@@ -3,7 +3,7 @@ export default function TestingTools() {
         <div className="space-y-10">
             {/* Page Title */}
             <header className="space-y-3 h-fit">
-                <h1 className="text-3xl font-bold">Testing Tools</h1>
+                <h1 className="text-xl font-bold">Testing Tools</h1>
 
                 <p>
                     Modern JavaScript testing uses a range of tools designed for different types of
