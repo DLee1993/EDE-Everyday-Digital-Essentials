@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { useMediaQuery } from "@/hooks/global/use-media-query";
 import { useMounted } from "@/hooks/global/use-mounted";
-import rateNames from "@/lib/currency-converter/rateNames.json";
+import rateNames from "@/data/currency-converter/rateNames.json";
 import CurrencyFlag from "react-currency-flags";
 import { Button } from "@/components/ui/button";
 import {
