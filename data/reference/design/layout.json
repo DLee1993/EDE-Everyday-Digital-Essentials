@@ -1,0 +1,178 @@
+{
+    "title": "Layout",
+    "description": "Layout defines how elements are arranged on a page. Good layout creates clarity, hierarchy, rhythm, and a sense of visual order. It helps users understand what matters, what's related, and where to look next.",
+    "sections": [
+        {
+            "id": "why-layout-matters",
+            "title": "Why Layout Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Layout is the foundation of interface design. Even with perfect typography and colour, a poor layout can make a design feel confusing or overwhelming."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Creates visual hierarchy",
+                        "Improves readability and scanning",
+                        "Groups related content",
+                        "Guides the user's eye",
+                        "Supports accessibility and usability"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "grids",
+            "title": "Grids",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Grids provide structure and consistency. They help align elements, create rhythm, and ensure your layout feels intentional rather than random."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Grid Types"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Column grids — used for multi-column layouts",
+                        "Modular grids — combine columns and rows",
+                        "Baseline grids — align text across the page"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Best Practices"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use consistent column widths and gutters",
+                        "Align elements to the grid whenever possible",
+                        "Use whitespace to break the grid intentionally"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "visual-hierarchy",
+            "title": "Visual Hierarchy",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Visual hierarchy helps users understand what's important. It's created through size, spacing, colour, alignment, and placement."
+                },
+                {
+                    "type": "h3",
+                    "text": "Ways to Create Hierarchy"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Size — larger elements attract more attention",
+                        "Position — top and left are seen first",
+                        "Colour — high contrast draws the eye",
+                        "Spacing — more space = more importance",
+                        "Grouping — related items should be close together"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "alignment",
+            "title": "Alignment",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Alignment creates order and reduces cognitive load. Misaligned elements make a design feel messy, even if everything else is perfect."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Alignment Types"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Left alignment — most readable for text",
+                        "Center alignment — good for short content",
+                        "Right alignment — used sparingly for emphasis"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Best Practices"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Pick one alignment and stick to it",
+                        "Avoid mixing left and center alignment in the same block",
+                        "Use alignment to create clean vertical lines"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "whitespace",
+            "title": "Whitespace",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Whitespace (or negative space) is the empty space around elements. It's not wasted space — it's what makes content readable and interfaces breathable."
+                },
+                {
+                    "type": "h3",
+                    "text": "Why Whitespace Matters"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Improves readability",
+                        "Creates separation between groups",
+                        "Reduces visual noise",
+                        "Helps users focus on what matters"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Mistakes"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Trying to fill every space",
+                        "Inconsistent spacing between elements",
+                        "Not enough space around text blocks"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "layout-patterns",
+            "title": "Layout Patterns",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Many interfaces follow predictable layout patterns. These patterns help users understand your design quickly because they've seen them before."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Patterns"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Single column — simple, linear reading",
+                        "Two column — content + sidebar",
+                        "Card layouts — modular, scannable content",
+                        "Grid galleries — visual content collections",
+                        "F‑pattern — common for text‑heavy pages",
+                        "Z‑pattern — common for landing pages"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,155 @@
+{
+    "title": "Web Architecture Basics",
+    "description": "A high-level overview of how the web works from request to response.",
+    "sections": [
+        {
+            "id": "what-happens-when-you-visit-a-url",
+            "title": "What happens when you visit a URL?",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "1. You enter a URL.\n2. DNS finds the server's IP address.\n3. Your browser connects to the server (HTTP/HTTPS).\n4. The server returns an HTTP response.\n5. The browser parses HTML, CSS, and JS.\n6. The page is rendered and scripts run."
+                }
+            ]
+        },
+        {
+            "id": "http-requests-and-responses",
+            "title": "HTTP Requests & Responses",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "GET /index.html HTTP/1.1\nHost: example.com\n\nHTTP/1.1 200 OK\nContent-Type: text/html\n..."
+                },
+                {
+                    "type": "p",
+                    "text": "HTTP is a request-response protocol. The browser sends a request; the server sends back a response with a status code and headers."
+                }
+            ]
+        },
+        {
+            "id": "status-codes",
+            "title": "Status Codes",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "200 — OK",
+                        "301/302 — Redirect",
+                        "400 — Bad Request",
+                        "401 — Unauthorized",
+                        "403 — Forbidden",
+                        "404 — Not Found",
+                        "500 — Server Error"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "client-vs-server",
+            "title": "Client vs Server",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "Client (browser):\n- Renders HTML, CSS, JS\n- Handles user interaction\n- Makes API requests\n\nServer:\n- Stores and retrieves data\n- Runs business logic\n- Returns HTML or JSON"
+                }
+            ]
+        },
+        {
+            "id": "static-vs-dynamic",
+            "title": "Static vs Dynamic Content",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "Static:\n- HTML files served as-is\n- Great for docs, blogs, marketing pages\n\nDynamic:\n- HTML or JSON generated per request\n- Great for dashboards, apps, custom data"
+                }
+            ]
+        },
+        {
+            "id": "cookies-and-sessions",
+            "title": "Cookies & Sessions",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "Set-Cookie: sessionId=abc123; HttpOnly; Secure; Path=/;"
+                },
+                {
+                    "type": "p",
+                    "text": "Cookies store small pieces of data in the browser. They are often used to keep users logged in or remember preferences."
+                }
+            ]
+        },
+        {
+            "id": "cors-basics",
+            "title": "CORS Basics",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "CORS (Cross-Origin Resource Sharing) controls which origins are allowed to access resources on a server."
+                },
+                {
+                    "type": "code",
+                    "text": "Access-Control-Allow-Origin: https://example.com"
+                },
+                {
+                    "type": "p",
+                    "text": "If CORS is misconfigured, browsers will block certain cross-site requests for security."
+                }
+            ]
+        },
+        {
+            "id": "cdns",
+            "title": "CDNs",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A CDN (Content Delivery Network) caches static assets across global servers, reducing latency and improving load times."
+                },
+                {
+                    "type": "code",
+                    "text": "<script src=\"https://cdn.example.com/library.js\"></script>"
+                }
+            ]
+        },
+        {
+            "id": "apis-and-json",
+            "title": "APIs & JSON",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Example API response\n{\n  \"user\": \"Dave\",\n  \"role\": \"admin\"\n}"
+                },
+                {
+                    "type": "p",
+                    "text": "APIs allow the browser to request structured data (usually JSON) from a server. JavaScript then uses this data to update the UI."
+                }
+            ]
+        },
+        {
+            "id": "spa-vs-mpa",
+            "title": "Single Page Apps vs Multi Page Apps",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "SPA:\n- JS handles routing\n- Faster transitions\n- More complex build setup\n\nMPA:\n- Each page is a full HTML document\n- Simpler, more SEO-friendly\n- Less JS required"
+                }
+            ]
+        },
+        {
+            "id": "core-mental-model",
+            "title": "Core Mental Model",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Browsers render HTML, CSS, and JS.",
+                        "Servers respond to HTTP requests.",
+                        "APIs usually return JSON for JavaScript to use.",
+                        "Everything rides on HTTP or HTTPS.",
+                        "DNS resolves domain names to IP addresses.",
+                        "Static assets can be cached globally via CDNs."
+                    ]
+                }
+            ]
+        }
+    ]
+}

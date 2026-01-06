@@ -1,0 +1,151 @@
+{
+    "title": "Git Workflow",
+    "description": "Git is a version control system that tracks changes to your code. It allows you to collaborate, experiment safely, and maintain a clean history of your project. Understanding Git is essential for working on real development teams.",
+    "sections": [
+        {
+            "id": "why-git-matters",
+            "title": "Why Git Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Git helps developers manage changes, avoid losing work, and collaborate effectively. It's used in almost every modern software project."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Tracks every change to your code",
+                        "Allows safe experimentation with branches",
+                        "Enables collaboration through pull requests",
+                        "Provides a history of what changed and why",
+                        "Integrates with GitHub, GitLab, and Bitbucket"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "core-concepts",
+            "title": "Core Git Concepts",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Before learning commands, it's important to understand the basic ideas behind Git."
+                },
+                {
+                    "type": "h3",
+                    "text": "Repository (repo)"
+                },
+                {
+                    "type": "p",
+                    "text": "A project tracked by Git."
+                },
+                {
+                    "type": "h3",
+                    "text": "Commit"
+                },
+                {
+                    "type": "p",
+                    "text": "A snapshot of your code at a moment in time."
+                },
+                {
+                    "type": "h3",
+                    "text": "Branch"
+                },
+                {
+                    "type": "p",
+                    "text": "A separate line of development used for features or fixes."
+                },
+                {
+                    "type": "h3",
+                    "text": "Merge"
+                },
+                {
+                    "type": "p",
+                    "text": "Combining changes from one branch into another."
+                },
+                {
+                    "type": "h3",
+                    "text": "Remote"
+                },
+                {
+                    "type": "p",
+                    "text": "A version of your repo stored online (e.g., GitHub)."
+                }
+            ]
+        },
+        {
+            "id": "common-commands",
+            "title": "Common Git Commands",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "These commands form the foundation of everyday Git usage."
+                },
+                {
+                    "type": "code",
+                    "text": "git init            # Start a new repository\ngit clone URL        # Download a repo\ngit status           # Check changes\ngit add .            # Stage all changes\ngit commit -m \"msg\"  # Save a snapshot\ngit push             # Upload changes\ngit pull             # Download latest changes"
+                }
+            ]
+        },
+        {
+            "id": "branching",
+            "title": "Branching",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Branches allow you to work on features without affecting the main codebase."
+                },
+                {
+                    "type": "code",
+                    "text": "git branch feature/login   # Create a branch\ngit checkout feature/login  # Switch to it\ngit switch feature/login    # (newer alternative)\ngit merge feature/login     # Merge into current branch"
+                },
+                {
+                    "type": "p",
+                    "text": "Branching is the safest way to experiment and collaborate."
+                }
+            ]
+        },
+        {
+            "id": "pull-requests",
+            "title": "Pull Requests",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A pull request (PR) is a request to merge your branch into the main project. It's where code review and collaboration happen."
+                },
+                {
+                    "type": "h3",
+                    "text": "A good PR includes:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "A clear title",
+                        "A description of what changed",
+                        "Screenshots (if UI changes)",
+                        "Small, focused commits"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "git-best-practices",
+            "title": "Git Workflow Best Practices",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Following good Git habits keeps your project clean and your team happy."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Commit often with clear messages",
+                        "Use branches for every feature or fix",
+                        "Pull before you push to avoid conflicts",
+                        "Keep PRs small and focused",
+                        "Never commit secrets or environment files"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,161 @@
+{
+    "title": "Spacing",
+    "description": "Spacing creates rhythm, structure, and clarity. It helps users understand relationships between elements and prevents interfaces from feeling cramped or chaotic. Good spacing is one of the fastest ways to make a design feel professional.",
+    "sections": [
+        {
+            "id": "why-spacing-matters",
+            "title": "Why Spacing Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Spacing isn't just empty space — it's an active design tool. It controls how users read, scan, and interpret content."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Improves readability",
+                        "Creates visual hierarchy",
+                        "Groups related elements",
+                        "Separates unrelated content",
+                        "Makes interfaces feel calm and intentional"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "types-of-spacing",
+            "title": "Types of Spacing",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Spacing appears in many forms throughout an interface. Understanding each type helps you apply spacing consistently."
+                },
+                {
+                    "type": "h3",
+                    "text": "1. Internal Spacing"
+                },
+                {
+                    "type": "p",
+                    "text": "Padding inside components — buttons, cards, inputs, containers."
+                },
+                {
+                    "type": "h3",
+                    "text": "2. External Spacing"
+                },
+                {
+                    "type": "p",
+                    "text": "Margin between components — spacing between cards, sections, or text blocks."
+                },
+                {
+                    "type": "h3",
+                    "text": "3. Line Spacing"
+                },
+                {
+                    "type": "p",
+                    "text": "Vertical spacing between lines of text (line-height)."
+                },
+                {
+                    "type": "h3",
+                    "text": "4. Section Spacing"
+                },
+                {
+                    "type": "p",
+                    "text": "Larger spacing used to separate major content areas."
+                }
+            ]
+        },
+        {
+            "id": "spacing-systems",
+            "title": "Spacing Systems",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A spacing system ensures consistency across your entire interface. Most design systems use a scale based on multiples of 4 or 8."
+                },
+                {
+                    "type": "code",
+                    "text": "Example 8px scale:\n4, 8, 16, 24, 32, 40, 48, 64"
+                },
+                {
+                    "type": "h3",
+                    "text": "Why use a scale?"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Creates predictable rhythm",
+                        "Reduces decision fatigue",
+                        "Makes layouts easier to maintain",
+                        "Improves alignment and balance"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "grouping-proximity",
+            "title": "Grouping & Proximity",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Elements that are close together are perceived as related. Elements that are far apart are perceived as separate. This is one of the most powerful spacing principles in design."
+                },
+                {
+                    "type": "h3",
+                    "text": "Use spacing to:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Group labels with their inputs",
+                        "Separate sections of content",
+                        "Create clear card boundaries",
+                        "Organize navigation items"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "vertical-rhythm",
+            "title": "Vertical Rhythm",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Vertical rhythm is the consistent spacing between text blocks, headings, and components. It creates a smooth reading experience and prevents \"visual bumps\" in the layout."
+                },
+                {
+                    "type": "h3",
+                    "text": "Best Practices"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use consistent spacing between similar elements",
+                        "Increase spacing before major headings",
+                        "Reduce spacing inside tightly grouped elements",
+                        "Use your spacing scale to maintain rhythm"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "spacing-mistakes",
+            "title": "Common Spacing Mistakes",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Beginners often struggle with spacing because it feels subjective. These mistakes are extremely common — and easy to fix once you know them."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Inconsistent spacing between similar elements",
+                        "Too little space between sections",
+                        "Too much space inside components",
+                        "Mixing random spacing values (7px, 13px, 22px)",
+                        "Not aligning elements to a grid or baseline"
+                    ]
+                }
+            ]
+        }
+    ]
+}

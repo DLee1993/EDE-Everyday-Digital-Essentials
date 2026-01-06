@@ -1,0 +1,111 @@
+{
+    "title": "Typography",
+    "description": "Typography shapes how users read, scan, and understand content. Good typography improves clarity, hierarchy, rhythm, and overall user experience.",
+    "sections": [
+        {
+            "id": "what-is-typography",
+            "title": "What Typography Is",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Typography is the practice of arranging text so it is readable, accessible, and visually appealing. It includes font choice, size, spacing, alignment, and the relationships between text elements."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Choosing appropriate fonts",
+                        "Establishing hierarchy",
+                        "Managing spacing and rhythm",
+                        "Ensuring readability and accessibility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "choosing-fonts",
+            "title": "Choosing Fonts",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A font sets the tone of your interface. Choose fonts that match the purpose and personality of your product."
+                },
+                {
+                    "type": "h3",
+                    "text": "Font Categories"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Serif — traditional, trustworthy, editorial",
+                        "Sans-serif — modern, clean, highly readable",
+                        "Monospace — technical, code-focused",
+                        "Display — expressive, decorative, used sparingly"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Best Practices"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use 1-2 fonts per project",
+                        "Ensure good contrast and readability",
+                        "Check how fonts render on different devices"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "type-scales",
+            "title": "Type Scales",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A type scale is a set of font sizes that follow a consistent ratio. This creates predictable hierarchy and visual rhythm."
+                },
+                {
+                    "type": "code",
+                    "text": "Example scale (1.25 ratio):\n12px\n15px\n19px\n24px\n30px\n38px"
+                },
+                {
+                    "type": "p",
+                    "text": "Many design systems use modular scales to ensure consistency across headings, body text, and UI elements."
+                }
+            ]
+        },
+        {
+            "id": "line-height",
+            "title": "Line Height",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Line height controls the vertical spacing between lines of text. Proper line height improves readability and prevents visual crowding."
+                },
+                {
+                    "type": "list",
+                    "items": ["Body text: 1.4-1.7", "Headings: 1.1-1.3", "Buttons: 1.2-1.4"]
+                }
+            ]
+        },
+        {
+            "id": "readability-accessibility",
+            "title": "Readability & Accessibility",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Typography must support all users, including those with visual impairments, dyslexia, or cognitive challenges."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use sufficient contrast",
+                        "Avoid long line lengths (45-75 characters)",
+                        "Use real text, not images of text",
+                        "Ensure scalable text (rem/em units)"
+                    ]
+                }
+            ]
+        }
+    ]
+}

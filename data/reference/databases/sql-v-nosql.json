@@ -1,0 +1,108 @@
+{
+    "title": "SQL vs NoSQL",
+    "description": "Databases store and organise data so applications can use it efficiently. The two main types are SQL (relational) and NoSQL (non-relational). Understanding the difference helps you choose the right tool for your project.",
+    "sections": [
+        {
+            "id": "what-is-sql",
+            "title": "What is SQL?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "SQL databases use a relational model. Data is stored in tables with rows and columns, similar to a spreadsheet. Each table has a defined structure called a schema."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Structured and predictable",
+                        "Uses tables, rows, and columns",
+                        "Strong data consistency",
+                        "Great for complex relationships"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Common SQL databases:"
+                },
+                {
+                    "type": "list",
+                    "items": ["PostgreSQL", "MySQL", "SQLite"]
+                }
+            ]
+        },
+        {
+            "id": "what-is-nosql",
+            "title": "What is NoSQL?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "NoSQL databases use a non-relational model. Instead of tables, they store data in flexible formats like documents or key-value pairs. They don't require a fixed schema."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Flexible and schema-less",
+                        "Stores documents, objects, or key-value data",
+                        "Great for rapidly changing data",
+                        "Scales horizontally very well"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Common NoSQL databases:"
+                },
+                {
+                    "type": "list",
+                    "items": ["MongoDB", "Firebase", "Redis"]
+                }
+            ]
+        },
+        {
+            "id": "key-differences",
+            "title": "Key Differences",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Structure: SQL uses tables; NoSQL uses documents or key-value pairs.",
+                        "Schema: SQL requires a defined schema; NoSQL is flexible.",
+                        "Relationships: SQL handles complex relationships well; NoSQL prefers simpler links.",
+                        "Scaling: SQL scales vertically; NoSQL scales horizontally.",
+                        "Consistency: SQL prioritises strong consistency; NoSQL often prioritises speed and availability."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "when-to-use",
+            "title": "When to Use Each",
+            "content": [
+                {
+                    "type": "h3",
+                    "text": "Use SQL when:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Your data has clear structure",
+                        "You need strong consistency",
+                        "You have complex relationships",
+                        "You're building financial or transactional systems"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Use NoSQL when:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Your data changes shape frequently",
+                        "You need fast reads and writes",
+                        "You're storing documents or objects",
+                        "You need to scale across many servers"
+                    ]
+                }
+            ]
+        }
+    ]
+}

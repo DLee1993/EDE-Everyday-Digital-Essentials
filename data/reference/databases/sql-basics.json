@@ -1,0 +1,134 @@
+{
+    "title": "SQL Basics",
+    "description": "SQL (Structured Query Language) is used to interact with relational databases. It lets you create tables, insert data, update records, and retrieve information using clear, structured commands. These basics form the foundation of almost every SQL workflow.",
+    "sections": [
+        {
+            "id": "select",
+            "title": "SELECT",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "SELECT retrieves data from a table. It's the most commonly used SQL command."
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT * FROM users;"
+                },
+                {
+                    "type": "p",
+                    "text": "You can select specific columns:"
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT name, email FROM users;"
+                }
+            ]
+        },
+        {
+            "id": "where",
+            "title": "WHERE",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "WHERE filters results based on a condition."
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT * FROM users\nWHERE age > 18;"
+                }
+            ]
+        },
+        {
+            "id": "insert",
+            "title": "INSERT",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "INSERT adds a new row to a table."
+                },
+                {
+                    "type": "code",
+                    "text": "INSERT INTO users (name, email)\nVALUES ('Alice', 'alice@example.com');"
+                }
+            ]
+        },
+        {
+            "id": "update",
+            "title": "UPDATE",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "UPDATE modifies existing data in a table."
+                },
+                {
+                    "type": "code",
+                    "text": "UPDATE users\nSET email = 'new@example.com'\nWHERE id = 1;"
+                }
+            ]
+        },
+        {
+            "id": "delete",
+            "title": "DELETE",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "DELETE removes rows from a table."
+                },
+                {
+                    "type": "code",
+                    "text": "DELETE FROM users\nWHERE id = 1;"
+                },
+                {
+                    "type": "p",
+                    "text": "Always use WHERE with DELETE — without it, you'll remove every row in the table."
+                }
+            ]
+        },
+        {
+            "id": "order-by",
+            "title": "ORDER BY",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "ORDER BY sorts results by a specific column."
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT * FROM users\nORDER BY created_at DESC;"
+                }
+            ]
+        },
+        {
+            "id": "limit",
+            "title": "LIMIT",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "LIMIT restricts how many rows are returned."
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT * FROM users\nLIMIT 10;"
+                }
+            ]
+        },
+        {
+            "id": "joins",
+            "title": "Joins",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Joins combine data from multiple tables using shared values. They're essential for working with relational data."
+                },
+                {
+                    "type": "code",
+                    "text": "SELECT orders.id, users.name\nFROM orders\nJOIN users ON orders.user_id = users.id;"
+                },
+                {
+                    "type": "p",
+                    "text": "This example returns each order along with the user who created it."
+                }
+            ]
+        }
+    ]
+}

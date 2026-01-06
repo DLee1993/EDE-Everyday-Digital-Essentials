@@ -1,0 +1,40 @@
+{
+    "title": "End-to-End Testing",
+    "description": "End-to-end (E2E) tests simulate real user behaviour by interacting with your application through the UI. They provide the highest confidence but are slower and more complex than other test types.",
+    "sections": [
+        {
+            "id": "what-is-e2e-testing",
+            "title": "What is E2E Testing?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "E2E tests run your full application in a browser-like environment and perform actions such as clicking buttons, filling forms, and navigating pages."
+                }
+            ]
+        },
+        {
+            "id": "example",
+            "title": "Example",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "test(\"user can log in\", async ({ page }) => {\n  await page.goto(\"/login\");\n  await page.fill(\"#email\", \"alice@example.com\");\n  await page.fill(\"#password\", \"password123\");\n  await page.click(\"button[type=submit]\");\n  await expect(page).toHaveURL(\"/dashboard\");\n});"
+                }
+            ]
+        },
+        {
+            "id": "when-to-use",
+            "title": "When to Use E2E Tests",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "To verify critical user flows",
+                        "To ensure the whole system works together",
+                        "To catch issues unit/integration tests miss"
+                    ]
+                }
+            ]
+        }
+    ]
+}

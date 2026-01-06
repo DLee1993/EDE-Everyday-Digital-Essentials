@@ -1,0 +1,132 @@
+{
+    "title": "Web Performance Basics",
+    "description": "Key concepts and practices to make websites feel fast and responsive.",
+    "sections": [
+        {
+            "id": "why-performance-matters",
+            "title": "Why Performance Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Performance affects user experience, engagement, accessibility, and even search ranking. Fast sites feel trustworthy and pleasant to use."
+                }
+            ]
+        },
+        {
+            "id": "critical-rendering-path",
+            "title": "Critical Rendering Path",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "HTML is parsed into the DOM.",
+                        "CSS is parsed into the CSSOM.",
+                        "DOM + CSSOM → Render tree → Layout → Paint."
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Large blocking scripts or styles can delay this pipeline and slow down the first render."
+                }
+            ]
+        },
+        {
+            "id": "optimising-assets",
+            "title": "Optimising Assets",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Compress and resize images.",
+                        "Use modern formats where possible.",
+                        "Minify CSS and JavaScript.",
+                        "Avoid loading unused libraries."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "loading-javascript-wisely",
+            "title": "Loading JavaScript Wisely",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<script src=\"app.js\" defer></script>\n<script src=\"analytics.js\" async></script>"
+                },
+                {
+                    "type": "p",
+                    "text": "defer waits for HTML parsing to finish before running. async runs as soon as the script is downloaded."
+                }
+            ]
+        },
+        {
+            "id": "avoiding-layout-thrashing",
+            "title": "Avoiding Layout Thrashing",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Layout thrashing happens when you repeatedly read and write layout properties in a tight loop."
+                },
+                {
+                    "type": "code",
+                    "text": "// Bad: read/write mixed\nfor (...) {\n  const height = el.offsetHeight; // read\n  el.style.height = height + 10 + \"px\"; // write\n}\n\n// Better: batch\nconst height = el.offsetHeight;\nfor (...) {\n  el.style.height = height + 10 + \"px\";\n}"
+                }
+            ]
+        },
+        {
+            "id": "debouncing-and-throttling",
+            "title": "Debouncing & Throttling",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Debounce: wait for pause\nfunction debounce(fn, delay) {\n  let id;\n  return (...args) => {\n    clearTimeout(id);\n    id = setTimeout(() => fn(...args), delay);\n  };\n}\n\n// Throttle: run at most every X ms\nfunction throttle(fn, interval) {\n  let last = 0;\n  return (...args) => {\n    const now = Date.now();\n    if (now - last >= interval) {\n      last = now;\n      fn(...args);\n    }\n  };\n}"
+                }
+            ]
+        },
+        {
+            "id": "measuring-performance",
+            "title": "Measuring Performance",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use browser DevTools performance and network panels.",
+                        "Measure bundle size and load times.",
+                        "Pay attention to initial load and interaction delay.",
+                        "Test on slower devices or throttled networks."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "caching-strategies",
+            "title": "Caching Strategies",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Example: Cache-Control header\nCache-Control: max-age=31536000, immutable"
+                },
+                {
+                    "type": "p",
+                    "text": "Caching static assets reduces load times dramatically and improves perceived performance."
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Optimise images first — they're usually the biggest files.",
+                        "Use defer and async for scripts.",
+                        "Minimise layout shifts (CLS).",
+                        "Use lazy loading for off-screen images.",
+                        "Measure performance regularly, not just once."
+                    ]
+                }
+            ]
+        }
+    ]
+}

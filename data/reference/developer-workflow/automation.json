@@ -1,0 +1,87 @@
+{
+    "title": "Automation",
+    "description": "Automation helps developers save time by letting tools handle repetitive tasks. From formatting code to running tests, automation improves consistency and reduces human error.",
+    "sections": [
+        {
+            "id": "why-automation-matters",
+            "title": "Why Automation Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Automation frees you from repetitive work so you can focus on building features and solving problems."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Improves consistency",
+                        "Reduces mistakes",
+                        "Saves time",
+                        "Supports team collaboration"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "automation-tools",
+            "title": "Common Automation Tools",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Many tools help automate tasks in modern development."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Prettier — formats code automatically",
+                        "ESLint — checks for errors and style issues",
+                        "NPM scripts — run commands like builds and tests",
+                        "Husky — run scripts before commits",
+                        "CI/CD — automate testing and deployment"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "npm-scripts",
+            "title": "NPM Scripts",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "NPM scripts let you automate tasks directly from your project's package.json."
+                },
+                {
+                    "type": "code",
+                    "text": "\"scripts\": {\n  \"dev\": \"next dev\",\n  \"build\": \"next build\",\n  \"format\": \"prettier --write .\"\n}"
+                }
+            ]
+        },
+        {
+            "id": "pre-commit-hooks",
+            "title": "Pre-commit Hooks",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Pre-commit hooks run scripts before a commit is created. They help keep your codebase clean and error-free."
+                },
+                {
+                    "type": "list",
+                    "items": ["Format code automatically", "Run linters", "Prevent bad commits"]
+                }
+            ]
+        },
+        {
+            "id": "continuous-integration",
+            "title": "Continuous Integration",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "CI tools automatically test and validate your code whenever you push changes to a repository."
+                },
+                {
+                    "type": "list",
+                    "items": ["Run tests", "Check formatting", "Lint code", "Build the project"]
+                }
+            ]
+        }
+    ]
+}

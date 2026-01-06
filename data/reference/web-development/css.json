@@ -1,0 +1,208 @@
+{
+    "title": "CSS Reference",
+    "description": "A beginner-friendly guide to styling and layout with CSS.",
+    "sections": [
+        {
+            "id": "what-is-css",
+            "title": "What is CSS?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "CSS (Cascading Style Sheets) controls the appearance of your webpage. It defines colors, spacing, layout, typography, and responsive behaviour."
+                }
+            ]
+        },
+        {
+            "id": "selectors",
+            "title": "Selectors",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "/* Element selector */\np { color: black; }\n\n/* Class selector */\n.button { padding: 1rem; }\n\n/* ID selector */\n#header { background: #eee; }\n\n/* Attribute selector */\ninput[type=\"email\"] { border-color: blue; }"
+                }
+            ]
+        },
+        {
+            "id": "advanced-selectors",
+            "title": "Advanced Selectors",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "/* First child */\nul li:first-child {}\n\n/* Even rows */\ntr:nth-child(even) {}\n\n/* NOT selector */\nbutton:not(.primary) {}\n\n/* Adjacent sibling */\nh1 + p {}"
+                }
+            ]
+        },
+        {
+            "id": "colors",
+            "title": "Colors",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "color: red;\ncolor: #ff0000;\ncolor: rgb(255, 0, 0);\ncolor: hsl(0, 100%, 50%);"
+                }
+            ]
+        },
+        {
+            "id": "typography",
+            "title": "Typography",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "font-size: 1rem;\nfont-weight: 600;\nline-height: 1.5;\nfont-family: \"Inter\", sans-serif;"
+                }
+            ]
+        },
+        {
+            "id": "box-model",
+            "title": "Box Model",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "padding: 1rem;\nmargin: 2rem;\nborder: 1px solid #ccc;\nbox-sizing: border-box;"
+                },
+                {
+                    "type": "p",
+                    "text": "box-sizing: border-box makes width calculations more intuitive."
+                }
+            ]
+        },
+        {
+            "id": "display",
+            "title": "Display",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "display: block;\ndisplay: inline;\ndisplay: inline-block;\ndisplay: flex;\ndisplay: grid;"
+                }
+            ]
+        },
+        {
+            "id": "flexbox",
+            "title": "Flexbox",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "display: flex;\njustify-content: center;\nalign-items: center;\ngap: 1rem;"
+                },
+                {
+                    "type": "p",
+                    "text": "Flexbox is ideal for aligning items in one dimension (row or column)."
+                }
+            ]
+        },
+        {
+            "id": "grid",
+            "title": "Grid",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "display: grid;\ngrid-template-columns: repeat(3, 1fr);\ngap: 1rem;"
+                },
+                {
+                    "type": "p",
+                    "text": "Grid is perfect for two-dimensional layouts."
+                }
+            ]
+        },
+        {
+            "id": "layout-patterns",
+            "title": "Common Layout Patterns",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "/* Centered container */\n.container {\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 1rem;\n}\n\n/* Sidebar layout */\n.layout {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n  gap: 2rem;\n}\n\n/* Card grid */\n.cards {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 1.5rem;\n}"
+                }
+            ]
+        },
+        {
+            "id": "positioning",
+            "title": "Positioning",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "position: static;\nposition: relative;\nposition: absolute;\nposition: fixed;\nposition: sticky;"
+                }
+            ]
+        },
+        {
+            "id": "z-index",
+            "title": "Z-Index",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "z-index: 10;\nz-index: 999;"
+                },
+                {
+                    "type": "p",
+                    "text": "Z‑index only works on positioned elements (relative, absolute, fixed, sticky)."
+                }
+            ]
+        },
+        {
+            "id": "transitions",
+            "title": "Transitions",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "transition: all 0.3s ease;\n\nbutton:hover {\n  transform: scale(1.05);\n}"
+                }
+            ]
+        },
+        {
+            "id": "animations",
+            "title": "Animations",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "@keyframes fade {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n\n.element {\n  animation: fade 1s ease-in-out;\n}"
+                }
+            ]
+        },
+        {
+            "id": "responsive-design",
+            "title": "Responsive Design",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "@media (max-width: 600px) {\n  .container {\n    padding: 1rem;\n  }\n}"
+                }
+            ]
+        },
+        {
+            "id": "modern-responsive-strategies",
+            "title": "Modern Responsive Strategies",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "/* Fluid typography */\nh1 {\n  font-size: clamp(2rem, 5vw, 4rem);\n}\n\n/* Container queries */\n@container (min-width: 500px) {\n  .card {\n    flex-direction: row;\n  }\n}"
+                }
+            ]
+        },
+        {
+            "id": "variables",
+            "title": "CSS Variables",
+            "content": [
+                {
+                    "type": "code",
+                    "text": ":root {\n  --primary: #4f46e5;\n}\n\nbutton {\n  background: var(--primary);\n}"
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use classes instead of IDs for styling.",
+                        "Keep selectors short and readable.",
+                        "Use variables for theme consistency.",
+                        "Prefer Flexbox and Grid for layout.",
+                        "Use responsive units like rem and %."
+                    ]
+                }
+            ]
+        }
+    ]
+}

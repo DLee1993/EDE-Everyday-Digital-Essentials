@@ -1,0 +1,121 @@
+{
+    "title": "Terminal",
+    "description": "The terminal (or command line) is a text-based interface for interacting with your computer. Developers use it to navigate files, run programs, manage tools, and automate tasks. Learning the terminal is one of the biggest productivity boosts for beginners.",
+    "sections": [
+        {
+            "id": "why-terminal-matters",
+            "title": "Why the Terminal Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Modern development relies heavily on command-line tools. Package managers, frameworks, version control, build tools, and automation all run through the terminal."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Faster than GUI tools",
+                        "Required for Git, Node, Python, Docker, and more",
+                        "Essential for automation and scripting",
+                        "Works the same across most operating systems"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "navigation",
+            "title": "Navigating the File System",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The terminal lets you move around your computer using simple commands."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Commands"
+                },
+                {
+                    "type": "code",
+                    "text": "pwd        # Show current directory\nls         # List files\ncd folder  # Change directory\ncd ..      # Go up one level\nmkdir app  # Create a folder\nrm file    # Delete a file"
+                },
+                {
+                    "type": "p",
+                    "text": "These commands form the foundation of terminal navigation. Once you master them, everything else becomes easier."
+                }
+            ]
+        },
+        {
+            "id": "working-with-files",
+            "title": "Working With Files",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The terminal allows you to create, move, copy, and delete files quickly."
+                },
+                {
+                    "type": "code",
+                    "text": "touch index.js     # Create a file\ncp a.txt b.txt      # Copy a file\nmv a.txt folder/    # Move a file\nrm a.txt            # Delete a file\nrm -r folder        # Delete a folder"
+                },
+                {
+                    "type": "p",
+                    "text": "Be careful with rm -r — it deletes everything inside a folder without sending it to the recycle bin."
+                }
+            ]
+        },
+        {
+            "id": "running-programs",
+            "title": "Running Programs",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Many tools and frameworks are designed to run from the terminal."
+                },
+                {
+                    "type": "code",
+                    "text": "node app.js\npython script.py\nnpm run dev\ngit status"
+                },
+                {
+                    "type": "p",
+                    "text": "Once you understand how to run commands, you can use almost any developer tool."
+                }
+            ]
+        },
+        {
+            "id": "installing-tools",
+            "title": "Installing Tools",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Package managers like Homebrew, apt, npm, and pip let you install software directly from the terminal."
+                },
+                {
+                    "type": "code",
+                    "text": "brew install node\nnpm install react\npip install requests"
+                },
+                {
+                    "type": "p",
+                    "text": "This is how developers install frameworks, libraries, CLIs, and utilities."
+                }
+            ]
+        },
+        {
+            "id": "terminal-tips",
+            "title": "Terminal Productivity Tips",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Small habits make a huge difference when working in the terminal."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use Tab to auto-complete commands and file names",
+                        "Use arrow keys to repeat previous commands",
+                        "Use clear or Ctrl + L to clean the screen",
+                        "Use Ctrl + C to stop a running process",
+                        "Use aliases to shorten long commands"
+                    ]
+                }
+            ]
+        }
+    ]
+}

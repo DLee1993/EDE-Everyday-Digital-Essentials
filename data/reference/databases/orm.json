@@ -1,0 +1,136 @@
+{
+    "title": "ORMs",
+    "description": "An ORM (Object-Relational Mapping) is a tool that lets you interact with a database using code instead of writing SQL queries manually. ORMs generate the SQL for you, handle migrations, and provide a clean, structured way to work with data. Modern web development often uses ORMs to simplify database access and keep application code consistent and maintainable.",
+    "sections": [
+        {
+            "id": "what-an-orm-does",
+            "title": "What an ORM Does",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Defines your data models in code",
+                        "Generates SQL queries automatically",
+                        "Handles database migrations",
+                        "Validates data before saving",
+                        "Provides a consistent API for reading and writing data"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "popular-orms",
+            "title": "Popular ORMs",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Common ORMs used in modern web development:"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Prisma — TypeScript-first ORM for SQL databases",
+                        "Mongoose — ODM (Object Document Mapper) for MongoDB",
+                        "Drizzle ORM — Lightweight, SQL-focused, schema-safe ORM"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "models",
+            "title": "Models",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A model represents a table (SQL) or collection (NoSQL). It defines the shape of your data and the fields each record contains."
+                },
+                {
+                    "type": "code",
+                    "text": "model User {\n  id        Int     @id @default(autoincrement())\n  name      String\n  email     String  @unique\n  createdAt DateTime @default(now())\n}"
+                },
+                {
+                    "type": "p",
+                    "text": "This Prisma example defines a User model with four fields."
+                }
+            ]
+        },
+        {
+            "id": "querying",
+            "title": "Querying Data",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "ORMs let you query data using code instead of SQL. This improves readability and reduces the chance of syntax errors."
+                },
+                {
+                    "type": "code",
+                    "text": "const users = await prisma.user.findMany();"
+                },
+                {
+                    "type": "p",
+                    "text": "This example retrieves all users using Prisma."
+                }
+            ]
+        },
+        {
+            "id": "creating-records",
+            "title": "Creating Records",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Creating new records is simple and uses the ORM's API."
+                },
+                {
+                    "type": "code",
+                    "text": "await prisma.user.create({\n  data: {\n    name: \"Alice\",\n    email: \"alice@example.com\"\n  }\n});"
+                }
+            ]
+        },
+        {
+            "id": "migrations",
+            "title": "Migrations",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Migrations update your database structure when your models change. ORMs generate migration files automatically, ensuring your database stays in sync with your code."
+                },
+                {
+                    "type": "p",
+                    "text": "For example, adding a new field to a model will generate a migration that updates the database table."
+                }
+            ]
+        },
+        {
+            "id": "pros-and-cons",
+            "title": "Pros and Cons",
+            "content": [
+                {
+                    "type": "h3",
+                    "text": "Pros"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Cleaner, more readable code",
+                        "Automatic SQL generation",
+                        "Built-in validation and type safety",
+                        "Easier migrations",
+                        "Consistent API across databases"
+                    ]
+                },
+                {
+                    "type": "h3",
+                    "text": "Cons"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Less control over raw SQL",
+                        "Can be slower for very complex queries",
+                        "Learning curve for ORM-specific syntax"
+                    ]
+                }
+            ]
+        }
+    ]
+}

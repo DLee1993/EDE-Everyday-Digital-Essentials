@@ -1,0 +1,124 @@
+{
+    "title": "Package Managers",
+    "description": "Understanding npm, pnpm, yarn, and how JavaScript dependencies are managed.",
+    "sections": [
+        {
+            "id": "what-is-a-package-manager",
+            "title": "What is a Package Manager?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A package manager installs, updates, and removes dependencies for your project. It keeps track of versions and nested dependencies."
+                }
+            ]
+        },
+        {
+            "id": "package-json",
+            "title": "package.json",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "{\n  \"name\": \"my-app\",\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\"\n  },\n  \"dependencies\": {\n    \"react\": \"^18.0.0\"\n  }\n}"
+                }
+            ]
+        },
+        {
+            "id": "installing-packages",
+            "title": "Installing Packages",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "# npm\nnpm install react\n\n# pnpm\npnpm add react\n\n# yarn\nyarn add react"
+                }
+            ]
+        },
+        {
+            "id": "dev-dependencies",
+            "title": "Dev Dependencies",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "npm install -D typescript\npnpm add -D typescript"
+                },
+                {
+                    "type": "p",
+                    "text": "Dev dependencies are only needed during development (tools, linters, compilers), not in production runtime."
+                }
+            ]
+        },
+        {
+            "id": "removing-packages",
+            "title": "Removing Packages",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "npm uninstall react\npnpm remove react\nyarn remove react"
+                }
+            ]
+        },
+        {
+            "id": "updating-packages",
+            "title": "Updating Packages",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "npm update\npnpm update\nyarn upgrade"
+                }
+            ]
+        },
+        {
+            "id": "scripts",
+            "title": "Scripts",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "\"scripts\": {\n  \"dev\": \"next dev\",\n  \"build\": \"next build\",\n  \"start\": \"next start\"\n}\n\n// Run\nnpm run dev\npnpm dev\nyarn dev"
+                }
+            ]
+        },
+        {
+            "id": "lockfiles",
+            "title": "Lockfiles",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "package-lock.json   # npm\npnpm-lock.yaml       # pnpm\nyarn.lock            # yarn"
+                },
+                {
+                    "type": "p",
+                    "text": "Lockfiles ensure consistent installs across machines by freezing exact dependency versions."
+                }
+            ]
+        },
+        {
+            "id": "workspaces",
+            "title": "Workspaces",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "# npm\nnpm init -w packages/utils\n\n# pnpm\npnpm init -w packages/utils\n\n# yarn\nyarn workspace utils add lodash"
+                },
+                {
+                    "type": "p",
+                    "text": "Workspaces allow managing multiple packages in a monorepo with shared dependencies."
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Commit your lockfile.",
+                        "Use dev dependencies for tooling.",
+                        "Keep dependencies updated regularly.",
+                        "Use workspaces for monorepos.",
+                        "Prefer pnpm for speed and disk efficiency."
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,121 @@
+{
+    "title": "Markdown",
+    "description": "Markdown is a lightweight markup language used for documentation, notes, README files, and static site content. It is simple, readable, and widely supported.",
+    "sections": [
+        {
+            "id": "why-markdown",
+            "title": "Why Markdown Exists",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Markdown was created to make writing formatted text as easy as writing plain text. It avoids the complexity of HTML while still allowing structure and formatting."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Easy to write",
+                        "Easy to read in raw form",
+                        "Portable across platforms",
+                        "Perfect for documentation"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "markdown-syntax",
+            "title": "Basic Syntax",
+            "content": [
+                {
+                    "type": "h3",
+                    "text": "Headings"
+                },
+                {
+                    "type": "code",
+                    "text": "# Heading 1\n## Heading 2\n### Heading 3"
+                },
+                {
+                    "type": "h3",
+                    "text": "Bold & Italic"
+                },
+                {
+                    "type": "code",
+                    "text": "**Bold text**\n*Italic text*"
+                },
+                {
+                    "type": "h3",
+                    "text": "Lists"
+                },
+                {
+                    "type": "code",
+                    "text": "- Item one\n- Item two\n  - Nested item"
+                },
+                {
+                    "type": "h3",
+                    "text": "Links"
+                },
+                {
+                    "type": "code",
+                    "text": "[OpenAI](https://openai.com)"
+                },
+                {
+                    "type": "h3",
+                    "text": "Images"
+                },
+                {
+                    "type": "code",
+                    "text": "![Alt text](image-url.png)"
+                },
+                {
+                    "type": "h3",
+                    "text": "Code Blocks"
+                },
+                {
+                    "type": "code",
+                    "text": "```js\nconsole.log(\"Hello Markdown\");\n```"
+                }
+            ]
+        },
+        {
+            "id": "gfm",
+            "title": "GitHub Flavored Markdown (GFM)",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "GitHub extends Markdown with additional features that make documentation richer and more expressive."
+                },
+                {
+                    "type": "h3",
+                    "text": "Task Lists"
+                },
+                {
+                    "type": "code",
+                    "text": "- [x] Write documentation\n- [ ] Add examples"
+                },
+                {
+                    "type": "h3",
+                    "text": "Tables"
+                },
+                {
+                    "type": "code",
+                    "text": "| Name | Age |\n|------|-----|\n| Sam  | 24  |\n| Alex | 30  |"
+                }
+            ]
+        },
+        {
+            "id": "markdown-best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Keep line lengths short",
+                        "Use headings to structure content",
+                        "Use code blocks for technical examples",
+                        "Use lists to break up dense text",
+                        "Use alt text for images"
+                    ]
+                }
+            ]
+        }
+    ]
+}

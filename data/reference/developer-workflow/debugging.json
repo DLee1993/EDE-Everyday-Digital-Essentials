@@ -1,0 +1,120 @@
+{
+    "title": "Debugging",
+    "description": "Debugging is the process of finding and fixing problems in your code. It's one of the most important skills a developer can learn, and it becomes easier with the right tools and mindset.",
+    "sections": [
+        {
+            "id": "why-debugging-matters",
+            "title": "Why Debugging Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Bugs are a normal part of development. Debugging helps you understand what went wrong and how to fix it without guessing."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Improves code quality",
+                        "Builds problem-solving skills",
+                        "Reduces time spent fixing issues",
+                        "Helps you understand how your code actually works"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "reading-errors",
+            "title": "Reading Error Messages",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Error messages are your best friend. They tell you what went wrong and often where to look."
+                },
+                {
+                    "type": "code",
+                    "text": "TypeError: Cannot read properties of undefined\n    at App.js:12"
+                },
+                {
+                    "type": "p",
+                    "text": "Learn to read the stack trace — it points to the exact file and line where the issue occurred."
+                }
+            ]
+        },
+        {
+            "id": "console-logging",
+            "title": "Console Logging",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "console.log() is the simplest and most common debugging tool."
+                },
+                {
+                    "type": "code",
+                    "text": "console.log(\"value:\", value)"
+                },
+                {
+                    "type": "p",
+                    "text": "Use logs to inspect variables, check function flow, and confirm assumptions."
+                }
+            ]
+        },
+        {
+            "id": "browser-devtools",
+            "title": "Browser DevTools",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "DevTools provide powerful debugging features built directly into your browser."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Inspect elements",
+                        "View network requests",
+                        "Check console errors",
+                        "Set breakpoints",
+                        "Monitor performance"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "breakpoints",
+            "title": "Breakpoints",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Breakpoints pause your code at a specific line so you can inspect variables and step through execution."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Pause at a line of code",
+                        "Step through functions",
+                        "Inspect variable values",
+                        "Watch expressions change over time"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugging-mindset",
+            "title": "Debugging Mindset",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Debugging is as much about thinking as it is about tools."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Reproduce the bug consistently",
+                        "Start from the error message",
+                        "Test assumptions one by one",
+                        "Change one thing at a time",
+                        "Stay calm — bugs are normal"
+                    ]
+                }
+            ]
+        }
+    ]
+}

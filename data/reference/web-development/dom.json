@@ -1,0 +1,163 @@
+{
+    "title": "DOM Reference",
+    "description": "A beginner-friendly guide to understanding and working with the DOM.",
+    "sections": [
+        {
+            "id": "what-is-the-dom",
+            "title": "What is the DOM?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The DOM (Document Object Model) is a tree-like representation of your HTML page. JavaScript uses the DOM to read, modify, and interact with elements."
+                },
+                {
+                    "type": "code",
+                    "text": "HTML → Browser parses → DOM Tree → JavaScript interacts"
+                },
+                {
+                    "type": "p",
+                    "text": "Every element becomes a node in this tree, and JavaScript can access, modify, create, or remove these nodes."
+                }
+            ]
+        },
+        {
+            "id": "selecting-elements",
+            "title": "Selecting Elements",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "document.getElementById(\"header\");\ndocument.getElementsByClassName(\"item\");\ndocument.getElementsByTagName(\"p\");\n\ndocument.querySelector(\".btn\");\ndocument.querySelectorAll(\"nav a\");"
+                },
+                {
+                    "type": "p",
+                    "text": "querySelector and querySelectorAll are the most flexible and commonly used methods."
+                }
+            ]
+        },
+        {
+            "id": "reading-and-changing-content",
+            "title": "Reading & Changing Content",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const title = document.querySelector(\"h1\");\n\ntitle.textContent = \"New Title\";\ntitle.innerHTML = \"<em>Styled Title</em>\";"
+                },
+                {
+                    "type": "p",
+                    "text": "textContent is safer because it doesn't parse HTML. innerHTML allows HTML injection — use carefully."
+                }
+            ]
+        },
+        {
+            "id": "working-with-attributes",
+            "title": "Working with Attributes",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const img = document.querySelector(\"img\");\n\nimg.getAttribute(\"src\");\nimg.setAttribute(\"alt\", \"A mountain at sunrise\");\n\nimg.removeAttribute(\"title\");"
+                }
+            ]
+        },
+        {
+            "id": "classes-and-styles",
+            "title": "Classes & Styles",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "element.classList.add(\"active\");\nelement.classList.remove(\"hidden\");\nelement.classList.toggle(\"open\");\n\nelement.style.color = \"red\";\nelement.style.background = \"#333\";"
+                }
+            ]
+        },
+        {
+            "id": "creating-and-removing-elements",
+            "title": "Creating & Removing Elements",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const div = document.createElement(\"div\");\ndiv.textContent = \"Hello\";\n\ndocument.body.append(div);\n\n// Remove\ndiv.remove();"
+                }
+            ]
+        },
+        {
+            "id": "dom-traversal",
+            "title": "DOM Traversal",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "element.parentElement\nelement.children\nelement.firstElementChild\nelement.lastElementChild\nelement.nextElementSibling\nelement.previousElementSibling"
+                },
+                {
+                    "type": "p",
+                    "text": "Traversal is essential for navigating complex layouts and building interactive components."
+                }
+            ]
+        },
+        {
+            "id": "events-and-event-flow",
+            "title": "Events & Event Flow",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "button.addEventListener(\"click\", () => {\n  console.log(\"Clicked\");\n});"
+                },
+                {
+                    "type": "p",
+                    "text": "Events follow a flow: capture → target → bubble."
+                },
+                {
+                    "type": "code",
+                    "text": "document.addEventListener(\"click\", handler, { capture: true });"
+                }
+            ]
+        },
+        {
+            "id": "event-delegation",
+            "title": "Event Delegation",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "document.addEventListener(\"click\", (e) => {\n  if (e.target.matches(\".delete-btn\")) {\n    console.log(\"Delete clicked\");\n  }\n});"
+                },
+                {
+                    "type": "p",
+                    "text": "Delegation attaches one listener to a parent instead of many listeners to individual elements — ideal for dynamic content."
+                }
+            ]
+        },
+        {
+            "id": "dom-performance-tips",
+            "title": "DOM Performance Tips",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Batch DOM updates when possible.",
+                        "Avoid layout thrashing (reading + writing repeatedly).",
+                        "Use requestAnimationFrame for smooth animations.",
+                        "Use documentFragment for large insertions."
+                    ]
+                },
+                {
+                    "type": "code",
+                    "text": "const frag = document.createDocumentFragment();\nfor (let i = 0; i < 1000; i++) {\n  const li = document.createElement(\"li\");\n  li.textContent = \"Item \" + i;\n  frag.append(li);\n}\nlist.append(frag);"
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use querySelector for most selections.",
+                        "Prefer classList over inline styles.",
+                        "Detach elements before heavy updates.",
+                        "Use event delegation for dynamic lists.",
+                        "Keep DOM manipulation minimal for performance."
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,126 @@
+{
+    "title": "Environment Variables",
+    "description": "Environment variables store configuration values outside your code. They help keep secrets safe and allow your app to behave differently in development, testing, and production environments.",
+    "sections": [
+        {
+            "id": "why-env-vars-matter",
+            "title": "Why environment variables matter",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Environment variables let you configure your app without hard-coding sensitive or environment-specific values into the codebase."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Keep API keys and secrets out of source control",
+                        "Use different values for development and production",
+                        "Change configuration without redeploying code",
+                        "Share a codebase across multiple environments safely"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "env-files",
+            "title": "Common env files",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Many frameworks use special .env files that are loaded at build or runtime."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        ".env — base configuration",
+                        ".env.local — local development overrides",
+                        ".env.development — development environment",
+                        ".env.production — production environment"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "These files are usually plain KEY=VALUE pairs, one per line."
+                },
+                {
+                    "type": "code",
+                    "text": "API_URL=https://api.example.com\nAPI_KEY=super-secret-key"
+                }
+            ]
+        },
+        {
+            "id": "using-env-vars",
+            "title": "Using environment variables",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "How you access environment variables depends on your runtime and framework, but the idea is the same: read values from the environment instead of hard‑coding them."
+                },
+                {
+                    "type": "h3",
+                    "text": "Node.js example"
+                },
+                {
+                    "type": "code",
+                    "text": "const apiKey = process.env.API_KEY;"
+                },
+                {
+                    "type": "h3",
+                    "text": "Next.js example"
+                },
+                {
+                    "type": "p",
+                    "text": "In Next.js, variables must start with NEXT_PUBLIC_ to be available in the browser."
+                },
+                {
+                    "type": "code",
+                    "text": "NEXT_PUBLIC_API_URL=https://api.example.com\n\n// In your code:\nconst url = process.env.NEXT_PUBLIC_API_URL;"
+                }
+            ]
+        },
+        {
+            "id": "keeping-secrets-safe",
+            "title": "Keeping secrets safe",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Environment variables are often used for secrets, but they only stay secret if you handle them carefully."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Never commit .env files to version control",
+                        "Add .env* to your .gitignore",
+                        "Use different secrets for development and production",
+                        "Rotate keys if they are ever exposed",
+                        "Use your hosting platform's secret management tools"
+                    ]
+                },
+                {
+                    "type": "code",
+                    "text": "# .gitignore\n.env\n.env.local\n.env.*.local"
+                }
+            ]
+        },
+        {
+            "id": "env-vars-best-practices",
+            "title": "Environment variables best practices",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A few simple habits make working with environment variables much safer and more predictable."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use clear, descriptive names like API_URL or DB_HOST",
+                        "Document required environment variables for the project",
+                        "Provide example values in a .env.example file",
+                        "Avoid exposing secrets to the browser — only use public prefixes when needed",
+                        "Keep environment-specific logic out of your core business logic"
+                    ]
+                }
+            ]
+        }
+    ]
+}

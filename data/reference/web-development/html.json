@@ -1,0 +1,210 @@
+{
+    "title": "HTML Reference",
+    "description": "A beginner-friendly guide to the fundamentals of HTML.",
+    "sections": [
+        {
+            "id": "what-is-html",
+            "title": "What is HTML?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "HTML (HyperText Markup Language) is the structure of a webpage. It defines the content, meaning, and layout of elements on the screen."
+                },
+                {
+                    "type": "p",
+                    "text": "Think of HTML as the skeleton of a website."
+                }
+            ]
+        },
+        {
+            "id": "basic-document-structure",
+            "title": "Basic Document Structure",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>My Page</title>\n  </head>\n  <body>\n    <h1>Hello World</h1>\n  </body>\n</html>"
+                }
+            ]
+        },
+        {
+            "id": "head-and-metadata",
+            "title": "Head & Metadata",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<meta name=\"description\" content=\"A simple webpage\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<link rel=\"stylesheet\" href=\"styles.css\" />"
+                },
+                {
+                    "type": "p",
+                    "text": "Metadata helps browsers, search engines, and assistive technologies understand your page."
+                }
+            ]
+        },
+        {
+            "id": "headings-and-text",
+            "title": "Headings & Text",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<h1>Main Title</h1>\n<h1>Section Title</h1>\n<h2>Subsection</h2>\n\n<p>This is a paragraph.</p>\n<strong>Bold</strong>\n<em>Italic</em>"
+                }
+            ]
+        },
+        {
+            "id": "additional-heading-levels",
+            "title": "Additional Heading Levels",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "HTML provides six heading levels. Use deeper levels only when your content structure genuinely requires more nesting."
+                },
+                {
+                    "type": "code",
+                    "text": "<h3>Sub-subsection</h3>\n<h5>Deep subsection</h5>\n<h6>Lowest-level heading</h6>"
+                },
+                {
+                    "type": "p",
+                    "text": "If you find yourself using <h5> or <h6> often, consider reorganising your content."
+                }
+            ]
+        },
+        {
+            "id": "links",
+            "title": "Links",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<a href=\"https://example.com\">Visit Site</a>\n<a href=\"#section\">Jump to Section</a>\n<a href=\"file.pdf\" download>Download PDF</a>"
+                }
+            ]
+        },
+        {
+            "id": "images",
+            "title": "Images",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<img src=\"photo.jpg\" alt=\"A mountain at sunrise\" />"
+                },
+                {
+                    "type": "p",
+                    "text": "Always include descriptive alt text for accessibility."
+                }
+            ]
+        },
+        {
+            "id": "lists",
+            "title": "Lists",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<ul>\n  <li>Item</li>\n</ul>\n\n<ol>\n  <li>First</li>\n</ol>"
+                }
+            ]
+        },
+        {
+            "id": "tables",
+            "title": "Tables",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<table>\n  <tr>\n    <th>Name</th>\n    <th>Age</th>\n  </tr>\n  <tr>\n    <td>Dave</td>\n    <td>30</td>\n  </tr>\n</table>"
+                }
+            ]
+        },
+        {
+            "id": "semantic-layout",
+            "title": "Semantic Layout",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<header>...</header>\n<nav>...</nav>\n<main>...</main>\n<aside>...</aside>\n<footer>...</footer>"
+                },
+                {
+                    "type": "p",
+                    "text": "Semantic elements improve accessibility and help search engines understand your content."
+                }
+            ]
+        },
+        {
+            "id": "forms",
+            "title": "Forms",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" required />\n  <button type=\"submit\">Submit</button>\n</form>"
+                }
+            ]
+        },
+        {
+            "id": "forms-api",
+            "title": "Forms API",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "form.reset();\nform.reportValidity();\ninput.value;\ninput.validity;\ninput.setCustomValidity(\"Message\");"
+                }
+            ]
+        },
+        {
+            "id": "accessibility-fundamentals",
+            "title": "Accessibility Fundamentals",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use semantic HTML.",
+                        "Ensure keyboard access.",
+                        "Provide descriptive labels.",
+                        "Use ARIA only when necessary."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "accessibility-patterns",
+            "title": "Accessibility Patterns",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Visible focus states.",
+                        "Use role=\"alert\" for announcements.",
+                        "Use aria-live for dynamic updates.",
+                        "Ensure keyboard access for custom widgets."
+                    ]
+                },
+                {
+                    "type": "code",
+                    "text": "<div role=\"alert\">\n  Your settings have been saved.\n</div>"
+                }
+            ]
+        },
+        {
+            "id": "aria-patterns",
+            "title": "ARIA Patterns",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<!-- Tabs -->\n<div role=\"tablist\">\n  <button role=\"tab\" aria-selected=\"true\" aria-controls=\"tab-1\">Tab 1</button>\n  <button role=\"tab\" aria-controls=\"tab-2\">Tab 2</button>\n</div>\n\n<div id=\"tab-1\" role=\"tabpanel\">Content 1</div>\n<div id=\"tab-2\" role=\"tabpanel\" hidden>Content 2</div>"
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use semantic elements.",
+                        "Keep headings in order.",
+                        "Always include alt text.",
+                        "Use labels for form inputs.",
+                        "Use ARIA sparingly and correctly."
+                    ]
+                }
+            ]
+        }
+    ]
+}

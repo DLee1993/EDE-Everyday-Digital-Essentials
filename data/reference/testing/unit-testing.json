@@ -1,0 +1,36 @@
+{
+    "title": "Unit Testing",
+    "description": "Unit tests check small, isolated pieces of logic. They are fast, reliable, and form the foundation of a healthy test suite.",
+    "sections": [
+        {
+            "id": "what-is-unit-testing",
+            "title": "What is Unit Testing?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A unit test verifies the behaviour of a single function or component in isolation. It should not depend on external systems like databases or APIs."
+                }
+            ]
+        },
+        {
+            "id": "example",
+            "title": "Example",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "function add(a, b) {\n  return a + b;\n}\n\ntest(\"adds numbers\", () => {\n  expect(add(2, 3)).toBe(5);\n});"
+                }
+            ]
+        },
+        {
+            "id": "good-unit-tests",
+            "title": "What Makes a Good Unit Test?",
+            "content": [
+                {
+                    "type": "list",
+                    "items": ["Fast", "Isolated", "Deterministic", "Easy to understand"]
+                }
+            ]
+        }
+    ]
+}

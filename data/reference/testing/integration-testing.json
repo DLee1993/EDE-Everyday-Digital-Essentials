@@ -1,0 +1,40 @@
+{
+    "title": "Integration Testing",
+    "description": "Integration tests verify how different parts of your system work together. They sit between unit tests and E2E tests in terms of scope and complexity.",
+    "sections": [
+        {
+            "id": "what-is-integration-testing",
+            "title": "What is Integration Testing?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Integration tests check interactions between modules, such as a function calling another function, or a component making a request to a mock API."
+                }
+            ]
+        },
+        {
+            "id": "example",
+            "title": "Example",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "test(\"loads user data\", async () => {\n  mockApi.getUser.mockResolvedValue({ name: \"Alice\" });\n\n  const user = await loadUser();\n  expect(user.name).toBe(\"Alice\");\n});"
+                }
+            ]
+        },
+        {
+            "id": "when-to-use",
+            "title": "When to Use Integration Tests",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "When testing interactions between modules",
+                        "When mocking external systems",
+                        "When verifying data flow"
+                    ]
+                }
+            ]
+        }
+    ]
+}

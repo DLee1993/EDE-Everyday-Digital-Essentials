@@ -1,0 +1,84 @@
+{
+    "title": "Code Editors",
+    "description": "A code editor is where you spend most of your time as a developer. Learning your editor's features and shortcuts can dramatically improve your productivity and workflow.",
+    "sections": [
+        {
+            "id": "why-editors-matter",
+            "title": "Why Editors Matter",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A good editor helps you write, navigate, and debug code faster."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Faster navigation",
+                        "Built-in Git tools",
+                        "Integrated terminal",
+                        "Extensions for every language",
+                        "Powerful search and refactoring tools"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "vscode-essentials",
+            "title": "VS Code Essentials",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Visual Studio Code is the most popular editor for web development."
+                },
+                {
+                    "type": "h3",
+                    "text": "Useful Features"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Command Palette",
+                        "File Explorer",
+                        "Search and replace",
+                        "Extensions marketplace",
+                        "Built-in Git integration"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "keyboard-shortcuts",
+            "title": "Keyboard Shortcuts",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Shortcuts save time and reduce friction."
+                },
+                {
+                    "type": "code",
+                    "text": "Ctrl + P          # Quick file search\nCtrl + Shift + P  # Command palette\nAlt + Click       # Multi-cursor\nCtrl + /          # Toggle comment"
+                }
+            ]
+        },
+        {
+            "id": "extensions",
+            "title": "Extensions",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Extensions add new features to your editor."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Prettier",
+                        "ESLint",
+                        "GitLens",
+                        "Tailwind CSS IntelliSense",
+                        "Icons and themes"
+                    ]
+                }
+            ]
+        }
+    ]
+}

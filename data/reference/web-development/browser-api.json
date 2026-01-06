@@ -1,0 +1,170 @@
+{
+    "title": "Browser APIs",
+    "description": "A practical overview of the most useful browser APIs for web development.",
+    "sections": [
+        {
+            "id": "what-are-browser-apis",
+            "title": "What are Browser APIs?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Browser APIs are built-in features exposed by the browser that let you work with the network, storage, clipboard, viewport, and more."
+                },
+                {
+                    "type": "p",
+                    "text": "JavaScript calls these APIs to interact with the environment around your page, beyond just the DOM."
+                }
+            ]
+        },
+        {
+            "id": "fetch-api",
+            "title": "Fetch API",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Basic GET request\nconst res = await fetch(\"/api/data\");\nconst data = await res.json();\n\n// POST request with JSON\nawait fetch(\"/api/save\", {\n  method: \"POST\",\n  headers: { \"Content-Type\": \"application/json\" },\n  body: JSON.stringify({ name: \"Dave\" }),\n});"
+                }
+            ]
+        },
+        {
+            "id": "storage",
+            "title": "Storage (localStorage & sessionStorage)",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Save\nlocalStorage.setItem(\"theme\", \"dark\");\n\n// Read\nconst theme = localStorage.getItem(\"theme\");\n\n// Remove\nlocalStorage.removeItem(\"theme\");"
+                },
+                {
+                    "type": "p",
+                    "text": "localStorage persists across tabs and sessions. sessionStorage is cleared when the tab closes."
+                }
+            ]
+        },
+        {
+            "id": "url-and-urlsearchparams",
+            "title": "URL & URLSearchParams",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const url = new URL(window.location.href);\n\nconst query = new URLSearchParams(url.search);\nconst page = query.get(\"page\") || \"1\";\n\nquery.set(\"page\", \"2\");\nurl.search = query.toString();"
+                }
+            ]
+        },
+        {
+            "id": "history-api",
+            "title": "History API",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Change URL without full reload\nhistory.pushState({ page: 2 }, \"\", \"?page=2\");\n\nwindow.addEventListener(\"popstate\", (event) => {\n  console.log(\"Back/forward navigation\", event.state);\n});"
+                }
+            ]
+        },
+        {
+            "id": "clipboard-api",
+            "title": "Clipboard API",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "await navigator.clipboard.writeText(\"Copied text\");\n\nconst text = await navigator.clipboard.readText();"
+                },
+                {
+                    "type": "p",
+                    "text": "Clipboard access may require user interaction and permissions depending on the browser and context."
+                }
+            ]
+        },
+        {
+            "id": "intersectionobserver",
+            "title": "IntersectionObserver",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Detect when elements enter or leave the viewport (great for lazy loading)."
+                },
+                {
+                    "type": "code",
+                    "text": "const observer = new IntersectionObserver((entries) => {\n  entries.forEach((entry) => {\n    if (entry.isIntersecting) {\n      console.log(\"Visible:\", entry.target);\n    }\n  });\n});\n\nobserver.observe(document.querySelector(\"#target\"));"
+                }
+            ]
+        },
+        {
+            "id": "mutationobserver",
+            "title": "MutationObserver",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Watch for changes in the DOM (great for dynamic UIs)."
+                },
+                {
+                    "type": "code",
+                    "text": "const observer = new MutationObserver((mutations) => {\n  mutations.forEach(m => console.log(m));\n});\n\nobserver.observe(document.body, { childList: true, subtree: true });"
+                }
+            ]
+        },
+        {
+            "id": "timers",
+            "title": "Timers",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const id = setTimeout(() => {\n  console.log(\"Run once after 1s\");\n}, 1000);\n\nconst intervalId = setInterval(() => {\n  console.log(\"Run every 2s\");\n}, 2000);\n\n// Cancel\nclearTimeout(id);\nclearInterval(intervalId);"
+                }
+            ]
+        },
+        {
+            "id": "geolocation",
+            "title": "Geolocation",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "navigator.geolocation.getCurrentPosition((pos) => {\n  console.log(pos.coords.latitude, pos.coords.longitude);\n});"
+                },
+                {
+                    "type": "p",
+                    "text": "Requires user permission and may be blocked on insecure origins."
+                }
+            ]
+        },
+        {
+            "id": "notifications",
+            "title": "Notifications",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "if (Notification.permission === \"granted\") {\n  new Notification(\"Hello!\");\n}"
+                },
+                {
+                    "type": "p",
+                    "text": "Notifications require explicit user permission and should be used sparingly."
+                }
+            ]
+        },
+        {
+            "id": "device-apis",
+            "title": "Device APIs",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Vibrate (mobile)\nnavigator.vibrate(200);\n\n// Battery API\nnavigator.getBattery().then(battery => {\n  console.log(battery.level);\n});"
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Prefer Fetch over older APIs like XMLHttpRequest.",
+                        "Gracefully handle API failures and offline states.",
+                        "Use storage APIs responsibly — never store secrets.",
+                        "Clean up observers, intervals, and listeners when no longer needed.",
+                        "Request permissions only when necessary."
+                    ]
+                }
+            ]
+        }
+    ]
+}

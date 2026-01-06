@@ -1,0 +1,145 @@
+{
+    "title": "Accessibility (A11y)",
+    "description": "Practical accessibility basics to make your interfaces usable by everyone.",
+    "sections": [
+        {
+            "id": "why-accessibility-matters",
+            "title": "Why Accessibility Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Accessibility ensures that people with disabilities can perceive, understand, navigate, and interact with your content."
+                },
+                {
+                    "type": "p",
+                    "text": "Many accessibility improvements also benefit everyone: better structure, clearer labels, and more predictable behaviour."
+                }
+            ]
+        },
+        {
+            "id": "semantic-structure",
+            "title": "Semantic Structure",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<header>...</header>\n<nav>...</nav>\n<main>...</main>\n<footer>...</footer>"
+                },
+                {
+                    "type": "p",
+                    "text": "Use headings in order and semantic landmarks so screen readers can navigate efficiently."
+                }
+            ]
+        },
+        {
+            "id": "keyboard-navigation",
+            "title": "Keyboard Navigation",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "All interactive elements must be reachable via keyboard.",
+                        "Use native elements (<button>, <a>, <input>) where possible.",
+                        "Ensure visible focus styles are never removed."
+                    ]
+                },
+                {
+                    "type": "code",
+                    "text": "button:focus {\n  outline: 2px solid #4f46e5;\n}"
+                }
+            ]
+        },
+        {
+            "id": "forms-and-labels",
+            "title": "Forms & Labels",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<label for=\"email\">Email address</label>\n<input id=\"email\" name=\"email\" type=\"email\" required />"
+                },
+                {
+                    "type": "p",
+                    "text": "Correctly associated labels are essential for screen readers and help all users understand your forms faster."
+                }
+            ]
+        },
+        {
+            "id": "color-and-contrast",
+            "title": "Color & Contrast",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Do not rely on color alone to convey meaning.",
+                        "Use sufficient contrast between text and background.",
+                        "Provide clear focus and hover states."
+                    ]
+                },
+                {
+                    "type": "code",
+                    "text": ".error {\n  color: #b91c1c;\n}\n\n.error::before {\n  content: \"Error: \";\n  font-weight: 600;\n}"
+                }
+            ]
+        },
+        {
+            "id": "aria-essentials",
+            "title": "ARIA Essentials",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "ARIA (Accessible Rich Internet Applications) describes roles, states, and properties for custom UI components."
+                },
+                {
+                    "type": "code",
+                    "text": "<button\n  aria-expanded=\"false\"\n  aria-controls=\"panel-1\"\n>\n  Toggle details\n</button>\n\n<div id=\"panel-1\" hidden>\n  Extra information...\n</div>"
+                },
+                {
+                    "type": "p",
+                    "text": "Use ARIA to enhance semantics when native HTML is not enough. Avoid using ARIA to \"fix\" poorly structured markup."
+                }
+            ]
+        },
+        {
+            "id": "live-regions",
+            "title": "Live Regions",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "<div aria-live=\"polite\" id=\"status\"></div>\n\n<script>\n  document.getElementById(\"status\").textContent = \"Settings saved.\";\n</script>"
+                },
+                {
+                    "type": "p",
+                    "text": "Live regions announce dynamic changes to screen readers without moving focus, ideal for non-blocking status updates."
+                }
+            ]
+        },
+        {
+            "id": "reduced-motion",
+            "title": "Reduced Motion",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "@media (prefers-reduced-motion: reduce) {\n  * {\n    animation: none !important;\n    transition: none !important;\n  }\n}"
+                },
+                {
+                    "type": "p",
+                    "text": "Respecting reduced-motion preferences prevents discomfort for users with vestibular disorders."
+                }
+            ]
+        },
+        {
+            "id": "testing-accessibility",
+            "title": "Testing Accessibility",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Navigate your site using only the keyboard.",
+                        "Use built-in browser accessibility tools or extensions.",
+                        "Test with high contrast modes or reduced motion.",
+                        "Use screen reader testing when possible."
+                    ]
+                }
+            ]
+        }
+    ]
+}

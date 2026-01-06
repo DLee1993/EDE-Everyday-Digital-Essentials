@@ -1,0 +1,238 @@
+{
+    "title": "JavaScript Reference",
+    "description": "A beginner-friendly guide to JavaScript fundamentals, syntax, and patterns.",
+    "sections": [
+        {
+            "id": "what-is-javascript",
+            "title": "What is JavaScript?",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "JavaScript is the programming language of the web. It adds interactivity, logic, and dynamic behaviour to webpages."
+                }
+            ]
+        },
+        {
+            "id": "variables",
+            "title": "Variables",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "let count = 0;\nconst name = \"Dave\";\nvar oldWay = true;"
+                },
+                {
+                    "type": "p",
+                    "text": "Prefer let and const. Avoid var in modern code."
+                }
+            ]
+        },
+        {
+            "id": "data-types",
+            "title": "Data Types",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "string\nnumber\nboolean\nnull\nundefined\nobject\narray\nfunction"
+                }
+            ]
+        },
+        {
+            "id": "operators",
+            "title": "Operators",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "1 + 2\n3 * 4\n5 === 5\n\"Hello \" + \"World\""
+                }
+            ]
+        },
+        {
+            "id": "functions",
+            "title": "Functions",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "function greet(name) {\n  return \"Hello \" + name;\n}\n\nconst greet2 = (name) => \"Hello \" + name;"
+                }
+            ]
+        },
+        {
+            "id": "closures",
+            "title": "Closures",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "function counter() {\n  let count = 0;\n  return () => ++count;\n}\n\nconst inc = counter();\ninc(); // 1\ninc(); // 2"
+                },
+                {
+                    "type": "p",
+                    "text": "A closure is a function that remembers variables from its outer scope even after that scope has finished executing."
+                }
+            ]
+        },
+        {
+            "id": "scope-and-hoisting",
+            "title": "Scope & Hoisting",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "console.log(a); // undefined\nvar a = 10;\n\nconsole.log(b); // ReferenceError\nlet b = 20;"
+                },
+                {
+                    "type": "p",
+                    "text": "var is hoisted and initialised as undefined. let and const are hoisted but not initialised."
+                }
+            ]
+        },
+        {
+            "id": "arrays",
+            "title": "Arrays",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const items = [1, 2, 3];\n\nitems.push(4);\nitems.map(x => x * 2);\nitems.filter(x => x > 2);"
+                }
+            ]
+        },
+        {
+            "id": "objects",
+            "title": "Objects",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const user = {\n  name: \"Dave\",\n  age: 30,\n};\n\nuser.name;\nuser[\"age\"];"
+                }
+            ]
+        },
+        {
+            "id": "loops",
+            "title": "Loops",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "for (let i = 0; i < 5; i++) {}\n\nfor (const item of items) {}\n\nitems.forEach(item => {});"
+                }
+            ]
+        },
+        {
+            "id": "conditionals",
+            "title": "Conditionals",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "if (x > 10) {\n  ...\n} else {\n  ...\n}\n\nconst msg = x > 10 ? \"Big\" : \"Small\";"
+                }
+            ]
+        },
+        {
+            "id": "dom-manipulation",
+            "title": "DOM Manipulation",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const el = document.querySelector(\"h1\");\n\nel.textContent = \"Updated\";\nel.classList.add(\"active\");"
+                }
+            ]
+        },
+        {
+            "id": "events",
+            "title": "Events",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "button.addEventListener(\"click\", () => {\n  console.log(\"Clicked\");\n});"
+                }
+            ]
+        },
+        {
+            "id": "event-delegation",
+            "title": "Event Delegation",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "document.addEventListener(\"click\", (e) => {\n  if (e.target.matches(\".delete-btn\")) {\n    console.log(\"Delete clicked\");\n  }\n});"
+                },
+                {
+                    "type": "p",
+                    "text": "Event delegation attaches one listener to a parent instead of many listeners to individual elements — ideal for dynamic content."
+                }
+            ]
+        },
+        {
+            "id": "json",
+            "title": "JSON",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const obj = { name: \"Dave\" };\n\nconst json = JSON.stringify(obj);\nconst parsed = JSON.parse(json);"
+                }
+            ]
+        },
+        {
+            "id": "fetch-api",
+            "title": "Fetch API",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "const res = await fetch(\"/api/data\");\nconst data = await res.json();"
+                }
+            ]
+        },
+        {
+            "id": "async-await",
+            "title": "Async / Await",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "async function load() {\n  const res = await fetch(\"/api\");\n  return await res.json();\n}"
+                }
+            ]
+        },
+        {
+            "id": "async-patterns",
+            "title": "Async Patterns",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// Parallel\nconst [a, b] = await Promise.all([taskA(), taskB()]);\n\n// Sequential\nawait taskA();\nawait taskB();\n\n// Timeout\nconst timeout = (ms) =>\n  new Promise((resolve) => setTimeout(resolve, ms));"
+                }
+            ]
+        },
+        {
+            "id": "error-handling",
+            "title": "Error Handling",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "try {\n  riskyOperation();\n} catch (err) {\n  console.error(err);\n}"
+                }
+            ]
+        },
+        {
+            "id": "modules",
+            "title": "Modules",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "// file.js\nexport const x = 10;\n\n// main.js\nimport { x } from \"./file.js\";"
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Prefer const for values that don't change.",
+                        "Use arrow functions for short callbacks.",
+                        "Use async/await instead of raw promises.",
+                        "Keep functions small and focused.",
+                        "Use descriptive variable names."
+                    ]
+                }
+            ]
+        }
+    ]
+}

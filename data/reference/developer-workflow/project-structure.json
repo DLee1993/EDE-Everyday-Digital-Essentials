@@ -1,0 +1,85 @@
+{
+    "title": "Project Structure",
+    "description": "Understanding project structure helps you navigate codebases confidently. Most modern projects follow predictable patterns that make it easier to find files, understand architecture, and contribute effectively.",
+    "sections": [
+        {
+            "id": "why-structure-matters",
+            "title": "Why Structure Matters",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A clear structure makes a project easier to maintain, scale, and understand."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Improves readability",
+                        "Helps new developers onboard quickly",
+                        "Encourages consistency",
+                        "Supports modular architecture"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "common-folders",
+            "title": "Common Folders",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Most JavaScript and TypeScript projects follow similar folder patterns."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "src/ — main application code",
+                        "components/ — reusable UI elements",
+                        "pages/ — route-based pages (Next.js)",
+                        "utils/ — helper functions",
+                        "hooks/ — custom React hooks",
+                        "public/ — static assets",
+                        "styles/ — global or modular CSS"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "config-files",
+            "title": "Configuration Files",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Config files control how tools behave in your project."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "package.json — dependencies and scripts",
+                        "tsconfig.json — TypeScript settings",
+                        "eslint.config.js — linting rules",
+                        "next.config.js — Next.js configuration"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "naming-conventions",
+            "title": "Naming Conventions",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Consistent naming makes it easier to find and understand files."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use lowercase for folders",
+                        "Use PascalCase for components",
+                        "Use camelCase for utilities",
+                        "Use clear, descriptive names"
+                    ]
+                }
+            ]
+        }
+    ]
+}

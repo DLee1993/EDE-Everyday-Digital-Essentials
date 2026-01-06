@@ -1,0 +1,162 @@
+{
+    "title": "Components",
+    "description": "Components are reusable building blocks of an interface. They combine typography, colour, spacing, and layout into functional patterns that users interact with every day.",
+    "sections": [
+        {
+            "id": "what-are-components",
+            "title": "What Components Are",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "A component is a self‑contained UI element that solves a specific problem. Buttons, inputs, cards, modals, and navigation bars are all components."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Reusable across pages",
+                        "Consistent in appearance and behaviour",
+                        "Built from smaller design primitives",
+                        "Essential for scalable design systems"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "component-anatomy",
+            "title": "Component Anatomy",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Every component has a structure — understanding this helps you design components that are consistent and predictable."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common Parts of a Component"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Container — the outer frame or boundary",
+                        "Content — text, icons, or media inside",
+                        "Spacing — padding and margins",
+                        "States — hover, active, disabled, focus",
+                        "Behaviour — what happens when the user interacts"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "component-states",
+            "title": "Component States",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Components must communicate their state clearly. This helps users understand what they can interact with and what will happen."
+                },
+                {
+                    "type": "h3",
+                    "text": "Common States"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Default — the normal appearance",
+                        "Hover — indicates interactivity",
+                        "Active — pressed or engaged",
+                        "Focus — keyboard accessibility indicator",
+                        "Disabled — unavailable or inactive"
+                    ]
+                },
+                {
+                    "type": "p",
+                    "text": "Clear states improve usability and accessibility, especially for keyboard and screen reader users."
+                }
+            ]
+        },
+        {
+            "id": "component-types",
+            "title": "Component Types",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Components come in many forms, but most fall into a few broad categories."
+                },
+                {
+                    "type": "h3",
+                    "text": "1. Input Components"
+                },
+                {
+                    "type": "list",
+                    "items": ["Text fields", "Checkboxes", "Radio buttons", "Dropdowns", "Sliders"]
+                },
+                {
+                    "type": "h3",
+                    "text": "2. Action Components"
+                },
+                {
+                    "type": "list",
+                    "items": ["Buttons", "Icon buttons", "Floating action buttons"]
+                },
+                {
+                    "type": "h3",
+                    "text": "3. Display Components"
+                },
+                {
+                    "type": "list",
+                    "items": ["Cards", "Badges", "Avatars", "Tags"]
+                },
+                {
+                    "type": "h3",
+                    "text": "4. Structural Components"
+                },
+                {
+                    "type": "list",
+                    "items": ["Modals", "Drawers", "Navigation bars", "Sidebars"]
+                }
+            ]
+        },
+        {
+            "id": "consistency-reuse",
+            "title": "Consistency & Reuse",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Components are the backbone of scalable design. Reusing components ensures consistency across your product and reduces design and development effort."
+                },
+                {
+                    "type": "h3",
+                    "text": "Benefits of Reusable Components"
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Faster design and development",
+                        "Consistent user experience",
+                        "Fewer visual inconsistencies",
+                        "Easier maintenance and updates"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "component-best-practices",
+            "title": "Component Best Practices",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Designing components well requires clarity, consistency, and attention to detail."
+                },
+                {
+                    "type": "list",
+                    "items": [
+                        "Use consistent spacing and alignment",
+                        "Ensure clear visual hierarchy inside the component",
+                        "Design for all states, not just the default",
+                        "Keep components simple and focused",
+                        "Document usage rules and variations"
+                    ]
+                }
+            ]
+        }
+    ]
+}

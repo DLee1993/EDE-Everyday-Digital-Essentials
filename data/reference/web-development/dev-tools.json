@@ -1,0 +1,113 @@
+{
+    "title": "Browser DevTools",
+    "description": "Using DevTools to inspect, debug, and improve your web pages.",
+    "sections": [
+        {
+            "id": "opening-devtools",
+            "title": "Opening DevTools",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Right‑click → Inspect",
+                        "Keyboard shortcuts vary by browser (e.g. F12)"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "elements-panel",
+            "title": "Elements Panel",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The Elements panel lets you inspect and edit HTML and CSS in real time. Changes here are temporary but great for experimentation."
+                }
+            ]
+        },
+        {
+            "id": "console",
+            "title": "Console",
+            "content": [
+                {
+                    "type": "code",
+                    "text": "console.log(\"Debug value\", value);\nconsole.error(\"Something went wrong\");\nconsole.table(items);"
+                },
+                {
+                    "type": "p",
+                    "text": "Use the console to log values, inspect objects, and debug logic while your code runs."
+                }
+            ]
+        },
+        {
+            "id": "network-panel",
+            "title": "Network Panel",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The Network panel shows all requests made by your page: HTML, CSS, JS, images, API calls, and more. Use it to check status codes, timings, and payloads."
+                }
+            ]
+        },
+        {
+            "id": "performance-panel",
+            "title": "Performance Panel",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Record a performance profile to see how long scripting, rendering, and painting take during interactions. Essential for diagnosing jank or slow UI updates."
+                }
+            ]
+        },
+        {
+            "id": "application-and-storage",
+            "title": "Application & Storage",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Inspect localStorage, sessionStorage, cookies, service workers, and IndexedDB. This is useful when debugging authentication, preferences, and offline behaviour."
+                }
+            ]
+        },
+        {
+            "id": "sources-panel",
+            "title": "Sources Panel",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "The Sources panel lets you set breakpoints, step through code, inspect variables, and debug JavaScript execution flow."
+                },
+                {
+                    "type": "code",
+                    "text": "// Example breakpoint usage\ndebugger;"
+                }
+            ]
+        },
+        {
+            "id": "lighthouse",
+            "title": "Lighthouse",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Lighthouse audits your site for performance, accessibility, SEO, and best practices. It provides actionable recommendations for improvement."
+                }
+            ]
+        },
+        {
+            "id": "best-practices",
+            "title": "Best Practices",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Use the console for quick debugging.",
+                        "Check the Network panel for slow or failing requests.",
+                        "Use breakpoints instead of console logs for complex debugging.",
+                        "Profile performance when animations or interactions feel slow.",
+                        "Use Lighthouse regularly to catch regressions."
+                    ]
+                }
+            ]
+        }
+    ]
+}

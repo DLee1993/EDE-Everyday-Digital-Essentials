@@ -1,0 +1,56 @@
+{
+    "title": "Testing Tools",
+    "description": "Modern JavaScript testing uses a range of tools designed for different types of tests. This page introduces the most common ones.",
+    "sections": [
+        {
+            "id": "jest",
+            "title": "Jest",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Jest is a popular testing framework for JavaScript. It includes a test runner, assertion library, and mocking tools."
+                }
+            ]
+        },
+        {
+            "id": "vitest",
+            "title": "Vitest",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Vitest is a fast, Vite-native test runner with Jest-compatible APIs. It's ideal for modern frontend projects."
+                }
+            ]
+        },
+        {
+            "id": "react-testing-library",
+            "title": "React Testing Library",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "React Testing Library focuses on testing components the way users interact with them, rather than testing implementation details."
+                }
+            ]
+        },
+        {
+            "id": "playwright",
+            "title": "Playwright",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Playwright is a powerful E2E testing framework that automates real browsers and supports multiple devices and contexts."
+                }
+            ]
+        },
+        {
+            "id": "cypress",
+            "title": "Cypress",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Cypress is an E2E testing tool that runs directly in the browser, providing fast feedback and a great developer experience."
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "title": "NoSQL Basics",
+    "description": "NoSQL databases store data in flexible, non-relational formats such as documents, key-value pairs, or wide-column structures. They don't require a fixed schema, making them ideal for rapidly changing or unstructured data. This page introduces the core concepts behind NoSQL and how it differs from traditional relational databases.",
+    "sections": [
+        {
+            "id": "document-databases",
+            "title": "Document Databases",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Document databases store data as JSON-like objects. Each document can have its own structure, making this model highly flexible."
+                },
+                {
+                    "type": "p",
+                    "text": "Common document databases:"
+                },
+                {
+                    "type": "list",
+                    "items": ["MongoDB", "Firebase Firestore", "CouchDB"]
+                },
+                {
+                    "type": "code",
+                    "text": "{\n  \"id\": 1,\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"preferences\": {\n    \"theme\": \"dark\",\n    \"notifications\": true\n  }\n}"
+                }
+            ]
+        },
+        {
+            "id": "collections",
+            "title": "Collections",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Documents are grouped into collections. Unlike SQL tables, collections don't enforce a strict schema — each document can have different fields."
+                },
+                {
+                    "type": "p",
+                    "text": "This flexibility is useful when your data evolves over time or when different records naturally have different shapes."
+                }
+            ]
+        },
+        {
+            "id": "querying",
+            "title": "Querying Data",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "NoSQL databases use their own query languages. In MongoDB, for example, queries are written using JSON-like syntax."
+                },
+                {
+                    "type": "code",
+                    "text": "db.users.find({ age: { $gt: 18 } })"
+                },
+                {
+                    "type": "p",
+                    "text": "Queries are typically fast and efficient, especially when paired with indexes."
+                }
+            ]
+        },
+        {
+            "id": "updating",
+            "title": "Updating Data",
+            "content": [
+                {
+                    "type": "p",
+                    "text": "Updating documents is straightforward and often uses operators to modify specific fields."
+                },
+                {
+                    "type": "code",
+                    "text": "db.users.updateOne(\n  { id: 1 },\n  { $set: { email: \"new@example.com\" } }\n)"
+                }
+            ]
+        },
+        {
+            "id": "when-nosql-shines",
+            "title": "When NoSQL Shines",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Your data doesn't fit neatly into tables",
+                        "You need to store nested or complex objects",
+                        "Your data structure changes frequently",
+                        "You need to scale horizontally across many servers",
+                        "You want fast reads and writes"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "common-pitfalls",
+            "title": "Common Pitfalls",
+            "content": [
+                {
+                    "type": "list",
+                    "items": [
+                        "Inconsistent document shapes: Flexibility can lead to messy data if not managed carefully.",
+                        "Limited relational features: NoSQL isn't ideal for complex joins or strict relationships.",
+                        "Over-nesting: Deeply nested documents can become hard to query and maintain."
+                    ]
+                }
+            ]
+        }
+    ]
+}
