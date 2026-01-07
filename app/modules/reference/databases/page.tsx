@@ -1,23 +1,13 @@
-import NoSQLBasics from "@/components/reference/databases/nosql-basics";
-import ORMs from "@/components/reference/databases/orms";
-import SQLBasics from "@/components/reference/databases/sql-basics";
-import SQLvsNoSQL from "@/components/reference/databases/sql-vs-nosql";
 import ReferenceLayout from "@/components/reference/reference-layout";
+import { DocKey } from "@/data/reference";
 
 export default function Databases() {
     const topics = [
-        { id: "SQLvNoSQL", title: "SQL V NoSQL" },
-        { id: "SQLBasics", title: "SQL Basics" },
-        { id: "NoSQLbasics", title: "NoSQL Basics" },
-        { id: "orms", title: "ORMS" },
+        { id: "sql-vs-nosql" as DocKey, title: "SQL vs NoSQL" },
+        { id: "sql-basics" as DocKey, title: "SQL Basics" },
+        { id: "nosql-basics" as DocKey, title: "NoSQL Basics" },
+        { id: "orms" as DocKey, title: "ORMs" },
     ];
 
-    const content = {
-        SQLvNoSQL: <SQLvsNoSQL />,
-        SQLBasics: <SQLBasics />,
-        NoSQLbasics: <NoSQLBasics />,
-        orms: <ORMs />,
-    };
-
-    return <ReferenceLayout topics={topics} content={content} />;
+    return <ReferenceLayout topics={topics} />;
 }
