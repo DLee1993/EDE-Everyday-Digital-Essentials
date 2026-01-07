@@ -59,10 +59,10 @@ v
     ### Colors
 
     -   Development Stages:
-        -   [ ] Built
-        -   [ ] Refined
-        -   [ ] Tested
-        -   [ ] Verified
+        -   [x] Built
+        -   [x] Refined
+        -   [x] Tested
+        -   [x] Verified
 
     ### Number Base
 
