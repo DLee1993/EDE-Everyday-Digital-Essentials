@@ -38,7 +38,7 @@ export function useSectionsNavigation(activeTopicId: string) {
                 if (!el) return;
 
                 const rect = el.getBoundingClientRect();
-                if (rect.top <= 120 && rect.bottom >= 120) {
+                if (rect.top <= 200 && rect.bottom >= 120) {
                     current = sec.id;
                 }
             });
