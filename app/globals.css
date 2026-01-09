@@ -144,7 +144,7 @@
         @apply w-1;
     }
     [data-sidebar="content"]::-webkit-scrollbar-track {
-        @apply bg-transparent;
+        @apply bg-transparent border-none;
     }
     [data-sidebar="content"]::-webkit-scrollbar-thumb {
         @apply bg-border;
