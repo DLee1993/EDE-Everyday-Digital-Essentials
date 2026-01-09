@@ -2,8 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-// import { sidebarItems } from "@/components/global/app-sidebar-item-list";
+import { useSidebarNavigation } from "@/hooks/global/use-sidebar-navigation";
+
+import MenuSearch from "@/components/global/menu-search";
 import ChangeTheme from "@/components/global/theme-toggle";
+import { PageIdentifier } from "@/components/global/page-identifier";
 import { Home, FolderGit2 } from "lucide-react";
 import {
     Sidebar,
@@ -13,14 +16,11 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    useSidebar,
 } from "@/components/ui/sidebar";
-import { PageIdentifier } from "@/components/global/page-identifier";
-import MenuSearch from "@/components/global/menu-search";
 
 export function AppSidebar() {
     const pathname = usePathname();
-    const { openMobile, setOpenMobile } = useSidebar();
+    const { closeOnNavigate } = useSidebarNavigation();
 
     return (
         <Sidebar collapsible="none" variant="sidebar" className="h-screen border-r border-border">
@@ -42,7 +42,7 @@ export function AppSidebar() {
                                 asChild
                                 isActive={pathname === "/" ? true : false}
                                 className="min-h-9 min-w-9"
-                                onClick={() => setOpenMobile(!openMobile)}
+                                onClick={() => closeOnNavigate("/")}
                             >
                                 <Link
                                     href="/"
@@ -91,7 +91,7 @@ export function AppSidebar() {
                         <ChangeTheme />
                     </SidebarMenu>
                 </SidebarGroup>
-                <MenuSearch open={openMobile} setOpen={setOpenMobile} />
+                <MenuSearch />
             </SidebarContent>
         </Sidebar>
     );

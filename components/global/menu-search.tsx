@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { PageIdentifier } from "@/components/global/page-identifier";
+import { useSidebarNavigation } from "@/hooks/global/use-sidebar-navigation";
 import { sidebarItems } from "@/components/global/app-sidebar-item-list";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
@@ -10,8 +13,6 @@ import {
     SidebarMenuBadge,
     SidebarGroupLabel,
 } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation";
-import { PageIdentifier } from "@/components/global/page-identifier";
 
 // Flatten the toolbox for search
 const allTools = sidebarItems.flatMap((category) =>
@@ -46,15 +47,10 @@ function highlightMatch(text: string, query: string) {
     );
 }
 
-export const MenuSearch = ({
-    open,
-    setOpen,
-}: {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-}) => {
+export const MenuSearch = () => {
     const [query, setQuery] = useState("");
     const pathname = usePathname();
+    const { closeOnNavigate } = useSidebarNavigation();
 
     const filteredTools = query
         ? allTools.filter((tool) => {
@@ -100,7 +96,7 @@ export const MenuSearch = ({
                                     asChild
                                     isActive={pathname === item.url ? true : false}
                                     className="min-h-9 min-w-9"
-                                    onClick={() => setOpen(!open)}
+                                    onClick={() => closeOnNavigate(item.url)}
                                 >
                                     <Link
                                         href={item.url}
