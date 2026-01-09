@@ -19,7 +19,7 @@ export default function UUIDGeneratorPage() {
     const generator = useUuidGenerator(options);
 
     return (
-        <section className="space-y-10">
+        <section className="space-y-7">
             <UuidOptions {...options} />
 
             <div className="w-full max-w-4xl bg-border h-px"></div>
