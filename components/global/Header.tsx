@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { getLocalizedGreeting } from "@/lib/global/greet-user";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import HowToUse from "@/components/global/how-to-use";
-import { rawSidebarItems } from "@/components/global/app-sidebar-item-list";
 
 type Greeting = {
     message: string;
@@ -16,7 +13,6 @@ type Greeting = {
 };
 
 export default function Header() {
-    const pathname = usePathname();
     const [greeting, setGreeting] = useState<Greeting>({
         message: "",
         icon: undefined,
@@ -43,13 +39,6 @@ export default function Header() {
                 </div>
             </div>
             <ul className="flex gap-2.5 md:gap-5 text-sm">
-                {rawSidebarItems
-                    .flatMap((cat) => cat.items)
-                    .some((item) => item.url === pathname) && (
-                    <li>
-                        <HowToUse />
-                    </li>
-                )}
                 <li>
                     <Link href="/contact">
                         <Button variant="link" className="pointer-events-none text-foreground">
