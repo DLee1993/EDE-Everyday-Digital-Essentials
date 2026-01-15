@@ -1,12 +1,18 @@
 // /lib/download.ts
 
 import type { ColorExportData } from "@/lib/color-converter/colors";
+import { NotifyUser } from "@/lib/global/notify-user";
 
 /* -------------------------------------------------------
  * Generic download utilities
  * ----------------------------------------------------- */
 
 export function DownloadTextFile(filename: string, text: string) {
+    if (!text) {
+        NotifyUser({ type: "Error", title: "Error - Nothing to Download" });
+        return;
+    }
+
     const blob = new Blob([text], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
 
@@ -16,9 +22,16 @@ export function DownloadTextFile(filename: string, text: string) {
     a.click();
 
     URL.revokeObjectURL(url);
+
+    NotifyUser({ type: "Success", title: "Success - Downloaded" });
 }
 
 export function DownloadJsonFile(filename: string, data: unknown) {
+    if (!data) {
+        NotifyUser({ type: "Error", title: "Error - Nothing to Download" });
+        return;
+    }
+
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -29,13 +42,36 @@ export function DownloadJsonFile(filename: string, data: unknown) {
     a.click();
 
     URL.revokeObjectURL(url);
+
+    NotifyUser({ type: "Success", title: "Success - Downloaded JSON" });
 }
 
 export function DownloadBlobUrlFile(url: string, filename: string) {
+    if (!url || !url.startsWith("blob:")) {
+        NotifyUser({
+            type: "Error",
+            title: "Error - Invalid file URL",
+        });
+        return;
+    }
+
+    if (!filename) {
+        NotifyUser({
+            type: "Error",
+            title: "Error - Invalid filename",
+        });
+        return;
+    }
+
     const a = document.createElement("a");
     a.href = url;
     a.download = filename;
     a.click();
+
+    NotifyUser({
+        type: "Success",
+        title: "Success - File downloaded",
+    });
 }
 
 /* -------------------------------------------------------
@@ -56,24 +92,24 @@ export function DownloadCssVariablesFile(data: ColorExportData) {
     add("rgb", data.rgb);
     add("hsl", data.hsl);
     add("luminance", data.luminance);
-    add("text-suggestion", data.textSuggestion);
+    add("text-suggestion", data.bestText);
 
     // Tints & Shades
     data.palette.forEach((p, i) => add(`palette-${i}`, p.hex));
 
     // Complementary
-    data.complementary.forEach((p, i) => add(`complementary-${i}`, p.hex));
+    data.complementaryHarmonies.forEach((p, i) => add(`complementary-${i}`, p.hex));
 
     // Triadic
-    data.triadic.forEach((p, i) => add(`triadic-${i}`, p.hex));
+    data.triadicPalette.forEach((p, i) => add(`triadic-${i}`, p.hex));
 
     // Analogous
-    data.analogous.forEach((p, i) => add(`analogous-${i}`, p.hex));
+    data.analogousPalette.forEach((p, i) => add(`analogous-${i}`, p.hex));
 
     // Contrast
-    if (data.contrast) {
-        add("contrast-white", data.contrast.white.ratio);
-        add("contrast-black", data.contrast.black.ratio);
+    if (data.wcag) {
+        add("contrast-white", data.wcag.white.ratio);
+        add("contrast-black", data.wcag.black.ratio);
     }
 
     const css = `:root {\n${lines.join("\n")}\n}`;
@@ -93,17 +129,17 @@ export function DownloadTailwindTokensFile(data: ColorExportData) {
     });
 
     // Complementary
-    data.complementary.forEach((p, i) => {
+    data.complementaryHarmonies.forEach((p, i) => {
         tokens[`primary-complementary-${i}`] = p.hex;
     });
 
     // Triadic
-    data.triadic.forEach((p, i) => {
+    data.triadicPalette.forEach((p, i) => {
         tokens[`primary-triadic-${i}`] = p.hex;
     });
 
     // Analogous
-    data.analogous.forEach((p, i) => {
+    data.analogousPalette.forEach((p, i) => {
         tokens[`primary-analogous-${i}`] = p.hex;
     });
 
