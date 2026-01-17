@@ -167,7 +167,7 @@ export default function ConverterTable({
                                 <DropdownMenuItem
                                     variant="destructive"
                                     onClick={() => deleteAction(a.file_name)}
-                                    className="group flex justify-between items-center hover:text-foreground!"
+                                    className="group flex justify-between items-center"
                                 >
                                     <span>Delete file</span>
                                     <Trash />
