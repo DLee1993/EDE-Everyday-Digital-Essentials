@@ -26,14 +26,14 @@ export default function WordCounter() {
     const { text, setText, analysis, table, clearFormattingAction, reset } = useWordCounter();
 
     return (
-        <section className="flex! md:flex-row! justify-evenly! space-y-10 gap-10">
+        <section className="flex! md:flex-row! justify-evenly! items-start! space-y-10 md:space-y-0">
             {/* LEFT COLUMN */}
             <div className="w-full md:max-w-3/5 2xl:max-w-1/3 space-y-6">
                 <Textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Type or paste your text here..."
-                    className="w-full! h-80 resize-none"
+                    className="w-full! h-96 resize-none"
                 />
 
                 <div className="flex gap-3 items-center">
@@ -106,22 +106,26 @@ export default function WordCounter() {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="w-full md:w-1/3 2xl:max-w-1/5 space-y-4">
-                <div className="rounded-lg border p-4 bg-muted/30 space-y-2">
-                    <h2 className="text-sm font-semibold text-muted-foreground">Metrics</h2>
+            <div className="w-full md:w-1/3 2xl:max-w-1/5 space-y-4 rounded-lg border p-4 bg-muted/30 h-110">
+                <div>
+                    <h2 className="text-sm font-semibold text-primary mb-2.5">Metrics</h2>
 
                     <p>Words: {analysis.words}</p>
                     <p>Characters: {analysis.characters}</p>
                     <p>Characters (no spaces): {analysis.charactersNoSpaces}</p>
                     <p>Lines: {analysis.lines}</p>
                     <p>Paragraphs: {analysis.paragraphs}</p>
+                </div>
 
-                    <h3 className="text-sm font-semibold mt-4 text-primary">Reading Time</h3>
+                <div>
+                    <h3 className="text-sm font-semibold mt-4 text-primary mb-2.5">Reading Time</h3>
                     <p>Slow: {analysis.readingTime.slow}</p>
                     <p>Average: {analysis.readingTime.average}</p>
                     <p>Fast: {analysis.readingTime.fast}</p>
+                </div>
 
-                    <h3 className="text-sm font-semibold mt-4 text-primary">Speaking Time</h3>
+                <div>
+                    <h3 className="text-sm font-semibold mt-4 text-primary mb-2.5">Speaking Time</h3>
                     <p>Slow: {analysis.speakingTime.slow}</p>
                     <p>Average: {analysis.speakingTime.average}</p>
                     <p>Fast: {analysis.speakingTime.fast}</p>
