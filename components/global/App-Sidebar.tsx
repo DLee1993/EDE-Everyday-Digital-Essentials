@@ -46,21 +46,21 @@ export function AppSidebar() {
                             >
                                 <Link
                                     href="/"
-                                    className="data-[active=true]:bg-foreground data-[active=true]:text-background group"
+                                    className="data-[active=true]:bg-transparent! data-[active=true]:text-background hover:bg-hover! group"
                                 >
                                     <Home
                                         size={15}
                                         className={`ml-0.5 ${
                                             pathname === "/"
-                                                ? "text-sidebar-primary-foreground"
-                                                : "group-hover:text-sidebar-primary-foreground"
+                                                ? "text-primary"
+                                                : "text-foreground/75 group-hover:text-foreground"
                                         }`}
                                     />
                                     <p
                                         className={`mx-2 min-w-32 ${
                                             pathname === "/"
-                                                ? "text-sidebar-primary-foreground"
-                                                : "group-hover:text-sidebar-primary-foreground"
+                                                ? "text-primary"
+                                                : "text-foreground/75 group-hover:text-foreground"
                                         }`}
                                     >
                                         Home
@@ -75,13 +75,13 @@ export function AppSidebar() {
                                 <Link
                                     href="https://github.com/DLee1993/toolbox"
                                     target="_blank"
-                                    className="group"
+                                    className="hover:bg-hover! group"
                                 >
                                     <FolderGit2
                                         size={15}
-                                        className="ml-0.5 group-hover:text-sidebar-primary-foreground"
+                                        className="ml-0.5 text-foreground/75 group-hover:text-foreground"
                                     />
-                                    <p className="mx-2 min-w-32 group-hover:text-sidebar-primary-foreground">
+                                    <p className="mx-2 min-w-32 text-foreground/75 group-hover:text-foreground">
                                         Request a tool
                                     </p>
                                 </Link>

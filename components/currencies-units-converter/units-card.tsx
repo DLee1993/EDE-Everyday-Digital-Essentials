@@ -66,7 +66,7 @@ export default function UnitsCard() {
                 <div className="w-full flex gap-5">
                     <Button onClick={convert}>Convert</Button>
 
-                    <Button variant="secondary" className="text-sm" onClick={reset}>
+                    <Button variant="secondary" className="text-sm" onClick={reset} disabled={!result}>
                         Reset
                         <CircleX />
                     </Button>

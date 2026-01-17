@@ -11,7 +11,7 @@ export function CopyPaletteButton({ colors }: Props) {
     const formatted = colors.map((c) => `${c.label}: ${c.hex}`).join("\n");
 
     return (
-        <Button variant="ghost" size="sm" onClick={() => Copy({ input: formatted })}>
+        <Button variant="outline" size="sm" onClick={() => Copy({ input: formatted })}>
             Copy All
         </Button>
     );

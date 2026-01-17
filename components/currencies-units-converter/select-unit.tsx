@@ -59,7 +59,7 @@ export function SelectUnit({ type, selectedValue, setSelectedValue }: SelectUnit
     const triggerButton = (
         <Button
             ref={triggerRef}
-            variant="secondary"
+            variant="outline"
             className="min-w-20 flex justify-between items-center"
         >
             {placeholder}

@@ -26,26 +26,26 @@ const ChangeTheme = () => {
         <SidebarMenuItem onClick={toggleTheme}>
             <SidebarMenuButton
                 asChild
-                className="min-h-9 min-w-9 cursor-pointer p-0! md:group-data-[collapsible=icon]:p-0! group"
+                className="min-h-9 min-w-9 cursor-pointer p-0! md:group-data-[collapsible=icon]:p-0! hover:bg-hover! group"
             >
                 {hasMounted ? (
                     <div className="w-full px-0">
                         <div className="relative min-h-9 min-w-9">
                             <MoonIcon
                                 size={16}
-                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 group-hover:text-sidebar-primary-foreground ${
+                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 text-foreground/75 group-hover:text-foreground ${
                                     theme === "dark" || theme === "system" ? "scale-100" : "scale-0"
                                 }`}
                             />
                             <SunIcon
                                 size={18}
-                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 group-hover:text-sidebar-primary-foreground ${
+                                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 text-foreground/75 group-hover:text-foreground ${
                                     theme === "light" ? "scale-100" : "scale-0"
                                 }`}
                             />
                         </div>
 
-                        <p className="flex items-center w-full min-w-32 group-hover:text-sidebar-primary-foreground">
+                        <p className="flex items-center w-full min-w-32 text-foreground/75 group-hover:text-foreground">
                             {theme === "dark" ? "Dark mode" : "Light mode"}
                         </p>
                     </div>
@@ -54,11 +54,13 @@ const ChangeTheme = () => {
                         <div className="relative min-h-9 min-w-9">
                             <SunMoonIcon
                                 size={16}
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:text-sidebar-primary-foreground"
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:text-foreground"
                             />
                         </div>
 
-                        <p className="flex items-center w-full min-w-32 group-hover:text-sidebar-primary-foreground">Theme mode</p>
+                        <p className="flex items-center w-full min-w-32 text-foreground/75 group-hover:text-foreground">
+                            Theme mode
+                        </p>
                     </div>
                 )}
             </SidebarMenuButton>

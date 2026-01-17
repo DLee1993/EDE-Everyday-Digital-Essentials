@@ -24,7 +24,7 @@ export function UuidActions({
     uuids,
     generate,
     deleteAll: DeleteAll,
-    downloadAll: DownloadAll
+    downloadAll: DownloadAll,
 }: UuidActionsProps) {
     return (
         <section className="flex flex-wrap gap-2">
@@ -34,7 +34,7 @@ export function UuidActions({
 
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button size="sm" variant="secondary" className="text-foreground">
+                    <Button size="sm" variant="outline" disabled={uuids.length === 0}>
                         Actions <ChevronDown />
                     </Button>
                 </DropdownMenuTrigger>
@@ -42,8 +42,8 @@ export function UuidActions({
                 <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem
                         onClick={DeleteAll}
-                        disabled={uuids.length === 0}
-                        className="text-destructive flex justify-between items-center"
+                        variant="destructive"
+                        className="flex justify-between items-center"
                     >
                         <span>Delete all</span>
                         <Trash size={14} />
@@ -51,17 +51,26 @@ export function UuidActions({
 
                     <DropdownMenuSeparator />
 
-                    <DropdownMenuItem onClick={() => CopyAll({ inputs: uuids.map((u) => u.full) })} disabled={uuids.length === 0} className="flex justify-between items-center">
+                    <DropdownMenuItem
+                        onClick={() => CopyAll({ inputs: uuids.map((u) => u.full) })}
+                        className="flex justify-between items-center"
+                    >
                         <span>Copy all</span>
                         <CopyIcon size={14} />
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem onClick={DownloadAll} disabled={uuids.length === 0} className="flex justify-between items-center">
+                    <DropdownMenuItem
+                        onClick={DownloadAll}
+                        className="flex justify-between items-center"
+                    >
                         <span>Download all</span>
                         <Download size={14} />
                     </DropdownMenuItem>
 
-                    <DropdownMenuItem onClick={() => DownloadJsonFile("identifiers.json", uuids)} disabled={uuids.length === 0} className="flex justify-between items-center">
+                    <DropdownMenuItem
+                        onClick={() => DownloadJsonFile("identifiers.json", uuids)}
+                        className="flex justify-between items-center"
+                    >
                         <span>Download as JSON</span>
                         <Download size={14} />
                     </DropdownMenuItem>

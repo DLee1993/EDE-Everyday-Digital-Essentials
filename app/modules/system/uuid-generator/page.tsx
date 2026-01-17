@@ -4,7 +4,7 @@ import { useUuidOptions } from "@/hooks/uuid-generator/use-uuid-options";
 import { useUuidGenerator } from "@/hooks/uuid-generator/use-uuid-generator";
 
 import { UuidOptions } from "@/components/uuid-generator/options";
-import { UuidActions } from "@/components/uuid-generator/actions";
+import { UuidActions } from "@/components/uuid-generator/Actions";
 import { UuidTable } from "@/components/uuid-generator/table";
 
 export type UuidObject = {

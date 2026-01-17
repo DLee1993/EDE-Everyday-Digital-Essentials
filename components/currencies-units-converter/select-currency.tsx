@@ -72,7 +72,7 @@ export function SelectCurrency({
         return (
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
-                    <Button variant="secondary" className="flex justify-between items-center w-28">
+                    <Button variant="outline" className="flex justify-between items-center w-28">
                         {current ? (
                             <div className="flex items-center gap-2">
                                 {FlagOrSkeleton}

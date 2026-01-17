@@ -38,7 +38,7 @@ function highlightMatch(text: string, query: string) {
     const regex = new RegExp(`(${query})`, "gi");
     return text.split(regex).map((part, i) =>
         regex.test(part) ? (
-            <mark key={i} className="bg-primary text-foreground px-1 rounded-sm">
+            <mark key={i} className="bg-primary/50 text-foreground px-1 rounded-xs">
                 {part}
             </mark>
         ) : (
@@ -83,11 +83,9 @@ export const MenuSearch = () => {
             )}
             {Object.entries(groupedResults).map(([category, tools]) => (
                 <SidebarGroup key={`${category} menu group`}>
-                    <SidebarGroupLabel className="text-sm text-green-600 bg-primary/10">
+                    <SidebarGroupLabel className="text-sm text-primary bg-primary/10 min-h-9">
                         {category}
-                        <SidebarMenuBadge className="text-green-600">
-                            {tools.length}
-                        </SidebarMenuBadge>
+                        <SidebarMenuBadge className="text-primary">{tools.length}</SidebarMenuBadge>
                     </SidebarGroupLabel>
                     <SidebarMenu>
                         {tools.map((item, i) => (
@@ -100,16 +98,22 @@ export const MenuSearch = () => {
                                 >
                                     <Link
                                         href={item.url}
-                                        className="data-[active=true]:bg-foreground data-[active=true]:text-background space-x-2 group"
+                                        className="data-[active=true]:bg-transparent! data-[active=true]:text-background hover:bg-hover! space-x-2 group"
                                     >
                                         {item.icon && (
-                                            <item.icon className="ml-[3px] group-hover:text-sidebar-primary-foreground" />
+                                            <item.icon
+                                                className={`ml-[3px] ${
+                                                    pathname === item.url
+                                                        ? "text-primary"
+                                                        : "text-foreground/75 group-hover:text-foreground"
+                                                }`}
+                                            />
                                         )}
                                         <p
                                             className={`min-w-32 ${
                                                 pathname === item.url
-                                                    ? "text-sidebar-primary-foreground"
-                                                    : "group-hover:text-sidebar-primary-foreground"
+                                                    ? "text-primary"
+                                                    : "text-foreground/75 group-hover:text-foreground"
                                             }`}
                                         >
                                             {highlightMatch(item.title, query)}
