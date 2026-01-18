@@ -18,16 +18,18 @@ export default function WorldClock() {
         useWorldClock();
 
     return (
-        <section className="mx-auto flex flex-col items-center space-y-12">
-            <TimezoneSelect tz={selected} setTz={setSelected} setCurrentTz={setCurrent} />
+        <section>
+            <div className="w-full max-w-3xl space-y-12">
+                <TimezoneSelect tz={selected} setTz={setSelected} setCurrentTz={setCurrent} />
 
-            <section className="w-full">
-                {selected ? (
-                    <TimezoneCard data={selectedTimezone} />
-                ) : (
-                    <TimezoneCard data={currentTimezone} />
-                )}
-            </section>
+                <section className="w-full">
+                    {selected ? (
+                        <TimezoneCard data={selectedTimezone} />
+                    ) : (
+                        <TimezoneCard data={currentTimezone} />
+                    )}
+                </section>
+            </div>
         </section>
     );
 }
