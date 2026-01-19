@@ -52,7 +52,7 @@ export default function WordCounter() {
                             </Button>
                         </DropdownMenuTrigger>
 
-                        <DropdownMenuContent className="w-48">
+                        <DropdownMenuContent>
                             <DropdownMenuItem
                                 className="flex justify-between items-center"
                                 onClick={reset}
@@ -89,7 +89,7 @@ export default function WordCounter() {
                                 className="flex justify-between items-center"
                                 onClick={() => DownloadJsonFile("wordStats.json", analysis)}
                             >
-                                Download Stats
+                                Download Stats (JSON)
                                 <FileJson className="w-4 h-4" />
                             </DropdownMenuItem>
 
@@ -97,7 +97,7 @@ export default function WordCounter() {
                                 className="flex justify-between items-center"
                                 onClick={() => DownloadTextFile("word-stats.txt", table)}
                             >
-                                Download Table
+                                Download Stats (TEXT)
                                 <Table className="w-4 h-4" />
                             </DropdownMenuItem>
                         </DropdownMenuContent>
