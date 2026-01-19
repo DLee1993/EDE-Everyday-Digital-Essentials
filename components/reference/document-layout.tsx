@@ -20,7 +20,7 @@ interface Doc {
 
 export default function DocumentLayout({ doc }: { doc: Doc }) {
     return (
-        <article className="space-y-20">
+        <article className="space-y-16">
             {/* Header */}
             <header className="space-y-3">
                 <h1 className="text-2xl font-bold border-b-2 border-primary">{doc.title}</h1>
