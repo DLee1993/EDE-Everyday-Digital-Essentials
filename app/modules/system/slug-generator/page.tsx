@@ -1,20 +1,13 @@
 "use client";
 
 import { useSlugGenerator } from "@/hooks/slug-generator/use-slug-generator";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown, CopyIcon, Download } from "lucide-react";
+import { CopyIcon, Download, Trash } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { Copy } from "@/lib/global/copy-to-clipboard";
+import { Copy, CopyJson } from "@/lib/global/copy-to-clipboard";
 import { DownloadJsonFile, DownloadTextFile } from "@/lib/global/download";
+import { ActionsMenu } from "@/components/global/ActionsMenu";
 
 export default function SlugGenerator() {
     const { input, setInput, slug, separator, setSeparator, maxLength, setMaxLength } =
@@ -64,44 +57,37 @@ export default function SlugGenerator() {
                     </Label>
                     <Input id="slugOutput" value={slug} readOnly className="font-mono" />
                 </div>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="secondary" disabled={!slug}>
-                            Actions
-                            <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
-
-                    <DropdownMenuContent align="end" className="w-48">
-                        <DropdownMenuItem
-                            onClick={() => Copy({ input: slug })}
-                            className="flex justify-between items-center"
-                        >
-                            Copy slug <CopyIcon />
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={() => Copy({ input: JSON.stringify({ slug }, null, 2) })}
-                            className="flex justify-between items-center"
-                        >
-                            Copy JSON <CopyIcon />{" "}
-                        </DropdownMenuItem>
-
-                        <DropdownMenuSeparator />
-
-                        <DropdownMenuItem
-                            onClick={() => DownloadTextFile("slug.txt", `SLUG - ${slug}`)}
-                            className="flex justify-between items-center"
-                        >
-                            Download slug <Download />
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={() => DownloadJsonFile("slug.json", { slug })}
-                            className="flex justify-between items-center"
-                        >
-                            Download JSON <Download />
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <ActionsMenu
+                    actions={[
+                        {
+                            label: "Copy slug",
+                            icon: <CopyIcon />,
+                            onClick: () => Copy({ input: slug }),
+                        },
+                        {
+                            label: "Copy JSON",
+                            icon: <CopyIcon />,
+                            onClick: () => CopyJson({ input: slug }),
+                        },
+                        {
+                            label: "Download slug",
+                            icon: <Download />,
+                            onClick: () => DownloadTextFile("slug.txt", `SLUG - ${slug}`),
+                        },
+                        {
+                            label: "Download JSON",
+                            icon: <Download />,
+                            onClick: () => DownloadJsonFile("slug.json", { slug }),
+                        },
+                        {
+                            label: "Clear slug",
+                            icon: <Trash />,
+                            onClick: () => setInput(""),
+                            isDelete: true,
+                        },
+                    ]}
+                    disabled={!slug}
+                />
             </section>
         </section>
     );

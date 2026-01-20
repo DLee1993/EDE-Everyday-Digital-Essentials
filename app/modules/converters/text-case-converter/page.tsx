@@ -8,13 +8,13 @@ import {
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, CopyIcon, Download } from "lucide-react";
+import { ChevronDown, CopyIcon, Download, Trash } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Copy } from "@/lib/global/copy-to-clipboard";
 import { DownloadJsonFile, DownloadTextFile } from "@/lib/global/download";
 import { Check } from "lucide-react";
+import { ActionsMenu } from "@/components/global/ActionsMenu";
 
 export default function TextCaseConverter() {
     const { input, setInput, mode, setMode, output } = useTextCase();
@@ -59,66 +59,54 @@ export default function TextCaseConverter() {
 
                 {/* ACTIONS DROPDOWN */}
                 <section className="w-full">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="secondary" disabled={!output}>
-                                Actions
-                                <ChevronDown />
-                            </Button>
-                        </DropdownMenuTrigger>
-
-                        <DropdownMenuContent align="end" className="w-48">
-                            <DropdownMenuItem
-                                onClick={() => Copy({ input: output })}
-                                className="flex justify-between items-center"
-                            >
-                                Copy text <CopyIcon />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                onClick={() =>
+                    <ActionsMenu
+                        actions={[
+                            {
+                                label: "Clear",
+                                icon: <Trash />,
+                                onClick: () => setInput(""),
+                            },
+                            {
+                                label: "Copy Text",
+                                icon: <CopyIcon />,
+                                onClick: () => Copy({ input: output }),
+                            },
+                            {
+                                label: "Copy JSON",
+                                icon: <CopyIcon />,
+                                onClick: () =>
                                     Copy({
                                         input: JSON.stringify({ input, output, mode }, null, 2),
-                                    })
-                                }
-                                className="flex justify-between items-center"
-                            >
-                                Copy JSON <CopyIcon />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuSeparator />
-
-                            <DropdownMenuItem
-                                onClick={() => DownloadTextFile("text-case.txt", output)}
-                                className="flex justify-between items-center"
-                            >
-                                Download Text <Download />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                onClick={() =>
-                                    DownloadJsonFile("text-case.json", { input, output, mode })
-                                }
-                                className="flex justify-between items-center"
-                            >
-                                Download JSON <Download />
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                                    }),
+                            },
+                            {
+                                label: "Download Text",
+                                icon: <Download />,
+                                onClick: () => DownloadTextFile("text-case.txt", output),
+                            },
+                            {
+                                label: "Download JSON",
+                                icon: <Download />,
+                                onClick: () =>
+                                    DownloadJsonFile("text-case.json", { input, output, mode }),
+                            },
+                        ]}
+                        disabled={!output}
+                    />
                 </section>
             </div>
 
             <div className="w-full flex flex-wrap gap-5">
                 {/* INPUT TEXTAREA */}
                 <fieldset className="flex-1 min-w-80 flex flex-col gap-2">
-                        <Label className="font-medium">Input</Label>
-                        <Textarea
-                            name="message"
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            placeholder="Enter the text you want to transform..."
-                            className="formField peer resize-none w-full h-48"
-                        />
+                    <Label className="font-medium">Input</Label>
+                    <Textarea
+                        name="message"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Enter the text you want to transform..."
+                        className="formField peer resize-none w-full h-48"
+                    />
                 </fieldset>
 
                 {/* OUTPUT TEXTAREA */}

@@ -3,24 +3,11 @@
 import { useWordCounter } from "@/hooks/word-counter/use-word-counter";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 
-import {
-    ClipboardCopy,
-    Download,
-    FileJson,
-    Table,
-    Brush,
-    RotateCcw,
-    ChevronDown,
-} from "lucide-react";
+import { ClipboardCopy, Download, FileJson, Table, Brush, RotateCcw } from "lucide-react";
 import { Copy, CopyJson } from "@/lib/global/copy-to-clipboard";
 import { DownloadJsonFile, DownloadTextFile } from "@/lib/global/download";
+import { ActionsMenu } from "@/components/global/ActionsMenu";
 
 export default function WordCounter() {
     const { text, setText, analysis, table, clearFormattingAction, reset } = useWordCounter();
@@ -44,64 +31,36 @@ export default function WordCounter() {
                     </Button>
 
                     {/* DROPDOWN MENU */}
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline">
-                                Actions
-                                <ChevronDown />
-                            </Button>
-                        </DropdownMenuTrigger>
-
-                        <DropdownMenuContent>
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={reset}
-                            >
-                                Reset
-                                <RotateCcw className="w-4 h-4" />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={() => Copy({ input: text })}
-                            >
-                                Copy Text
-                                <ClipboardCopy className="w-4 h-4" />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={() => DownloadTextFile("text.txt", text)}
-                            >
-                                Download Text
-                                <Download className="w-4 h-4" />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={() => CopyJson({ input: analysis })}
-                            >
-                                Copy Stats (JSON)
-                                <FileJson className="w-4 h-4" />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={() => DownloadJsonFile("wordStats.json", analysis)}
-                            >
-                                Download Stats (JSON)
-                                <FileJson className="w-4 h-4" />
-                            </DropdownMenuItem>
-
-                            <DropdownMenuItem
-                                className="flex justify-between items-center"
-                                onClick={() => DownloadTextFile("word-stats.txt", table)}
-                            >
-                                Download Stats (TEXT)
-                                <Table className="w-4 h-4" />
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <ActionsMenu
+                        actions={[
+                            { label: "Reset", icon: <RotateCcw />, onClick: reset },
+                            {
+                                label: "Copy Text",
+                                icon: <ClipboardCopy />,
+                                onClick: () => Copy({ input: text }),
+                            },
+                            {
+                                label: "Copy Stats (JSON)",
+                                icon: <FileJson />,
+                                onClick: () => CopyJson({ input: analysis }),
+                            },
+                            {
+                                label: "Download Text",
+                                icon: <Download />,
+                                onClick: () => DownloadTextFile("text.txt", text),
+                            },
+                            {
+                                label: "Download Stats (JSON)",
+                                icon: <Download />,
+                                onClick: () => DownloadJsonFile("wordStats.json", analysis),
+                            },
+                            {
+                                label: "Download Stats (TEXT)",
+                                icon: <Table />,
+                                onClick: () => DownloadTextFile("word-stats.txt", table),
+                            },
+                        ]}
+                    />
                 </div>
             </div>
 
@@ -125,7 +84,9 @@ export default function WordCounter() {
                 </div>
 
                 <div>
-                    <h3 className="text-sm font-semibold mt-4 text-primary mb-2.5">Speaking Time</h3>
+                    <h3 className="text-sm font-semibold mt-4 text-primary mb-2.5">
+                        Speaking Time
+                    </h3>
                     <p>Slow: {analysis.speakingTime.slow}</p>
                     <p>Average: {analysis.speakingTime.average}</p>
                     <p>Fast: {analysis.speakingTime.fast}</p>
