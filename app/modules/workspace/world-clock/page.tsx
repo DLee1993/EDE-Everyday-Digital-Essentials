@@ -1,7 +1,5 @@
 "use client";
 
-import TimezoneSelect from "@/components/world-clock/timezone-select";
-import { TimezoneCard } from "@/components/world-clock/timezone-card";
 import { useWorldClock } from "@/hooks/world-clock/use-world-clock";
 
 export type FormattedTimezone = {
@@ -20,15 +18,6 @@ export default function WorldClock() {
     return (
         <section>
             <div className="w-full max-w-3xl space-y-12">
-                <TimezoneSelect tz={selected} setTz={setSelected} setCurrentTz={setCurrent} />
-
-                <section className="w-full">
-                    {selected ? (
-                        <TimezoneCard data={selectedTimezone} />
-                    ) : (
-                        <TimezoneCard data={currentTimezone} />
-                    )}
-                </section>
             </div>
         </section>
     );
