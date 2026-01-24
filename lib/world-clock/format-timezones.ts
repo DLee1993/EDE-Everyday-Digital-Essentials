@@ -1,7 +1,7 @@
 import { ITimezoneOption } from "react-timezone-select";
 import { TZDate } from "@date-fns/tz";
 import { format } from "date-fns";
-import { FormattedTimezone } from "@/types";
+import { FormattedTimezone } from "@/app/modules/workspace/world-clock/page";
 
 export function formatTimezone(tz: ITimezoneOption | undefined): FormattedTimezone | undefined {
     if (!tz) return undefined;
