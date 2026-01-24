@@ -13,7 +13,7 @@ export default function WordCounter() {
     const { text, setText, analysis, table, clearFormattingAction, reset } = useWordCounter();
 
     return (
-        <section className="flex! md:flex-row! justify-evenly! items-start! space-y-10 md:space-y-0">
+        <section className="flex! md:flex-row! justify-evenly! space-y-10 md:space-y-0">
             {/* LEFT COLUMN */}
             <div className="w-full md:max-w-3/5 2xl:max-w-1/3 space-y-6">
                 <Textarea
