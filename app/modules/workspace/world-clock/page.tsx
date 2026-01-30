@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 import { useWorldClock } from "@/hooks/world-clock/use-world-clock";
-
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { allTimezones, useTimezoneSelect } from "react-timezone-select";
+import { ComposableMap, Geographies, Geography } from "@vnedyalk0v/react19-simple-maps";
+import geoUrl from "@/data/world-clock/data.json";
 
 import { Card } from "@/components/ui/card";
 
-import { allTimezones, useTimezoneSelect } from "react-timezone-select";
 import TimezoneSelect from "@/components/world-clock/timezone-select";
 import { TimezoneCard } from "@/components/world-clock/timezone-card";
 
@@ -19,8 +19,6 @@ export type FormattedTimezone = {
     timezone: string;
     name: string;
 };
-
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function WorldClock() {
     const { selected, setSelected, selectedTimezone, currentTimezone, setCurrent } =
@@ -45,9 +43,9 @@ export default function WorldClock() {
             >
                 <Geographies geography={geoUrl}>
                     {({ geographies }) =>
-                        geographies.map((geo) => (
+                        geographies.map((geo, i) => (
                             <Geography
-                                key={geo.rsmKey}
+                                key={geo?.id || i}
                                 geography={geo}
                                 style={{
                                     default: {
